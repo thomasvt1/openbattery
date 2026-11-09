@@ -9,34 +9,38 @@
         <meta name="description" content="Home Assistant custom integration for monitoring and controlling multiple home-battery brands">
       
       
-        <meta name="author" content="ffunes">
+        <meta name="author" content="OpenBattery contributors">
       
       
-        <link rel="canonical" href="https://ffunes.github.io/omnibattery/fork-improvements/">
+        <link rel="canonical" href="https://thomasvt1.github.io/openbattery/configuration/batteries/indevolt/">
       
       
+        <link rel="prev" href="../sessy/">
+      
+      
+        <link rel="next" href="../hoymiles/">
       
       
         
           <link rel="alternate" href="./" hreflang="en">
         
-          <link rel="alternate" href="../es/fork-improvements/" hreflang="es">
+          <link rel="alternate" href="../../../es/configuration/batteries/indevolt/" hreflang="es">
         
       
       
-      <link rel="icon" href="../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <link rel="icon" href="../../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
-        <title>Fork improvements - Omnibattery</title>
+        <title>Indevolt - OpenBattery</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -55,7 +59,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fork-improvements" class="md-skip">
+        <a href="#indevolt-solidflex-powerflex" class="md-skip">
           Skip to content
         </a>
       
@@ -100,9 +104,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Omnibattery" class="md-header__button md-logo" aria-label="Omnibattery" data-md-component="logo">
+    <a href="../../.." title="OpenBattery" class="md-header__button md-logo" aria-label="OpenBattery" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,13 +117,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Omnibattery
+            OpenBattery
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fork improvements
+              Indevolt
             
           </span>
         </div>
@@ -172,8 +176,8 @@
           </li>
         
           <li class="md-select__item">
-            <a href="../es/fork-improvements/" hreflang="es" class="md-select__link">
-              Español
+            <a href="../../../es/configuration/batteries/indevolt/" hreflang="es" class="md-select__link">
+              EspaÃ±ol
             </a>
           </li>
         
@@ -227,13 +231,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/ffunes/omnibattery" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/thomasvt1/openbattery" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ffunes/omnibattery
+    thomasvt1/openbattery
   </div>
 </a>
       </div>
@@ -252,7 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -273,7 +277,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../compatibility/" class="md-tabs__link">
+        <a href="../../../compatibility/" class="md-tabs__link">
           
   
   
@@ -289,11 +293,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../configuration/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -320,7 +326,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../features/pd-controller/" class="md-tabs__link">
+        <a href="../../../features/pd-controller/" class="md-tabs__link">
           
   
   
@@ -343,7 +349,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../hardware/shelly-pro-3em-mqtt-script/" class="md-tabs__link">
+        <a href="../../../hardware/shelly-pro-3em-mqtt-script/" class="md-tabs__link">
           
   
   
@@ -363,7 +369,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../automations/blueprints/" class="md-tabs__link">
+        <a href="../../../automations/blueprints/" class="md-tabs__link">
           
   
   
@@ -383,7 +389,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../troubleshooting/" class="md-tabs__link">
+        <a href="../../../troubleshooting/" class="md-tabs__link">
           
   
   
@@ -403,7 +409,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/entities/" class="md-tabs__link">
+        <a href="../../../reference/entities/" class="md-tabs__link">
           
   
   
@@ -423,7 +429,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/architecture/" class="md-tabs__link">
+        <a href="../../../reference/architecture/" class="md-tabs__link">
           
   
   
@@ -463,22 +469,22 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Omnibattery" class="md-nav__button md-logo" aria-label="Omnibattery" data-md-component="logo">
+    <a href="../../.." title="OpenBattery" class="md-nav__button md-logo" aria-label="OpenBattery" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../../../assets/logo.png" alt="logo">
 
     </a>
-    Omnibattery
+    OpenBattery
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/ffunes/omnibattery" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/thomasvt1/openbattery" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    ffunes/omnibattery
+    thomasvt1/openbattery
   </div>
 </a>
     </div>
@@ -492,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -573,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../compatibility/" class="md-nav__link">
+      <a href="../../../compatibility/" class="md-nav__link">
         
   
   
@@ -601,7 +607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../../installation/" class="md-nav__link">
         
   
   
@@ -629,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrading-from-marstek-vem/" class="md-nav__link">
+      <a href="../../../upgrading-from-marstek-vem/" class="md-nav__link">
         
   
   
@@ -661,28 +667,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -700,7 +709,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -718,7 +727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -752,10 +761,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -764,7 +776,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
         
           
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
             
   
   
@@ -800,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/main-sensor/" class="md-nav__link">
+      <a href="../../main-sensor/" class="md-nav__link">
         
   
   
@@ -828,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/three-phase/" class="md-nav__link">
+      <a href="../../three-phase/" class="md-nav__link">
         
   
   
@@ -861,28 +873,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_3" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   
@@ -900,7 +915,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -918,7 +933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -946,7 +961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/marstek/" class="md-nav__link">
+      <a href="../marstek/" class="md-nav__link">
         
   
   
@@ -974,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/esphome-lilygo/" class="md-nav__link">
+      <a href="../esphome-lilygo/" class="md-nav__link">
         
   
   
@@ -1002,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/zendure/" class="md-nav__link">
+      <a href="../zendure/" class="md-nav__link">
         
   
   
@@ -1030,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/anker/" class="md-nav__link">
+      <a href="../anker/" class="md-nav__link">
         
   
   
@@ -1058,7 +1073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/sessy/" class="md-nav__link">
+      <a href="../sessy/" class="md-nav__link">
         
   
   
@@ -1083,10 +1098,173 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indevolt
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indevolt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#do-i-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Do I need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-add-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to add it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you will see
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moving-from-the-official-indevolt-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moving from the official Indevolt integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-the-request-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing the request speed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-openbattery-writes-settings-only-when-you-change-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why OpenBattery writes settings only when you change them
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-it-does-not-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If it does not work
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/hoymiles/" class="md-nav__link">
+      <a href="../hoymiles/" class="md-nav__link">
         
   
   
@@ -1114,7 +1292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/batteries/huawei/" class="md-nav__link">
+      <a href="../huawei/" class="md-nav__link">
         
   
   
@@ -1142,7 +1320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/hoymiles-ms-a2/" class="md-nav__link">
+      <a href="../../hoymiles-ms-a2/" class="md-nav__link">
         
   
   
@@ -1178,7 +1356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/time-slots/" class="md-nav__link">
+      <a href="../../time-slots/" class="md-nav__link">
         
   
   
@@ -1212,10 +1390,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1224,7 +1405,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
-          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
             
   
   
@@ -1260,7 +1441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/excluded-devices/" class="md-nav__link">
+      <a href="../../excluded-devices/" class="md-nav__link">
         
   
   
@@ -1288,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/load-exclusion/" class="md-nav__link">
+      <a href="../../../features/load-exclusion/" class="md-nav__link">
         
   
   
@@ -1330,10 +1511,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1342,7 +1526,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
         
           
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
             
   
   
@@ -1378,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/predictive-charging/" class="md-nav__link">
+      <a href="../../predictive-charging/" class="md-nav__link">
         
   
   
@@ -1406,7 +1590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/predictive-charging/time-slot/" class="md-nav__link">
+      <a href="../../predictive-charging/time-slot/" class="md-nav__link">
         
   
   
@@ -1434,7 +1618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/predictive-charging/dynamic-pricing/" class="md-nav__link">
+      <a href="../../predictive-charging/dynamic-pricing/" class="md-nav__link">
         
   
   
@@ -1462,7 +1646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/predictive-charging/real-time-price/" class="md-nav__link">
+      <a href="../../predictive-charging/real-time-price/" class="md-nav__link">
         
   
   
@@ -1613,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/pd-controller/" class="md-nav__link">
+      <a href="../../../features/pd-controller/" class="md-nav__link">
         
   
   
@@ -1641,7 +1825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/hourly-net-balance/" class="md-nav__link">
+      <a href="../../../features/hourly-net-balance/" class="md-nav__link">
         
   
   
@@ -1731,7 +1915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/consumption-estimate/" class="md-nav__link">
+      <a href="../../../features/consumption-estimate/" class="md-nav__link">
         
   
   
@@ -1759,7 +1943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/solar-charge-delay/" class="md-nav__link">
+      <a href="../../../features/solar-charge-delay/" class="md-nav__link">
         
   
   
@@ -1849,7 +2033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/peak-shaving/" class="md-nav__link">
+      <a href="../../../features/peak-shaving/" class="md-nav__link">
         
   
   
@@ -1877,7 +2061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/temperature-charge-limit/" class="md-nav__link">
+      <a href="../../../features/temperature-charge-limit/" class="md-nav__link">
         
   
   
@@ -1967,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/weekly-full-charge/" class="md-nav__link">
+      <a href="../../../features/weekly-full-charge/" class="md-nav__link">
         
   
   
@@ -1995,7 +2179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/cell-balance-monitor/" class="md-nav__link">
+      <a href="../../../features/cell-balance-monitor/" class="md-nav__link">
         
   
   
@@ -2031,7 +2215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/multi-battery/" class="md-nav__link">
+      <a href="../../../features/multi-battery/" class="md-nav__link">
         
   
   
@@ -2059,7 +2243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/daily-operation-timeline/" class="md-nav__link">
+      <a href="../../../features/daily-operation-timeline/" class="md-nav__link">
         
   
   
@@ -2148,7 +2332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/shelly-pro-3em-mqtt-script/" class="md-nav__link">
+      <a href="../../../hardware/shelly-pro-3em-mqtt-script/" class="md-nav__link">
         
   
   
@@ -2237,7 +2421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../automations/blueprints/" class="md-nav__link">
+      <a href="../../../automations/blueprints/" class="md-nav__link">
         
   
   
@@ -2326,7 +2510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../../troubleshooting/" class="md-nav__link">
         
   
   
@@ -2354,7 +2538,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
+      <a href="../../../changelog/" class="md-nav__link">
         
   
   
@@ -2443,7 +2627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/entities/" class="md-nav__link">
+      <a href="../../../reference/entities/" class="md-nav__link">
         
   
   
@@ -2525,7 +2709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/modbus-registers/" class="md-nav__link">
+      <a href="../../../reference/modbus-registers/" class="md-nav__link">
         
   
   
@@ -2553,7 +2737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/registers/" class="md-nav__link">
+      <a href="../../../reference/registers/" class="md-nav__link">
         
   
   
@@ -2650,7 +2834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/architecture/" class="md-nav__link">
+      <a href="../../../reference/architecture/" class="md-nav__link">
         
   
   
@@ -2678,7 +2862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/driver-requirements-template/" class="md-nav__link">
+      <a href="../../../reference/driver-requirements-template/" class="md-nav__link">
         
   
   
@@ -2733,10 +2917,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pricing-time" class="md-nav__link">
+  <a href="#do-i-need-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pricing time
+        Do I need it?
       
     </span>
   </a>
@@ -2744,10 +2928,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forecast-freshness" class="md-nav__link">
+  <a href="#before-you-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forecast freshness
+        Before you start
       
     </span>
   </a>
@@ -2755,10 +2939,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#thermal-telemetry" class="md-nav__link">
+  <a href="#how-to-add-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Thermal telemetry
+        How to add it
       
     </span>
   </a>
@@ -2766,10 +2950,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dashboard-writes" class="md-nav__link">
+  <a href="#what-you-will-see" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dashboard writes
+        What you will see
       
     </span>
   </a>
@@ -2777,10 +2961,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#accessible-control-evidence" class="md-nav__link">
+  <a href="#moving-from-the-official-indevolt-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Accessible control evidence
+        Moving from the official Indevolt integration
       
     </span>
   </a>
@@ -2788,10 +2972,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#power-quantization" class="md-nav__link">
+  <a href="#choosing-the-request-speed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Power quantization
+        Choosing the request speed
       
     </span>
   </a>
@@ -2799,10 +2983,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#battery-energy-models" class="md-nav__link">
+  <a href="#why-openbattery-writes-settings-only-when-you-change-them" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Battery energy models
+        Why OpenBattery writes settings only when you change them
       
     </span>
   </a>
@@ -2810,43 +2994,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forecast-calibration" class="md-nav__link">
+  <a href="#if-it-does-not-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forecast calibration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#native-forecast-curves" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Native forecast curves
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#control-decision-boundary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Control decision boundary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reproducible-validation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reproducible validation
+        If it does not work
       
     </span>
   </a>
@@ -2870,7 +3021,7 @@
 
 
   
-    <a href="https://github.com/ffunes/omnibattery/edit/main/site-docs/fork-improvements.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/thomasvt1/openbattery/edit/openbattery/site-docs/configuration/batteries/indevolt.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2878,151 +3029,262 @@
   
 
 
-<h1 id="fork-improvements">Fork improvements<a class="headerlink" href="#fork-improvements" title="Permanent link">&para;</a></h1>
-<h2 id="pricing-time">Pricing time<a class="headerlink" href="#pricing-time" title="Permanent link">&para;</a></h2>
-<p>Provider price intervals retain UTC timestamps. Legacy naive control times are
-interpreted in Home Assistant's configured timezone; displays use local time.
-Repeated daylight-saving hours remain separate intervals, and energy capacity
-uses elapsed time rather than wall-clock subtraction.</p>
-<h2 id="forecast-freshness">Forecast freshness<a class="headerlink" href="#forecast-freshness" title="Permanent link">&para;</a></h2>
-<p>Forecast reports and explicit <code>generated_at</code> / <code>forecast_generated_at</code> timestamps
-expire after six hours. An explicit <code>forecast_date</code> must match the current local
-date; timestamps more than five minutes in the future are rejected. Repeated
-reports of an unchanged value remain valid through Home Assistant's
-<code>last_reported</code>. Readers without timestamps remain supported with freshness
-<code>unknown</code>; they are not described as verified fresh.</p>
-<p>Invalid or stale forecasts contribute zero solar energy through the existing
-conservative fallback. Integration diagnostics expose freshness, source and
-conversion. No stale numeric value is treated as evidence of future production.</p>
-<h2 id="thermal-telemetry">Thermal telemetry<a class="headerlink" href="#thermal-telemetry" title="Permanent link">&para;</a></h2>
-<p>Non-finite temperatures are missing readings. If a valid reading previously
-reduced power, its cap is retained for up to five minutes during a sensor gap,
-never above a newer incoming limit. After expiry the optional software derate
-returns the incoming limit; hardware BMS protections remain authoritative.
-Diagnostics distinguish valid, held and unavailable readings and report the held
-charge cap. Charge and discharge hold histories are separate.</p>
-<h2 id="dashboard-writes">Dashboard writes<a class="headerlink" href="#dashboard-writes" title="Permanent link">&para;</a></h2>
-<p>Battery and system controls share one command path. A pending command disables
-its control and suppresses duplicate writes to the same entity. The status banner
-announces acceptance or failure; errors clear optimistic slider state and restore
-the latest Home Assistant value. Acceptance means the service completed, not that
-the battery has reached the requested power. Verify response in live telemetry.</p>
-<h2 id="accessible-control-evidence">Accessible control evidence<a class="headerlink" href="#accessible-control-evidence" title="Permanent link">&para;</a></h2>
-<p>Switches expose their checked state to assistive technology; switches, selects
-and ranges have accessible names. Control help supports Enter/Space and Escape.
-Battery cards show the live control owner, last commanded power, configured
-ceilings, blocking reasons and known release times. Unknown commands or release
-times remain unknown. These values describe control evidence, not proof that a
-physical battery followed the command.</p>
-<h2 id="power-quantization">Power quantization<a class="headerlink" href="#power-quantization" title="Permanent link">&para;</a></h2>
-<p>Allocation floors each share to 5 W, then assigns affordable increments by largest
-remainder. Individual ceilings and the aggregate request are enforced after
-rounding. A small unallocatable remainder is left unused rather than exceeding a
-limit. The existing phase-protection pass can further reduce this allocation.</p>
-<h2 id="battery-energy-models">Battery energy models<a class="headerlink" href="#battery-energy-models" title="Permanent link">&para;</a></h2>
-<p>Driver capabilities now carry explicit directional efficiencies and charge/discharge activation crossovers. Existing drivers retain documented assumptions (0.85 each direction, 1750 W charge and 1500 W discharge crossovers); these are not claims of measured performance. Round-trip efficiency is the product of the two directions, and the user arbitrage cost setting remains independent.</p>
-<p>Charge completion estimates and allocation weights account for AC-to-DC losses. Chronological charging uses the lowest eligible charge efficiency so switching between batteries cannot overstate stored energy. Export planning uses discharge efficiency, never the round-trip cost knob. Diagnostics expose the selected model and its provenance.</p>
-<p>Drivers may optionally supply <code>EfficiencyMeasurement</code> records under <code>efficiency_measurements["charge"|"discharge"]</code>: paired energy over the same isolated converter, at least 30 samples, 300 seconds and 0.05 kWh input, with a finite ratio from 0.5 to 1 and an aware observation timestamp no older than one day. PV-contaminated, stale or invalid measurements leave the driver's defaults in place. Current drivers do not claim measurements they cannot independently observe.</p>
-<p>The charging model is also used when calculating legacy fallback durations, charge-delay completion time, dashboard fallback quotas and quota carry-over. An already-started replacement slot is credited only for its remaining elapsed duration. Model reads inspect non-responsive exclusions without resetting retry state, using battery identity rather than display names.</p>
-<p>Solar reserve and absorption calculations keep forecast demand on the AC side
-and convert claims into required stored energy using the participating fleet’s
-discharge efficiency. Live SOC targets recompute that conversion; 3 kWh of AC
-demand requires 5 kWh stored at 60% discharge efficiency. Directional loss
-assumptions are separate from configured round-trip price-arbitrage costs.</p>
-<p>Predictive scalar deficits and chronological deadlines also account for
-discharge losses. Simultaneous solar serves household load directly; only the
-net surplus crosses the charge converter and only net demand crosses the
-discharge converter. Plans retain the original AC intervals for dashboard
-simulation separately from stored-energy intervals used for scheduling.</p>
-<p>Charge-delay balances convert stored capacity to deliverable AC energy and net
-solar production to stored energy, including unlock-time projections. Scalar
-charge-delay and predictive totals use separated-flow losses because morning load and afternoon
-PV cannot be assumed to coincide; dated chronological intervals can net flows. Curtailment
-slot quotas remain AC output while SOC targets describe stored depletion.
-For mixed fleets, headroom planning uses the highest participating discharge
-efficiency: this is the conservative bound on stored depletion for a given AC
-output, whereas demand reserves use the lowest efficiency. PV headroom also
-uses the highest eligible charge efficiency to cover the maximum stored-energy
-footprint; ordinary grid-charge budgets retain the lowest charge efficiency.</p>
-<h2 id="forecast-calibration">Forecast calibration<a class="headerlink" href="#forecast-calibration" title="Permanent link">&para;</a></h2>
-<p>The first fresh remaining forecast in each source/local-day/six-hour issuance
-bucket is recorded before any reserve is applied. Its horizon ends at the next
-local midnight (including 23/25-hour DST days). Later forecast revisions cannot
-replace that snapshot. Source identity includes the sensor and conversion path.</p>
-<p>Production is integrated over that exact horizon, with at most 120 seconds
-between fresh samples and complete coverage required. Missing channels, stale
-telemetry, restarts with coverage gaps, and known or suspected curtailment leave
-an outcome unscored. Full-battery/zero-export suspicion is gated by measured
-production or astronomical daylight, so ordinary nighttime zeros remain valid.
-They never turn missing coverage into zero-production observations. Independent
-battery PV requires all four MPPT channels, or a fresh independent aggregate PV
-reading; installations without that evidence remain uncalibrated.</p>
-<p>At least ten independent scored days in the matching issuance bucket are needed
-before planning subtracts the 90th-percentile optimistic fractional error,
-capped at 30% of the raw remaining forecast. It never increases solar credit.
-Diagnostics expose sample count, bias, absolute error, raw forecast and reserve;
-this empirical reserve is not a probabilistic weather guarantee. Both scalar
-and period energy use the same adjustment; dashboard reads do not train history.
-The per-entry daily-energy store retains at most 240 outcomes over 90 days and
-16 pending snapshots. Calibration history survives daily-total resets.</p>
-<h2 id="native-forecast-curves">Native forecast curves<a class="headerlink" href="#native-forecast-curves" title="Permanent link">&para;</a></h2>
-<p>Configured numeric forecast entities can now carry native provider attributes:</p>
+<h1 id="indevolt-solidflex-powerflex">Indevolt SolidFlex / PowerFlex<a class="headerlink" href="#indevolt-solidflex-powerflex" title="Permanent link">&para;</a></h1>
+<p>OpenBattery controls an Indevolt battery through the battery's local HTTP API. No cloud connection is required.</p>
+<h2 id="do-i-need-it">Do I need it?<a class="headerlink" href="#do-i-need-it" title="Permanent link">&para;</a></h2>
+<p><strong>Use it if</strong> you own an Indevolt SolidFlex or PowerFlex battery and Home Assistant can reach it on your local network. The SolidFlex 2000, the SolidFlex 3000 AC and the PowerFlex 2000 have been tested. The PowerFlex 3000, the SolidFlex and PowerFlex 1200 and the SolidFlex 3600 use the same API; please report your model and firmware if you use one of them. Batteries with solar panels on their own solar inputs have not been tested yet, so please report how that goes too. The BK1600 uses an older API and is not supported. The battery reports its model family, not the exact product, so Home Assistant shows for example SolidFlex/PowerFlex 3000 for a SolidFlex 3000 AC. Control works the same for all of them.</p>
+<p><strong>Use OpenBattery instead of the official Indevolt integration.</strong> Both poll the same battery, and the battery answers requests one at a time. OpenBattery shows the same measurements, including the AC energy counters for the Energy dashboard, so disable or remove the official integration for a battery that OpenBattery controls (see <a href="#moving-from-the-official-indevolt-integration">Moving from the official Indevolt integration</a>).</p>
+<h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Solcast <code>detailedForecast</code>: <code>period_start</code> or <code>period_end</code>, <code>pv_estimate</code> in kW,
-  and optional ISO <code>period</code> duration (default <code>PT30M</code>). Explicit start/end pairs
-  use their actual elapsed duration.</li>
-<li>Forecast.Solar <code>result.watt_hours_period</code>: Wh for intervals ending at each
-  timestamp. The first point must be a zero-energy boundary, or the attributes
-  must specify <code>period_minutes</code> for its start to be known.</li>
-<li>Forecast.Solar <code>result.watts</code>: timestamped W samples, integrated with the
-  trapezoidal rule between adjacent timestamps. Top-level maps also work.</li>
+<li>In the Indevolt app, enable the <strong>local API</strong> with the <strong>HTTP</strong> protocol (not HTTP Digest), and give the battery a stable IP address. OpenBattery does not use <strong>Modbus TCP</strong>, so you can leave it off. In tests, the battery answered Modbus requests much more slowly than HTTP requests, and the Modbus connection was less stable and needed frequent reconnects.</li>
+<li>In the Indevolt app, set the working mode to <strong>Realtime (standby)</strong>. OpenBattery controls the battery only in Realtime mode and never switches the mode itself (see <a href="#why-openbattery-writes-settings-only-when-you-change-them">why</a>).</li>
+<li>The battery's <strong>reserve</strong> (backup SOC), <strong>max AC input</strong> and <strong>max AC output</strong> are the same settings as OpenBattery's minimum SOC, max charge power and max discharge power. OpenBattery keeps them in sync, so you can change them in either place.</li>
+<li>Disable the official Indevolt integration for this battery.</li>
+<li>If your solar panels are not connected to the battery's own solar inputs and you use a solar forecast, also set the <strong>Solar production sensor</strong> (see <a href="../../main-sensor/">sensor setup</a>). OpenBattery then compares the forecast with what your panels really produce.</li>
 </ul>
-<p>Explicit offsets preserve repeated DST hours. Naive native timestamps require
-provider <code>timezone</code> metadata (also accepted from <code>message.info.timezone</code>);
-ambiguous and nonexistent local times are rejected. Explicit zero-energy
-Forecast.Solar night intervals up to 24 hours keep multi-day curves continuous.
-Interval-ending Wh may end at zero the next provider-local day even if the
-preceding sunset period is positive; sampled W still requires two zero endpoints;
-positive-energy gaps longer than two hours, duplicate instants, overlaps,
-ordering errors and missing intervals cause
-an explicit scalar fallback. Positional arrays and daily cumulative Wh totals
-are not interpreted as period curves. Existing explicit-energy periods remain
-supported, with overlap/order validation added.</p>
-<p>These adapters consume attributes exposed by the configured entity; they do
-not fetch provider APIs or credentials. Diagnostics report curve provenance and
-fallback reason. The existing timeline normalizes the chosen curve to the
-remaining scalar budget, and calibration applies the same reserve to both.</p>
-<h2 id="control-decision-boundary">Control decision boundary<a class="headerlink" href="#control-decision-boundary" title="Permanent link">&para;</a></h2>
-<p><code>ControlInputs</code> and <code>ControlDecision</code> are frozen records. The final controller
-write boundary checks ownership and availability, rejects non-finite/negative
-or simultaneous charge/discharge requests, applies directional caps and
-blockers, and then allows phase protection only to reduce the result. Manual
-and recovery blocker bypasses retain ownership checks and hard power ceilings.</p>
-<p>The existing driver/ACK execution path consumes that validated decision.
-Per-battery explanations expose the latest snapshot, its reasons and timestamp
-as <code>validated_intent</code>; service acceptance, device acknowledgement and measured
-power remain separate evidence. A skipped ownership write records a veto with
-no claimed command delivery. Fractional hard caps are floored before dispatch.</p>
-<h2 id="reproducible-validation">Reproducible validation<a class="headerlink" href="#reproducible-validation" title="Permanent link">&para;</a></h2>
-<p>Use Python 3.14 with <code>pip install -r requirements-test.txt</code>. Run
-<code>pytest -m "not ha"</code> for unit tests and <code>pytest -o addopts="" -m ha</code> for
-Home Assistant integration tests. Tests requesting <code>hass</code>, directly or through
-a requested fixture, local autouse fixture or <code>usefixtures</code>, are automatically assigned to the latter.
-Use <code>@pytest.mark.ha</code> for tests requesting HA fixtures dynamically. HA plugin
-autouse fixtures do not cause ordinary unit tests to be misclassified. Default
-<code>pytest</code> still skips HA tests when their plugin is disabled.</p>
-<p>For the real dashboard harness, use Node 22+, <code>npm ci</code>,
-<code>npx playwright install --with-deps chromium</code>, <code>npm run test:frontend</code>, and
-<code>npm run test:browser</code>. An installed Chromium can be selected with
-<code>PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH</code>. The harness uses the production panel
-with a mocked HA service boundary: it covers rejected and concurrent commands,
-duplicate suppression, keyboard sliders/help, live switch state, unavailable
-entities, a 390-pixel viewport, and automated WCAG checks. Acceptance feedback
-does not assert physical battery delivery. Mobile tab buttons keep accessible
-names when their visible labels are hidden.</p>
-<p>CI runs both Python selections and the browser/helper suites. Browser failure
-artifacts are uploaded for inspection. These tests exercise software contracts;
-they do not replace hardware commissioning or manual assistive-technology use.</p>
+<h2 id="how-to-add-it">How to add it<a class="headerlink" href="#how-to-add-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li>In the OpenBattery setup flow, choose <strong>Indevolt SolidFlex / PowerFlex</strong>.</li>
+<li>Enter a descriptive <strong>Name</strong> and the battery's <strong>IP address</strong>.</li>
+<li>Keep <strong>HTTP port</strong> at <code>8080</code> and pick a <strong>Request speed</strong>; <strong>Conservative (5s)</strong> is the default (see <a href="#choosing-the-request-speed">Choosing the request speed</a>).</li>
+<li>OpenBattery reads the battery's identity, working mode and power limits. It does not change anything on the battery.</li>
+<li>If the battery is not in Realtime mode, a notice says so. Setup continues; control starts once you select Realtime in the app.</li>
+<li>Choose the common power and state-of-charge limits. The form opens at the battery's own reserve and power settings, and the power sliders go up to the battery's hardware maximum. The first time OpenBattery starts, it takes over the battery's settings without writing anything, so change them afterwards, on the device page or in the Indevolt app. For MAC tracking, the MAC address is filled in from the battery.</li>
+</ol>
+<h2 id="what-you-will-see">What you will see<a class="headerlink" href="#what-you-will-see" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Control starts by itself.</strong> As soon as the battery is in Realtime mode, OpenBattery sends a stop command, checks that the battery is idle and then takes over. The same happens after every Home Assistant restart.</li>
+<li><strong>Control Status</strong> shows what the driver is doing: <code>active</code>, <code>starting</code>, <code>realtime_mode_required</code>, <code>handover_failed</code>, <code>telemetry_stale</code> or <code>unknown_model</code>.</li>
+<li><strong>Request Interval (Effective)</strong>, <strong>Read Latency (P95)</strong>, <strong>Write Latency (P95)</strong> and <strong>Request Failures</strong> (diagnostic) show how the battery keeps up. <strong>Request Speed</strong> (diagnostic) shows the speed you chose. The interval normally matches it and grows when OpenBattery gives a slow battery more time; each latency is the slowest 5% (P95, so 95% of answers are faster) of the last 200 reads or writes, and shows how quickly the battery answers OpenBattery's requests, not how quickly it changes its power, which takes a few seconds (reads usually take tens of milliseconds, writes a few hundred); failures count timeouts and errors since Home Assistant started. <strong>Flash Writes</strong> (diagnostic) counts OpenBattery's writes of the reserve and power limits to the battery's flash memory (see <a href="#why-openbattery-writes-settings-only-when-you-change-them">Why OpenBattery writes settings only when you change them</a>).</li>
+<li><strong>Switching modes in the app is safe.</strong> If you select another working mode, OpenBattery pauses, shows a notification and leaves the battery alone. Switch back to Realtime and it resumes automatically.</li>
+<li><strong>Response time.</strong> OpenBattery reads the battery once per interval of the request speed (5s by default, 2s at Maximum). A new setpoint goes out at least one interval after the previous setpoint and 2s after the previous request of any kind (1s at Normal and Fast; at Maximum 0.2s after the previous reply, at most one setpoint per second), and the battery follows within seconds.</li>
+<li><strong>Near full.</strong> In the last part of a charge the battery lowers its charge power by itself, down to a few hundred watts, while it tops up its cells. OpenBattery then charges it with what it takes, plus at most 100W, instead of the full power, so the battery charges on to 100% rather than being reported as not delivering. PD Control Quality shows the battery as the limit meanwhile, and the extra solar goes to your other batteries or to the grid.</li>
+<li><strong>Settings:</strong> <strong>Discharging Cutoff Capacity</strong> (the battery's reserve, which is OpenBattery's minimum SOC), <strong>Max Charge Power</strong> and <strong>Max Discharge Power</strong>. A change here is written to the battery; a change in the Indevolt app shows up here within a few minutes. The power sliders go up to the battery's hardware maximum. <strong>Charging Cutoff Capacity</strong> (maximum SOC) has no battery setting and is applied by OpenBattery only.</li>
+<li><strong>Sensors:</strong> state of charge, battery power, AC power, working mode and firmware version, plus:<ul>
+<li><strong>AC Input Power</strong> and <strong>AC Output Power</strong> at the battery's AC connection (read every 10s), and <strong>Bypass Power</strong> through the bypass socket.</li>
+<li>Energy counters on two sides. <strong>Total AC Input Energy</strong> and <strong>Total AC Output Energy</strong> count at the AC connection: use these for the battery in the Energy dashboard. <strong>Total Charging Energy</strong>, <strong>Total Discharging Energy</strong> and the daily counters count on the battery side, after conversion losses. <strong>Off-Grid Output Energy</strong> and <strong>Bypass Input Energy</strong> count what went through the backup and bypass sockets.</li>
+<li>For a battery with solar panels connected: <strong>Solar Output Power</strong>, <strong>Daily Solar Energy</strong> and <strong>Total Solar Energy</strong>. Power, voltage and current per PV input are available but disabled by default.</li>
+<li>Temperatures: <strong>Inverter Battery Temperature</strong> for the battery built into the inverter unit, and <strong>Expansion Battery N Temperature</strong> for each expansion battery that is present; <strong>Internal Temperature</strong>, which OpenBattery's optional temperature charge limit uses to reduce charging when the battery is hot, is the warmest of those. A transformer temperature sensor is available but disabled by default.</li>
+</ul>
+</li>
+<li><strong>Diagnostics:</strong> <strong>Realtime Command</strong> shows what the battery's Realtime mode is doing (standby, charging or discharging). <strong>Operating Status</strong> shows what the battery itself is doing, for example deep sleep while idle, low-battery charging when it recharges itself to its reserve, or a scheduled full charge. <strong>Forced Full Charge Interval</strong> and <strong>Forced Full Charge Time</strong> show the battery's own periodic full charge (0 days is off); change it in the Indevolt app. <strong>Feed-in Limit</strong> and <strong>Grid Charging</strong> show those battery settings; change them in the Indevolt app. <strong>MAC Address</strong> shows the MAC address the battery reports; the panel also shows it under Device information. Right after a start from standby, <strong>Inverter State</strong> shows unknown until the battery has had time to start (up to 30s). Disabled by default: grid voltage and frequency, remaining charging and discharging time, device mode (standalone or cluster), the highest and lowest cell voltage of all batteries, and for each battery that is present (the one in the inverter unit and each expansion battery) its SOC, charge cycles, MOS temperature, voltage, current and serial number. OpenBattery reads those battery details only for the batteries that are present.</li>
+<li><strong>Indevolt Meter Power</strong> (disabled by default) is the grid power reported by the meter that is paired with the battery in the Indevolt app. It lags your grid meter by 10–20s, so do not use it as OpenBattery's grid sensor.</li>
+</ul>
+<h2 id="moving-from-the-official-indevolt-integration">Moving from the official Indevolt integration<a class="headerlink" href="#moving-from-the-official-indevolt-integration" title="Permanent link">&para;</a></h2>
+<p>OpenBattery shows the measurements of the official Indevolt integration under its own names, read in the requests it already makes. Point your dashboards, helpers and the Energy dashboard at the OpenBattery sensors, then remove the official integration.</p>
+<table>
+<thead>
+<tr>
+<th>Official integration</th>
+<th>OpenBattery</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Battery SOC</td>
+<td>Battery SOC</td>
+<td></td>
+</tr>
+<tr>
+<td>Battery power</td>
+<td>Battery Power</td>
+<td>Opposite sign: positive while charging</td>
+</tr>
+<tr>
+<td>AC input power, AC output power</td>
+<td>AC Input Power, AC Output Power</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>AC Power</td>
+<td>Output minus input: positive while discharging, as the Energy dashboard expects for battery power</td>
+</tr>
+<tr>
+<td>Bypass power</td>
+<td>Bypass Power</td>
+<td></td>
+</tr>
+<tr>
+<td>Total AC input energy, Total AC output energy</td>
+<td>Total AC Input Energy, Total AC Output Energy</td>
+<td>The Energy dashboard's energy going in to and coming out of the battery</td>
+</tr>
+<tr>
+<td>Battery daily and total charging and discharging energy</td>
+<td>Total Daily Charging Energy, Total Daily Discharging Energy, Total Charging Energy, Total Discharging Energy</td>
+<td></td>
+</tr>
+<tr>
+<td>Off-grid output energy, Bypass input energy</td>
+<td>Off-Grid Output Energy, Bypass Input Energy</td>
+<td>Bypass input energy in kWh instead of Wh</td>
+</tr>
+<tr>
+<td>DC output power, Daily production, Cumulative production</td>
+<td>Solar Output Power, Daily Solar Energy, Total Solar Energy</td>
+<td>Total solar energy in kWh instead of Wh</td>
+</tr>
+<tr>
+<td>Meter power, Meter connected</td>
+<td>Indevolt Meter Power, Indevolt Meter Connected</td>
+<td>Disabled by default</td>
+</tr>
+<tr>
+<td>Battery charge/discharge state</td>
+<td>Inverter State</td>
+<td>Standby, Charge or Discharge</td>
+</tr>
+<tr>
+<td>Energy mode</td>
+<td>Working Mode</td>
+<td>Read only</td>
+</tr>
+<tr>
+<td>Real-time mode, Real-time target SOC, Real-time power limit</td>
+<td>Realtime Command, Realtime Target SOC, Realtime Command Power</td>
+<td></td>
+</tr>
+<tr>
+<td>Rated capacity</td>
+<td>Battery Total Energy</td>
+<td></td>
+</tr>
+<tr>
+<td>Discharge limit, Max AC output power, Inverter input limit</td>
+<td>Discharging Cutoff Capacity, Max Discharge Power, Max Charge Power</td>
+<td>Settings, kept in sync with the battery</td>
+</tr>
+<tr>
+<td>Feed-in power limit, Allow grid charging</td>
+<td>Feed-in Limit, Grid Charging</td>
+<td>Read only</td>
+</tr>
+<tr>
+<td>Grid voltage and frequency, remaining charging and discharging time, device mode, PV input power, voltage and current, and per battery SOC, cycles, temperatures, voltage, current and serial number</td>
+<td>Same names</td>
+<td>Disabled by default, as in the official integration</td>
+</tr>
+</tbody>
+</table>
+<p>OpenBattery does not change the working mode, the LED indicator, the bypass socket, grid charging or the feed-in limit from Home Assistant: each is a permanent setting in the battery, so change it in the Indevolt app (see <a href="#why-openbattery-writes-settings-only-when-you-change-them">why</a>). The official integration's stop button and charge and discharge actions would compete with OpenBattery's control; use OpenBattery's manual mode instead. The official integration's <strong>Equivalent full cycles</strong> shows the battery's full-charge interval in days, not a cycle count: OpenBattery shows it as <strong>Forced Full Charge Interval</strong>, and the per-battery <strong>Cycles</strong> sensors are the battery's own cycle counts.</p>
+<h2 id="choosing-the-request-speed">Choosing the request speed<a class="headerlink" href="#choosing-the-request-speed" title="Permanent link">&para;</a></h2>
+<p>The <strong>Request speed</strong> sets how often OpenBattery talks to the battery. You choose it per battery when you add it, and change it later with <strong>Reconfigure</strong> on OpenBattery in <strong>Settings → Devices &amp; services</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Speed</th>
+<th>Interval</th>
+<th>When to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum</td>
+<td>1s</td>
+<td>Below Indevolt's documented minimum, at your own risk. Only useful with a grid meter that updates every second: a setpoint can go out every second, and a read follows a reply after 0.2s instead of waiting 1s. Reads stay at 2s; at most 1.5 requests per second. Set <strong>PD Min Cycle Interval</strong> to 0 as well (see the tip below).</td>
+</tr>
+<tr>
+<td>Fast</td>
+<td>2s</td>
+<td>A strong, stable connection, and you want the quickest reaction. It sends 50% more requests than Normal.</td>
+</tr>
+<tr>
+<td>Normal</td>
+<td>3s</td>
+<td>A grid meter that updates every 3s: quicker reactions than Conservative at a modest extra load.</td>
+</tr>
+<tr>
+<td>Conservative (default)</td>
+<td>5s</td>
+<td>Recommended by Indevolt, and enough for a grid meter that updates every 5s, the usual rate in Home Assistant. Also the choice on weak Wi-Fi, when other apps also poll the battery, or when OpenBattery reports the battery as slow.</td>
+</tr>
+</tbody>
+</table>
+<p>Everything faster than Indevolt's 5s is at your own risk, and you are responsible for checking that your battery, Home Assistant and network can keep up. On the battery's device page, <strong>Request Interval (Effective)</strong> should keep matching your choice, and <strong>Read Latency (P95)</strong> and <strong>Write Latency (P95)</strong> should stay well below 1s (reads usually take tens of milliseconds, writes a few hundred). If the interval keeps rising above your choice or a slow-battery notification appears, choose a slower speed. Feel free to try a faster speed: when the battery answers slowly or not at all, OpenBattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered.</p>
+<p>A faster speed gets each new setpoint to the battery sooner, so it reacts sooner to meter changes, which can improve net zero. It does not make the battery's own ramp faster, and the battery refreshes its AC power only about every 6s. A speed faster than your grid meter gains nothing: with a meter that updates every 2s, choose Fast rather than Maximum. Apart from Maximum, OpenBattery never sends two requests closer than 1s apart, Indevolt's documented minimum (2s at Conservative). At Maximum it waits 0.2s after each reply instead, still with one request at a time, and steps back to Fast with the 1s spacing when the battery answers slowly. Whatever you choose, it slows down by itself when the battery answers slowly or not at all.</p>
+<div class="admonition tip">
+<p class="admonition-title">Only Indevolt batteries? Set PD Min Cycle Interval to 0</p>
+<p>OpenBattery's <strong>PD Min Cycle Interval</strong> (default 1.0s) skips a meter update that arrives too soon after the previous control run, so a fast meter cannot flood a slow Modbus bridge, such as an Elfin EW11, with commands. The Indevolt driver already paces its own requests and only ever sends the newest setpoint, so for an Indevolt the interval protects nothing. It only adds delay: a skipped update waits for the next meter update or the 2s safety timer, so with a 1s meter it is acted on up to 1s later.</p>
+<p>If every battery in OpenBattery is an Indevolt, set it to <code>0</code>: open the OpenBattery sidebar panel, select <strong>Control</strong>, and in <strong>PD controller (advanced)</strong> set <strong>Min cycle interval</strong> to 0. It takes effect at once. The battery gets no extra requests, because the request speed still sets the pace. Keep the default if OpenBattery also controls a battery behind a slow Modbus bridge. The other PD settings are explained in <a href="../../../features/pd-controller/">Follow home consumption</a>.</p>
+</div>
+<h2 id="why-openbattery-writes-settings-only-when-you-change-them">Why OpenBattery writes settings only when you change them<a class="headerlink" href="#why-openbattery-writes-settings-only-when-you-change-them" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">Realtime commands in working memory, settings only on request</p>
+<p>A battery keeps two kinds of data. Its settings, such as the working mode, the reserve and the power limits, are stored in flash memory, so they survive a power cut. Flash wears out after a limited number of writes. Realtime commands are kept in working memory (RAM), which can be written as often as needed.</p>
+<p>What wears flash out is how often it is written. A controller like OpenBattery may send a new command every few seconds; if those commands went to flash, they could wear out the battery's controller long before the end of its normal life. A setting you change a few times a year costs nothing.</p>
+<p>We checked this with Indevolt's developers. They confirmed that only the realtime command (charge, discharge or stop, with a power and a target SOC) is kept in working memory, and that every other setting is stored in flash. So:</p>
+<ul>
+<li>Control only ever writes the realtime command, however often it runs.</li>
+<li>The reserve and the two power limits are written only when you change them, in OpenBattery's settings or on the device page. OpenBattery waits 3s for you to finish and skips the write when the battery already has the value. Nothing is written at startup.</li>
+<li>A safety net catches an automation or a bug that keeps writing them without anyone noticing; it is there to protect your battery, not to limit you. After 100 writes in a year (the three settings together), OpenBattery pauses these writes until you turn them back on in <strong>Settings → Repairs</strong>, which takes one click. Changing settings yourself stays far below that; an automation that changes the reserve every day reaches it after about 100 days. Changes made in the Indevolt app are still picked up. <strong>Flash Writes</strong> (diagnostic) on the device page counts every write so far.</li>
+<li>The working mode and every other setting are never written. Change them in the Indevolt app.</li>
+</ul>
+<p>Safeguards in the code and automated tests enforce this, so a future change cannot add a write by accident.</p>
+</div>
+<p>OpenBattery enforces its own minimum and maximum SOC in software. Each command also carries a target SOC a few percent beyond the current charge in the commanded direction, which OpenBattery moves along as the battery charges or discharges. If Home Assistant stops in the middle of a command, the battery stops by itself within about 5% of state of charge.</p>
+<h2 id="if-it-does-not-work">If it does not work<a class="headerlink" href="#if-it-does-not-work" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>What to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The wizard cannot connect</td>
+<td>The local API is off, or the address or port is wrong</td>
+<td>Enable the local API in the Indevolt app and check the IP address and port <code>8080</code></td>
+</tr>
+<tr>
+<td>The wizard says the battery asks for a password</td>
+<td>The local API is set to HTTP Digest</td>
+<td>Select <strong>HTTP</strong> for the local API in the Indevolt app</td>
+</tr>
+<tr>
+<td>Control Status is <code>realtime_mode_required</code></td>
+<td>The battery is in another working mode</td>
+<td>Select <strong>Realtime (standby)</strong> in the Indevolt app; control resumes automatically</td>
+</tr>
+<tr>
+<td>A notification says the battery is slow, or Request Interval (Effective) stays above the chosen speed</td>
+<td>Another client is polling it too, or the Wi-Fi link is weak</td>
+<td>Disable the official Indevolt integration for this battery, check the signal, or choose the <strong>Conservative (5s)</strong> request speed</td>
+</tr>
+<tr>
+<td>A notification says a setting was not applied</td>
+<td>The battery did not accept the value</td>
+<td>The battery keeps its value; try again later, or change it in the Indevolt app</td>
+</tr>
+<tr>
+<td>Repairs says Indevolt setting writes are paused</td>
+<td>100 writes of the reserve and power limits in a year, nearly always from an automation or a script</td>
+<td>Check automations and scripts that set these numbers, then turn writing back on in <strong>Settings → Repairs</strong> (also if the changes were intended)</td>
+</tr>
+<tr>
+<td>Control Status is <code>unknown_model</code></td>
+<td>The battery reports a model code OpenBattery does not support yet</td>
+<td>Open a GitHub issue with the model code from the notification</td>
+</tr>
+<tr>
+<td>Control Status is <code>handover_failed</code></td>
+<td>The battery did not confirm idle after the stop command</td>
+<td>Check the battery in the Indevolt app; OpenBattery retries automatically</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>Advanced details</summary>
+<p>All requests to one battery share a single budget: one request at a time, at least 1s apart (2s at Conservative and while slowed down to 5s or 10s), measured from start to start. Maximum measures from the previous reply instead: at least 0.2s after it, with commands at least 1s apart and reads every 2s. Reads come once per interval of the request speed. A pending command goes before a due read, at least that spacing after the previous request and at least one interval after the previous command. OpenBattery's own polling only reads a cache, so it never adds requests.</p>
+<p>When the battery struggles, the interval steps along a fixed ladder: 2s, 3s, 5s, 10s (from Maximum, the first step is Fast with the 1s spacing). Two bad replies within 30s (a timeout, an error, a read slower than 1s or a write slower than 2s) move it one step up, at most one step per 10s; a single bad reply is treated as jitter. After 30s without a bad reply it moves one step back down, never below the speed you chose. 10s is the last step: slower would only make control steer on older data for longer. A single timeout does not pause control.</p>
+<p>Telemetry is read in batches: power, AC power, working mode and SOC in every slot, the realtime status about every 30s, limits every few minutes and energy counters every minute. If the battery ever returns an incomplete batch, OpenBattery reads smaller batches until complete replies return.</p>
+<p>The delivered AC power is the battery's total AC power minus the power on its bypass port, so a load or microinverter on that port is not counted as battery output.</p>
+<p>Indevolt's minimum firmware for the local API is CMS V1406.07.002E for the 2000 family, V1409.08.3034 for the 3000 family and V1407.07.202E for the 1200 family. OpenBattery shows a notification when the battery reports an older version. Indevolt has not published a minimum for the SolidFlex 3600, so OpenBattery doesn't check it.</p>
+<p>For shared runtime controls and system limits, see <a href="../">Choose your battery connection</a>.</p>
+</details>
 
 
 
@@ -3056,6 +3318,44 @@ they do not replace hardware commissioning or manual assistive-technology use.</
         <footer class="md-footer">
   
     
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../sessy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Sessy">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Sessy
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../hoymiles/" class="md-footer__link md-footer__link--next" aria-label="Next: Hoymiles MQTT">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Hoymiles MQTT
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -3079,19 +3379,8 @@ they do not replace hardware commissioning or manual assistive-technology use.</
       
       
     
-    <a href="https://github.com/ffunes/omnibattery" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+    <a href="https://github.com/thomasvt1/openbattery" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://buymeacoffee.com/ffunes" target="_blank" rel="noopener" title="buymeacoffee.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M152-16c-13.3 0-24 10.7-24 24 0 38.9 23.4 59.4 39.1 73.1l1.1 1C184.5 96.4 192 103.9 192 120c0 13.3 10.7 24 24 24s24-10.7 24-24c0-38.9-23.4-59.4-39.1-73.1l-1.1-1C183.5 31.7 176 24.1 176 8c0-13.3-10.7-24-24-24M96 192c-17.7 0-32 14.3-32 32v192c0 53 43 96 96 96h192c41.8 0 77.4-26.7 90.5-64h5.5c70.7 0 128-57.3 128-128s-57.3-128-128-128zm352 192V256c35.3 0 64 28.7 64 64s-28.7 64-64 64M288 8c0-13.3-10.7-24-24-24S240-5.3 240 8c0 38.9 23.4 59.4 39.1 73.1l1.1 1C296.5 96.4 304 103.9 304 120c0 13.3 10.7 24 24 24s24-10.7 24-24c0-38.9-23.4-59.4-39.1-73.1l-1.1-1C295.5 31.7 288 24.1 288 8"/></svg>
     </a>
   
 </div>
@@ -3109,10 +3398,10 @@ they do not replace hardware commissioning or manual assistive-technology use.</
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotate", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>
