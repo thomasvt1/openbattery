@@ -3281,9 +3281,21 @@ class PricingManager:
                 self._controller, "_weekly_full_charge_pending", None
             )
             weekly_window_end, weekly_overnight = self._weekly_charge_window(now)
+            # Monthly day selection compares charging costs over the whole
+            # day. Do not silently restrict its reservation to after sunset
+            # unless the user opted into the configured solar charge delay.
+            monthly_without_delay = (
+                getattr(getattr(self._controller, "config_entry", None), "data", {}).get(
+                    "full_charge_schedule"
+                ) == "monthly"
+                and (
+                    not getattr(self._controller, "charge_delay_enabled", False)
+                    or getattr(self._controller, "_weekly_full_charge_skip_delay", True)
+                )
+            )
             # Once the target day's sun is over (its evening, or the night after
             # it) an evaluation, a restart for one, must still book the run.
-            weekly_from_now = weekly_overnight or (
+            weekly_from_now = monthly_without_delay or weekly_overnight or (
                 weekly_window_end is not None
                 and solar_end_dt is not None
                 and solar_end_dt <= now

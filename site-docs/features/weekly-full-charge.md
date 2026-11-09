@@ -64,6 +64,16 @@ calendar days of the month. It ranks the cost of enough cheap intervals to cover
 the estimated charging duration, including the existing planner's taper margin.
 Days with less than 20 hours of coverage are excluded. The selection may change
 until a cycle starts; a started cycle stays active until completion or month end.
+With dynamic-price predictive charging enabled, the chosen day is then planned
+using the actual import tariff: the monthly full-charge reservation selects the
+cheapest remaining hours before midnight. **Wait for solar charge delay** is off
+by default, so daytime and overnight hours on that date can both be selected.
+Turning it on respects the configured solar delay and can skip earlier cheap
+hours while waiting for solar. Price caps and battery protections still apply.
+The weekday control is only used by weekly and simple monthly scheduling; the
+forecast sensor control is only used by smart sensor mode. Jeroen.nl needs no
+forecast sensor.
+
 If forecasts are missing, a final-day fallback starts the cycle. A long charging
 estimate can bring this fallback forward to leave time before month end.
 

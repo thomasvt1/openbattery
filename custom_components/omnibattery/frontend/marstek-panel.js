@@ -1047,11 +1047,11 @@ const SYS_SECTIONS = [
     items: [
       { key: "weekly_full_charge_enabled", domain: "switch", lk: "itemEnable", icon: "mdi:calendar-check", gate: true },
       { key: "full_charge_schedule", domain: "select", lk: "itemFullSchedule", icon: "mdi:calendar-sync" },
-      { key: "monthly_full_charge_source", domain: "select", lk: "itemMonthlySource", icon: "mdi:calendar-search" },
-      { key: "monthly_full_charge_forecast_sensor", domain: "select", lk: "itemMonthlyForecast", icon: "mdi:chart-line" },
-      { key: "monthly_full_charge_price_enabled", domain: "switch", lk: "itemMonthlyPriceEnabled", icon: "mdi:currency-eur" },
-      { key: "monthly_full_charge_price", domain: "number", dep: "monthly_full_charge_price_enabled", lk: "itemMonthlyPrice", icon: "mdi:currency-eur" },
-      { key: "weekly_full_charge_day", domain: "select", lk: "itemWeeklyDay", icon: "mdi:calendar-week" },
+      { key: "monthly_full_charge_source", domain: "select", lk: "itemMonthlySource", icon: "mdi:calendar-search", when: { full_charge_schedule: "monthly" } },
+      { key: "monthly_full_charge_forecast_sensor", domain: "select", lk: "itemMonthlyForecast", icon: "mdi:chart-line", when: { full_charge_schedule: "monthly", monthly_full_charge_source: "sensor" } },
+      { key: "monthly_full_charge_price_enabled", domain: "switch", lk: "itemMonthlyPriceEnabled", icon: "mdi:currency-eur", when: { full_charge_schedule: "monthly" } },
+      { key: "monthly_full_charge_price", domain: "number", dep: "monthly_full_charge_price_enabled", lk: "itemMonthlyPrice", icon: "mdi:currency-eur", when: { full_charge_schedule: "monthly" } },
+      { key: "weekly_full_charge_day", domain: "select", lk: "itemWeeklyDay", icon: "mdi:calendar-week", when: [{ full_charge_schedule: "weekly" }, { full_charge_schedule: "monthly", monthly_full_charge_source: "simple" }] },
       { key: "weekly_full_charge_delay", domain: "switch", lk: "itemWeeklyDelay", icon: "mdi:timer-sand" },
     ],
   },
@@ -1304,7 +1304,7 @@ const SYS_HELP = {
     secOffgridMeter: "Selects the configured off-grid power sensor as the source for control and derived statistics. It does not enable any battery off-grid/EPS port. A battery actively supplying its own off-grid output remains excluded from PD.",
     vacation_mode: "When ON, household-consumption learning and the legacy daily average are paused. Physical consumption meters, the daily-operation graph and battery control continue normally. Forecasts use a constant baseline calculated from 01:00–05:00: a night is valid after 3 hours of coverage, using the median of up to the last three valid nights. Turn it OFF to resume learning; vacation data remains excluded from Recorder backfill.",
     battery_manual_mode: "When ON, this battery is idled once and removed from automatic control. Its manual force mode and setpoints can then be selected while other batteries continue automatically. Omnibattery software limits do not constrain it, but the battery's own BMS/driver protections still apply. Global Manual Mode is separate.",
-    secWeeklyFull: "Select the day of the week when batteries should charge to 100% for cell balancing. After reaching 100%, the system reverts to your configured maximum charge limit.",
+    secWeeklyFull: "Schedule a full charge weekly or monthly. Simple monthly mode uses the last selected weekday; smart monthly mode chooses a day using a price forecast. Configured charge limits are restored after completion.",
     secSlots: "Define when and how the batteries are allowed to operate. The ticks control each direction, SOC and power. Manual mode forces an exact power, bypassing the PD algorithm.",
     secExcluded: "Configure devices with special management: you can EXCLUDE devices that should NOT be powered by battery, or ADD devices that SHOULD be powered by battery even if they're not in the home consumption sensor.",
     secCommon: "System-wide controls. Vacation Mode pauses household-consumption learning without stopping physical metering or battery control. The remaining knobs are shared by both the PD controller and No-PD direct tracking; changing them affects whichever control mode is active.",
@@ -1344,6 +1344,7 @@ const SYS_HELP = {
     monthly_full_charge_price_enabled: "In monthly mode, allow an early cycle when the actual import price is at or below the configured trigger. This starts a full-charge cycle; it is not a price cap for the entire cycle.",
     monthly_full_charge_price: "Use the same per-kWh price basis as your import price source, including taxes and fees if that source includes them. Existing grid-charging settings still apply.",
     weekly_full_charge_enabled: "Enable scheduled full charges using the weekly or monthly schedule below. Configured SOC limits are restored after completion.",
+    weekly_full_charge_delay: "Applies to weekly, simple monthly and smart monthly charging. When ON, the full charge waits for the configured solar charge delay to release charging on the selected day. When OFF, it bypasses that delay. Other charging limits still apply.",
     price_discharge_control: "When ON, the battery only discharges when the current price is above the max price threshold (or today's auto average if unset). If time slots restrict discharge, both conditions must be met.",
     reevaluate_dynamic_pricing: "Rebuild today's predictive charge plan right now, using the latest prices and solar forecast, instead of waiting for the automatic daily run. In time slot mode it re-runs the balance on the next cycle inside a charging window.",
     hourly_balance_target_net_wh: "Target net grid energy per hour. 0 = neutral (no net import/export). Positive = aim to import this much; negative = aim to export. Range -2 to 2 kWh.",
@@ -6749,6 +6750,14 @@ class MarstekVenusPanel extends HTMLElement {
     for (const sec of defs) {
       const rows = [];
       for (const item of sec.items) {
+        // Source-specific controls participate in the section signature, so
+        // changing the source rebuilds the card without a page reload.
+        if (item.when) {
+          const alternatives = Array.isArray(item.when) ? item.when : [item.when];
+          if (!alternatives.some((condition) => Object.entries(condition).every(([key, value]) =>
+            (byKey.get(key) || []).some((id) => this._hass.states[id]?.state === value)
+          ))) continue;
+        }
         const ids = byKey.get(item.key) || [];
         for (const id of ids) {
           // Skip registry leftovers of a de-configured feature (e.g. pricing
@@ -7307,6 +7316,7 @@ class MarstekVenusPanel extends HTMLElement {
     if (domain === "switch") {
       const btn = document.createElement("button");
       btn.className = "ctl-toggle";
+      btn.title = this._help(item.key);
       btn.innerHTML = `<span class="ctl-knob"></span>`;
       btn.addEventListener("click", () => hass.callService("switch", "toggle", { entity_id: id }));
       frag.appendChild(btn);

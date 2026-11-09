@@ -139,7 +139,13 @@ def test_deficit_targets_still_stop_at_max_soc_otherwise():
     assert abs(targets[coord] - 90.0) < 0.5
 
 
-def test_weekly_reserve_survives_a_fully_covering_solar_forecast():
+@pytest.mark.parametrize("monthly,delay_enabled,skip_delay", [
+    (False, False, True), (True, False, False),
+    (True, True, True), (True, True, False),
+])
+def test_weekly_reserve_survives_a_fully_covering_solar_forecast(
+    monkeypatch, monthly, delay_enabled, skip_delay,
+):
     """A covering solar forecast must not erase the weekly fallback reserve."""
     now = datetime(2026, 9, 21, 0, 5)
     coord = _Coord(50.0, 10.0)
@@ -171,6 +177,12 @@ def test_weekly_reserve_survives_a_fully_covering_solar_forecast():
     )
     ctrl._predictive_min_soc_floor_enabled = False
     ctrl.config_entry = SimpleNamespace(data={})
+    ctrl.charge_delay_enabled = delay_enabled
+    ctrl._weekly_full_charge_skip_delay = skip_delay
+    if monthly:
+        ctrl.config_entry.data["full_charge_schedule"] = "monthly"
+        ctrl._weekly_charge_mgr.window_end = lambda _now: now.replace(hour=0, minute=0) + timedelta(days=1)
+        ctrl._weekly_charge_mgr.in_overnight_extension = lambda _now: False
     ctrl.max_contracted_power = 5000
     ctrl.max_charge_capacity = 5000
     ctrl._last_chronological_diagnostics = None
@@ -200,6 +212,27 @@ def test_weekly_reserve_survives_a_fully_covering_solar_forecast():
     assert "weekly_reserve_not_before" not in ordinary
     assert weekly["planned_grid_charge_kwh"] == 0
     assert weekly["weekly_reserve_kwh"] > 0
+    if monthly:
+        without_delay = not delay_enabled or skip_delay
+        not_before = datetime.fromisoformat(weekly["weekly_reserve_not_before"])
+        assert not_before == (now if without_delay else now.replace(hour=18, minute=0))
+        assert datetime.fromisoformat(weekly["weekly_reserve_not_after"]) == now.replace(hour=0, minute=0) + timedelta(days=1)
+        slots = [PriceSlot(
+            start=now.replace(hour=hour, minute=0),
+            end=now.replace(hour=hour, minute=0) + timedelta(hours=1),
+            price=.05 if 12 <= hour <= 16 else .30,
+        ) for hour in range(1, 24)]
+        evaluated = _evaluate_with_weekly_reserve(
+            monkeypatch, now, slots, lambda _decision: None,
+            reserve={key: value for key, value in weekly.items() if key.startswith("weekly_reserve_")},
+        )
+        selected = evaluated._dynamic_pricing_schedule.selected_slots
+        assert selected
+        assert all(slot.end <= now.replace(hour=0, minute=0) + timedelta(days=1) for slot in selected)
+        if without_delay:
+            assert all(12 <= slot.start.hour <= 16 for slot in selected)
+        else:
+            assert all(slot.start.hour >= 18 for slot in selected)
 
 
 def _evaluate_with_weekly_reserve(
