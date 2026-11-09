@@ -941,6 +941,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="What you will see">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-phase-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live phase monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protection-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protection status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2925,6 +2953,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="What you will see">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#live-phase-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live phase monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protection-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protection status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2984,6 +3040,13 @@
 <li>Confirm that <strong>Three-Phase Protection Status</strong> reports <strong>Active</strong> under normal load.</li>
 </ol>
 <h2 id="what-you-will-see">What you will see<a class="headerlink" href="#what-you-will-see" title="Permanent link">&para;</a></h2>
+<h3 id="live-phase-monitoring">Live phase monitoring<a class="headerlink" href="#live-phase-monitoring" title="Permanent link">&para;</a></h3>
+<p>The <strong>Phase monitoring</strong> card on <strong>Overview</strong> shows each configured phase's current, import/export direction, configured limit, remaining current margin, and assigned batteries. Click a current reading to open its sensor in Home Assistant. Phases without settings or assigned batteries are hidden.</p>
+<p>The load bar uses the absolute current: export loads the conductor just as import does. <strong>Near limit</strong> starts at 90% of the configured limit; <strong>Over limit</strong> means the measured magnitude exceeds it. Remaining margin is <code>max(0, limit - abs(current))</code> in amps, not an additional battery charging allowance. The automatic controller continues to use the separate safety calculation below.</p>
+<p>Readings update when the phase sensor changes. Missing, invalid or stale readings show a warning and no load bar or remaining margin. <strong>Protection off</strong> means monitoring continues but automatic phase limits are not being enforced. To monitor without enforcing limits, configure the sensors and limits first, then turn off the protection switch on <strong>Control</strong>.</p>
+<p>Only batteries managed by OpenBattery appear in the assignment list. Other loads and solar inverters are included in the measured grid current but are not individually mapped here. Batteries without a phase assignment are listed separately.</p>
+<p><img alt="Phase monitoring with normal, near-limit and export-overload readings from the local simulator" src="../../assets/phase-monitoring.png" /></p>
+<h3 id="protection-status">Protection status<a class="headerlink" href="#protection-status" title="Permanent link">&para;</a></h3>
 <p><strong>Three-Phase Protection Status</strong> shows one of these states:</p>
 <table>
 <thead>

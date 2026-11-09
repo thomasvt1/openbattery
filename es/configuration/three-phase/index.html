@@ -941,6 +941,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="lo que veras">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitorizacion-de-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitorización de fases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2925,6 +2942,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="lo que veras">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitorizacion-de-fases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitorización de fases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2984,6 +3018,12 @@
 <li>Confirme que el <strong>Estado de protección trifásica</strong> informe <strong>Activo</strong> bajo carga normal.</li>
 </ol>
 <h2 id="lo-que-veras">lo que veras<a class="headerlink" href="#lo-que-veras" title="Permanent link">&para;</a></h2>
+<h3 id="monitorizacion-de-fases">Monitorización de fases<a class="headerlink" href="#monitorizacion-de-fases" title="Permanent link">&para;</a></h3>
+<p>La tarjeta <strong>Monitorización de fases</strong> de <strong>Resumen</strong> muestra la corriente de cada fase configurada, la dirección de importación o exportación, el límite, el margen disponible y las baterías asignadas. Pulsa una lectura para abrir su sensor en Home Assistant. Las fases sin configuración ni baterías asignadas no aparecen.</p>
+<p>La barra utiliza el valor absoluto de la corriente: tanto la importación como la exportación cargan el conductor. <strong>Cerca del límite</strong> empieza al 90% del límite configurado; <strong>Límite superado</strong> indica que la corriente lo supera. El margen es <code>max(0, límite - abs(corriente))</code> en amperios, no una autorización adicional de carga de batería.</p>
+<p>Las lecturas se actualizan cuando cambia el sensor. Una lectura inválida, no disponible o desactualizada muestra un aviso, sin barra ni margen. Con <strong>Protección desactivada</strong> la monitorización continúa, pero no se aplican límites automáticos por fase. Para usar solo la monitorización, configura primero los sensores y límites y después desactiva la protección en <strong>Control</strong>.</p>
+<p>La lista incluye únicamente las baterías gestionadas por OpenBattery. Otros consumos e inversores solares forman parte de la corriente de red medida, pero no se asignan individualmente aquí. Las baterías sin fase aparecen por separado.</p>
+<p><img alt="Monitorización con lecturas normales, cercanas al límite y de sobrecarga de exportación del simulador local" src="../../../assets/phase-monitoring.png" /></p>
 <p><strong>Estado de protección trifásica</strong> muestra uno de estos estados:</p>
 <table>
 <thead>
