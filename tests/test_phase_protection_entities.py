@@ -3,10 +3,12 @@ from __future__ import annotations
 
 import asyncio
 from types import SimpleNamespace
-from unittest.mock import Mock
+from unittest.mock import AsyncMock, Mock
 
 from custom_components.omnibattery.const import (
     CONF_BATTERY_PHASE,
+    CONF_PHASE_1_CURRENT_SENSOR,
+    CONF_PHASE_2_CURRENT_SENSOR,
     CONF_THREE_PHASE_ENABLED,
     DOMAIN,
     PHASE_L2,
@@ -14,6 +16,7 @@ from custom_components.omnibattery.const import (
 )
 from custom_components.omnibattery.select import BatteryPhaseSelect
 from custom_components.omnibattery.sensor import ThreePhaseProtectionSensor
+from custom_components.omnibattery import sensor as sensor_module
 from custom_components.omnibattery.switch import (
     ThreePhaseProtectionSwitch,
     async_setup_entry,
@@ -97,6 +100,28 @@ def test_three_phase_protection_sensor_has_a_valid_icon():
     entity = ThreePhaseProtectionSensor(SimpleNamespace(), SimpleNamespace(), controller)
 
     assert entity.icon == "mdi:shield-check-outline"
+
+
+def test_phase_sensor_subscribes_to_meters_even_with_protection_off(monkeypatch):
+    monkeypatch.setattr(sensor_module.SensorEntity, "async_added_to_hass", AsyncMock())
+    unsubscribe = Mock()
+    track = Mock(return_value=unsubscribe)
+    monkeypatch.setattr(sensor_module, "async_track_state_change_event", track)
+    entry = SimpleNamespace(data={
+        CONF_THREE_PHASE_ENABLED: False,
+        CONF_PHASE_1_CURRENT_SENSOR: "sensor.l1",
+        CONF_PHASE_2_CURRENT_SENSOR: "sensor.l2",
+    })
+    entity = ThreePhaseProtectionSensor(SimpleNamespace(), entry, SimpleNamespace())
+    entity.async_on_remove = Mock()
+    entity.async_write_ha_state = Mock()
+
+    asyncio.run(entity.async_added_to_hass())
+
+    assert track.call_args.args[1] == {"sensor.l1", "sensor.l2"}
+    track.call_args.args[2](SimpleNamespace())
+    entity.async_write_ha_state.assert_called_once_with()
+    entity.async_on_remove.assert_called_once_with(unsubscribe)
 
 
 def test_three_phase_protection_switch_is_created_when_disabled():

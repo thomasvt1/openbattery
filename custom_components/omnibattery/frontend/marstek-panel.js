@@ -54,6 +54,24 @@ const DAILY_OPERATION_SUNSET_ZERO_INTERVALS = 4;
 // names in translations/*.json so the panel reads consistently with HA.
 const I18N = {
   en: {
+    phaseTitle: "Phase monitoring",
+    phaseOn: "Protection on",
+    phaseOff: "Protection off",
+    phaseLimit: "Limit {value} A",
+    phaseNoLimit: "No limit configured",
+    phaseHeadroom: "{value} A remaining",
+    phaseExcess: "{value} A over limit",
+    phaseOver: "Over limit",
+    phaseNear: "Near limit",
+    phaseNormal: "Within limit",
+    phaseStale: "Reading is stale",
+    phaseUnavailable: "Check current sensor",
+    phaseIncomplete: "Complete phase setup",
+    phaseNoBatteries: "No batteries assigned",
+    phaseUnassigned: "Unassigned batteries: {names}",
+    phaseImport: "Import",
+    phaseExport: "Export",
+    phaseIdle: "No flow",
     subtitle: "Control Panel",
     live: "Live",
     evCharger: "EV charger",
@@ -145,6 +163,24 @@ const I18N = {
     slotStateLabel: "State", slotActiveWord: "active", slotInactiveWord: "inactive",
   },
   es: {
+    phaseTitle: "Monitorización de fases",
+    phaseOn: "Protección activada",
+    phaseOff: "Protección desactivada",
+    phaseLimit: "Límite {value} A",
+    phaseNoLimit: "Sin límite configurado",
+    phaseHeadroom: "{value} A disponibles",
+    phaseExcess: "{value} A sobre el límite",
+    phaseOver: "Límite superado",
+    phaseNear: "Cerca del límite",
+    phaseNormal: "Dentro del límite",
+    phaseStale: "Lectura desactualizada",
+    phaseUnavailable: "Revisa el sensor de corriente",
+    phaseIncomplete: "Completa la configuración",
+    phaseNoBatteries: "Sin baterías asignadas",
+    phaseUnassigned: "Baterías sin asignar: {names}",
+    phaseImport: "Importación",
+    phaseExport: "Exportación",
+    phaseIdle: "Sin flujo",
     subtitle: "Panel de Control",
     live: "En vivo",
     evCharger: "Cargador VE",
@@ -236,6 +272,24 @@ const I18N = {
     slotStateLabel: "Estado", slotActiveWord: "activa", slotInactiveWord: "inactiva",
   },
   ca: {
+    phaseTitle: "Monitoratge de fases",
+    phaseOn: "Protecció activada",
+    phaseOff: "Protecció desactivada",
+    phaseLimit: "Límit {value} A",
+    phaseNoLimit: "Sense límit configurat",
+    phaseHeadroom: "{value} A disponibles",
+    phaseExcess: "{value} A sobre el límit",
+    phaseOver: "Límit superat",
+    phaseNear: "Prop del límit",
+    phaseNormal: "Dins del límit",
+    phaseStale: "Lectura desactualitzada",
+    phaseUnavailable: "Revisa el sensor de corrent",
+    phaseIncomplete: "Completa la configuració",
+    phaseNoBatteries: "Sense bateries assignades",
+    phaseUnassigned: "Bateries sense assignar: {names}",
+    phaseImport: "Importació",
+    phaseExport: "Exportació",
+    phaseIdle: "Sense flux",
     subtitle: "Tauler de control",
     ctlLock: "Bloqueja els controls", ctlUnlock: "Desbloqueja els controls",
     live: "En directe",
@@ -323,6 +377,24 @@ const I18N = {
     slotStateLabel: "Estat", slotActiveWord: "activa", slotInactiveWord: "inactiva",
   },
   de: {
+    phaseTitle: "Phasenüberwachung",
+    phaseOn: "Schutz aktiv",
+    phaseOff: "Schutz aus",
+    phaseLimit: "Grenze {value} A",
+    phaseNoLimit: "Keine Grenze eingestellt",
+    phaseHeadroom: "{value} A verfügbar",
+    phaseExcess: "{value} A über der Grenze",
+    phaseOver: "Grenze überschritten",
+    phaseNear: "Nahe der Grenze",
+    phaseNormal: "Innerhalb der Grenze",
+    phaseStale: "Messwert veraltet",
+    phaseUnavailable: "Stromsensor prüfen",
+    phaseIncomplete: "Phaseneinrichtung abschließen",
+    phaseNoBatteries: "Keine Batterien zugeordnet",
+    phaseUnassigned: "Nicht zugeordnete Batterien: {names}",
+    phaseImport: "Bezug",
+    phaseExport: "Einspeisung",
+    phaseIdle: "Kein Stromfluss",
     subtitle: "Bedienfeld",
     ctlLock: "Steuerelemente sperren", ctlUnlock: "Steuerelemente entsperren",
     live: "Live",
@@ -410,6 +482,24 @@ const I18N = {
     slotStateLabel: "Status", slotActiveWord: "aktiv", slotInactiveWord: "inaktiv",
   },
   fr: {
+    phaseTitle: "Suivi des phases",
+    phaseOn: "Protection activée",
+    phaseOff: "Protection désactivée",
+    phaseLimit: "Limite {value} A",
+    phaseNoLimit: "Aucune limite configurée",
+    phaseHeadroom: "{value} A disponibles",
+    phaseExcess: "{value} A au-dessus de la limite",
+    phaseOver: "Limite dépassée",
+    phaseNear: "Proche de la limite",
+    phaseNormal: "Sous la limite",
+    phaseStale: "Mesure périmée",
+    phaseUnavailable: "Vérifier le capteur de courant",
+    phaseIncomplete: "Terminer la configuration",
+    phaseNoBatteries: "Aucune batterie affectée",
+    phaseUnassigned: "Batteries non affectées : {names}",
+    phaseImport: "Importation",
+    phaseExport: "Exportation",
+    phaseIdle: "Aucun flux",
     subtitle: "Panneau de contrôle",
     ctlLock: "Verrouiller les commandes", ctlUnlock: "Déverrouiller les commandes",
     live: "En direct",
@@ -497,6 +587,24 @@ const I18N = {
     slotStateLabel: "État", slotActiveWord: "actif", slotInactiveWord: "inactif",
   },
   nl: {
+    phaseTitle: "Fasebewaking",
+    phaseOn: "Beveiliging aan",
+    phaseOff: "Beveiliging uit",
+    phaseLimit: "Limiet {value} A",
+    phaseNoLimit: "Geen limiet ingesteld",
+    phaseHeadroom: "{value} A beschikbaar",
+    phaseExcess: "{value} A boven limiet",
+    phaseOver: "Boven limiet",
+    phaseNear: "Bijna op limiet",
+    phaseNormal: "Binnen limiet",
+    phaseStale: "Meting verouderd",
+    phaseUnavailable: "Controleer stroomsensor",
+    phaseIncomplete: "Voltooi fase-instelling",
+    phaseNoBatteries: "Geen batterijen toegewezen",
+    phaseUnassigned: "Niet-toegewezen batterijen: {names}",
+    phaseImport: "Afname",
+    phaseExport: "Teruglevering",
+    phaseIdle: "Geen stroom",
     subtitle: "Bedieningspaneel",
     ctlLock: "Bediening vergrendelen", ctlUnlock: "Bediening ontgrendelen",
     live: "Live",
@@ -1882,6 +1990,8 @@ class MarstekVenusPanel extends HTMLElement {
   }
   disconnectedCallback() {
     this._detachDailyOperationGlobalListeners();
+    clearTimeout(this._phaseMonitorTimer);
+    this._phaseMonitorTimer = null;
     if (this._histTimer) clearInterval(this._histTimer);
     this._histTimer = null;
     this._historyStarted = false;
@@ -2520,6 +2630,8 @@ class MarstekVenusPanel extends HTMLElement {
   }
 
   _setView(view) {
+    clearTimeout(this._phaseMonitorTimer);
+    this._phaseMonitorTimer = null;
     this._view = view;
     for (const [id, el] of Object.entries(this._tabEls || {})) {
       el.classList.toggle("active", id === view);
@@ -2569,6 +2681,7 @@ class MarstekVenusPanel extends HTMLElement {
     // 2×2 chart grid on the right (top row auto-fits Energía hoy, bottom fills)
     return wrap("res-stack", [
       c.soc,
+      c.phases,
       wrap("resumen-lower", [
         c.flow,
         wrap("charts-2x2", [c.daily, c.weekly, c.power, c.mini]),
@@ -2591,12 +2704,125 @@ class MarstekVenusPanel extends HTMLElement {
     this._cards = {
       flow: this._buildFlowCard(),
       soc: this._buildSocCard(),
+      phases: this._buildPhaseMonitoringCard(),
       daily: this._buildDailyCard(),
       weekly: this._buildWeeklyCard(),
       power: this._buildPowerHistoryCard(),
       mini: this._buildMiniHistory(),
       dailyOperation: this._buildDailyOperationTimelineCard(),
     };
+  }
+
+  // ----- Live phase loading ------------------------------------------------
+  _buildPhaseMonitoringCard() {
+    const { card, head } = this._card(this._t("phaseTitle"), "mdi:sine-wave");
+    card.classList.add("phase-card");
+    card.hidden = true;
+    const badge = document.createElement("span");
+    head.appendChild(badge);
+    const body = document.createElement("div");
+    body.className = "phase-grid";
+    const rows = {};
+    for (const phase of ["l1", "l2", "l3"]) {
+      const row = document.createElement("section");
+      row.className = "phase-row";
+      row.innerHTML = `<div class="phase-heading"><h3>${phase.toUpperCase()}</h3>
+        <span class="phase-status"></span></div>
+        <div class="phase-values"><button class="phase-reading" type="button"></button><span class="phase-limit"></span></div>
+        <div class="phase-track" role="meter" aria-valuemin="0" aria-valuemax="100"><span></span></div>
+        <div class="phase-margin"></div><div class="phase-batteries"></div>`;
+      body.appendChild(row);
+      rows[phase] = {
+        row, status: row.querySelector(".phase-status"), reading: row.querySelector(".phase-reading"),
+        limit: row.querySelector(".phase-limit"), track: row.querySelector(".phase-track"),
+        fill: row.querySelector(".phase-track span"), margin: row.querySelector(".phase-margin"),
+        batteries: row.querySelector(".phase-batteries"),
+      };
+    }
+    const unassigned = document.createElement("div");
+    unassigned.className = "phase-unassigned";
+    card.append(body, unassigned);
+    this._r.phases = { card, badge, rows, unassigned };
+    return card;
+  }
+
+  _phaseMonitoringState() {
+    const entity = this._hass.states[this._sysEntityId(K.phaseProtection)];
+    const attrs = entity?.attributes;
+    if (!attrs?.monitoring) return null;
+    const timestamp = Date.parse(attrs.monitoring_updated_at);
+    const sourceStale = !Number.isFinite(timestamp) || Date.now() - timestamp >= 65000;
+    const unavailable = ["unknown", "unavailable"].includes(entity.state);
+    const finite = value => typeof value === "number" && Number.isFinite(value) ? value : null;
+    let expiresAt = null;
+    const rows = ["l1", "l2", "l3"].flatMap(phase => {
+      const data = attrs.monitoring[phase];
+      if (!data || (!data.sensor && !data.limit_a && !data.batteries?.length)) return [];
+      const deadline = timestamp + Math.max(0, 65 - (finite(data.age_s) || 0)) * 1000;
+      const stale = sourceStale || Date.now() >= deadline;
+      const reading = unavailable || stale ? null : finite(data.reading_a);
+      if (reading != null) expiresAt = Math.min(expiresAt ?? deadline, deadline);
+      const limit = finite(data.limit_a) > 0 ? data.limit_a : null;
+      const utilization = reading != null && limit != null ? finite(data.utilization_pct) : null;
+      const status = unavailable || stale ? "unavailable" : data.status;
+      const statusKey = status === "not_configured" ? "phaseIncomplete"
+        : reading == null || utilization == null ? (stale || data.reason === "sensor_stale" ? "phaseStale" : "phaseUnavailable")
+        : status === "over_limit" ? "phaseOver" : status === "near_limit" ? "phaseNear" : "phaseNormal";
+      const direction = reading == null ? "" : this._t(reading > 0 ? "phaseImport" : reading < 0 ? "phaseExport" : "phaseIdle");
+      return [{
+        phase, sensor: data.sensor, reading, limit, utilization, statusKey, direction,
+        headroom: utilization == null ? null : finite(data.headroom_a),
+        overload: utilization == null ? null : finite(data.overload_a),
+        tone: utilization == null ? "neutral" : status === "over_limit" ? "bad" : status === "near_limit" ? "warn" : "good",
+        batteries: Array.isArray(data.batteries) ? data.batteries : [],
+      }];
+    });
+    return {
+      rows, expiresAt, enabled: attrs.protection_enabled === true,
+      unassigned: Array.isArray(attrs.unassigned_batteries) ? attrs.unassigned_batteries : [],
+    };
+  }
+
+  _patchPhaseMonitoring() {
+    clearTimeout(this._phaseMonitorTimer);
+    this._phaseMonitorTimer = null;
+    const refs = this._r.phases;
+    if (!refs) return;
+    const state = this._phaseMonitoringState();
+    refs.card.hidden = !state?.rows.length;
+    if (refs.card.hidden) return;
+    if (state.expiresAt != null) {
+      this._phaseMonitorTimer = setTimeout(() => {
+        this._phaseMonitorTimer = null;
+        if (this.isConnected && this._view === "resumen") this._patchPhaseMonitoring();
+      }, Math.max(0, state.expiresAt - Date.now()) + 10);
+    }
+    this._setChip(refs.badge, this._t(state.enabled ? "phaseOn" : "phaseOff"), "neutral");
+    for (const [phase, ref] of Object.entries(refs.rows)) {
+      const data = state.rows.find(row => row.phase === phase);
+      ref.row.hidden = !data;
+      if (!data) continue;
+      ref.row.dataset.tone = data.tone;
+      ref.status.textContent = this._t(data.statusKey);
+      const amps = data.reading == null ? "—" : `${this._nf(Math.abs(data.reading), 1)} A`;
+      ref.reading.textContent = [amps, data.direction].filter(Boolean).join(" · ");
+      const entityId = this._hass.states[data.sensor] ? data.sensor : null;
+      this._linkMoreInfo(ref.reading, entityId);
+      ref.reading.disabled = !entityId;
+      ref.reading.setAttribute("aria-label", `${phase.toUpperCase()}: ${ref.reading.textContent}. ${this._t("moreInfo")}`);
+      ref.limit.textContent = data.limit == null ? this._t("phaseNoLimit") : this._t("phaseLimit", { value: this._nf(data.limit, 1) });
+      ref.track.hidden = data.utilization == null;
+      ref.fill.style.width = `${this._clamp(data.utilization || 0, 0, 100)}%`;
+      ref.track.setAttribute("aria-label", `${phase.toUpperCase()} · ${this._t("phaseTitle")}`);
+      ref.track.setAttribute("aria-valuenow", this._clamp(data.utilization || 0, 0, 100));
+      ref.track.setAttribute("aria-valuetext", `${this._nf(data.utilization, 0)}% · ${amps} · ${ref.limit.textContent}`);
+      ref.margin.textContent = data.overload > 0 ? this._t("phaseExcess", { value: this._nf(data.overload, 1) })
+        : data.headroom != null ? this._t("phaseHeadroom", { value: this._nf(data.headroom, 1) })
+        : this._t(data.statusKey);
+      ref.batteries.textContent = data.batteries.join(" · ") || this._t("phaseNoBatteries");
+    }
+    refs.unassigned.hidden = !state.unassigned.length;
+    refs.unassigned.textContent = this._t("phaseUnassigned", { names: state.unassigned.join(" · ") });
   }
 
   // ----- Daily operation timeline ------------------------------------------
@@ -5411,6 +5637,7 @@ class MarstekVenusPanel extends HTMLElement {
       el.title = `${this._t(row.lk)}: ${text}`; // full value on hover (chips ellipsize)
     }
 
+    this._patchPhaseMonitoring();
     this._patchDailyOperationTimeline();
   }
 
@@ -7652,6 +7879,26 @@ class MarstekVenusPanel extends HTMLElement {
       .card-head .ic { color: var(--ink-dim); display: grid; place-items: center; }
 
       .res-stack { display: flex; flex-direction: column; gap: var(--gap); }
+      .phase-card[hidden], .phase-row[hidden], .phase-track[hidden], .phase-unassigned[hidden] { display: none; }
+      .phase-card .card-head { flex-wrap: wrap; }
+      .phase-card .card-head > .chip { margin-left: auto; }
+      .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 24px; }
+      .phase-row { min-width: 0; --phase-fill: var(--accent); }
+      .phase-row[data-tone="warn"] { --phase-fill: var(--warning-color, #d69200); }
+      .phase-row[data-tone="bad"] { --phase-fill: var(--error-color, #db4437); }
+      .phase-heading, .phase-values { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+      .phase-heading h3 { margin: 0; font-size: 15px; font-weight: 650; }
+      .phase-status, .phase-limit, .phase-batteries, .phase-unassigned { font-size: 12px; color: var(--ink-mid); }
+      .phase-values { margin-top: 12px; flex-wrap: wrap; gap: 4px 12px; }
+      .phase-reading { padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+      .phase-reading:disabled { opacity: 1; }
+      .phase-reading:not(:disabled):hover { text-decoration: underline; text-underline-offset: 4px; }
+      .phase-reading:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+      .phase-track { height: 7px; background: var(--bg-2); border-radius: 4px; overflow: hidden; margin: 10px 0; }
+      .phase-track > span { display: block; height: 100%; background: var(--phase-fill); }
+      .phase-margin { margin-top: 10px; font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+      .phase-batteries { margin-top: 6px; line-height: 1.5; overflow-wrap: anywhere; }
+      .phase-unassigned { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
       /* lower row: Flujo (left) + 2×2 chart grid (right), equal height */
       .resumen-lower { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.6fr); gap: var(--gap); align-items: stretch; }
       /* top row = "Energía hoy" content height (min-content): Energía semanal

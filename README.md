@@ -29,6 +29,7 @@ OpenBattery is an independent fork of [OmniBattery by ffunes and its contributor
 - **Weekly or monthly full charge**: Keep the weekly cadence or use simple monthly scheduling without a forecast. Optional smart modes choose a day from a configured price forecast; the dynamic-price planner chooses charging hours. Natural full charges satisfy the monthly requirement per battery.
 - **Early monthly price trigger**: Start the month's full-charge cycle when the actual import price reaches your configured threshold.
 - **Solar-Aware Charge Delay**: Holds back grid charging while solar can still cover the required energy.
+- **Live phase monitoring**: See L1/L2/L3 current, remaining margin, near-limit and overload warnings, and assigned batteries. Monitoring also works with automatic phase protection switched off.
 - **Peak Shaving**: Reserves battery capacity to cover demand spikes above a configurable power threshold, keeping energy in reserve rather than covering all consumption.
 - **Load Exclusion**: Mask high-power devices (e.g. EV chargers) so the battery doesn't try to cover them.
 

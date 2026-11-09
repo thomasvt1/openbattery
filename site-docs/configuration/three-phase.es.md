@@ -25,6 +25,18 @@ La protección de corriente trifásica limita los comandos automáticos de la ba
 
 ## lo que veras
 
+### Monitorización de fases
+
+La tarjeta **Monitorización de fases** de **Resumen** muestra la corriente de cada fase configurada, la dirección de importación o exportación, el límite, el margen disponible y las baterías asignadas. Pulsa una lectura para abrir su sensor en Home Assistant. Las fases sin configuración ni baterías asignadas no aparecen.
+
+La barra utiliza el valor absoluto de la corriente: tanto la importación como la exportación cargan el conductor. **Cerca del límite** empieza al 90% del límite configurado; **Límite superado** indica que la corriente lo supera. El margen es `max(0, límite - abs(corriente))` en amperios, no una autorización adicional de carga de batería.
+
+Las lecturas se actualizan cuando cambia el sensor. Una lectura inválida, no disponible o desactualizada muestra un aviso, sin barra ni margen. Con **Protección desactivada** la monitorización continúa, pero no se aplican límites automáticos por fase. Para usar solo la monitorización, configura primero los sensores y límites y después desactiva la protección en **Control**.
+
+La lista incluye únicamente las baterías gestionadas por OpenBattery. Otros consumos e inversores solares forman parte de la corriente de red medida, pero no se asignan individualmente aquí. Las baterías sin fase aparecen por separado.
+
+![Monitorización con lecturas normales, cercanas al límite y de sobrecarga de exportación del simulador local](../assets/phase-monitoring.png)
+
 **Estado de protección trifásica** muestra uno de estos estados:
 
 | Estado | Significado |
