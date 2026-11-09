@@ -25,6 +25,20 @@ Three-phase current protection limits automatic battery commands on the phase wh
 
 ## What you will see
 
+### Live phase monitoring
+
+The **Phase monitoring** card on **Overview** shows each configured phase's current, import/export direction, configured limit, remaining current margin, and assigned batteries. Click a current reading to open its sensor in Home Assistant. Phases without settings or assigned batteries are hidden.
+
+The load bar uses the absolute current: export loads the conductor just as import does. **Near limit** starts at 90% of the configured limit; **Over limit** means the measured magnitude exceeds it. Remaining margin is `max(0, limit - abs(current))` in amps, not an additional battery charging allowance. The automatic controller continues to use the separate safety calculation below.
+
+Readings update when the phase sensor changes. Missing, invalid or stale readings show a warning and no load bar or remaining margin. **Protection off** means monitoring continues but automatic phase limits are not being enforced. To monitor without enforcing limits, configure the sensors and limits first, then turn off the protection switch on **Control**.
+
+Only batteries managed by OpenBattery appear in the assignment list. Other loads and solar inverters are included in the measured grid current but are not individually mapped here. Batteries without a phase assignment are listed separately.
+
+![Phase monitoring with normal, near-limit and export-overload readings from the local simulator](../assets/phase-monitoring.png)
+
+### Protection status
+
 **Three-Phase Protection Status** shows one of these states:
 
 | State | Meaning |

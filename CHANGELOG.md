@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add live L1/L2/L3 monitoring to Overview with import/export current, configured limits, remaining margin, assigned batteries, near-limit and overload warnings, and explicit unavailable readings. Monitoring remains available with phase protection switched off; automatic battery limits are unchanged.
+
 ## [1.7.0] - OpenBattery - 2026-11-09
 
 - Start the independent OpenBattery fork with new branding, icons, documentation and installation links, preserving the `omnibattery` integration domain and existing entity identities.

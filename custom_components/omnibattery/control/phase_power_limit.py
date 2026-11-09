@@ -402,6 +402,48 @@ class PhasePowerLimiter:
         """Refresh and return all phase diagnostics."""
         return {phase: self.phase_snapshot(phase) for phase in PHASE_VALUES}
 
+    def monitoring_snapshot(self, phase: str) -> dict[str, Any]:
+        """Read phase loading without changing the automatic-control envelope.
+
+        Monitoring stays available with protection disabled. Both import and
+        export load the conductor, so utilization uses the current magnitude.
+        This margin is measured grid headroom, not a new battery power budget.
+        """
+        sensor_id, limit = self._phase_settings.get(phase, (None, 0.0))
+        valid_limit = math.isfinite(limit) and limit > 0
+        reading = normalize_current_sensor_state(
+            self.hass.states.get(sensor_id) if sensor_id else None,
+            meter_inverted=self.meter_inverted,
+            max_age_s=self.max_age_s,
+        )
+        result = {
+            "sensor": sensor_id,
+            "reading_a": reading.value_a,
+            "limit_a": limit if valid_limit else None,
+            "age_s": reading.age_s,
+            "reason": reading.reason,
+            "utilization_pct": None,
+            "headroom_a": None,
+            "overload_a": None,
+            "status": "unavailable",
+        }
+        if not sensor_id or not valid_limit:
+            result.update(status="not_configured", reason="invalid_configuration")
+        elif reading.value_a is not None:
+            magnitude = abs(reading.value_a)
+            utilization = magnitude / limit * 100
+            result.update(
+                utilization_pct=utilization,
+                headroom_a=max(0.0, limit - magnitude),
+                overload_a=max(0.0, magnitude - limit),
+                status=(
+                    "over_limit" if magnitude > limit
+                    else "near_limit" if utilization >= 90
+                    else "normal"
+                ),
+            )
+        return result
+
     def has_degraded_phase(self) -> bool:
         """Return whether any configured phase currently fails safe."""
         if not self.enabled:
@@ -859,6 +901,11 @@ class PhasePowerLimiter:
         for phase, snapshot in phases.items():
             snapshot["batteries"] = phase_batteries.get(phase, [])
 
+        monitoring = {
+            phase: {**self.monitoring_snapshot(phase), "batteries": phase_batteries[phase]}
+            for phase in PHASE_VALUES
+        }
+
         limited_details = [
             dict(self._limited_batteries[coordinator])
             for coordinator in coordinators
@@ -905,6 +952,8 @@ class PhasePowerLimiter:
                 "watts_per_amp": PHASE_NOMINAL_VOLTAGE_V * PHASE_BATTERY_POWER_FACTOR,
             },
             "phases": phases,
+            "monitoring": monitoring,
+            "monitoring_updated_at": dt_util.utcnow().isoformat(),
             "manual_mode_warning": self._manual_warning_created,
         }
 

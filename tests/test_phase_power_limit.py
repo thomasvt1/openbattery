@@ -131,6 +131,88 @@ def _warning_limiter(*, phase_enabled=True, slots=None):
     return PhasePowerLimiter(SimpleNamespace(), entry)
 
 
+@pytest.mark.parametrize(
+    ("current", "status", "utilization", "headroom", "overload"),
+    [
+        (0, "normal", 0, 25, 0),
+        (10, "normal", 40, 15, 0),
+        (-10, "normal", 40, 15, 0),
+        (22.5, "near_limit", 90, 2.5, 0),
+        (-22.5, "near_limit", 90, 2.5, 0),
+        (25, "near_limit", 100, 0, 0),
+        (-25, "near_limit", 100, 0, 0),
+        (30, "over_limit", 120, 0, 5),
+        (-30, "over_limit", 120, 0, 5),
+    ],
+)
+def test_phase_monitoring_uses_absolute_conductor_load(
+    current, status, utilization, headroom, overload
+):
+    limiter = _limiter({"sensor.l1": _state(current)}, [])
+    reading = limiter.monitoring_snapshot(PHASE_L1)
+    assert reading["reading_a"] == current
+    assert reading["status"] == status
+    assert reading["utilization_pct"] == utilization
+    assert reading["headroom_a"] == headroom
+    assert reading["overload_a"] == overload
+
+
+@pytest.mark.parametrize(
+    ("sensor", "reason"),
+    [
+        (None, "sensor_not_found"),
+        (_state("unavailable"), "sensor_unavailable"),
+        (_state("unknown"), "sensor_unavailable"),
+        (_state("nan"), "sensor_not_numeric"),
+        (_state("inf"), "sensor_not_numeric"),
+        (_state(20, "W"), "sensor_invalid_unit"),
+        (_state(20, age_s=66), "sensor_stale"),
+    ],
+)
+def test_invalid_monitoring_never_reports_zero_or_safe_headroom(sensor, reason):
+    limiter = _limiter({"sensor.l1": sensor}, [])
+    reading = limiter.monitoring_snapshot(PHASE_L1)
+    assert reading["status"] == "unavailable"
+    assert reading["reason"] == reason
+    for key in ("reading_a", "utilization_pct", "headroom_a", "overload_a"):
+        assert reading[key] is None
+
+
+def test_monitoring_is_read_only_and_works_with_protection_disabled():
+    battery = FakeCoordinator("Battery L1", PHASE_L1)
+    battery.data["battery_power"] = -1000
+    limiter = _limiter({"sensor.l1": _state(12000, "mA")}, [battery])
+    limiter.enabled = False
+    limiter.meter_inverted = True
+    limiter._hold_discharge_w = {PHASE_L1: 250}
+    limiter._snapshots = {PHASE_L1: {"assigned_power_w": 500}}
+
+    reading = limiter.monitoring_snapshot(PHASE_L1)
+
+    assert reading["reading_a"] == -12
+    assert reading["headroom_a"] == 13
+    assert limiter._hold_discharge_w == {PHASE_L1: 250}
+    assert limiter._snapshots == {PHASE_L1: {"assigned_power_w": 500}}
+    assert limiter.has_degraded_phase() is False
+    details = limiter.diagnostics()
+    assert details["state"] == "disabled"
+    assert details["monitoring"][PHASE_L1]["batteries"] == ["Battery L1"]
+    assert details["monitoring"][PHASE_L1]["reading_a"] == -12
+    assert details["phases"][PHASE_L1]["reason"] == "disabled"
+    assert datetime.fromisoformat(details["monitoring_updated_at"]).tzinfo
+
+
+@pytest.mark.parametrize("limit", [None, 0, -25, float("nan"), float("inf")])
+def test_monitoring_without_a_valid_limit_does_not_claim_protection(limit):
+    limiter = _limiter({"sensor.l1": _state(5)}, [])
+    limiter._phase_settings[PHASE_L1] = ("sensor.l1", limit or 0)
+    reading = limiter.monitoring_snapshot(PHASE_L1)
+    assert reading["reading_a"] == 5
+    assert reading["status"] == "not_configured"
+    assert reading["limit_a"] is None
+    assert reading["headroom_a"] is None
+
+
 def _capture_warning_repairs(monkeypatch):
     created = []
     deleted = []
