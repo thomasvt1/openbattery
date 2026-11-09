@@ -56,6 +56,15 @@ def test_simple_missed_day_catches_up():
     assert schedule().is_active(now(30))
 
 
+@pytest.mark.parametrize("moment", [now(29), now(30, hour=23), now(29, month=3)])
+def test_monthly_charge_window_stops_at_local_midnight(moment):
+    s = schedule(monthly_full_charge_source="jeroen_nl")
+    s.run_date = moment.date()
+    expected_end = (moment + timedelta(days=1)).replace(hour=0)
+    assert s.manager.window_end(moment) == expected_end
+    assert not s.manager.in_overnight_extension(moment)
+
+
 def test_smart_five_days_and_month_boundary():
     s = schedule(monthly_full_charge_source="jeroen_nl")
     s.forecast_received_at = now()

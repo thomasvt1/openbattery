@@ -243,6 +243,7 @@ def _evaluate_with_weekly_reserve(
     reserve=None,
     min_arbitrage_margin=0.0,
     max_price_threshold=1.0,
+    configure_manager=None,
     **decision_overrides,
 ):
     """Run a daily evaluation whose plan publishes a 5 kWh weekly reserve."""
@@ -305,6 +306,8 @@ def _evaluate_with_weekly_reserve(
         return build_plan(kwargs["decision_data"])
 
     manager._build_chronological_plan = publish_weekly_reserve
+    if configure_manager is not None:
+        configure_manager(manager, ctrl)
 
     asyncio.run(
         manager._evaluate_dynamic_pricing(
@@ -312,6 +315,97 @@ def _evaluate_with_weekly_reserve(
         )
     )
     return ctrl
+
+
+def _monthly_hourly_plan(monkeypatch, source, now, slots, *, wait_for_solar=False,
+                         delay_enabled=True, max_price_threshold=1.0):
+    """Exercise the real reservation builder and daily price-slot selector."""
+    def configure(manager, ctrl):
+        ctrl.config_entry = SimpleNamespace(data={
+            "full_charge_schedule": "monthly",
+            "monthly_full_charge_source": source,
+        })
+        ctrl.charge_delay_enabled = delay_enabled
+        ctrl._weekly_full_charge_skip_delay = not wait_for_solar
+        midnight = now.replace(hour=0, minute=0) + timedelta(days=1)
+        ctrl._weekly_charge_mgr.window_end = lambda _now: midnight
+        ctrl._weekly_charge_mgr.in_overnight_extension = lambda _now: False
+        ctrl._weekly_full_charge_pending = lambda: True
+        ctrl._charge_ceiling_soc = lambda _battery: 100
+        ctrl._is_battery_manual_owned = lambda _battery: False
+        ctrl.solar_profile_mode = "off"
+        forecast = SimpleNamespace(
+            energy_kwh=2.0, intervals_kwh=[2.0 / 96] * 96,
+            intervals_by_date={}, source="profile", coverage_ratio=1.0, total_days=7,
+        )
+        ctrl._consumption_tracker = SimpleNamespace(
+            consumption_profile=object(), solar_profile=None,
+            get_dynamic_base_consumption=_consumption(2.0),
+            forecast_consumption_between=lambda *_args, **_kwargs: forecast,
+            calculate_sunrise=lambda *_args: 6.0,
+            calculate_solar_noon=lambda: 12.0,
+        )
+        manager._hass.config = SimpleNamespace(time_zone="UTC")
+        manager.energy_horizon_end = lambda _now: midnight
+        manager._build_chronological_plan = (
+            PricingManager._build_chronological_plan.__get__(manager)
+        )
+
+    return _evaluate_with_weekly_reserve(
+        monkeypatch, now, slots, lambda _decision: None,
+        max_price_threshold=max_price_threshold, configure_manager=configure,
+    )
+
+
+@pytest.mark.parametrize("source", ["simple", "sensor", "jeroen_nl"])
+@pytest.mark.parametrize("cheap_hour", [2, 12])
+def test_monthly_uses_cheap_hours_before_sunset(monkeypatch, source, cheap_hour):
+    """A covering solar forecast must not force a more expensive evening charge."""
+    now = datetime(2026, 11, 29, 0, 5)
+    cheap = [PriceSlot(now.replace(hour=h, minute=0),
+                       now.replace(hour=h + 1, minute=0), .05)
+             for h in range(cheap_hour, cheap_hour + 4)]
+    expensive = PriceSlot(now.replace(hour=19, minute=0), now.replace(hour=23, minute=0), .30)
+    ctrl = _monthly_hourly_plan(monkeypatch, source, now, cheap + [expensive])
+    selected = ctrl._dynamic_pricing_schedule.selected_slots
+    assert selected
+    assert all(slot in cheap for slot in selected)
+    assert sum((slot.end - slot.start).total_seconds() / 3600 for slot in selected) >= 2
+    assert ctrl._last_decision_data["weekly_reserve_not_before"] == now.isoformat()
+
+
+@pytest.mark.parametrize("source", ["sensor", "jeroen_nl"])
+@pytest.mark.parametrize("delay_enabled", [False, True])
+def test_monthly_solar_wait_only_restricts_hours_when_delay_is_enabled(
+    monkeypatch, source, delay_enabled,
+):
+    now = datetime(2026, 11, 29, 0, 5)
+    noon = PriceSlot(now.replace(hour=12, minute=0), now.replace(hour=16, minute=0), .05)
+    evening = PriceSlot(now.replace(hour=19, minute=0), now.replace(hour=23, minute=0), .30)
+    ctrl = _monthly_hourly_plan(monkeypatch, source, now, [noon, evening],
+                               wait_for_solar=True, delay_enabled=delay_enabled)
+    assert ctrl._dynamic_pricing_schedule.selected_slots == ([evening] if delay_enabled else [noon])
+
+
+@pytest.mark.parametrize("source", ["sensor", "jeroen_nl"])
+def test_monthly_does_not_buy_elapsed_or_next_day_bargains(monkeypatch, source):
+    now = datetime(2026, 11, 29, 10)
+    midnight = now.replace(hour=0) + timedelta(days=1)
+    elapsed = PriceSlot(now.replace(hour=2), now.replace(hour=6), -.50)
+    today = PriceSlot(now.replace(hour=12), now.replace(hour=16), .05)
+    crossing = PriceSlot(now.replace(hour=23), midnight + timedelta(hours=1), -.40)
+    tomorrow = PriceSlot(midnight, midnight + timedelta(hours=4), -.60)
+    ctrl = _monthly_hourly_plan(monkeypatch, source, now, [elapsed, today, crossing, tomorrow])
+    assert ctrl._dynamic_pricing_schedule.selected_slots == [today]
+    assert ctrl._last_decision_data["weekly_reserve_not_after"] == midnight.isoformat()
+
+
+@pytest.mark.parametrize("source", ["sensor", "jeroen_nl"])
+def test_monthly_hour_selection_keeps_the_user_price_cap(monkeypatch, source):
+    now = datetime(2026, 11, 29, 0, 5)
+    cheap = PriceSlot(now.replace(hour=12, minute=0), now.replace(hour=16, minute=0), .05)
+    ctrl = _monthly_hourly_plan(monkeypatch, source, now, [cheap], max_price_threshold=.04)
+    assert ctrl._dynamic_pricing_schedule is None
 
 
 def test_weekly_schedule_reserves_only_post_solar_slots(monkeypatch):
