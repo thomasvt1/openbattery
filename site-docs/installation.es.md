@@ -66,7 +66,7 @@ Home Assistant Community Store (HACS) es el método de instalación recomendado.
 
 ## Instalar manualmente
 
-1. Descarga el archivo zip de la [última versión de OpenBattery](https://github.com/thomasvt1/openbattery/releases).
+1. Descarga el [archivo de código fuente de OpenBattery](https://github.com/thomasvt1/openbattery/archive/refs/heads/openbattery.zip).
 2. Extrae la carpeta `omnibattery` en el directorio `custom_components` de Home Assistant.
 3. Confirma que la ruta resultante es `custom_components/omnibattery/manifest.json`.
 4. Reinicia Home Assistant.
