@@ -1,10 +1,19 @@
 # Changelog
 
+## [1.7.0] - OpenBattery - 2026-11-09
+
+- Start the independent OpenBattery fork with new branding, icons, documentation and installation links, preserving the `omnibattery` integration domain and existing entity identities.
+- Add simple monthly full-charge cadence, optional configurable sensor/Jeroen.nl forecast scheduling, and an early actual-price trigger.
+- Schedule monthly maintenance in the cheapest remaining hours of the selected day when solar delay is bypassed, with an explicit optional solar-delay setting.
+- Track monthly completion per available battery, persist history, restore charge limits reliably, and cover scheduling boundaries and forecast compatibility with regression tests.
+
+The entries below are the inherited OmniBattery changelog. Original contributors and references remain credited.
+
 ## [1.6.0] - 2026-11-09
 
 ### Added
 
-- **Indevolt SolidFlex / PowerFlex support** (#491): driver over the battery's local HTTP API for SolidFlex 2000, SolidFlex 3000 AC and PowerFlex 2000 (tested), plus PowerFlex 3000, SolidFlex/PowerFlex 1200 and SolidFlex 3600 (same API). Controls the battery in Realtime mode only and never changes the working mode; a per-battery request speed (Conservative 5 s by default, down to 1 s) backs off by itself when the battery answers slowly. See [Indevolt SolidFlex / PowerFlex](site-docs/configuration/batteries/indevolt.md).
+- **Indevolt SolidFlex / PowerFlex support** (#491): driver over the battery's local HTTP API for SolidFlex 2000, SolidFlex 3000 AC and PowerFlex 2000 (tested), plus PowerFlex 3000, SolidFlex/PowerFlex 1200 and SolidFlex 3600 (same API). Controls the battery in Realtime mode only and never changes the working mode; a per-battery request speed (Conservative 5 s by default, down to 1 s) backs off by itself when the battery answers slowly. See [Indevolt SolidFlex / PowerFlex](https://github.com/ffunes/Omnibattery/blob/main/site-docs/configuration/batteries/indevolt.md).
 - **Dynamic Pricing plans across tomorrow once its prices are published** (#710): with tomorrow's prices and a dated solar forecast (Energy dashboard), the charge planner looks up to the sunrise after tomorrow, so tonight's slots are weighed against tomorrow's solar and evening peak. Only slots before the next sunrise are scheduled.
 - **New Dynamic Pricing sources**: Frank Energie (NL, PR#696, thanks to @GruttePier013), EnergyZero (NL, PR#705, thanks to @mhspelt) and BE Electricity Prices (Belgium, all contract kinds including time-of-use such as ENGIE Empower Flextime, no template sensor needed, thanks to @pulsarz).
 - **Predictive Charging Notifications switch** (#141): `switch.omnibattery_predictive_charging_notifications` (on by default) mutes the predictive-charging evaluation notifications; evaluations, schedules and diagnostics are unchanged. Battery alarm, cell-balance and manual-mode notifications are not affected. Thanks to @Reinvented0.

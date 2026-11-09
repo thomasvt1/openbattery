@@ -1,4 +1,4 @@
-"""System-health summary for Omnibattery.
+"""System-health summary for OpenBattery.
 
 Shown in Settings → System → Repairs (system health card). A compact
 at-a-glance counterpart to the full diagnostics dump: how many batteries are

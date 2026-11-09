@@ -18,7 +18,7 @@ Agregue un dispositivo aquí cuando su demanda necesite un tratamiento de bater�
 
 ## Cómo activarlo
 
-1. Abra **Configuración → Dispositivos y servicios → Omnibattery → Configurar → Dispositivos excluidos**, habilite **Configurar dispositivos especiales** y agregue un dispositivo.
+1. Abra **Configuración → Dispositivos y servicios → OpenBattery → Configurar → Dispositivos excluidos**, habilite **Configurar dispositivos especiales** y agregue un dispositivo.
 2. Seleccione **Sensor de energía del dispositivo**. Para un cargador de solo estado, déjelo vacío, seleccione **Dispositivo activo/sensor de carga EV** y habilite **Cargador EV sin telemetría de energía**.
 3. Configure **El consumo está incluido en el sensor de consumo del hogar** mediante la prueba siguiente.
 4. Seleccione el comportamiento que necesita: **Permitir usar excedente solar (no cargar la batería)**, **El dispositivo tiene control dinámico de energía** o **Cubrir la casa mientras el dispositivo está activo**. Utilice la [guía de comportamiento](../features/load-exclusion.md) antes de combinarlos.
@@ -36,7 +36,7 @@ Main sensor measures only the domestic circuit and cannot see this device
 
 ## lo que veras
 
-Cada dispositivo guardado expone controles en vivo en el dispositivo del sistema Omnibattery:
+Cada dispositivo guardado expone controles en vivo en el dispositivo del sistema OpenBattery:
 
 | Controlar | Disponibilidad |
 |---|---|
@@ -57,18 +57,18 @@ Estas entidades le permiten pausar o cambiar el comportamiento guardado sin volv
 | La batería compensa la cantidad incorrecta | La opción incluida en el consumo no coincide con el contador principal | Compruebe si cambiar el dispositivo cambia la lectura del sensor principal |
 | **Cover Home** no tiene ningún efecto útil | Faltan datos de Solar Surplus o producción solar externa | Habilite Solar Surplus y configure el sensor de producción solar en **Sensores** |
 | La carga predictiva reserva energía para un vehículo eléctrico ausente | El sensor de demanda permanece por encima de cero tras la desconexión | Configure **Entidad de presencia para la demanda restante (opcional)** usando una entidad conectada/presente confiable |
-| Falta un control de tiempo de ejecución | La definición del dispositivo no habilita ese comportamiento o su entidad está deshabilitada | Vuelva a abrir la configuración del dispositivo y verifique las entidades deshabilitadas del dispositivo Omnibattery |
+| Falta un control de tiempo de ejecución | La definición del dispositivo no habilita ese comportamiento o su entidad está deshabilitada | Vuelva a abrir la configuración del dispositivo y verifique las entidades deshabilitadas del dispositivo OpenBattery |
 
 ??? "Detalles avanzados"
     **Requisitos de campo**
 
-    Omnibattery admite hasta 4 dispositivos especiales configurados. Un dispositivo excluido normal requiere un sensor de potencia numérico. Una nueva configuración de EV de solo estado requiere un sensor de actividad. El control dinámico de energía también requiere un sensor de actividad y es significativo solo con Solar Surplus habilitado. Cover Home requiere Solar Surplus y un sensor externo de producción solar.
+    OpenBattery admite hasta 4 dispositivos especiales configurados. Un dispositivo excluido normal requiere un sensor de potencia numérico. Una nueva configuración de EV de solo estado requiere un sensor de actividad. El control dinámico de energía también requiere un sensor de actividad y es significativo solo con Solar Surplus habilitado. Cover Home requiere Solar Surplus y un sensor externo de producción solar.
 
     Las entradas EV existentes de solo estado que almacenaron su entidad de estado en **Sensor de potencia del dispositivo** siguen siendo compatibles. La detección de actividad acepta `on` binario y palabras de carga sin distinguir entre mayúsculas y minúsculas.
 
     **Demanda restante esperada**
 
-    El sensor opcional debe informar energía convertible como `Wh`, `kWh` o `MJ`. Omnibattery lo utiliza sólo cuando **El consumo está incluido en el sensor de consumo del hogar** está habilitado. Se omiten los dispositivos eléctricos estatales porque su demanda ya está representada por la previsión de consumo. El porcentaje de exclusión del tiempo de ejecución escala la cantidad reservada así como la corrección de carga.
+    El sensor opcional debe informar energía convertible como `Wh`, `kWh` o `MJ`. OpenBattery lo utiliza sólo cuando **El consumo está incluido en el sensor de consumo del hogar** está habilitado. Se omiten los dispositivos eléctricos estatales porque su demanda ya está representada por la previsión de consumo. El porcentaje de exclusión del tiempo de ejecución escala la cantidad reservada así como la corrección de carga.
 
     La reserva no puede exceder el resto solar después del margen de seguridad predictivo:
 

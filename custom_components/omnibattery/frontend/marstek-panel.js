@@ -29,7 +29,7 @@
  */
 
 const FALLBACK_DOMAIN = "omnibattery";
-const FALLBACK_TITLE = "Omnibattery";
+const FALLBACK_TITLE = "OpenBattery";
 const DAILY_OPERATION_BASE_INTERVALS = 96;
 // The part after midnight follows the plan: the timeline publishes how many
 // quarters it covers (extended_horizon.interval_count), 48 by default and at
@@ -93,7 +93,7 @@ const I18N = {
     diagIntegration: "Integration", diagPhaseProtection: "Phase protection", diagPdState: "PD state", diagNetBalance: "Net balance", diagAlarm: "Alarm",
     diagActiveBatteries: "Active batteries", diagNonResponsive: "No response",
     diagDischargeWindow: "Discharge window", diagPredictive: "Predictive charging", diagCurtailment: "Smart pre-discharge", diagSurplusHold: "Surplus price hold", highPriceSale: "High-price sale", diagHighPriceDischarge: "High-price sale status", diagDischargeReserve: "Discharge reserve",
-    diagPeak: "Peak shaving reserve", diagWeeklyCharge: "Weekly charge", diagChargeDelay: "Charge delay",
+    diagPeak: "Peak shaving reserve", diagWeeklyCharge: "Scheduled charge", diagChargeDelay: "Charge delay",
     nResponsive: "{n} no response", none: "None", disabled: "Disabled",
     noBatteriesTitle: "No batteries",
     noBatteriesMsg: "No battery devices were detected in this integration.",
@@ -861,7 +861,7 @@ const K = {
   storedEnergy: "stored_energy", // kWh
   batteryTotalEnergy: "battery_total_energy", // capacity kWh
   inverterState: "inverter_state",
-  controlStatus: "control_status", // Indevolt: whether Omnibattery is steering it
+  controlStatus: "control_status", // Indevolt: whether OpenBattery is steering it
   dailyCharge: "total_daily_charging_energy",
   dailyDischarge: "total_daily_discharging_energy",
   maxChargePower: "max_charge_power",
@@ -1303,7 +1303,7 @@ const SYS_HELP = {
     secManual: "When ON, automatic control (PD, predictive charging, time slots, peak shaving…) is paused and every battery is set to 0 W (idle). Turn it OFF to resume automatic control.",
     secOffgridMeter: "Selects the configured off-grid power sensor as the source for control and derived statistics. It does not enable any battery off-grid/EPS port. A battery actively supplying its own off-grid output remains excluded from PD.",
     vacation_mode: "When ON, household-consumption learning and the legacy daily average are paused. Physical consumption meters, the daily-operation graph and battery control continue normally. Forecasts use a constant baseline calculated from 01:00–05:00: a night is valid after 3 hours of coverage, using the median of up to the last three valid nights. Turn it OFF to resume learning; vacation data remains excluded from Recorder backfill.",
-    battery_manual_mode: "When ON, this battery is idled once and removed from automatic control. Its manual force mode and setpoints can then be selected while other batteries continue automatically. Omnibattery software limits do not constrain it, but the battery's own BMS/driver protections still apply. Global Manual Mode is separate.",
+    battery_manual_mode: "When ON, this battery is idled once and removed from automatic control. Its manual force mode and setpoints can then be selected while other batteries continue automatically. OpenBattery software limits do not constrain it, but the battery's own BMS/driver protections still apply. Global Manual Mode is separate.",
     secWeeklyFull: "Schedule a full charge weekly or monthly. Simple monthly mode uses the last selected weekday; smart monthly mode chooses a day using a price forecast. Configured charge limits are restored after completion.",
     secSlots: "Define when and how the batteries are allowed to operate. The ticks control each direction, SOC and power. Manual mode forces an exact power, bypassing the PD algorithm.",
     secExcluded: "Configure devices with special management: you can EXCLUDE devices that should NOT be powered by battery, or ADD devices that SHOULD be powered by battery even if they're not in the home consumption sensor.",
@@ -1396,7 +1396,7 @@ const SYS_HELP = {
     secManual: "Cuando está ACTIVADO, el control automático (PD, carga predictiva, franjas horarias, reducción de picos…) se pausa y todas las baterías se ponen a 0 W (en reposo). DESACTÍVALO para reanudar el control automático.",
     secOffgridMeter: "Selecciona el sensor de potencia off-grid configurado como fuente del control y de las estadísticas derivadas. No habilita ningún puerto off-grid/EPS. Una batería que suministre por su propia salida off-grid sigue excluida del PD.",
     vacation_mode: "Al ACTIVARLO se pausan el aprendizaje del consumo doméstico y la media diaria heredada. Los contadores físicos, el gráfico de operación diaria y el control de las baterías siguen funcionando normalmente. Las previsiones usan un baseline constante calculado entre las 01:00 y las 05:00: una noche es válida con 3 horas de cobertura y se usa la mediana de hasta las tres últimas noches válidas. DESACTÍVALO para reanudar el aprendizaje; los datos vacacionales seguirán excluidos del backfill de Recorder.",
-    battery_manual_mode: "Al ACTIVARLO, esta batería pasa una vez a 0 W y sale del control automático. Sus modos y consignas manuales se pueden elegir entonces; las demás baterías continúan en automático. Los límites de software de Omnibattery no la restringen, pero sí las protecciones propias del BMS/driver. El Modo manual global es independiente.",
+    battery_manual_mode: "Al ACTIVARLO, esta batería pasa una vez a 0 W y sale del control automático. Sus modos y consignas manuales se pueden elegir entonces; las demás baterías continúan en automático. Los límites de software de OpenBattery no la restringen, pero sí las protecciones propias del BMS/driver. El Modo manual global es independiente.",
     secWeeklyFull: "Selecciona el día de la semana en el que las baterías deben cargarse al 100% para el balanceo de celdas. Una vez alcanzado el 100%, el sistema revertirá al límite de carga máximo configurado.",
     secSlots: "Define cuándo y cómo se permite operar a las baterías. Los ticks permiten controlar cada dirección, el SOC y la potencia. El modo manual fuerza una potencia exacta ignorando el algoritmo PD.",
     secExcluded: "Configura dispositivos con gestión especial: puedes EXCLUIR dispositivos que NO deben alimentarse por batería, o AÑADIR dispositivos que SÍ debe alimentar la batería aunque no estén en el sensor de consumo del hogar.",
@@ -1483,7 +1483,7 @@ const SYS_HELP = {
     secManual: "Quan està ACTIVAT, el control automàtic (PD, càrrega predictiva, franges horàries, reducció de pics…) es pausa i totes les bateries es posen a 0 W (en repòs). DESACTIVA'L per reprendre el control automàtic.",
     secOffgridMeter: "Selecciona el sensor de potència off-grid configurat com a font del control i de les estadístiques derivades. No habilita cap port off-grid/EPS de cap bateria. Una bateria que subministri per la seva pròpia sortida off-grid continua exclosa del PD.",
     vacation_mode: "Quan està ACTIVAT, es pausen l'aprenentatge del consum domèstic i la mitjana diària heretada. Els comptadors físics, el gràfic d'operació diària i el control de les bateries continuen funcionant normalment. Les previsions utilitzen un baseline constant calculat entre la 01:00 i les 05:00: una nit és vàlida amb 3 hores de cobertura i s'utilitza la mediana de fins a les tres últimes nits vàlides. DESACTIVA'L per reprendre l'aprenentatge; les dades de vacances continuaran excloses del backfill de Recorder.",
-    battery_manual_mode: "Quan s'ACTIVA, aquesta bateria passa una vegada a 0 W i surt del control automàtic. Els seus modes i consignes manuals es poden triar aleshores; les altres bateries segueixen en automàtic. Els límits de programari d'Omnibattery no la restringeixen, però sí les proteccions pròpies del BMS/driver. El mode manual global és independent.",
+    battery_manual_mode: "Quan s'ACTIVA, aquesta bateria passa una vegada a 0 W i surt del control automàtic. Els seus modes i consignes manuals es poden triar aleshores; les altres bateries segueixen en automàtic. Els límits de programari d'OpenBattery no la restringeixen, però sí les proteccions pròpies del BMS/driver. El mode manual global és independent.",
     secWeeklyFull: "Selecciona el dia de la setmana en què les bateries s'han de carregar al 100% per a l'equilibratge de cel·les. Un cop assolit el 100%, el sistema tornarà al límit de càrrega màxim configurat.",
     secSlots: "Defineix quan i com es permet operar a les bateries. Els ticks permeten controlar cada direcció, el SOC i la potència. El mode manual força una potència exacta ignorant l'algorisme PD.",
     secExcluded: "Configura dispositius amb gestió especial: pots EXCLOURE dispositius que NO s'han d'alimentar per bateria, o AFEGIR dispositius que SÍ ha d'alimentar la bateria encara que no estiguin al sensor de consum de la llar.",
@@ -1570,7 +1570,7 @@ const SYS_HELP = {
     secManual: "Wenn EIN, wird die automatische Regelung (PD, prädiktives Laden, Zeitfenster, Lastspitzenkappung…) pausiert und jede Batterie auf 0 W (Leerlauf) gesetzt. Schalte AUS, um die automatische Regelung fortzusetzen.",
     secOffgridMeter: "Wählt den konfigurierten Off-Grid-Leistungssensor als Quelle für Regelung und abgeleitete Statistiken. Es wird kein Off-Grid-/EPS-Anschluss einer Batterie aktiviert. Eine Batterie, die aktiv über ihren eigenen Off-Grid-Ausgang versorgt, bleibt von der PD-Regelung ausgeschlossen.",
     vacation_mode: "Wenn EIN, werden das Lernen des Haushaltsverbrauchs und der bisherige Tagesmittelwert pausiert. Physische Verbrauchszähler, das Tagesbetriebsdiagramm und die Batteriesteuerung laufen normal weiter. Prognosen verwenden eine konstante Grundlast aus 01:00–05:00 Uhr: Eine Nacht gilt ab 3 Stunden Abdeckung; verwendet wird der Median der bis zu drei letzten gültigen Nächte. Schalte AUS, um das Lernen fortzusetzen; Urlaubsdaten bleiben vom Recorder-Backfill ausgeschlossen.",
-    battery_manual_mode: "Wenn EIN, wird diese Batterie einmal auf 0 W gesetzt und aus der automatischen Regelung genommen. Ihr manueller Modus und ihre Sollwerte können danach gewählt werden; andere Batterien laufen automatisch weiter. Omnibattery-Softwaregrenzen wirken nicht, die eigenen BMS-/Treiber-Schutzfunktionen jedoch schon. Der globale manuelle Modus ist unabhängig.",
+    battery_manual_mode: "Wenn EIN, wird diese Batterie einmal auf 0 W gesetzt und aus der automatischen Regelung genommen. Ihr manueller Modus und ihre Sollwerte können danach gewählt werden; andere Batterien laufen automatisch weiter. OpenBattery-Softwaregrenzen wirken nicht, die eigenen BMS-/Treiber-Schutzfunktionen jedoch schon. Der globale manuelle Modus ist unabhängig.",
     secWeeklyFull: "Wähle den Wochentag, an dem die Batterien zum Zellausgleich auf 100% geladen werden. Nach Erreichen von 100% kehrt das System zum konfigurierten maximalen Ladelimit zurück.",
     secSlots: "Lege fest, wann und wie die Batterien arbeiten dürfen. Die Häkchen steuern jede Richtung, SOC und Leistung. Der manuelle Modus erzwingt eine exakte Leistung und umgeht den PD-Algorithmus.",
     secExcluded: "Geräte mit spezieller Verwaltung konfigurieren: Du kannst Geräte AUSSCHLIESSEN, die NICHT von der Batterie versorgt werden sollen, oder Geräte HINZUFÜGEN, die von der Batterie versorgt werden SOLLEN, auch wenn sie nicht im Hausverbrauchssensor erfasst sind.",
@@ -1657,7 +1657,7 @@ const SYS_HELP = {
     secManual: "Quand ACTIVÉ, le contrôle automatique (PD, charge prédictive, plages horaires, écrêtage des pics…) est mis en pause et chaque batterie est réglée à 0 W (repos). DÉSACTIVE-le pour reprendre le contrôle automatique.",
     secOffgridMeter: "Sélectionne le capteur de puissance hors réseau configuré comme source de la régulation et des statistiques dérivées. Cela n'active aucun port hors réseau/EPS d'une batterie. Une batterie qui alimente activement sa propre sortie hors réseau reste exclue du PD.",
     vacation_mode: "Quand il est ACTIVÉ, l'apprentissage de la consommation du foyer et l'ancienne moyenne journalière sont suspendus. Les compteurs physiques, le graphique d'opération quotidienne et le contrôle des batteries continuent normalement. Les prévisions utilisent une charge de base constante calculée de 01:00 à 05:00 : une nuit est valide avec 3 heures de couverture et la médiane des trois dernières nuits valides au maximum est utilisée. DÉSACTIVE-le pour reprendre l'apprentissage ; les données de vacances restent exclues du backfill Recorder.",
-    battery_manual_mode: "Lorsque cette option est activée, cette batterie passe une fois à 0 W et sort du contrôle automatique. Son mode et ses consignes manuels peuvent ensuite être choisis ; les autres batteries continuent en automatique. Les limites logicielles d'Omnibattery ne s'appliquent pas, mais les protections du BMS/driver restent actives. Le mode manuel global est indépendant.",
+    battery_manual_mode: "Lorsque cette option est activée, cette batterie passe une fois à 0 W et sort du contrôle automatique. Son mode et ses consignes manuels peuvent ensuite être choisis ; les autres batteries continuent en automatique. Les limites logicielles d'OpenBattery ne s'appliquent pas, mais les protections du BMS/driver restent actives. Le mode manuel global est indépendant.",
     secWeeklyFull: "Sélectionne le jour de la semaine où les batteries doivent se charger à 100% pour l'équilibrage des cellules. Une fois 100% atteint, le système revient à la limite de charge maximale configurée.",
     secSlots: "Définis quand et comment les batteries sont autorisées à fonctionner. Les cases contrôlent chaque direction, le SOC et la puissance. Le mode manuel force une puissance exacte en contournant l'algorithme PD.",
     secExcluded: "Configure des appareils avec une gestion spéciale : tu peux EXCLURE des appareils qui ne doivent PAS être alimentés par la batterie, ou AJOUTER des appareils qui DOIVENT être alimentés par la batterie même s'ils ne sont pas dans le capteur de consommation domestique.",
@@ -1744,7 +1744,7 @@ const SYS_HELP = {
     secManual: "Wanneer AAN, wordt de automatische regeling (PD, voorspellend laden, tijdvensters, piekafvlakking…) gepauzeerd en wordt elke batterij op 0 W (rust) gezet. Zet UIT om de automatische regeling te hervatten.",
     secOffgridMeter: "Selecteert de geconfigureerde off-grid-vermogenssensor als bron voor de regeling en de afgeleide statistieken. Dit activeert geen off-grid-/EPS-poort van een batterij. Een batterij die actief via haar eigen off-grid-uitgang levert, blijft uitgesloten van PD.",
     vacation_mode: "Wanneer AAN, worden het leren van het huishoudverbruik en het oude daggemiddelde gepauzeerd. Fysieke verbruiksmeters, de dagelijkse werkinggrafiek en de batterijregeling blijven normaal werken. Prognoses gebruiken een constante basislast uit 01:00–05:00: een nacht is geldig vanaf 3 uur dekking en de mediaan van maximaal de laatste drie geldige nachten wordt gebruikt. Zet UIT om het leren te hervatten; vakantiegegevens blijven uitgesloten van Recorder-backfill.",
-    battery_manual_mode: "Als deze optie AAN staat, wordt deze batterij eenmalig op 0 W gezet en uit de automatische regeling gehaald. De handmatige modus en setpoints kunnen daarna worden gekozen; andere batterijen blijven automatisch werken. Softwarelimieten van Omnibattery gelden niet, maar de eigen BMS-/driverbeveiliging wel. De globale handmatige modus staat hier los van.",
+    battery_manual_mode: "Als deze optie AAN staat, wordt deze batterij eenmalig op 0 W gezet en uit de automatische regeling gehaald. De handmatige modus en setpoints kunnen daarna worden gekozen; andere batterijen blijven automatisch werken. Softwarelimieten van OpenBattery gelden niet, maar de eigen BMS-/driverbeveiliging wel. De globale handmatige modus staat hier los van.",
     secWeeklyFull: "Selecteer de dag van de week waarop de batterijen tot 100% moeten laden voor celbalancering. Na het bereiken van 100% keert het systeem terug naar de geconfigureerde maximale laadlimiet.",
     secSlots: "Bepaal wanneer en hoe de batterijen mogen werken. De vinkjes regelen elke richting, SOC en vermogen. De handmatige modus forceert een exact vermogen en omzeilt het PD-algoritme.",
     secExcluded: "Configureer apparaten met speciaal beheer: je kunt apparaten UITSLUITEN die NIET door de batterij gevoed mogen worden, of apparaten TOEVOEGEN die WEL door de batterij gevoed moeten worden, ook al staan ze niet in de huisverbruikssensor.",
@@ -2488,7 +2488,7 @@ class MarstekVenusPanel extends HTMLElement {
     const brand = document.createElement("div");
     brand.className = "brand";
     brand.innerHTML = `
-      <div class="logo">O</div>
+      <div class="logo"><img src="${new URL('openbattery-icon.png', import.meta.url)}" alt="" aria-hidden="true"></div>
       <div class="btext">
         <div class="bt-name">${this._title()}</div>
         <div class="bt-sub">${this._t("subtitle")}</div>
@@ -6217,7 +6217,7 @@ class MarstekVenusPanel extends HTMLElement {
       r.state.style.display = "none";
     }
 
-    // control-status chip: only while Omnibattery is not steering the battery.
+    // control-status chip: only while OpenBattery is not steering the battery.
     // The inverter chip above still shows what the battery itself is doing
     // (in its own self-consumption mode it may well be discharging).
     if (ctlState && ctlState !== "active" && ctlState !== "starting" && ctlState !== "soc_calibration") {
@@ -7612,11 +7612,12 @@ class MarstekVenusPanel extends HTMLElement {
       .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
       .brand .logo {
         width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; cursor: pointer;
-        background: var(--accent); color: var(--accent-ink);
+        background: #e5faf2; color: var(--accent-ink);
         font-family: var(--font-display); font-weight: 700; font-size: 17px;
         box-shadow: 0 5px 16px oklch(0.78 0.15 var(--accent-h) / 0.4);
       }
       .brand .bt-name { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
+      .brand .logo img { width: 32px; height: 32px; object-fit: contain; }
       .brand .bt-sub { font-size: 11px; color: var(--ink-dim); }
 
       .tabs { display: flex; align-items: stretch; gap: 2px; height: 100%; overflow-x: auto; scrollbar-width: none; }

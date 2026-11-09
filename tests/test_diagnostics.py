@@ -105,7 +105,7 @@ async def test_diagnostics_dump_structure_and_redaction():
 
     entry = SimpleNamespace(
         entry_id="abc",
-        title="Omnibattery",
+        title="OpenBattery",
         version=9,
         data={
             "host": "192.168.1.50",

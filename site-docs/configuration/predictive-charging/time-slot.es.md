@@ -6,7 +6,7 @@ El modo Franja horaria compra solo la energía que se espera que necesite tu viv
 
 **Úsalo si…** tu tarifa tiene periodos valle previsibles que se repiten en días conocidos, incluidas tarifas con periodos nocturnos y de mediodía separados.
 
-**No lo necesitas si…** tu proveedor publica precios futuros cambiantes y quieres que Omnibattery elija los periodos más baratos; usa [Precio dinámico](dynamic-pricing.md). Si solo conoces el precio actual, usa [Precio en tiempo real](real-time-price.md).
+**No lo necesitas si…** tu proveedor publica precios futuros cambiantes y quieres que OpenBattery elija los periodos más baratos; usa [Precio dinámico](dynamic-pricing.md). Si solo conoces el precio actual, usa [Precio en tiempo real](real-time-price.md).
 
 ## Antes de empezar
 
@@ -16,16 +16,16 @@ El modo Franja horaria compra solo la energía que se espera que necesite tu viv
 
 ## Cómo activarlo
 
-1. Abre **Ajustes → Dispositivos y servicios → Omnibattery → Configurar** y elige **Franja horaria** como modo de carga predictiva.
+1. Abre **Ajustes → Dispositivos y servicios → OpenBattery → Configurar** y elige **Franja horaria** como modo de carga predictiva.
 2. Introduce tanto la hora de inicio como la de fin de **Ventana de carga 1** y selecciona sus días activos.
 3. Añade **Ventanas de carga 2 y 3** solo si tu tarifa tiene más periodos baratos; completa ambas horas en cada ventana que uses.
-4. Selecciona un sensor opcional de previsión solar, termina el formulario y confirma que **Carga predictiva** está activada en la pestaña **Control** de Omnibattery.
+4. Selecciona un sensor opcional de previsión solar, termina el formulario y confirma que **Carga predictiva** está activada en la pestaña **Control** de OpenBattery.
 
 ![Configura ventanas fijas de carga predictiva](../../assets/screenshots/configuration/predictive-charging/time-slot-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
 ## Qué verás
 
-Al inicio de una ventana activa, Omnibattery comprueba el balance energético restante y asigna una cuota a esa ventana. Puede repartir la energía necesaria entre varias ventanas, de forma que la primera no consume automáticamente todo el objetivo diario flexible. La carga se detiene cuando se almacena la cuota o termina la ventana.
+Al inicio de una ventana activa, OpenBattery comprueba el balance energético restante y asigna una cuota a esa ventana. Puede repartir la energía necesaria entre varias ventanas, de forma que la primera no consume automáticamente todo el objetivo diario flexible. La carga se detiene cuando se almacena la cuota o termina la ventana.
 
 **Carga predictiva activa** muestra la decisión y cualquier energía no cubierta. **Reevaluar carga predictiva** fuerza una decisión nueva en el siguiente ciclo de control mientras hay una ventana configurada activa. Fuera de una ventana, el botón invalida la referencia antigua para la siguiente ventana, pero no evalúa inmediatamente ni inicia carga.
 
@@ -45,7 +45,7 @@ El plan se adapta dentro de una ventana activa cuando el SOC cambia de forma imp
 ??? "Detalles avanzados"
     ### Evaluación y cuotas
 
-    Al entrar en una ventana, Omnibattery evalúa inmediatamente cuando no hay previsión solar configurada o la previsión configurada es legible. Si la previsión no está disponible temporalmente, reintenta durante un periodo de gracia de cinco minutos; después evalúa de forma conservadora con solar cero.
+    Al entrar en una ventana, OpenBattery evalúa inmediatamente cuando no hay previsión solar configurada o la previsión configurada es legible. Si la previsión no está disponible temporalmente, reintenta durante un periodo de gracia de cinco minutos; después evalúa de forma conservadora con solar cero.
 
     El planificador simula consumo, solar y energía utilizable de batería en intervalos de 15 minutos hasta medianoche. La energía necesaria antes de un cruce previsto del SOC mínimo se asigna solo a ventanas que pueden entregarla a tiempo. La energía posterior se distribuye entre las ventanas configuradas restantes. Si ninguna ventana puede cumplir un plazo, los kWh no cubiertos se informan como déficit no cubierto en vez de asignarse a una ventana demasiado tardía.
 

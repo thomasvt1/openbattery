@@ -29,7 +29,7 @@ MAC_B = "dc:04:5a:7d:de:c6"
 
 
 class FakeEntry:
-    def __init__(self, batteries, entry_id="entry1", title="Omnibattery"):
+    def __init__(self, batteries, entry_id="entry1", title="OpenBattery"):
         self.entry_id = entry_id
         self.title = title
         self.data = {"batteries": batteries, "consumption_sensor": "sensor.grid"}

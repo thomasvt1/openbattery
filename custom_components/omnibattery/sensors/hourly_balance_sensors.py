@@ -1,4 +1,4 @@
-"""Hourly net balance sensor entity for Omnibattery."""
+"""Hourly net balance sensor entity for OpenBattery."""
 from __future__ import annotations
 
 from typing import Any
@@ -59,8 +59,8 @@ class NetBalanceSensor(SensorEntity):
     def device_info(self) -> dict:
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 

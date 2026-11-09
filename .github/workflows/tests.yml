@@ -2,7 +2,7 @@ name: Tests
 
 on:
   push:
-    branches: [main, 'release/**']
+    branches: [openbattery, 'release/**']
   pull_request:
 
 jobs:

@@ -137,7 +137,7 @@ async def test_setpoints_are_refused_until_control_is_owned():
     driver = await connected_driver(clock, device, own=False)
     result = await driver.apply_setpoint(-500)
     assert not result.ok and result.failure_reason == "realtime_mode_required"
-    # 0 W is accepted without a write: nothing of Omnibattery's runs on the battery.
+    # 0 W is accepted without a write: nothing of OpenBattery's runs on the battery.
     idle = await driver.apply_setpoint(0)
     assert idle.ok and idle.net_power_w == 0
     assert driver.net_power_from_data({}) is None

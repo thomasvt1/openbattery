@@ -86,7 +86,7 @@ body:
       value: |
         ## Blocking requirements checklist
 
-        Select only the capabilities you can clearly find in the documentation. **You do not need to understand the names in parentheses**; they are the internal keys Omnibattery needs. Leave anything you are unsure about unchecked.
+        Select only the capabilities you can clearly find in the documentation. **You do not need to understand the names in parentheses**; they are the internal keys OpenBattery needs. Leave anything you are unsure about unchecked.
 
   - type: checkboxes
     id: blocking_capabilities
@@ -134,7 +134,7 @@ body:
     attributes:
       label: What would you like to achieve?
       description: Explain it in your own words. For example, charge from surplus solar, track household consumption, or use several batteries together.
-      placeholder: "I would like Omnibattery to..."
+      placeholder: "I would like OpenBattery to..."
     validations:
       required: true
 
@@ -153,4 +153,4 @@ body:
   - type: markdown
     attributes:
       value: |
-        The maintainer will use this information to complete the [driver requirements assessment](https://github.com/ffunes/Omnibattery/blob/main/site-docs/reference/driver-requirements-template.md) and determine whether the model is suitable, suitable with limitations, or not suitable.
+        The maintainer will use this information to complete the [driver requirements assessment](https://github.com/thomasvt1/openbattery/blob/openbattery/site-docs/reference/driver-requirements-template.md) and determine whether the model is suitable, suitable with limitations, or not suitable.

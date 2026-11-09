@@ -1,4 +1,4 @@
-"""Select platform for the Omnibattery integration."""
+"""Select platform for the OpenBattery integration."""
 from __future__ import annotations
 
 import logging
@@ -268,8 +268,8 @@ class WeeklyFullChargeDaySelect(SelectEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -336,8 +336,8 @@ class _BatteryNameSelect(SelectEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -454,8 +454,8 @@ class PdTuningProfileSelect(SelectEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -515,7 +515,7 @@ class MarstekManualForceModeSelect(CoordinatorEntity, SelectEntity):
         else:
             # Stop the active manual command once. The controller deliberately
             # does not reassert 0 W on later idle cycles, so Anker users can then
-            # select another Solix operating mode without OmniBattery reverting it.
+            # select another Solix operating mode without OpenBattery reverting it.
             await self.coordinator.apply_power(0, read_back=False)
             await self.coordinator.async_request_refresh()
             self.coordinator.commanded_charge_power = 0
@@ -592,8 +592,8 @@ class HighPriceSaleSelect(SelectEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 

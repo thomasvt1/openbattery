@@ -1,10 +1,10 @@
 # Conecte su medidor de red y límites eléctricos
 
-Omnibattery utiliza su sensor de energía de la red para decidir cuánto deben cargarse o descargarse las baterías. Esta configuración también define el techo eléctrico y los datos del circuito solar o de respaldo opcionales utilizados por otras funciones.
+OpenBattery utiliza su sensor de energía de la red para decidir cuánto deben cargarse o descargarse las baterías. Esta configuración también define el techo eléctrico y los datos del circuito solar o de respaldo opcionales utilizados por otras funciones.
 
 ## ¿Lo necesito?
 
-**Úsalo si** estás configurando Omnibattery: cada instalación necesita un sensor de consumo de red y una potencia máxima contratada.
+**Úsalo si** estás configurando OpenBattery: cada instalación necesita un sensor de consumo de red y una potencia máxima contratada.
 
 **No necesita** los campos solares, de salida de respaldo o trifásicos opcionales a menos que su instalación utilice la función relacionada.
 
@@ -17,17 +17,17 @@ Omnibattery utiliza su sensor de energía de la red para decidir cuánto deben c
 
 ## Cómo activarlo
 
-1. Abra **Configuración → Dispositivos y servicios → Omnibattery → Configurar → Sensores** y seleccione **Sensor de consumo de red**.
+1. Abra **Configuración → Dispositivos y servicios → OpenBattery → Configurar → Sensores** y seleccione **Sensor de consumo de red**.
 2. El poder de importación debería ser positivo. Si su medidor informa que la importación es negativa, habilite **Signo de medidor invertido**.
 3. Ingrese **Potencia máxima contratada (W)** para que la carga de la batería no pueda impulsar la importación de red proyectada por encima de ese límite.
 4. Agregue solo las fuentes opcionales que necesita: **Sensor de pronóstico solar restante para hoy (recomendado)** para planificación solar, **Sensor de producción solar (opcional)** para un inversor externo o **Sensor de energía fuera de la red (opcional)** para un circuito de respaldo medido por separado.
 5. Habilite la **Protección de corriente trifásica** solo cuando pueda proporcionar límites y sensores de corriente firmados para las fases físicas que desea proteger.
 
-![Seleccione los principales sensores Omnibattery](../assets/screenshots/configuration/main-sensor.png){ width="600" style="display: block; margin: 0 auto;"}
+![Seleccione los principales sensores OpenBattery](../assets/screenshots/configuration/main-sensor.png){ width="600" style="display: block; margin: 0 auto;"}
 
 ## lo que veras
 
-El diagrama de flujo de energía del tablero utiliza el sensor de red y los datos solares y de batería disponibles. Omnibattery también crea **Consumo doméstico** al combinar esas fuentes; no selecciona un sensor de consumo doméstico independiente.
+El diagrama de flujo de energía del tablero utiliza el sensor de red y los datos solares y de batería disponibles. OpenBattery también crea **Consumo doméstico** al combinar esas fuentes; no selecciona un sensor de consumo doméstico independiente.
 
 La configuración de un medidor de circuito de respaldo crea un **Modo de medidor fuera de la red**. Actívelo para usar ese medidor para control y estadísticas de la red, y apáguelo para regresar al medidor principal. Este interruptor de software no habilita la salida de respaldo física (EPS) de la batería.
 
@@ -40,14 +40,14 @@ Un pronóstico solar del resto del día estará disponible para predecir la carg
 | La batería aleja la energía de la red del objetivo | El signo del metro está invertido | Importe una pequeña cantidad de la red y confirme que el sensor sea positivo; de lo contrario habilite **Signo de medidor invertido** |
 | El control reacciona tarde o sobrepasa las cargas cambiantes | El sensor de red publica demasiado lento | Verificar el historial de la entidad y acortar su intervalo de actualización cuando el medidor lo admita |
 | **Falta el modo de medidor fuera de la red** | No se guardó ningún medidor de circuito de respaldo separado | Configure el **Sensor de energía fuera de la red (opcional)** y asegúrese de que sea diferente del sensor principal |
-| Falta el nodo solar | Omnibattery no tiene fuente externa de producción solar | Configurar **Sensor de producción solar (opcional)** solo para energía solar que no se mide a través de entradas de seguimiento del punto de máxima potencia (MPPT) de la batería |
+| Falta el nodo solar | OpenBattery no tiene fuente externa de producción solar | Configurar **Sensor de producción solar (opcional)** solo para energía solar que no se mide a través de entradas de seguimiento del punto de máxima potencia (MPPT) de la batería |
 | La carga predictiva ignora el pronóstico | Se seleccionó un valor de todo el día como energía restante o la unidad del sensor está equivocada | Prefiera el pronóstico restante de hoy y confírmelo en los informes `Wh` o `kWh` |
 | **Consumo en el hogar** se mantiene brevemente o se convierte en `unknown` durante un cambio de dirección | Las lecturas de red, batería y energía solar describen diferentes instantes | Comprobar que las fuentes se actualizan puntualmente y luego esperar lecturas coherentes |
 
 ??? "Detalles avanzados"
     **Cadencia del medidor y datos obsoletos**
 
-    El controlador vuelve a calcular cada vez que el sensor de red publica. También se ejecuta un ciclo de seguridad cada 2 segundos. Se recomienda un intervalo de actualización de 1 a 2 segundos; Los intervalos de 10 segundos o más activan una reparación de Home Assistant después de 3 informes lentos consecutivos. La reparación se borra después de 20 intervalos consecutivos más rápidos. La última lectura sigue teniendo autoridad hasta que tenga más de 65 segundos. Tras 5 minutos sin una lectura válida, incluido un sensor que no publica nada tras un reinicio, Omnibattery crea una reparación y detiene el control automático a 0W hasta que el sensor vuelva a publicar; consulta [El medidor de red no está disponible o está bloqueado](../troubleshooting.md#el-medidor-de-red-no-esta-disponible-o-esta-bloqueado).
+    El controlador vuelve a calcular cada vez que el sensor de red publica. También se ejecuta un ciclo de seguridad cada 2 segundos. Se recomienda un intervalo de actualización de 1 a 2 segundos; Los intervalos de 10 segundos o más activan una reparación de Home Assistant después de 3 informes lentos consecutivos. La reparación se borra después de 20 intervalos consecutivos más rápidos. La última lectura sigue teniendo autoridad hasta que tenga más de 65 segundos. Tras 5 minutos sin una lectura válida, incluido un sensor que no publica nada tras un reinicio, OpenBattery crea una reparación y detiene el control automático a 0W hasta que el sensor vuelva a publicar; consulta [El medidor de red no está disponible o está bloqueado](../troubleshooting.md#el-medidor-de-red-no-esta-disponible-o-esta-bloqueado).
 
     La demanda del hogar puede cambiar en varios kilovatios entre lecturas lentas, por lo que el controlador puede responder a una carga que ya ha cambiado.
 
@@ -57,13 +57,13 @@ Un pronóstico solar del resto del día estará disponible para predecir la carg
 
     **Protección de potencia contratada**
 
-    El valor de configuración predeterminado es 7000 W y acepta entre 1000 y 20 000 W. Limita la carga de la batería en control normal, objetivos positivos, saldo neto por hora y carga de red predictiva. Durante un intervalo de carga predictiva, Omnibattery primero deja de cargar si la importación alcanza el límite; una vez que la telemetría se estabilice, puede descargar el exceso confirmado. [Protección de capacidad (reducción de picos)](../features/peak-shaving.md) es una estrategia de reserva separada.
+    El valor de configuración predeterminado es 7000 W y acepta entre 1000 y 20 000 W. Limita la carga de la batería en control normal, objetivos positivos, saldo neto por hora y carga de red predictiva. Durante un intervalo de carga predictiva, OpenBattery primero deja de cargar si la importación alcanza el límite; una vez que la telemetría se estabilice, puede descargar el exceso confirmado. [Protección de capacidad (reducción de picos)](../features/peak-shaving.md) es una estrategia de reserva separada.
 
     **Fuentes solares**
 
-    Un pronóstico restante de hoy ya es energía futura, por lo que Omnibattery no le resta la producción medida. El campo heredado de todo el día permanece disponible para las entradas existentes; guardar un sensor restante de hoy lo reemplaza. El sensor de producción externo en tiempo real y los canales MPPT de batería legibles ayudan a conocer la forma de producción, pero no reemplazan el pronóstico total.
+    Un pronóstico restante de hoy ya es energía futura, por lo que OpenBattery no le resta la producción medida. El campo heredado de todo el día permanece disponible para las entradas existentes; guardar un sensor restante de hoy lo reemplaza. El sensor de producción externo en tiempo real y los canales MPPT de batería legibles ayudan a conocer la forma de producción, pero no reemplazan el pronóstico total.
 
-    Cuando hay períodos de proveedores con fecha disponibles, Omnibattery los utiliza para la línea de tiempo solar. De lo contrario, utiliza un perfil local maduro y luego un retroceso sinusoidal. El perfil no predice la energía total ni corrige el proveedor meteorológico.
+    Cuando hay períodos de proveedores con fecha disponibles, OpenBattery los utiliza para la línea de tiempo solar. De lo contrario, utiliza un perfil local maduro y luego un retroceso sinusoidal. El perfil no predice la energía total ni corrige el proveedor meteorológico.
 
     **Consumo derivado de la vivienda**
 

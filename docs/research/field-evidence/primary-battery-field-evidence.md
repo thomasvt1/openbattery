@@ -26,7 +26,7 @@ drive everything below:
    energy never crosses the grid meter, so from the outside a hybrid filling
    itself and a hybrid doing nothing look identical.
 2. The hybrid refuses forcible charge/discharge commands while its strings
-   carry voltage. Every command Omnibattery sends it in daylight is reduced to
+   carry voltage. Every command OpenBattery sends it in daylight is reduced to
    0 by the driver's PV guard, and the inverter has been observed rejecting
    even that write (register 47083, `values=[0]`, 26.08 10:31:59).
 
@@ -229,7 +229,7 @@ test.
 
 Above roughly 90 % the Venus D tops its six packs up **one at a time**, and
 reports a much lower charge ceiling while doing so. It asked for 200 W;
-Omnibattery commanded exactly that and followed it correctly — `hours_to_full`
+OpenBattery commanded exactly that and followed it correctly — `hours_to_full`
 of 6.9 h is 1.38 kWh ÷ 0.2 kW from the same figure.
 
 Pack 1 completed at 13:56, pack 2 at 15:17, with packs 3–6 sitting untouched at
@@ -256,13 +256,13 @@ This matters for the scarce-day preference: the argument for filling the
 DC-coupled battery first is not the 7 % at full load but the 27 % in the
 absorption phase, where an AC battery spends hours.
 
-Omnibattery does not confuse the two figures — the Marstek driver publishes
+OpenBattery does not confuse the two figures — the Marstek driver publishes
 `ac_power` separately and the surplus calculation uses it, which is the correct
 one because it is what crosses the meter.
 
 ## A false BMS cutoff on multi-pack hardware
 
-Reported upstream as ffunes/Omnibattery#350 and fixed there.
+Reported upstream as ffunes/OpenBattery#350 and fixed there.
 
 At 15:17, the moment pack 2 completed, the charge hysteresis latched at the
 aggregate SoC of 93 % and charging stopped. Cause: a finished pack holds the

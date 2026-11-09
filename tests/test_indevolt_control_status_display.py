@@ -2,7 +2,7 @@
 
 The card's inverter chip shows what the battery itself does; in its own
 self-consumption mode a paused Indevolt may be discharging. A second chip shows
-the translated control status while Omnibattery is not steering the battery.
+the translated control status while OpenBattery is not steering the battery.
 Static assertions on the panel source, same style as the other panel tests.
 """
 

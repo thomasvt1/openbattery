@@ -1,6 +1,6 @@
 # Aprende el consumo de tu hogar
 
-Aprovecha al máximo la energía solar dejando que Omnibattery aprenda cuánta energía usa tu hogar y cuándo la usa. La estimación es automática; ayuda a la carga predictiva y al [Retraso de carga solar](solar-charge-delay.md) a decidir si la energía almacenada y la solar prevista pueden cubrir la demanda.
+Aprovecha al máximo la energía solar dejando que OpenBattery aprenda cuánta energía usa tu hogar y cuándo la usa. La estimación es automática; ayuda a la carga predictiva y al [Retraso de carga solar](solar-charge-delay.md) a decidir si la energía almacenada y la solar prevista pueden cubrir la demanda.
 
 ## ¿Lo necesito?
 
@@ -10,7 +10,7 @@ Aprovecha al máximo la energía solar dejando que Omnibattery aprenda cuánta e
 
 ## Antes de empezar
 
-- Configura un sensor de red y una batería que funcionen. Omnibattery deriva la demanda del hogar de las mismas mediciones que usa el diagrama de flujo de energía.
+- Configura un sensor de red y una batería que funcionen. OpenBattery deriva la demanda del hogar de las mismas mediciones que usa el diagrama de flujo de energía.
 - Mantén activado el Recorder de Home Assistant si quieres recuperar días recientes que falten tras la instalación o un reinicio.
 - Los [dispositivos excluidos y adicionales](../configuration/excluded-devices.md) son opcionales. Sus ajustes de potencia configurados se incluyen en el aprendizaje.
 
@@ -18,10 +18,10 @@ Aprovecha al máximo la energía solar dejando que Omnibattery aprenda cuánta e
 
 Esta función es automática; no hay ningún interruptor para activar el aprendizaje.
 
-1. Abre el panel lateral de Omnibattery y comprueba que **Consumo de la casa** sigue la carga de tu hogar.
+1. Abre el panel lateral de OpenBattery y comprueba que **Consumo de la casa** sigue la carga de tu hogar.
 2. Deja que la integración recopile consumo diario representativo. **Perfil de consumo esperado de la casa** muestra cuándo está listo el perfil aprendido.
-3. Activa **Modo vacaciones** en el dispositivo Sistema Omnibattery mientras se interrumpa tu rutina habitual. Desactívalo cuando el hogar vuelva a la normalidad.
-4. Para eliminar un día inusual pasado, abre **Herramientas para desarrolladores → Acciones**, ejecuta **Omnibattery: Excluir días de consumo** y elige la primera y la última fecha local que ignorar.
+3. Activa **Modo vacaciones** en el dispositivo Sistema OpenBattery mientras se interrumpa tu rutina habitual. Desactívalo cuando el hogar vuelva a la normalidad.
+4. Para eliminar un día inusual pasado, abre **Herramientas para desarrolladores → Acciones**, ejecuta **OpenBattery: Excluir días de consumo** y elige la primera y la última fecha local que ignorar.
 
 ![Atributos del aprendizaje de consumo](../assets/screenshots/features/consumption-estimate-attributes.png){ width="700" style="display: block; margin: 0 auto;"}
 
@@ -43,14 +43,14 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
 |---|---|---|
 | La previsión aún usa una alternativa | El perfil por hora no ha reunido cobertura reciente suficiente | **Perfil de consumo esperado de la casa** y sus atributos `source`, `mature` y `coverage_ratio` |
 | El Consumo de la casa no es plausible | Una medición de red, solar, batería o dispositivo excluido tiene el signo incorrecto o no está disponible | El diagrama de flujo de energía y las entidades de origen |
-| Un día inusual sigue afectando al aprendizaje | Se registró antes de activar Modo vacaciones | Ejecuta **Omnibattery: Excluir días de consumo** para esa fecha local |
+| Un día inusual sigue afectando al aprendizaje | Se registró antes de activar Modo vacaciones | Ejecuta **OpenBattery: Excluir días de consumo** para esa fecha local |
 | No aparece historial reciente tras un reinicio | Recorder no tiene historial utilizable de Consumo de la casa | Retención de Recorder, disponibilidad de entidades y diagnósticos de la integración |
 | Modo vacaciones informa de una línea base genérica | Aún no ha observado suficientes datos nocturnos válidos | Mantén el modo activo durante noches representativas e inspecciona la fuente de su línea base |
 
 ??? "Detalles avanzados"
     ### Qué cuenta como consumo del hogar
 
-    Omnibattery deriva la potencia instantánea del hogar de las mediciones que ya tiene:
+    OpenBattery deriva la potencia instantánea del hogar de las mediciones que ya tiene:
 
     ```text
     home = grid + Σ(battery AC power) + solar
@@ -58,7 +58,7 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
 
     La energía solar de corriente continua (CC) conectada mediante una entrada de seguimiento del punto de máxima potencia (MPPT) ya está neteada en la potencia de corriente alterna (CA) de la batería y no se añade dos veces. Durante la carga desde la red, la potencia de CA negativa de la batería cancela la importación de red correspondiente. Por ejemplo, importar `2.8 kW` mientras la batería carga a `2.5 kW` produce `0.3 kW` de demanda del hogar.
 
-    Una instalación antigua puede conservar un `household_consumption_sensor`. Omnibattery lo lee directamente solo si no se ha configurado ningún sensor de producción solar; con un sensor solar, se prefiere el valor derivado. Este campo ya no se ofrece durante la configuración. El valor derivado también se expone como `sensor.marstek_venus_system_home_consumption`.
+    Una instalación antigua puede conservar un `household_consumption_sensor`. OpenBattery lo lee directamente solo si no se ha configurado ningún sensor de producción solar; con un sensor solar, se prefiere el valor derivado. Este campo ya no se ofrece durante la configuración. El valor derivado también se expone como `sensor.marstek_venus_system_home_consumption`.
 
     Antes de acumular, se resta un dispositivo excluido con `included_in_consumption = true` porque ya aparece en la lectura de red/hogar. Se añade un dispositivo adicional con `included_in_consumption = false` porque esa carga no aparece en la lectura. Consulta los [dispositivos excluidos](../configuration/excluded-devices.md).
 
@@ -70,7 +70,7 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
     increment (kWh) = home_power (W) × elapsed_time (s) / 3,600,000
     ```
 
-    Las franjas de carga no pausan el aprendizaje. A las `23:55` hora local, Omnibattery guarda el acumulador de todo el día si es de al menos `1.5 kWh`; después el acumulador se reinicia a medianoche. Conserva las `7` entradas diarias más recientes y calcula su media:
+    Las franjas de carga no pausan el aprendizaje. A las `23:55` hora local, OpenBattery guarda el acumulador de todo el día si es de al menos `1.5 kWh`; después el acumulador se reinicia a medianoche. Conserva las `7` entradas diarias más recientes y calcula su media:
 
     ```text
     expected_consumption = Σ(daily_consumption) / number_of_days
@@ -91,11 +91,11 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
 
     ### Perfil aprendido por hora del día
 
-    Omnibattery conserva hasta `28` días locales en `96` intervalos de quince minutos. Integra muestras con una regla trapezoidal entre límites de intervalo, medianoche y cambios de horario de verano. Un hueco de muestra superior a `5 minutes` rompe la continuidad; un intervalo necesita al menos `675 seconds` (`75%`) de cobertura para ser utilizable.
+    OpenBattery conserva hasta `28` días locales en `96` intervalos de quince minutos. Integra muestras con una regla trapezoidal entre límites de intervalo, medianoche y cambios de horario de verano. Un hueco de muestra superior a `5 minutes` rompe la continuidad; un intervalo necesita al menos `675 seconds` (`75%`) de cobertura para ser utilizable.
 
     El perfil prefiere el día de la semana coincidente, después el tipo laborable/fin de semana coincidente y después todos los días utilizables. Las muestras se ponderan por antigüedad con `1.0`, `0.75`, `0.5` y `0.25`. Un rango solicitado solo es maduro si tiene al menos `7` días válidos; al menos `2` muestras coincidentes para el `75%` de sus intervalos; al menos `80%` de cobertura total; y una muestra más reciente de no más de `7` días.
 
-    Hasta entonces, Omnibattery distribuye la estimación diaria sobre una curva temporal provisional con forma de hogar: la demanda más baja de `00:00–06:00`, un aumento de desayuno, mayor demanda diurna y el pico de cena más intenso. La curva se normaliza para conservar el total diario exacto, incluso en días de cambio de horario de verano. Las previsiones ajustan el tramo restante de hoy después de las primeras `3 hours`, alcanzan el ajuste completo a las `12:00` y limitan esa corrección al `30%` de la previsión restante de hoy para que un único pico no elimine la demanda posterior esperada. El tramo posterior a medianoche usa el perfil del día siguiente o la tasa horaria histórica cuando el perfil no está disponible.
+    Hasta entonces, OpenBattery distribuye la estimación diaria sobre una curva temporal provisional con forma de hogar: la demanda más baja de `00:00–06:00`, un aumento de desayuno, mayor demanda diurna y el pico de cena más intenso. La curva se normaliza para conservar el total diario exacto, incluso en días de cambio de horario de verano. Las previsiones ajustan el tramo restante de hoy después de las primeras `3 hours`, alcanzan el ajuste completo a las `12:00` y limitan esa corrección al `30%` de la previsión restante de hoy para que un único pico no elimine la demanda posterior esperada. El tramo posterior a medianoche usa el perfil del día siguiente o la tasa horaria histórica cuando el perfil no está disponible.
 
     Durante Modo vacaciones, los días de calendario afectados se omiten del historial diario y solo los cuartos de hora afectados se omiten del perfil. Las previsiones usan la carga mediana de las últimas `3` noches válidas de `01:00–05:00`, donde una noche necesita `3 hours` de cobertura. Antes de disponer de ello, el orden alternativo es el perfil nocturno aprendido, el historial diario distribuido a lo largo del día y, por último, la estimación predeterminada. Conmutar el interruptor rompe la continuidad de las muestras para que un intervalo nunca se atribuya a ambos lados del cambio de modo.
 

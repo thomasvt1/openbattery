@@ -12,7 +12,7 @@ https://raw.githubusercontent.com/anker-charging/ha-anker-solix-official/refs/he
 (Solarbank 4 E5000 Pro — same map below ``product_info``)
 
 Sign conventions:
-  Omnibattery net power: +charge / −discharge
+  OpenBattery net power: +charge / −discharge
   Anker battery power (10008) and setpoint (10071): +discharge / −charge
   Therefore wire_w = −net_power_w.
 """
@@ -107,7 +107,7 @@ _BATCH_READ_RANGES: dict[str, list[tuple[int, int]]] = {
 }
 
 # Fields decoded from batch buffers. register_type must match the YAML range.
-# invert: negate value to Omnibattery +charge/−discharge convention.
+# invert: negate value to OpenBattery +charge/−discharge convention.
 _FIELD_SPECS: list[dict] = [
     {"key": "device_model", "address": 32768, "register_type": "input",
      "data_type": "char", "count": 5},

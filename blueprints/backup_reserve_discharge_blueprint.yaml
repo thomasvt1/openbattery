@@ -1,5 +1,5 @@
 blueprint:
-  name: "Omnibattery - Backup Reserve"
+  name: "OpenBattery - Backup Reserve"
   description: >
     Keeps a fixed SOC reserve for power outages by disabling automatic
     discharge when system SOC falls to the reserve, and allowing it again once
@@ -11,16 +11,16 @@ blueprint:
     - Disable this automation (and turn the Allow Discharge switches back on)
       when the reserve is no longer wanted.
 
-    This blueprint controls the Omnibattery Allow Discharge switches only. It
+    This blueprint controls the OpenBattery Allow Discharge switches only. It
     does not write battery Modbus registers or force charge/discharge modes,
     so charging (solar or grid) still refills the reserve normally.
   domain: automation
-  source_url: "https://github.com/ffunes/omnibattery/blob/main/blueprints/backup_reserve_discharge_blueprint.yaml"
+  source_url: "https://github.com/thomasvt1/openbattery/blob/openbattery/blueprints/backup_reserve_discharge_blueprint.yaml"
 
   input:
     allow_discharge_switches:
       name: "Allow Discharge Switches"
-      description: "Select all Omnibattery Allow Discharge switches that should be controlled."
+      description: "Select all OpenBattery Allow Discharge switches that should be controlled."
       selector:
         entity:
           domain: switch
@@ -28,7 +28,7 @@ blueprint:
 
     system_soc_sensor:
       name: "System SOC Sensor"
-      description: "Omnibattery system SOC sensor."
+      description: "OpenBattery system SOC sensor."
       default: sensor.omnibattery_system_soc
       selector:
         entity:

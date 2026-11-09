@@ -17,7 +17,7 @@ Time slots let you permit charging or discharging only during chosen periods. A 
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure → Time slots** and enable **Configure time slots**.
+1. Open **Settings → Devices & services → OpenBattery → Configure → Time slots** and enable **Configure time slots**.
 2. Set **Start time**, **End time**, **Days of the week**, and **Target battery**. The end must be later than the start on the same day.
 3. Select **Allow charge**, **Allow discharge**, or both, then leave **Operation mode** at **PD** for automatic control.
 4. Optional: enable **Override slot SOC max/min** or **Override slot max charge/discharge power** and complete the per-battery detail form.
@@ -27,7 +27,7 @@ Time slots let you permit charging or discharging only during chosen periods. A 
 
 ## What you will see
 
-Every saved slot creates a **Time Slot N** switch on the Omnibattery system device. Turn it off to pause that slot without deleting its times and limits; turn it on to restore the saved rule. The switch state persists across restarts.
+Every saved slot creates a **Time Slot N** switch on the OpenBattery system device. Turn it off to pause that slot without deleting its times and limits; turn it on to restore the saved rule. The switch state persists across restarts.
 
 During an active PD slot, the battery continues responding to grid and household demand within the permitted directions and any slot limits. During an active Manual slot, the selected battery is forced to the configured charge or discharge power unless a safety blocker intervenes.
 
@@ -50,7 +50,7 @@ During an active PD slot, the battery continues responding to grid and household
 
     **Overrides and limits**
 
-    Omnibattery accepts up to 8 slots. In the detail form, minimum SOC ranges from 12–30%, maximum SOC from 80–100%, and power starts at 100 W and ends at each battery's hardware maximum in 50 W steps. In PD mode, power values cap automatic control. In Manual mode, the selected value becomes the exact requested power.
+    OpenBattery accepts up to 8 slots. In the detail form, minimum SOC ranges from 12–30%, maximum SOC from 80–100%, and power starts at 100 W and ends at each battery's hardware maximum in 50 W steps. In PD mode, power values cap automatic control. In Manual mode, the selected value becomes the exact requested power.
 
     A valid Manual slot needs power override enabled and exactly one direction selected. It directly commands the battery for that control cycle and removes it from PD allocation. Battery Manual Mode ownership, minimum and maximum SOC, and EV pause remain authoritative. Manual time-slot commands can bypass the [three-phase automatic envelope](three-phase.md).
 

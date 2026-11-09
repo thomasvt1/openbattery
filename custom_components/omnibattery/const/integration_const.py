@@ -1,4 +1,4 @@
-"""Integration-level configuration constants for Omnibattery."""
+"""Integration-level configuration constants for OpenBattery."""
 
 DOMAIN = "omnibattery"
 

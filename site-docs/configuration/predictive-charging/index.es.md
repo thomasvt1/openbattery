@@ -5,7 +5,7 @@ La carga predictiva compra energía de la red durante periodos baratos cuando la
 | Tu tarifa o fuente de precios | Lo que quieres | Modo recomendado |
 |---|---|---|
 | Los periodos baratos se repiten en un horario semanal conocido | Permitir la carga desde red solo en las ventanas que elijas | **[Franja horaria](time-slot.md)** |
-| Tu proveedor publica precios futuros | Dejar que Omnibattery elija los periodos más baratos que aún cumplen el plazo energético | **[Precio dinámico](dynamic-pricing.md)** |
+| Tu proveedor publica precios futuros | Dejar que OpenBattery elija los periodos más baratos que aún cumplen el plazo energético | **[Precio dinámico](dynamic-pricing.md)** |
 | Solo puedes leer el precio vigente ahora | Cargar siempre que el precio en directo esté bajo tu umbral | **[Precio en tiempo real](real-time-price.md)** |
 | La energía cuesta lo mismo todo el día y no hay una ventana barata fija | Mantener el control normal de batería y la carga solar | **No actives la carga predictiva desde red** |
 
@@ -13,7 +13,7 @@ Los tres modos calculan si falta energía. La diferencia es quién decide cuánd
 
 ## ¿Lo necesito?
 
-**Úsalo si…** tu tarifa tiene periodos más baratos y quieres que Omnibattery compre solo la energía que espera que necesite la vivienda.
+**Úsalo si…** tu tarifa tiene periodos más baratos y quieres que OpenBattery compre solo la energía que espera que necesite la vivienda.
 
 **No lo necesitas si…** la energía de la red cuesta lo mismo todo el día, quieres que la batería cargue solo con solar o ya hay otro gestor energético que programa la carga desde red.
 
@@ -21,15 +21,15 @@ Los tres modos calculan si falta energía. La diferencia es quién decide cuánd
 
 - Configura la batería y un [sensor principal de red](../main-sensor.md) que funcione.
 - Prepara el horario o la fuente de precios que requiere el modo de la tabla anterior.
-- La previsión solar es opcional. Se prefiere una previsión de energía restante porque no cuenta la solar ya producida; sin una previsión utilizable, Omnibattery planifica de forma conservadora sin solar futura.
+- La previsión solar es opcional. Se prefiere una previsión de energía restante porque no cuenta la solar ya producida; sin una previsión utilizable, OpenBattery planifica de forma conservadora sin solar futura.
 - Un perfil local de consumo de la vivienda mejora la estimación. Consulta [Estimación diaria y horaria del consumo](../../features/consumption-estimate.md).
 
 ## Cómo activarlo
 
-1. Abre **Ajustes → Dispositivos y servicios → Omnibattery → Configurar** y activa la configuración de carga predictiva.
+1. Abre **Ajustes → Dispositivos y servicios → OpenBattery → Configurar** y activa la configuración de carga predictiva.
 2. Elige **Franja horaria**, **Precio dinámico** o **Precio en tiempo real** usando la tabla anterior.
 3. Introduce el horario o fuente de precios de ese modo, añade opcionalmente un sensor de previsión solar y termina el formulario.
-4. Abre la pestaña **Control** de Omnibattery y confirma que **Carga predictiva** está activada.
+4. Abre la pestaña **Control** de OpenBattery y confirma que **Carga predictiva** está activada.
 
 ![Elige un modo de carga predictiva](../../assets/screenshots/configuration/predictive-charging/mode-selector.png){ width="600" style="display: block; margin: 0 auto;" }
 
@@ -37,7 +37,7 @@ Los tres modos calculan si falta energía. La diferencia es quién decide cuánd
 
 **Carga predictiva activa** muestra si se necesita, se ha planificado o está en curso una carga desde red. Un periodo barato visible puede ser informativo cuando la batería y la solar prevista ya cubren la demanda; no siempre implica una carga pendiente.
 
-Cuando se necesita carga desde red, Omnibattery se dirige solo al déficit calculado en vez de llenar cada batería hasta su estado de carga (SOC) máximo. En un sistema con varias baterías, reparte ese objetivo según la capacidad disponible de cada una. Alcanzar el objetivo de carga desde red no bloquea el excedente solar posterior: la batería puede continuar en estado solo solar.
+Cuando se necesita carga desde red, OpenBattery se dirige solo al déficit calculado en vez de llenar cada batería hasta su estado de carga (SOC) máximo. En un sistema con varias baterías, reparte ese objetivo según la capacidad disponible de cada una. Alcanzar el objetivo de carga desde red no bloquea el excedente solar posterior: la batería puede continuar en estado solo solar.
 
 Usa **SOC mínimo garantizado** si el balance de todo el día parece suficiente pero la batería alcanza a menudo su mínimo antes de que empiece la producción solar. El interruptor y la entidad numérica establecen una reserva que debe estar disponible antes del inicio solar previsto.
 
@@ -59,7 +59,7 @@ Desactiva **Carga predictiva** para pausar toda la carga predictiva desde red y 
 ??? "Detalles avanzados"
     ### Decisión energética y objetivo de carga
 
-    Omnibattery compara la energía utilizable de la batería por encima del SOC mínimo, la producción solar prevista y el consumo esperado de la vivienda durante el horizonte de planificación del modo:
+    OpenBattery compara la energía utilizable de la batería por encima del SOC mínimo, la producción solar prevista y el consumo esperado de la vivienda durante el horizonte de planificación del modo:
 
     ```text
     if usable_battery + solar_forecast < expected_consumption:
@@ -76,7 +76,7 @@ Desactiva **Carga predictiva** para pausar toda la carga predictiva desde red y 
     target_soc    = current_soc + grid_charge / capacity × 100
     ```
 
-    **Ejemplo**: la batería necesita 5 kWh para alcanzar `max_soc`. La previsión solar es de 13 kWh y el consumo esperado es de 10 kWh, dejando un excedente de 3 kWh disponible para la batería. Omnibattery carga solo **2 kWh** desde la red; la solar aporta los 3 kWh restantes durante el día.
+    **Ejemplo**: la batería necesita 5 kWh para alcanzar `max_soc`. La previsión solar es de 13 kWh y el consumo esperado es de 10 kWh, dejando un excedente de 3 kWh disponible para la batería. OpenBattery carga solo **2 kWh** desde la red; la solar aporta los 3 kWh restantes durante el día.
 
     En una flota con varias baterías, el objetivo de red se distribuye proporcionalmente a la distancia de cada batería a su SOC máximo configurado. Precio dinámico y Franja horaria también pueden asignar una cuota a cada periodo y transferir la energía no entregada solo a periodos posteriores que aún cumplan su plazo.
 
@@ -86,7 +86,7 @@ Desactiva **Carga predictiva** para pausar toda la carga predictiva desde red y 
 
     Un periodo predictivo mantiene la responsabilidad sobre las baterías hasta que termina o alcanza su objetivo. El control proporcional–derivativo (PD) normal no toma el control inmediatamente cuando aumenta la demanda de la vivienda porque la importación de red aún puede incluir la orden de carga previa de la batería.
 
-    El techo de importación es el menor entre la potencia contratada y el límite de protección de capacidad cuando esta función está activada. Omnibattery primero reduce la carga para que la vivienda reciba la capacidad de red disponible. Si el cálculo cruza a descarga durante un exceso ordinario, mantiene la menor carga positiva efectiva y conserva el estado incremental del PD.
+    El techo de importación es el menor entre la potencia contratada y el límite de protección de capacidad cuando esta función está activada. OpenBattery primero reduce la carga para que la vivienda reciba la capacidad de red disponible. Si el cálculo cruza a descarga durante un exceso ordinario, mantiene la menor carga positiva efectiva y conserva el estado incremental del PD.
 
     Un exceso físico se convierte en emergencia solo después de que tres publicaciones consecutivas y recientes del contador lo confirmen. La protección de emergencia puede entonces esperar la respuesta del inversor y descargar solo el exceso estabilizado. Tras dos muestras recientes que muestren al menos `max(200 W, 2 × PD deadband)` de capacidad disponible, la carga se reanuda desde ese margen en vez de desde la potencia máxima de batería.
 

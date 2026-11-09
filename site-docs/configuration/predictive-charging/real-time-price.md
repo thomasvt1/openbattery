@@ -12,21 +12,21 @@ Real-Time Price mode checks the price in effect now and grid-charges when that p
 
 - Prepare a Home Assistant sensor for the current electricity price.
 - Choose either a fixed **Max Price Threshold** or an optional daily-average price sensor. The average sensor takes priority when it has a valid value.
-- A solar forecast is optional. Without one, Omnibattery evaluates conservatively with no future solar.
+- A solar forecast is optional. Without one, OpenBattery evaluates conservatively with no future solar.
 - Configure the common requirements described in [Which mode should I choose?](index.md).
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure** and choose **Real-Time Price** as the predictive charging mode.
+1. Open **Settings → Devices & services → OpenBattery → Configure** and choose **Real-Time Price** as the predictive charging mode.
 2. Select **Electricity price sensor** and, if available, **Daily average price sensor**.
 3. Select an optional solar forecast sensor and finish the form.
-4. In the Omnibattery **Control** tab, set **Max Price Threshold** if you did not provide an average sensor, then confirm **Predictive Charging** is on.
+4. In the OpenBattery **Control** tab, set **Max Price Threshold** if you did not provide an average sensor, then confirm **Predictive Charging** is on.
 
 ![Configure the current-price source](../../assets/screenshots/configuration/predictive-charging/real-time-price-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
 ## What you will see
 
-When the current price is at or below the active threshold, Omnibattery checks the remaining energy balance. It starts grid charging only when battery energy and expected solar do not cover expected household demand. Charging stops when price rises above the threshold, the calculated target is met, or a charging permission or safety rule blocks it.
+When the current price is at or below the active threshold, OpenBattery checks the remaining energy balance. It starts grid charging only when battery energy and expected solar do not cover expected household demand. Charging stops when price rises above the threshold, the calculated target is met, or a charging permission or safety rule blocks it.
 
 This mode does not reserve a cheaper future period, assign future price quotas, or expose **Re-evaluate Predictive Charging**. It checks again on every control cycle. Configured [operating time slots](../time-slots.md) can still restrict when charging is allowed.
 
@@ -63,7 +63,7 @@ Turn on **Price-Based Discharge** if you also want to preserve the battery while
 
     If neither produces a value, Real-Time Price takes no charging action. If the live price becomes unavailable during a charge, charging stops and undelivered energy is recorded as a shortfall.
 
-    The energy target is still predictive: Omnibattery calculates the current-horizon deficit and a per-battery target. What remains reactive is period selection. A current-price sensor cannot prove that a future period will exist or reach an energy deadline, so this mode creates no future reservations.
+    The energy target is still predictive: OpenBattery calculates the current-horizon deficit and a per-battery target. What remains reactive is period selection. A current-price sensor cannot prove that a future period will exist or reach an energy deadline, so this mode creates no future reservations.
 
     **Solar Forecast Safety Margin** is subtracted from expected solar. New installations start at approximately 5% of total configured battery capacity; if capacity is unknown during setup, the fallback is no margin. It is a live control entity rather than a setup-form field.
 

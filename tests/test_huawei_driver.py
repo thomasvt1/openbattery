@@ -151,7 +151,7 @@ def test_sensor_definitions_are_unique_and_declare_a_cadence():
 async def test_read_telemetry_decodes_the_reference_installation():
     data = await _driver().read_telemetry()
     assert data["battery_soc"] == pytest.approx(61.0)
-    # Huawei's sign convention matches Omnibattery's: negative is discharge.
+    # Huawei's sign convention matches OpenBattery's: negative is discharge.
     assert data["battery_power"] == -809
     assert data["battery_voltage"] == pytest.approx(796.3)
     # kWh, not the register's Wh: every consumer of this key treats it as kWh.
@@ -1905,7 +1905,7 @@ async def test_the_grid_meter_is_read_from_the_emmas_own_unit():
     meter = _fake_client({31657: [0xFFFF, 0xFFE5]})   # -27 W, exporting
     driver = _driver(_fake_client(_LIVE_BLOCKS), meter_client=meter)
     data = await driver.read_telemetry(["grid_power"])
-    # Sign matches the Omnibattery convention: positive imports, negative exports.
+    # Sign matches the OpenBattery convention: positive imports, negative exports.
     assert data["grid_power"] == -27
 
 

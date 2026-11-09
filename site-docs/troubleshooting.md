@@ -1,21 +1,21 @@
 # Troubleshooting by symptom
 
-Start with what you can see in Home Assistant. **Integration Status** and its blocker attributes usually explain why Omnibattery is waiting, limiting power, or excluding a battery.
+Start with what you can see in Home Assistant. **Integration Status** and its blocker attributes usually explain why OpenBattery is waiting, limiting power, or excluding a battery.
 
 !!! note "Marstek app compatibility"
-    You do not need to change anything in the Marstek app for Omnibattery to work, including its energy meter setting. Once Omnibattery is running, do not change the operating mode or a setting from the Marstek app: doing so breaks compatibility until you disable and re-enable the integration.
+    You do not need to change anything in the Marstek app for OpenBattery to work, including its energy meter setting. Once OpenBattery is running, do not change the operating mode or a setting from the Marstek app: doing so breaks compatibility until you disable and re-enable the integration.
 
 ## Forecast history is missing
 
 The check runs for entries with predictive charging configured (even when temporarily switched off), Charge Delay enabled, or a pending accumulator rebuild. Older entries that use none of these do not receive this warning.
 
-Omnibattery raises a **Sensors excluded from Recorder** warning in **Settings → System → Repairs** when Recorder excludes a sensor used to recover learned profiles:
+OpenBattery raises a **Sensors excluded from Recorder** warning in **Settings → System → Repairs** when Recorder excludes a sensor used to recover learned profiles:
 
 - The integration's **Home Consumption** power sensor (including renamed entities).
 - The configured **Solar Production** power sensor while solar profile learning is enabled.
 - Enabled excluded/additional-device power sensors, except devices configured without telemetry.
 
-Update Recorder's include/exclude rules so the listed entities are recorded, then restart Home Assistant to apply the Recorder configuration. The warning clears when those entities are included again; Omnibattery checks after startup and every five minutes. Recording new data does not restore samples that were never saved. Live learning continues, and existing stored profiles are retained.
+Update Recorder's include/exclude rules so the listed entities are recorded, then restart Home Assistant to apply the Recorder configuration. The warning clears when those entities are included again; OpenBattery checks after startup and every five minutes. Recording new data does not restore samples that were never saved. Live learning continues, and existing stored profiles are retained.
 
 The check uses Recorder's effective filter, including domain and wildcard rules. It does not diagnose database failures, paused recording, retention gaps, or insufficient history. A newly included sensor with no history is not treated as excluded. The provider's forecast energy sensor is read live and does not need Recorder history for forecasting.
 
@@ -87,7 +87,7 @@ The battery may be idle by design when the grid is already near target. If house
 ## Grid meter is unavailable or frozen
 
 !!! warning "A silent meter stops automatic control after 5 minutes"
-    When the grid sensor becomes `unavailable` or `unknown`, or stops updating, the control loop no longer follows the house load, and a battery can continue at its last requested power, for example 2000W of discharge. After 5 minutes without a valid reading, Omnibattery raises a Home Assistant Repair and sets every battery under automatic control to 0W. Manual mode and manual time slots are left as they are, and predictive grid charging is paused. Automatic control resumes by itself as soon as the sensor publishes a valid reading again.
+    When the grid sensor becomes `unavailable` or `unknown`, or stops updating, the control loop no longer follows the house load, and a battery can continue at its last requested power, for example 2000W of discharge. After 5 minutes without a valid reading, OpenBattery raises a Home Assistant Repair and sets every battery under automatic control to 0W. Manual mode and manual time slots are left as they are, and predictive grid charging is paused. Automatic control resumes by itself as soon as the sensor publishes a valid reading again.
 
     The same applies when the sensor never reports after a Home Assistant restart. After a crash or a power cut, a battery can still be running its last command from before the restart; the 5 minutes then count from when Home Assistant has finished starting.
 
@@ -156,11 +156,11 @@ For up to 65 seconds after the last reading, the frozen value is still treated a
 | Condition has already cleared | Current status and persistent notification | Confirm that the notification clears; reload only if state remains stale |
 | Model does not expose alarm registers | Entity availability for that driver | Use the manufacturer's app or local interface |
 
-Alarm and fault registers (polled every 5 seconds) are only available on v2 hardware; v3, vA, and vD do not expose them over Modbus. When a new bit is set, Omnibattery raises a persistent notification titled with 🚨 for a fault or ⚠️ for an alarm, naming the exact condition (for example *BAT Overvoltage* or *Fan Abnormal Warning*); it is dismissed automatically once every bit clears.
+Alarm and fault registers (polled every 5 seconds) are only available on v2 hardware; v3, vA, and vD do not expose them over Modbus. When a new bit is set, OpenBattery raises a persistent notification titled with 🚨 for a fault or ⚠️ for an alarm, naming the exact condition (for example *BAT Overvoltage* or *Fan Abnormal Warning*); it is dismissed automatically once every bit clears.
 
 ## Before asking for help
 
-1. Open **Settings → Devices & services → Omnibattery**.
+1. Open **Settings → Devices & services → OpenBattery**.
 2. Open the affected config entry and choose **Download diagnostics**.
 3. Review the JSON and remove anything you do not want to share.
 4. Enable debug logging from the integration page, reproduce the problem, then disable logging to download the log file.

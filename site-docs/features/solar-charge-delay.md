@@ -16,7 +16,7 @@ Make the most of solar by delaying battery charging while today's forecast can s
 
 ## How to enable it
 
-1. Open the Omnibattery sidebar panel and select **Control**.
+1. Open the OpenBattery sidebar panel and select **Control**.
 2. Turn on **Charge Delay**.
 3. Set **Charge Delay Margin** to leave enough time to finish charging before expected solar production ends.
 4. Optional: turn on **Enable minimum SOC before delay** and set **Charge Delay SOC Setpoint** so the battery charges to that level before waiting.
@@ -56,7 +56,7 @@ See the [daily operation timeline](daily-operation-timeline.md) for the delay ma
 | A previously released delay should apply again today | A genuine release is latched for the day | Toggle **Charge Delay** off and on to force a fresh decision |
 
 ??? "Advanced details"
-    Omnibattery models the current day's solar production as a sinusoidal curve and compares forecast solar remaining until production ends with remaining household demand and battery energy:
+    OpenBattery models the current day's solar production as a sinusoidal curve and compares forecast solar remaining until production ends with remaining household demand and battery energy:
 
     ```text
     net_solar_for_battery = remaining_solar - remaining_consumption
@@ -67,7 +67,7 @@ See the [daily operation timeline](daily-operation-timeline.md) for the delay ma
         allow charging
     ```
 
-    Omnibattery reads the solar forecast live without a nightly capture or separate forecast store. A saved **Remaining Today** sensor is used directly; untouched legacy whole-day entries are converted into a remaining-production estimate.
+    OpenBattery reads the solar forecast live without a nightly capture or separate forecast store. A saved **Remaining Today** sensor is used directly; untouched legacy whole-day entries are converted into a remaining-production estimate.
 
     The live balance is recalculated when forecast energy changes by more than `0.05 kWh`, or when its source or conversion changes. A worsening forecast can release the delay immediately; an improving forecast keeps the delay active until another release condition is met.
 

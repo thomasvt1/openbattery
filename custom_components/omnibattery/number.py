@@ -1,4 +1,4 @@
-"""Number platform for the Omnibattery integration."""
+"""Number platform for the OpenBattery integration."""
 from __future__ import annotations
 
 import logging
@@ -560,8 +560,8 @@ class MarstekConfigNumberEntity(NumberEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -637,8 +637,8 @@ class MarstekArbitrageNumber(NumberEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -672,7 +672,7 @@ class MarstekPriceThresholdNumber(NumberEntity):
         self._conf_key = CONF_MAX_PRICE_THRESHOLD if kind == "charge" else CONF_DISCHARGE_PRICE_THRESHOLD
         self._attr_translation_key = key
         # unique_id keeps the legacy prefix (registry identity → preserves history
-        # across the Omnibattery rebrand); only the entity_id is rebranded.
+        # across the OpenBattery rebrand); only the entity_id is rebranded.
         self._attr_unique_id = f"{SYSTEM_UNIQUE_ID_PREFIX}{key}"
         self.entity_id = system_entity_id("number", key)
         self._attr_icon = "mdi:cash-plus" if kind == "charge" else "mdi:cash-minus"
@@ -723,8 +723,8 @@ class MarstekPriceThresholdNumber(NumberEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -806,8 +806,8 @@ class SmartPredischargeNumber(NumberEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -878,8 +878,8 @@ class TempChargeLimitNumber(NumberEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -954,8 +954,8 @@ class ExcludedDeviceExclusionPctNumber(NumberEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 

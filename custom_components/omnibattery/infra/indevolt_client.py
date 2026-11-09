@@ -17,7 +17,7 @@ Two layers live here:
   demand), but two writes are always at least a write interval apart, and
   after MAX_CONSECUTIVE_WRITES writes a read comes first. Replies land in a
   timestamped cache that the driver serves to the coordinator, so however often
-  Omnibattery polls, the device sees one read per read interval and at most one
+  OpenBattery polls, the device sees one read per read interval and at most one
   write per write interval. When the device struggles, the scheduler steps up a
   ladder of slower pacing levels and back down once it has recovered (see
   PACING_LADDER).
@@ -246,7 +246,7 @@ class IndevoltError(Exception):
 class IndevoltAuthenticationError(IndevoltError):
     """The device asks for authentication: its local API is set to HTTP Digest.
 
-    Omnibattery uses the plain HTTP setting of the local API.
+    OpenBattery uses the plain HTTP setting of the local API.
     """
 
 

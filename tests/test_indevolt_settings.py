@@ -1,6 +1,6 @@
 """Indevolt user settings: written on user intent only, adopted from the device.
 
-The three settings with an Omnibattery counterpart (min SOC 1142 -> 6105, max
+The three settings with an OpenBattery counterpart (min SOC 1142 -> 6105, max
 charge 1138 -> 11009, max discharge 1147 -> 11011) sync both ways. These tests
 opt their fake device into config writes; the autouse guard still fails on any
 other flash point.

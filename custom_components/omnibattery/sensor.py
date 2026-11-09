@@ -1,4 +1,4 @@
-"""Sensor platform for the Omnibattery integration."""
+"""Sensor platform for the OpenBattery integration."""
 from __future__ import annotations
 
 import inspect
@@ -529,8 +529,8 @@ class DischargeWindowSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -613,8 +613,8 @@ class ActiveBatteriesSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -669,8 +669,8 @@ class ThreePhaseProtectionSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -714,8 +714,8 @@ class HighPriceDischargeSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -778,8 +778,8 @@ class WeeklyFullChargeSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -886,8 +886,8 @@ class ChargeDelaySensor(RestoreEntity, SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1198,8 +1198,8 @@ class IntegrationStatusSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1279,8 +1279,8 @@ class NonResponsiveBatteriesSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2427,8 +2427,8 @@ class DailyOperationTimelineSensor(SensorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2523,8 +2523,8 @@ class ConsumptionProfileSensor(SensorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2587,8 +2587,8 @@ class ConsumptionProfileCaptureSensor(SensorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2628,8 +2628,8 @@ class DailySolarEnergySensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2675,8 +2675,8 @@ class SystemSolarPowerSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2715,8 +2715,8 @@ class DailyHomeEnergySensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2754,8 +2754,8 @@ class DailyGridImportEnergySensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2792,7 +2792,7 @@ class DailyGridExportEnergySensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }

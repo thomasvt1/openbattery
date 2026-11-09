@@ -3,7 +3,7 @@ name: Validate with hassfest
 on:
   push:
     branches:
-      - main
+      - openbattery
       - master
   pull_request:
 

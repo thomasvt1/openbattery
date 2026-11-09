@@ -1,6 +1,6 @@
 # Reserva potencia de batería para picos de demanda
 
-Protege tu instalación con protección de capacidad (peak shaving): por debajo de un umbral de estado de carga (SOC), Omnibattery guarda energía para la demanda que superaría el límite de importación de red elegido. Puede reducir picos de potencia contratada y conservar una reserva para más tarde.
+Protege tu instalación con protección de capacidad (peak shaving): por debajo de un umbral de estado de carga (SOC), OpenBattery guarda energía para la demanda que superaría el límite de importación de red elegido. Puede reducir picos de potencia contratada y conservar una reserva para más tarde.
 
 ## ¿Lo necesito?
 
@@ -19,7 +19,7 @@ La protección de capacidad es una estrategia de reserva opcional. La protecció
 
 ## Cómo activarlo
 
-1. Abre el panel lateral de Omnibattery y selecciona **Control**.
+1. Abre el panel lateral de OpenBattery y selecciona **Control**.
 2. Activa **Peak Shaving**.
 3. Configura **Umbral de SOC de Peak Shaving**. Por debajo de este SOC medio de flota, la batería conserva capacidad para picos.
 4. Configura **Límite de Peak Shaving** con el umbral de importación de red que quieres mantener.
@@ -60,7 +60,7 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
 | La batería descarga durante un periodo protegido por precio | Tiene prioridad un pico físico o una emergencia de potencia contratada | Importación de red y estado de protección activo |
 
 ??? "Detalles avanzados"
-    Por debajo del umbral de conservación, Omnibattery reconstruye la carga del hogar a partir de telemetría de CA de red y batería y aplica este objetivo:
+    Por debajo del umbral de conservación, OpenBattery reconstruye la carga del hogar a partir de telemetría de CA de red y batería y aplica este objetivo:
 
     ```text
     battery_discharge = max(0, household_load - peak_limit)
@@ -70,7 +70,7 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
 
     **Peak Shaving para dispositivos excluidos** está desactivado de forma predeterminada. Por encima del umbral de conservación, la cobertura ordinaria del hogar no cambia y solo se vuelve a añadir la parte excluida que dejaría la importación física por encima del límite. Con `1,000 W` de demanda normal, `4,000 W` excluidos y un límite de `3,000 W`, la batería suministra `2,000 W`: `1,000 W` para demanda normal y `1,000 W` para recortar la carga excluida. Por debajo del umbral, la protección de capacidad ya aplica el límite a la demanda total.
 
-    Durante un periodo activo de carga predictiva, la demanda del hogar tiene prioridad. Omnibattery reduce primero la carga positiva de batería, después ordena inactividad y espera a que se estabilice la telemetría de inversor y medidor. Si la importación sigue demasiado alta, Peak Shaving usa el menor entre su límite configurado y la potencia contratada máxima. De forma independiente, la importación física por encima de la potencia contratada máxima puede activar descarga de emergencia, también para cargas excluidas que vea la conexión de red.
+    Durante un periodo activo de carga predictiva, la demanda del hogar tiene prioridad. OpenBattery reduce primero la carga positiva de batería, después ordena inactividad y espera a que se estabilice la telemetría de inversor y medidor. Si la importación sigue demasiado alta, Peak Shaving usa el menor entre su límite configurado y la potencia contratada máxima. De forma independiente, la importación física por encima de la potencia contratada máxima puede activar descarga de emergencia, también para cargas excluidas que vea la conexión de red.
 
     Las restricciones de descarga basadas en precio y los periodos protegidos de precio negativo no pueden suprimir una orden legítima de emergencia por peak shaving o potencia contratada. Detener la carga predictiva, la descarga de Peak Shaving, la descarga normal proporcional–derivativa (PD) y la descarga de emergencia siguen siendo acciones independientes. Cuando vuelve capacidad de importación estable, la descarga se detiene, la telemetría se estabiliza y la carga predictiva se reanuda con histéresis; se conservan su objetivo de SOC y energía pendiente.
 

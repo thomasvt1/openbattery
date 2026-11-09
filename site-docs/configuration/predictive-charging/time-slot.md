@@ -6,7 +6,7 @@ Time Slot mode buys only the energy your home is expected to need during the che
 
 **Use it if** your tariff has predictable off-peak periods that repeat on known days, including tariffs with separate night and midday periods.
 
-**You do not need it if** your provider publishes changing future prices and you want Omnibattery to pick the cheapest periods; use [Dynamic Pricing](dynamic-pricing.md). If you know only the current price, use [Real-Time Price](real-time-price.md).
+**You do not need it if** your provider publishes changing future prices and you want OpenBattery to pick the cheapest periods; use [Dynamic Pricing](dynamic-pricing.md). If you know only the current price, use [Real-Time Price](real-time-price.md).
 
 ## Before you start
 
@@ -16,16 +16,16 @@ Time Slot mode buys only the energy your home is expected to need during the che
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure** and choose **Time Slot** as the predictive charging mode.
+1. Open **Settings → Devices & services → OpenBattery → Configure** and choose **Time Slot** as the predictive charging mode.
 2. Enter both the start and end time for **Charging window 1**, then select its active days.
 3. Add **Charging windows 2 and 3** only if your tariff has more cheap periods; complete both times for every window you use.
-4. Select an optional solar forecast sensor, finish the form, and confirm **Predictive Charging** is on in the Omnibattery **Control** tab.
+4. Select an optional solar forecast sensor, finish the form, and confirm **Predictive Charging** is on in the OpenBattery **Control** tab.
 
 ![Configure fixed predictive charging windows](../../assets/screenshots/configuration/predictive-charging/time-slot-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
 ## What you will see
 
-At the start of an active window, Omnibattery checks the remaining energy balance and gives that window a quota. It can share the required energy across several windows, so the first window does not automatically consume the whole flexible daily target. Charging stops when the quota is stored or the window ends.
+At the start of an active window, OpenBattery checks the remaining energy balance and gives that window a quota. It can share the required energy across several windows, so the first window does not automatically consume the whole flexible daily target. Charging stops when the quota is stored or the window ends.
 
 **Predictive Charging Active** shows the decision and any uncovered energy. **Re-evaluate Predictive Charging** forces a fresh decision on the next control cycle while a configured window is active. Outside a window, the button invalidates the old reference for the next window but does not evaluate immediately or start charging.
 
@@ -45,7 +45,7 @@ The plan adapts inside an active window when SOC changes materially, the guarant
 ??? "Advanced details"
     ### Evaluation and quotas
 
-    On window entry, Omnibattery evaluates immediately when no solar forecast is configured or the configured forecast is readable. If the forecast is temporarily unavailable, it retries during a five-minute grace period; after that it evaluates conservatively with zero solar.
+    On window entry, OpenBattery evaluates immediately when no solar forecast is configured or the configured forecast is readable. If the forecast is temporarily unavailable, it retries during a five-minute grace period; after that it evaluates conservatively with zero solar.
 
     The planner simulates consumption, solar, and usable battery energy in 15-minute intervals until midnight. Energy needed before a projected minimum-SOC crossing is assigned only to windows that can deliver it in time. Later energy is distributed across the remaining configured windows. If no window can meet a deadline, the uncovered kWh is reported as an energy shortfall instead of being assigned to a window that is too late.
 

@@ -28,8 +28,8 @@ Choose the behavior that matches your goal:
 
 ## How to enable it
 
-1. Add the device through **Settings → Devices & services → Omnibattery → Configure → Excluded devices** using the [configuration checklist](../configuration/excluded-devices.md#how-to-enable-it).
-2. Open the Omnibattery system device or dashboard and turn on **Device – Enabled**.
+1. Add the device through **Settings → Devices & services → OpenBattery → Configure → Excluded devices** using the [configuration checklist](../configuration/excluded-devices.md#how-to-enable-it).
+2. Open the OpenBattery system device or dashboard and turn on **Device – Enabled**.
 3. Set **Device – Exclusion %** to the share the battery should ignore.
 4. Turn on only the live behavior controls that match your goal: **Solar Surplus**, **Dynamic Power Control**, or **Cover Home**.
 5. Start the device and watch grid flow, battery power, and the device's power or activity entity.
@@ -62,21 +62,21 @@ If the device has expected remaining demand configured, predictive charging subt
 ??? "Advanced details"
     **Load correction**
 
-    For a device already included in the main meter, Omnibattery removes the excluded share before proportional–derivative (PD) control calculates its adjustment:
+    For a device already included in the main meter, OpenBattery removes the excluded share before proportional–derivative (PD) control calculates its adjustment:
 
     ```text
     effective consumption = grid consumption - excluded device power
     control error = effective consumption - grid target
     ```
 
-    If the main meter does not see the device, Omnibattery first adds its power to reconstruct total demand, then applies the configured treatment. This prevents the same load from being removed twice.
+    If the main meter does not see the device, OpenBattery first adds its power to reconstruct total demand, then applies the configured treatment. This prevents the same load from being removed twice.
 
     **Dynamic Power Control timing**
 
-    A metered device is considered to be drawing above 100 W. On first demand, battery charging yields for 30 seconds. A rise of at least 200 W in available margin, calculated from solar production minus device power, starts another 20-second yield. If no solar-production sensor is available, Omnibattery probes for 20 seconds every 5 minutes instead.
+    A metered device is considered to be drawing above 100 W. On first demand, battery charging yields for 30 seconds. A rise of at least 200 W in available margin, calculated from solar production minus device power, starts another 20-second yield. If no solar-production sensor is available, OpenBattery probes for 20 seconds every 5 minutes instead.
 
     When device power falls, discharge remains blocked for 5 minutes and charging receives a shorter restart grace. An active activity sensor also blocks charging before measured power appears, avoiding a cold-start deadlock where the battery absorbs export before the wallbox starts. Dynamic Power Control applies only when the device is enabled, included in the main consumption sensor, metered, not in state-only EV mode, and both Solar Surplus and Dynamic Power Control are on.
 
     **State-only EV timing**
 
-    When charging is first detected, Omnibattery commands 0 W, blocks both directions, and freezes PD state for 5 minutes. The pause gives the charger time to negotiate current with the vehicle. Afterward, solar-surplus charging may resume while discharge stays blocked until the activity state stops reporting charging.
+    When charging is first detected, OpenBattery commands 0 W, blocks both directions, and freezes PD state for 5 minutes. The pause gives the charger time to negotiate current with the vehicle. Afterward, solar-surplus charging may resume while discharge stays blocked until the activity state stops reporting charging.

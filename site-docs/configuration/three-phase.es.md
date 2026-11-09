@@ -12,15 +12,15 @@ La protección de corriente trifásica limita los comandos automáticos de la ba
 
 - Utilice un sensor de corriente cuadrática media (RMS) con signo en `A` o `mA` para cada fase protegida. Positivo debe significar importación de red y negativo debe significar exportación de red después de aplicar la configuración de señal de medidor global.
 - Conozca el límite de corriente para cada fase y deje el margen operativo por debajo de la clasificación de la placa del fusible.
-- Confirme qué fase física utiliza cada batería. Omnibattery no puede descubrir el cableado.
+- Confirme qué fase física utiliza cada batería. OpenBattery no puede descubrir el cableado.
 - Trate esta característica como una protección de software adicional, no como un reemplazo de los disyuntores, la protección del inversor o el diseño eléctrico.
 
 ## Cómo activarlo
 
-1. Abra **Configuración → Dispositivos y servicios → Omnibattery → Configurar → Sensores** y habilite **Protección de corriente trifásica**.
+1. Abra **Configuración → Dispositivos y servicios → OpenBattery → Configurar → Sensores** y habilite **Protección de corriente trifásica**.
 2. Para cada fase protegida, seleccione su **sensor de corriente de red L1/L2/L3** e ingrese el **tamaño de fusible L1/L2/L3 (A)** correspondiente. Deje ambos campos vacíos para una fase no utilizada.
 3. En la configuración de cada batería, establezca **Fase física de la batería** en su conductor real. Elija **Sin asignar** solo cuando la batería esté fuera del diseño de fase protegida.
-4. Finalice la configuración, luego active **Protección de corriente trifásica** desde el panel de Omnibattery o la página del dispositivo.
+4. Finalice la configuración, luego active **Protección de corriente trifásica** desde el panel de OpenBattery o la página del dispositivo.
 5. Confirme que el **Estado de protección trifásica** informe **Activo** bajo carga normal.
 
 ## lo que veras
@@ -47,7 +47,7 @@ Cuando el interruptor de protección está activado, el selector **Fase de bater
 | El medidor de fase aún supera el límite configurado | Una carga externa, latencia de comando o un comando manual causaron el exceso | Reducir el límite operativo configurado y mantener los comandos manuales dentro del envolvente eléctrico |
 
 ??? "Detalles avanzados"
-    Para cada fase, Omnibattery reconstruye la corriente que no proviene de la batería y luego cruza el límite del medidor con un límite absoluto de corriente de la batería:
+    Para cada fase, OpenBattery reconstruye la corriente que no proviene de la batería y luego cruza el límite del medidor con un límite absoluto de corriente de la batería:
 
     ```text
     base_current = phase_current - battery_current_on_phase

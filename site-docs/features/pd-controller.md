@@ -4,19 +4,19 @@ The proportional–derivative (PD) controller adjusts battery power as household
 
 ## Do I need it?
 
-**Use it if** you want Omnibattery to follow changing home consumption automatically. This is the normal control mode and is suitable for most installations.
+**Use it if** you want OpenBattery to follow changing home consumption automatically. This is the normal control mode and is suitable for most installations.
 
 **You do not need to tune it if** grid flow stays close to the target without repeated charge/discharge changes. Small, steady differences inside the deadband are intentional and prevent inefficient micro-cycling.
 
 ## Before you start
 
 - Configure a working grid consumption sensor that updates regularly.
-- Allow Omnibattery to control the battery automatically; manual mode and other active rules can temporarily take control.
+- Allow OpenBattery to control the battery automatically; manual mode and other active rules can temporarily take control.
 - Check that the battery can charge and discharge and is not already at a state-of-charge or power limit.
 
 ## How to enable it
 
-1. Open the Omnibattery sidebar panel and select **Control**.
+1. Open the OpenBattery sidebar panel and select **Control**.
 2. In **PD controller**, turn on **PD control**. This turns off **No-PD Direct Tracking** because the two modes are mutually exclusive.
 3. Select **Balanced** under **PD tuning profile** and leave the manual gain controls unchanged.
 4. Watch **PD Control Quality** while normal household loads change.
@@ -97,9 +97,9 @@ After changing a setting, allow the quality metric to reflect the new behavior b
 
     If battery output is capped below the profile's maximum change, the rate limiter may not engage before the battery reaches its cap. Use a smoother profile or set a lower custom maximum change when that first step causes overshoot.
 
-    Minimum charge and discharge power can prevent inefficient low-power operation. During relay cooldown, Omnibattery holds the active direction at the configured minimum or `100 W` when that minimum is disabled. A large imbalance bypasses this hold. Charge-to-discharge reversals use the separate zero-cross protection below.
+    Minimum charge and discharge power can prevent inefficient low-power operation. During relay cooldown, OpenBattery holds the active direction at the configured minimum or `100 W` when that minimum is disabled. A large imbalance bypasses this hold. Charge-to-discharge reversals use the separate zero-cross protection below.
 
-    System power limits optionally cap the combined charge and discharge power without lowering each battery's own limit. When enabled, the two cap controls appear on the Omnibattery System device; `0 W` disables a cap.
+    System power limits optionally cap the combined charge and discharge power without lowering each battery's own limit. When enabled, the two cap controls appear on the OpenBattery System device; `0 W` disables a cap.
 
     ![Advanced PD controller configuration](../assets/screenshots/configuration/advanced-pd-controller-config.png){ width="650" style="display: block; margin: 0 auto;"}
 
@@ -131,4 +131,4 @@ After changing a setting, allow the quality metric to reflect the new behavior b
 
     A battery with **Backup Function** enabled is excluded when **AC Offgrid Power** exceeds its **Backup Offgrid Threshold**, or when that power reading is unavailable. The default threshold is `50 W`, so small permanent loads on the backup output do not remove the battery from normal control.
 
-    While excluded, Omnibattery continues polling read-only data but sends no power, forced-mode, configuration, or weekly full-charge commands to that battery. After off-grid power returns below the threshold, exclusion remains for `5 min`; turning **Backup Function** off clears the cooldown immediately.
+    While excluded, OpenBattery continues polling read-only data but sends no power, forced-mode, configuration, or weekly full-charge commands to that battery. After off-grid power returns below the threshold, exclusion remains for `5 min`; turning **Backup Function** off clears the cooldown immediately.

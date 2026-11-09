@@ -1,9 +1,9 @@
 # Solución de problemas por síntoma
 
-Empieza por lo que puedes ver en Home Assistant. **Integration Status** y sus atributos de bloqueadores suelen explicar por qué Omnibattery espera, limita potencia o excluye una batería.
+Empieza por lo que puedes ver en Home Assistant. **Integration Status** y sus atributos de bloqueadores suelen explicar por qué OpenBattery espera, limita potencia o excluye una batería.
 
 !!! note "Compatibilidad con la aplicación Marstek"
-    No necesitas cambiar nada en la aplicación Marstek para que Omnibattery funcione, incluido el ajuste de su medidor de energía. Cuando Omnibattery esté funcionando, no cambies el modo de funcionamiento ni ningún ajuste desde la aplicación Marstek: hacerlo rompe la compatibilidad hasta que desactives y vuelvas a activar la integración.
+    No necesitas cambiar nada en la aplicación Marstek para que OpenBattery funcione, incluido el ajuste de su medidor de energía. Cuando OpenBattery esté funcionando, no cambies el modo de funcionamiento ni ningún ajuste desde la aplicación Marstek: hacerlo rompe la compatibilidad hasta que desactives y vuelvas a activar la integración.
 
 ## La batería no hace nada
 
@@ -73,7 +73,7 @@ La batería puede estar en reposo intencionadamente cuando la red ya está cerca
 ## El medidor de red no está disponible o está bloqueado
 
 !!! warning "Un medidor silencioso detiene el control automático tras 5 minutos"
-    Cuando el sensor de red pasa a `unavailable` o `unknown`, o deja de actualizarse, el bucle de control deja de seguir la carga de la casa, y una batería puede continuar a su última potencia solicitada, por ejemplo 2000W de descarga. Tras 5 minutos sin una lectura válida, Omnibattery crea una reparación de Home Assistant y pone a 0W cada batería bajo control automático. El modo manual y las franjas manuales se mantienen como están, y la carga predictiva desde la red se pausa. El control automático se reanuda solo en cuanto el sensor vuelve a publicar una lectura válida.
+    Cuando el sensor de red pasa a `unavailable` o `unknown`, o deja de actualizarse, el bucle de control deja de seguir la carga de la casa, y una batería puede continuar a su última potencia solicitada, por ejemplo 2000W de descarga. Tras 5 minutos sin una lectura válida, OpenBattery crea una reparación de Home Assistant y pone a 0W cada batería bajo control automático. El modo manual y las franjas manuales se mantienen como están, y la carga predictiva desde la red se pausa. El control automático se reanuda solo en cuanto el sensor vuelve a publicar una lectura válida.
 
     Lo mismo ocurre cuando el sensor no publica nada tras reiniciar Home Assistant. Después de un fallo o un corte de luz, una batería puede seguir ejecutando su última orden de antes del reinicio; los 5 minutos cuentan entonces desde que Home Assistant termina de iniciarse.
 
@@ -142,11 +142,11 @@ Durante hasta 65 segundos después de la última lectura, el valor bloqueado sig
 | La condición ya se ha resuelto | Estado actual y notificación persistente | Confirma que se despeja la notificación; recarga solo si el estado sigue obsoleto |
 | El modelo no expone registros de alarma | Disponibilidad de entidad de ese controlador | Usa la aplicación o interfaz local del fabricante |
 
-Los registros de alarma y fallo (sondeados cada 5 segundos) solo están disponibles en hardware v2; v3, vA y vD no los exponen mediante Modbus. Cuando se establece un bit nuevo, Omnibattery crea una notificación persistente titulada con 🚨 para un fallo o ⚠️ para una alarma, con el nombre exacto de la condición (por ejemplo, *BAT Overvoltage* o *Fan Abnormal Warning*); se descarta automáticamente cuando se borran todos los bits.
+Los registros de alarma y fallo (sondeados cada 5 segundos) solo están disponibles en hardware v2; v3, vA y vD no los exponen mediante Modbus. Cuando se establece un bit nuevo, OpenBattery crea una notificación persistente titulada con 🚨 para un fallo o ⚠️ para una alarma, con el nombre exacto de la condición (por ejemplo, *BAT Overvoltage* o *Fan Abnormal Warning*); se descarta automáticamente cuando se borran todos los bits.
 
 ## Antes de pedir ayuda
 
-1. Abre **Ajustes → Dispositivos y servicios → Omnibattery**.
+1. Abre **Ajustes → Dispositivos y servicios → OpenBattery**.
 2. Abre la entrada de configuración afectada y selecciona **Download diagnostics**.
 3. Revisa el JSON y elimina cualquier cosa que no quieras compartir.
 4. Activa el registro de depuración desde la página de integración, reproduce el problema y después desactiva el registro para descargar el archivo de registro.

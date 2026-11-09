@@ -4,7 +4,7 @@ Dynamic Pricing reads a future price calendar and buys the calculated energy def
 
 ## Do I need it?
 
-**Use it if** your provider publishes today’s and future interval prices and you want Omnibattery to choose when to charge.
+**Use it if** your provider publishes today’s and future interval prices and you want OpenBattery to choose when to charge.
 
 **You do not need it if** your tariff has fixed repeating cheap periods; use [Time Slot](time-slot.md). If your source exposes only the price in effect now, use [Real-Time Price](real-time-price.md).
 
@@ -17,21 +17,21 @@ Dynamic Pricing reads a future price calendar and buys the calculated energy def
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure** and choose **Dynamic Pricing** as the predictive charging mode.
+1. Open **Settings → Devices & services → OpenBattery → Configure** and choose **Dynamic Pricing** as the predictive charging mode.
 2. Select **Price integration type**, then choose **Electricity price sensor**. Leave the sensor empty for Tibber.
 3. Select an optional solar forecast and, if required, an export/feed-in price sensor and its integration type.
-4. Finish the form, then confirm **Predictive Charging** is on in the Omnibattery **Control** tab.
+4. Finish the form, then confirm **Predictive Charging** is on in the OpenBattery **Control** tab.
 5. Leave the optional price controls off until the basic schedule behaves as expected; enable only the policy that matches your goal.
 
 ![Configure a future-price source](../../assets/screenshots/configuration/predictive-charging/dynamic-pricing-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
 !!! note "Provider-specific sensor choice"
     For **BE Electricity Prices** (Belgium), choose its **Current price** sensor. It lists every slot of today and tomorrow at the all-in price for any contract, including time-of-use ones such as ENGIE Empower Flextime, so Dynamic Pricing and **Discharge Reserve** work without a template. For the export curve, choose its **Injection price** sensor with the same type.
-    For Zonneplan, choose **Current quarter hourly electricity tariff** for a quarter-hour contract or **Current hourly electricity tariff** for an hourly contract. The older **Current electricity tariff** sensor is also supported. For Nord Pool, choose either an official-integration entity or the HACS sensor; Omnibattery detects the format.
+    For Zonneplan, choose **Current quarter hourly electricity tariff** for a quarter-hour contract or **Current hourly electricity tariff** for an hourly contract. The older **Current electricity tariff** sensor is also supported. For Nord Pool, choose either an official-integration entity or the HACS sensor; OpenBattery detects the format.
 
 ## What you will see
 
-**Predictive Charging Active** shows whether charging is needed, the selected periods, their energy quotas, and any energy shortfall. Omnibattery chooses the cheapest eligible period that occurs before each projected need, so the absolute cheapest period can be skipped when it is too late.
+**Predictive Charging Active** shows whether charging is needed, the selected periods, their energy quotas, and any energy shortfall. OpenBattery chooses the cheapest eligible period that occurs before each projected need, so the absolute cheapest period can be skipped when it is too late.
 
 A visible calendar can be informational. When stored energy and expected solar already cover demand, `selected_hours` may still show useful cheap periods while `charging_needed` remains false. Reaching a grid-charge target also leaves solar-surplus charging available; it does not lock the battery out of later solar.
 
@@ -67,14 +67,14 @@ Optional controls in the **Control** tab solve different problems:
 ??? "Advanced details"
     ### Price-source normalization
 
-    Omnibattery supports **Nordpool**, **PVPC**, **CKW**, **EPEX Spot**, **ENTSO-e**, **EnergyZero**, **Zonneplan**, **Frank Energie**, **Tibber**, and **BE Electricity Prices**. Provider parsers normalize dated price periods into the same local schedule.
+    OpenBattery supports **Nordpool**, **PVPC**, **CKW**, **EPEX Spot**, **ENTSO-e**, **EnergyZero**, **Zonneplan**, **Frank Energie**, **Tibber**, and **BE Electricity Prices**. Provider parsers normalize dated price periods into the same local schedule.
 
     Frank Energie needs the [Frank Energie HACS integration](https://github.com/HiDiHo01/home-assistant-frank_energie). It reads the chosen sensor’s `prices` attribute (`from`, `till`, `price`), including tomorrow when available. Prices are already tax-inclusive major currency/kWh and are not rescaled. Use the all-in price sensor for import, for example `sensor.frank_energie_electricity_prices_current_electricity_price_all_in`, and the including-tax-and-markup sensor for export, for example `sensor.frank_energie_electricity_prices_current_electricity_price_including_tax_and_markup`. Periods may be hourly or quarter-hourly.
     EnergyZero calls `energyzero.get_energy_prices` for today and tomorrow using the selected electricity sensor's integration entry, market/all-in price type, and hourly/quarter-hourly interval. Prices include VAT and are already in EUR/kWh; tomorrow is retained when published, while unavailable tomorrow data does not discard today's prices.
 
     Zonneplan reads the chosen sensor’s `forecast` attribute, including tomorrow when available. Forecast amounts are divided by 10,000,000 into tax-inclusive major currency/kWh; the current sensor state is already major currency/kWh. Negative and zero prices are preserved. Modern entries keep explicit period boundaries; legacy entries use one-hour periods.
 
-    A Nord Pool HACS entity is read from `raw_today` and `raw_tomorrow`. If `price_in_cents` is true, Omnibattery converts the calendar and live price to major currency/kWh. For an official Nord Pool entity, it resolves the market area, calls `nordpool.get_prices_for_date`, converts currency/MWh to currency/kWh, and refreshes the cache hourly.
+    A Nord Pool HACS entity is read from `raw_today` and `raw_tomorrow`. If `price_in_cents` is true, OpenBattery converts the calendar and live price to major currency/kWh. For an official Nord Pool entity, it resolves the market area, calls `nordpool.get_prices_for_date`, converts currency/MWh to currency/kWh, and refreshes the cache hourly.
 
     Tibber calls `tibber.get_prices`, caches today’s prices and tomorrow’s once published, and refreshes the cache hourly. The official Tibber integration must already be configured.
 
@@ -82,7 +82,7 @@ Optional controls in the **Control** tab solve different problems:
 
     ### Daily chronological plan
 
-    At 00:05 local time, Omnibattery:
+    At 00:05 local time, OpenBattery:
 
     1. Projects household consumption, solar, and usable battery energy in 15-minute intervals through the next local sunrise. Sunrise is bounded to 00:00–12:00; if it cannot be calculated, the horizon ends at midnight.
     2. Fetches the available price periods through that horizon.
@@ -100,7 +100,7 @@ Optional controls in the **Control** tab solve different problems:
 
     The daily plan can be rebuilt by these events:
 
-    - **Before a selected period:** one hour before a future selected period, Omnibattery checks the remaining balance. It silently removes the period if energy is now sufficient or confirms it by notification when the deficit remains. Back-to-back periods are not reconsidered while the previous one is charging.
+    - **Before a selected period:** one hour before a future selected period, OpenBattery checks the remaining balance. It silently removes the period if energy is now sufficient or confirms it by notification when the deficit remains. Back-to-back periods are not reconsidered while the previous one is charging.
     - **Late-day assessment:** when solar start has been detected, this runs about 1.5 hours before estimated production ends; otherwise it uses 16:00. It adds eligible future periods only for a remaining deficit of at least 0.3 kWh. Those periods pass the same price ceiling and optional arbitrage margin as the daily plan.
     - **SOC drop:** a chronological plan rebuilds after a five-percentage-point drop from the last evaluated fleet average. A fallback non-chronological plan retains the 30-point threshold. An SOC rise does not trigger it.
     - **Solar forecast revision:** a change of at least 1.5 kWh in either direction rebuilds the plan, with a 30-minute cooldown and a maximum of four such rebuilds per day. Measured solar since the saved reading is removed before comparison, and an unavailable sensor is not treated as a collapsed forecast.
@@ -214,7 +214,7 @@ Optional controls in the **Control** tab solve different problems:
 
     This level also sells stored energy in a qualifying expensive period only when doing so still saves money after the household demand that energy would otherwise have covered is bought from the grid. Energy without later household demand is not sold, and export never crosses a battery’s SOC floor.
 
-    When the forecast says the battery will run out before sunrise and **Discharge Reserve** is off, Omnibattery compares the export price with the last household-demand periods that would be bought back because of the sale. It starts with the latest period before sunrise and stops at the first sale that would not pay. For example, if the battery would last until 05:00, selling at 18:00 makes it run out a little earlier, around 04:00. What you buy back is the 04:00–05:00 demand, so the sale is compared with that price—not with the expensive 20:00 period the battery still covers.
+    When the forecast says the battery will run out before sunrise and **Discharge Reserve** is off, OpenBattery compares the export price with the last household-demand periods that would be bought back because of the sale. It starts with the latest period before sunrise and stops at the first sale that would not pay. For example, if the battery would last until 05:00, selling at 18:00 makes it run out a little earlier, around 04:00. What you buy back is the 04:00–05:00 demand, so the sale is compared with that price—not with the expensive 20:00 period the battery still covers.
 
     If the battery is forecast to last until sunrise, or **Discharge Reserve** is on, the conservative rule remains: the export price must beat the highest later import price, plus **Minimum Arbitrage Margin**. The dearest qualifying export period receives energy first. Deliberate net-grid export uses the fleet’s effective discharge limit; there is no separate high-price export-cap control.
 
@@ -224,7 +224,7 @@ Optional controls in the **Control** tab solve different problems:
 
     Its export budget starts with usable battery energy, then keeps enough for forecast household consumption until sunrise and the **Solar Forecast Safety Margin**. The cost of selling is the export income given up tomorrow while solar refills the battery—not the price originally paid to charge it. It sells only when the current export price is higher than the highest export price expected during tomorrow’s refill, adjusted for **Round-Trip Efficiency** and **Minimum Arbitrage Margin**.
 
-    With a flat feed-in tariff it never sells: selling now and refilling later would only lose energy in the battery cycle. It also stays inactive when tomorrow’s solar forecast cannot refill the battery. It uses tomorrow’s forecast from the solar forecast integration already configured in Omnibattery; no extra sensor is needed, but that integration must provide forecasts to Home Assistant’s Energy dashboard.
+    With a flat feed-in tariff it never sells: selling now and refilling later would only lose energy in the battery cycle. It also stays inactive when tomorrow’s solar forecast cannot refill the battery. It uses tomorrow’s forecast from the solar forecast integration already configured in OpenBattery; no extra sensor is needed, but that integration must provide forecasts to Home Assistant’s Energy dashboard.
 
     The plan is rebuilt every five minutes and withdrawal is checked every control cycle. Missing price coverage, an expired period, anti-curtailment, capacity protection, weekly full charge, an active grid-charge period, manual control, operating-time ownership, an invalid grid meter, or any discharge blocker stops either export policy. Lowering the select removes the dropped policy on the next control cycle.
 

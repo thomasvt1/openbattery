@@ -1,6 +1,6 @@
 # Add a battery driver
 
-This guide takes a new battery integration from vendor evidence to a reviewable Omnibattery pull request. A driver may use registers, a local application programming interface (API), Message Queuing Telemetry Transport (MQTT), or Home Assistant entities, but it must expose the same semantic battery behavior through `drivers/base.py::BatteryDriver`.
+This guide takes a new battery integration from vendor evidence to a reviewable OpenBattery pull request. A driver may use registers, a local application programming interface (API), Message Queuing Telemetry Transport (MQTT), or Home Assistant entities, but it must expose the same semantic battery behavior through `drivers/base.py::BatteryDriver`.
 
 Start with evidence from real hardware. A protocol document alone cannot establish sign, scaling, command persistence, latency, or safe behavior after a partial write.
 
@@ -73,7 +73,7 @@ Collect enough detail to answer all of these questions:
 - For every field, what are its type, byte order, unit, scale, sign, valid range, and sentinel values?
 - For every write, what are its range, step, persistence, acknowledgement, and error response?
 - Are multi-write commands atomic? If not, what order and rollback reach a safe state?
-- Does a command survive device restart, network loss, Home Assistant reload, and Omnibattery shutdown?
+- Does a command survive device restart, network loss, Home Assistant reload, and OpenBattery shutdown?
 - Does frequent writing update volatile memory or persistent flash?
 
 Keep redacted request/response captures and hardware observations. Never include credentials, tokens, network addresses, or complete serial numbers in tests, diagnostics, documentation, or pull requests.
@@ -86,7 +86,7 @@ Keep redacted request/response captures and hardware observations. Never include
 
 A cloud-only API is not rejected automatically. Its latency, expiry, quotas, and outage behavior must still support safe idle and the required control cadence.
 
-## Map the vendor protocol to Omnibattery
+## Map the vendor protocol to OpenBattery
 
 The driver translates protocol details into canonical logical keys and operations. Registers, endpoints, topics, service names, and proprietary modes must stay inside the driver or its transport client.
 
@@ -354,7 +354,7 @@ Unit tests prove translation logic; they do not prove the vendor’s behavior. R
 - [ ] Interrupt each stage of a multi-write sequence and verify the documented safe state.
 - [ ] Confirm failed writes do not enter the cache as confirmed state.
 - [ ] Exercise minimum and maximum SOC behavior with the BMS protections still active.
-- [ ] Stop Omnibattery and verify `standby()` plus any vendor-control restoration.
+- [ ] Stop OpenBattery and verify `standby()` plus any vendor-control restoration.
 - [ ] Run in a mixed-brand pool and verify that measured delivery matches allocation.
 
 Retain redacted logs or traces that show the requested command, acknowledgement, and measured physical response. State clearly which matrix entries remain untested.
@@ -401,7 +401,7 @@ Do not claim support based only on mocked tests. The brand should be selectable,
 
     **Telemetry mapping**
 
-    | Omnibattery key | B/R/O | Vendor field | R/W | Type/order | Scale and unit | Range/sentinels | Cadence/TTL | N/D/C/X | Evidence | Tested |
+    | OpenBattery key | B/R/O | Vendor field | R/W | Type/order | Scale and unit | Range/sentinels | Cadence/TTL | N/D/C/X | Evidence | Tested |
     |---|---|---|---|---|---|---|---|---|---|---|
     | `battery_soc` | B | `...` | R | `...` | `... → %` | `...` | `...` | `...` | `...` | [ ] |
     | `battery_power` | B | `...` | R | `...` | `... → W` | `...` | `...` | `...` | `...` | [ ] |

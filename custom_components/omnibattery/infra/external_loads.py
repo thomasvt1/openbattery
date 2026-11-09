@@ -73,7 +73,7 @@ _CHARGING_SUBSTRINGS: frozenset[str] = frozenset({
 # Dynamic power control always uses the excluded device's power sensor. An
 # optional activity sensor can announce demand before numeric power appears,
 # solving the cold-start deadlock without an external automation. A short yield
-# then lets the external controller claim export before Omnibattery resumes on
+# then lets the external controller claim export before OpenBattery resumes on
 # any residual. Brief zero-power pauses are latched for sensor-less setups.
 DYNAMIC_CONTROL_ACTIVE_POWER_W = 100.0
 DYNAMIC_CONTROL_HOLD = timedelta(minutes=5)

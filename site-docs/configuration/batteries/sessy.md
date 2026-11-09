@@ -1,6 +1,6 @@
 # Sessy Home Battery
 
-Omnibattery controls a Sessy through the local interface on its network dongle. No cloud connection is required.
+OpenBattery controls a Sessy through the local interface on its network dongle. No cloud connection is required.
 
 ## Do I need it?
 
@@ -17,7 +17,7 @@ Sessy support is still looking for more testers. Include the model and firmware 
 
 ## How to add it
 
-1. In the Omnibattery setup flow, choose **Sessy**.
+1. In the OpenBattery setup flow, choose **Sessy**.
 2. Enter a descriptive **Name** and the dongle's **Host**.
 3. Keep **HTTP port** at `80` unless the dongle uses another port.
 4. Enter the dongle **Username** and **Password** and wait for the connection test.
@@ -25,9 +25,9 @@ Sessy support is still looking for more testers. Include the model and firmware 
 
 ## What you will see
 
-Omnibattery provides automatic control and software **Force Mode** and power controls. Turn on **Battery Manual Control** before sending a manual charge, discharge, or idle target. The integration sends one net power target through the Sessy local interface.
+OpenBattery provides automatic control and software **Force Mode** and power controls. Turn on **Battery Manual Control** before sending a manual charge, discharge, or idle target. The integration sends one net power target through the Sessy local interface.
 
-Battery state of charge (SOC), power, temperature, energy, and the device's PV reading can appear as entities. The PV reading is informational: the Sessy driver does not advertise it as solar telemetry for Omnibattery's control calculations.
+Battery state of charge (SOC), power, temperature, energy, and the device's PV reading can appear as entities. The PV reading is informational: the Sessy driver does not advertise it as solar telemetry for OpenBattery's control calculations.
 
 ## If it does not work
 
@@ -42,7 +42,7 @@ Battery state of charge (SOC), power, temperature, energy, and the device's PV r
 ??? "Advanced details"
     Sessy uses asymmetric limits: `2,200 W` for charging and `1,700 W` for discharging. The setup form seeds those ceilings and accepts nominal capacity from `0.01–100 kWh`.
 
-    The local interface uses positive generation/discharge values, while Omnibattery's internal sign uses positive charge and negative discharge. The driver converts the sign before sending the net setpoint and reads it back for confirmation.
+    The local interface uses positive generation/discharge values, while OpenBattery's internal sign uses positive charge and negative discharge. The driver converts the sign before sending the net setpoint and reads it back for confirmation.
 
     Sessy's strategy and power target are controlled through its authenticated local API. It has no Marstek-style force-mode registers, hardware SOC writes, cell-voltage taper, or cell-balance telemetry.
 

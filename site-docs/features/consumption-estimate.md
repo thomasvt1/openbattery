@@ -1,6 +1,6 @@
 # Learn your household consumption
 
-Make the most of solar by letting Omnibattery learn how much energy your home uses and when it uses it. The estimate is automatic; it helps predictive charging and [Solar Charge Delay](solar-charge-delay.md) decide whether stored energy and expected solar can cover demand.
+Make the most of solar by letting OpenBattery learn how much energy your home uses and when it uses it. The estimate is automatic; it helps predictive charging and [Solar Charge Delay](solar-charge-delay.md) decide whether stored energy and expected solar can cover demand.
 
 ## Do I need it?
 
@@ -10,7 +10,7 @@ Make the most of solar by letting Omnibattery learn how much energy your home us
 
 ## Before you start
 
-- Configure a working grid sensor and battery. Omnibattery derives household demand from the same measurements used by the energy-flow diagram.
+- Configure a working grid sensor and battery. OpenBattery derives household demand from the same measurements used by the energy-flow diagram.
 - Keep Home Assistant Recorder enabled if you want missing recent days to be recovered after installation or a restart.
 - [Excluded and additional devices](../configuration/excluded-devices.md) are optional. Their configured power adjustments are included in learning.
 
@@ -18,10 +18,10 @@ Make the most of solar by letting Omnibattery learn how much energy your home us
 
 This feature is automatic; there is no learning switch to enable.
 
-1. Open the Omnibattery sidebar panel and check that **Home Consumption** follows your household load.
+1. Open the OpenBattery sidebar panel and check that **Home Consumption** follows your household load.
 2. Let the integration collect representative daily use. **Expected Home Consumption Profile** shows when the learned profile is ready.
-3. Turn on **Vacation Mode** on the Omnibattery System device while your normal routine is interrupted. Turn it off when the household returns to normal.
-4. To remove a past unusual day, open **Developer tools → Actions**, run **Omnibattery: Exclude consumption days**, and choose the first and last local date to ignore.
+3. Turn on **Vacation Mode** on the OpenBattery System device while your normal routine is interrupted. Turn it off when the household returns to normal.
+4. To remove a past unusual day, open **Developer tools → Actions**, run **OpenBattery: Exclude consumption days**, and choose the first and last local date to ignore.
 
 Vacation Mode pauses only learning. Physical energy counters, the real-consumption chart, and battery control continue normally. Excluded periods are remembered, so Recorder backfill cannot add them again.
 
@@ -45,14 +45,14 @@ See the [daily operation timeline](daily-operation-timeline.md) to compare learn
 |---|---|---|
 | The forecast still uses a fallback | The time-of-day profile has not collected enough recent coverage | **Expected Home Consumption Profile** and its `source`, `mature`, and `coverage_ratio` attributes |
 | Home Consumption is implausible | A grid, solar, battery, or excluded-device measurement has the wrong sign or is unavailable | The energy-flow diagram and the source entities |
-| An unusual day still affects learning | It was recorded before Vacation Mode was enabled | Run **Omnibattery: Exclude consumption days** for that local date |
+| An unusual day still affects learning | It was recorded before Vacation Mode was enabled | Run **OpenBattery: Exclude consumption days** for that local date |
 | No recent history appears after a restart | Recorder has no usable Home Consumption history | Recorder retention, entity availability, and the integration diagnostics |
 | Vacation Mode reports a generic baseline | It has not yet observed enough valid overnight data | Leave the mode active through representative nights and inspect its baseline source |
 
 ??? "Advanced details"
     ### What counts as household consumption
 
-    Omnibattery derives live household power from measurements it already has:
+    OpenBattery derives live household power from measurements it already has:
 
     ```text
     home = grid + Σ(battery AC power) + solar
@@ -60,7 +60,7 @@ See the [daily operation timeline](daily-operation-timeline.md) to compare learn
 
     Direct current (DC) solar connected through a maximum power point tracking (MPPT) input is already netted into the battery's alternating current (AC) power and is not added twice. During grid charging, negative battery AC power cancels the corresponding grid import. For example, importing `2.8 kW` while the battery charges at `2.5 kW` produces `0.3 kW` of household demand.
 
-    An older installation may still have a saved `household_consumption_sensor`. Omnibattery reads it directly only when no solar production sensor is configured; with a solar sensor, the derived value is preferred. This field is no longer offered during setup. The derived value is also exposed as `sensor.marstek_venus_system_home_consumption`.
+    An older installation may still have a saved `household_consumption_sensor`. OpenBattery reads it directly only when no solar production sensor is configured; with a solar sensor, the derived value is preferred. This field is no longer offered during setup. The derived value is also exposed as `sensor.marstek_venus_system_home_consumption`.
 
     Before accumulation, an excluded device with `included_in_consumption = true` is subtracted because it already appears in the grid/home reading. An additional device with `included_in_consumption = false` is added because that load is absent from the reading. See [excluded devices](../configuration/excluded-devices.md).
 
@@ -72,7 +72,7 @@ See the [daily operation timeline](daily-operation-timeline.md) to compare learn
     increment (kWh) = home_power (W) × elapsed_time (s) / 3,600,000
     ```
 
-    Charging windows do not pause learning. At `23:55` local time, Omnibattery stores the full-day accumulator if it is at least `1.5 kWh`, then the accumulator resets at midnight. It keeps the latest `7` daily entries and averages them:
+    Charging windows do not pause learning. At `23:55` local time, OpenBattery stores the full-day accumulator if it is at least `1.5 kWh`, then the accumulator resets at midnight. It keeps the latest `7` daily entries and averages them:
 
     ```text
     expected_consumption = Σ(daily_consumption) / number_of_days
@@ -93,11 +93,11 @@ See the [daily operation timeline](daily-operation-timeline.md) to compare learn
 
     ### Learned time-of-day profile
 
-    Omnibattery retains up to `28` local days in `96` quarter-hour intervals. It integrates samples with a trapezoidal rule across interval boundaries, midnight, and daylight saving time changes. A sample gap longer than `5 minutes` breaks continuity; an interval needs at least `675 seconds` (`75%`) of coverage to be usable.
+    OpenBattery retains up to `28` local days in `96` quarter-hour intervals. It integrates samples with a trapezoidal rule across interval boundaries, midnight, and daylight saving time changes. A sample gap longer than `5 minutes` breaks continuity; an interval needs at least `675 seconds` (`75%`) of coverage to be usable.
 
     The profile prefers the matching weekday, then the matching weekday/weekend type, then all usable days. Samples are weighted by age at `1.0`, `0.75`, `0.5`, and `0.25`. A requested range is mature only when it has at least `7` valid days; at least `2` matching samples for `75%` of its intervals; at least `80%` total coverage; and a newest sample no more than `7` days old.
 
-    Until then, Omnibattery distributes the daily estimate over a temporary household-shaped curve: the lowest demand from `00:00–06:00`, a breakfast lift, greater daytime demand, and the strongest dinner peak. The curve is normalized to preserve the exact daily total, including on daylight saving time transition days. Forecasts adjust today's remaining leg after the first `3 hours`, reach full adjustment at `12:00`, and limit that correction to `30%` of today's remaining forecast so a single spike cannot erase later expected demand. A post-midnight leg uses the next day's profile or the historical hourly rate when the profile is unavailable.
+    Until then, OpenBattery distributes the daily estimate over a temporary household-shaped curve: the lowest demand from `00:00–06:00`, a breakfast lift, greater daytime demand, and the strongest dinner peak. The curve is normalized to preserve the exact daily total, including on daylight saving time transition days. Forecasts adjust today's remaining leg after the first `3 hours`, reach full adjustment at `12:00`, and limit that correction to `30%` of today's remaining forecast so a single spike cannot erase later expected demand. A post-midnight leg uses the next day's profile or the historical hourly rate when the profile is unavailable.
 
     During Vacation Mode, affected calendar days are omitted from daily history and only affected quarter-hours are omitted from the profile. Forecasts use the median load from the last `3` valid `01:00–05:00` nights, where a night needs `3 hours` of coverage. Before that is available, the fallback order is the learned night profile, daily history divided across the day, then the default estimate. Toggling the switch breaks sample continuity so an interval is never attributed across the mode change.
 

@@ -2,8 +2,8 @@ blueprint:
   name: "Marstek Venus - Active Cell Balance"
   description: >
     Runs the Marstek active cell-balancing profile for one battery. The
-    automation uses only Home Assistant entities exposed by Omnibattery; it
-    does not access Modbus directly. Select the Omnibattery device and the
+    automation uses only Home Assistant entities exposed by OpenBattery; it
+    does not access Modbus directly. Select the OpenBattery device and the
     standard entities are discovered automatically from that device. Optional
     entity-ID overrides are available below for installations that renamed an
     entity. Create one automation per battery. The selected Battery Manual
@@ -16,7 +16,7 @@ blueprint:
     and release Battery Manual Mode. If a safety write cannot be confirmed,
     manual mode is deliberately left ON for manual inspection.
   domain: automation
-  source_url: "https://github.com/ffunes/Omnibattery/blob/main/blueprints/marstek_active_balance_blueprint.yaml"
+  source_url: "https://github.com/thomasvt1/openbattery/blob/openbattery/blueprints/marstek_active_balance_blueprint.yaml"
 
   input:
     run_request:
@@ -32,7 +32,7 @@ blueprint:
     battery_device:
       name: "Marstek battery device"
       description: >
-        Select the Marstek device created by Omnibattery. The blueprint finds
+        Select the Marstek device created by OpenBattery. The blueprint finds
         its standard Battery Manual Mode, telemetry, force-mode and power-limit
         entities automatically.
       selector:

@@ -45,7 +45,7 @@ def test_deterministic():
     )
 
 
-# --- system entity_id (Omnibattery rebrand) -------------------------------
+# --- system entity_id (OpenBattery rebrand) -------------------------------
 # System entities keep the legacy unique_id prefix (registry identity + history
 # link) but suggest an omnibattery_system_* entity_id, so HA's built-in
 # "Recreate entity IDs" renames marstek_venus_system_* -> omnibattery_system_*

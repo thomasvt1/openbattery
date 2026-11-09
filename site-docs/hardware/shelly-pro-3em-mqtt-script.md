@@ -1,6 +1,6 @@
 # Shelly Pro 3EM MQTT scripts
 
-A Shelly Pro 3EM does not provide a 1–2 second MQTT telemetry cadence natively, and Omnibattery's [main sensor](../configuration/main-sensor.md) works best with a fast-updating grid sensor. The scripts on this page run on the device itself and publish telemetry every second over MQTT, with Home Assistant MQTT Discovery so the sensors appear automatically.
+A Shelly Pro 3EM does not provide a 1–2 second MQTT telemetry cadence natively, and OpenBattery's [main sensor](../configuration/main-sensor.md) works best with a fast-updating grid sensor. The scripts on this page run on the device itself and publish telemetry every second over MQTT, with Home Assistant MQTT Discovery so the sensors appear automatically.
 
 ## Which script do I need?
 
@@ -17,9 +17,9 @@ A Shelly Pro 3EM is configured with one of two metering profiles. Check yours in
 - Home Assistant connected to the same MQTT broker.
 - MQTT Discovery enabled in Home Assistant (the default prefix is `homeassistant`).
 
-## Selecting the sensor in Omnibattery
+## Selecting the sensor in OpenBattery
 
-Once the script is running, open Omnibattery's [main sensor](../configuration/main-sensor.md) configuration and select the discovered total-power sensor (**Total Active Power**) as the grid consumption sensor. Watch the sensor's value while importing and exporting: Omnibattery's standard convention is a **positive** value for import and **negative** for export. If your installation reports the opposite, enable **Inverted meter sign** rather than editing the script.
+Once the script is running, open OpenBattery's [main sensor](../configuration/main-sensor.md) configuration and select the discovered total-power sensor (**Total Active Power**) as the grid consumption sensor. Watch the sensor's value while importing and exporting: OpenBattery's standard convention is a **positive** value for import and **negative** for export. If your installation reports the opposite, enable **Inverted meter sign** rather than editing the script.
 
 ## Three single-phase meters profile
 
@@ -32,7 +32,7 @@ Once the script is running, open Omnibattery's [main sensor](../configuration/ma
 2. Create a new script and paste the code below.
 3. Save the script, then enable and run it.
 4. In Home Assistant, confirm that **Total Active Power** and the three per-clamp sensors appear and update roughly once per second.
-5. Select **Total Active Power** as described in [Selecting the sensor in Omnibattery](#selecting-the-sensor-in-omnibattery).
+5. Select **Total Active Power** as described in [Selecting the sensor in OpenBattery](#selecting-the-sensor-in-openbattery).
 
 The script publishes state to `shellypro3em/<device-id>/state` and availability to `shellypro3em/<device-id>/availability`. Discovery messages are retained by the MQTT broker, while state is published once per second.
 
@@ -303,7 +303,7 @@ Timer.set(STATE_INTERVAL_MS, true, publishState);
 2. Create a new script, or replace the script for the other metering profile.
 3. Paste the code below, save it, then enable and run it.
 4. In Home Assistant, confirm that **Total Active Power** and the per-phase sensors appear and update roughly once per second.
-5. Select **Total Active Power** as described in [Selecting the sensor in Omnibattery](#selecting-the-sensor-in-omnibattery).
+5. Select **Total Active Power** as described in [Selecting the sensor in OpenBattery](#selecting-the-sensor-in-openbattery).
 
 This script uses the same state and availability topics as the single-phase-profile script, so do not run both scripts simultaneously for the same device.
 

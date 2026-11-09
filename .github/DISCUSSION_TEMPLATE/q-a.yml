@@ -5,9 +5,9 @@ body:
       value: |
         ## Configuration and usage help
 
-        Use this form for help installing, configuring, or using Omnibattery. Support is provided by the community when someone is available.
+        Use this form for help installing, configuring, or using OpenBattery. Support is provided by the community when someone is available.
 
-        Before posting, check the documentation and search existing discussions. If the integration is correctly configured and you can describe reproducible unexpected behavior, open a [bug report](https://github.com/ffunes/Omnibattery/issues/new?template=bug_report.yml) instead.
+        Before posting, check the documentation and search existing discussions. If the integration is correctly configured and you can describe reproducible unexpected behavior, open a [bug report](https://github.com/thomasvt1/openbattery/issues/new?template=bug_report.yml) instead.
 
         > Do not publish passwords, tokens, API keys, complete serial numbers, or other personal information.
 
@@ -31,7 +31,7 @@ body:
     attributes:
       label: What are you trying to do?
       description: Explain the result you want to achieve. You do not need to use technical terms.
-      placeholder: I want Omnibattery to...
+      placeholder: I want OpenBattery to...
     validations:
       required: true
 
@@ -39,7 +39,7 @@ body:
     id: current_result
     attributes:
       label: What is happening instead?
-      description: Describe what you see, including any messages shown by Home Assistant or Omnibattery.
+      description: Describe what you see, including any messages shown by Home Assistant or OpenBattery.
       placeholder: When I try to..., I see...
     validations:
       required: true
@@ -50,7 +50,7 @@ body:
       label: Your setup
       description: Copy what you know and write "I don't know" for anything you cannot find.
       value: |
-        Omnibattery version:
+        OpenBattery version:
         Home Assistant version:
         Battery brand and exact model:
         Battery firmware version:

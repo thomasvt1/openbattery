@@ -1,10 +1,10 @@
 # Architecture
 
-This page maps the current Omnibattery codebase for contributors. It shows where hardware support ends, where shared control begins, and which modules own each part of a telemetry or setpoint cycle.
+This page maps the current OpenBattery codebase for contributors. It shows where hardware support ends, where shared control begins, and which modules own each part of a telemetry or setpoint cycle.
 
 ## System map
 
-Omnibattery creates one `MarstekVenusDataUpdateCoordinator` for each configured battery. The class keeps its historical name, but it coordinates every supported brand. Each coordinator owns one concrete `BatteryDriver`, its connection lock, telemetry cache, polling schedule, health state, and effective limits.
+OpenBattery creates one `MarstekVenusDataUpdateCoordinator` for each configured battery. The class keeps its historical name, but it coordinates every supported brand. Each coordinator owns one concrete `BatteryDriver`, its connection lock, telemetry cache, polling schedule, health state, and effective limits.
 
 A config entry also creates one `ChargeDischargeController` for the fleet. The controller reads the Home Assistant grid sensor, combines feature blockers and overrides, calculates the fleet command, asks `PowerDistribution` to select batteries and allocate power, then writes through each coordinator and driver.
 

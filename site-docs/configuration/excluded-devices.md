@@ -18,7 +18,7 @@ Add a device here when its demand needs different battery treatment from the res
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure → Excluded devices**, enable **Configure special devices**, and add a device.
+1. Open **Settings → Devices & services → OpenBattery → Configure → Excluded devices**, enable **Configure special devices**, and add a device.
 2. Select **Device power sensor**. For a state-only charger, leave it empty, select **Device active / EV charging sensor**, and enable **EV charger without power telemetry**.
 3. Set **Consumption is included in home consumption sensor** using the test below.
 4. Select the behavior you need: **Allow to use solar surplus (do not charge battery)**, **Device has dynamic power control**, or **Cover home while device is active**. Use the [behavior guide](../features/load-exclusion.md) before combining them.
@@ -36,7 +36,7 @@ Main sensor measures only the domestic circuit and cannot see this device
 
 ## What you will see
 
-Each saved device exposes live controls on the Omnibattery system device:
+Each saved device exposes live controls on the OpenBattery system device:
 
 | Control | Availability |
 |---|---|
@@ -57,18 +57,18 @@ These entities let you pause or change the saved behavior without reopening setu
 | The battery compensates the wrong amount | The included-in-consumption choice does not match the main meter | Check whether switching the device changes the main sensor reading |
 | **Cover Home** has no useful effect | Solar Surplus or external solar-production data is missing | Enable Solar Surplus and configure the solar production sensor under **Sensors** |
 | Predictive charging reserves energy for an absent EV | The demand sensor stays above zero after disconnection | Configure **Presence entity for the remaining demand (optional)** using a reliable connected/present entity |
-| A runtime control is missing | The device definition does not enable that behavior, or its entity is disabled | Reopen the device configuration and check the Omnibattery device's disabled entities |
+| A runtime control is missing | The device definition does not enable that behavior, or its entity is disabled | Reopen the device configuration and check the OpenBattery device's disabled entities |
 
 ??? "Advanced details"
     **Field requirements**
 
-    Omnibattery supports up to 4 configured special devices. A normal excluded device requires a numeric power sensor. A new state-only EV configuration requires an activity sensor. Dynamic Power Control also requires an activity sensor and is meaningful only with Solar Surplus enabled. Cover Home requires Solar Surplus and an external solar-production sensor.
+    OpenBattery supports up to 4 configured special devices. A normal excluded device requires a numeric power sensor. A new state-only EV configuration requires an activity sensor. Dynamic Power Control also requires an activity sensor and is meaningful only with Solar Surplus enabled. Cover Home requires Solar Surplus and an external solar-production sensor.
 
     Existing state-only EV entries that stored their status entity in **Device power sensor** remain supported. Activity detection accepts binary `on` and charging words case-insensitively.
 
     **Expected remaining demand**
 
-    The optional sensor must report convertible energy such as `Wh`, `kWh`, or `MJ`. Omnibattery uses it only when **Consumption is included in home consumption sensor** is enabled. State-only EV devices are skipped because their demand is already represented by the consumption forecast. The runtime exclusion percentage scales the reserved amount as well as the load correction.
+    The optional sensor must report convertible energy such as `Wh`, `kWh`, or `MJ`. OpenBattery uses it only when **Consumption is included in home consumption sensor** is enabled. State-only EV devices are skipped because their demand is already represented by the consumption forecast. The runtime exclusion percentage scales the reserved amount as well as the load correction.
 
     The reservation cannot exceed solar remaining after the predictive safety margin:
 

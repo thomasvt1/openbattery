@@ -5,7 +5,7 @@ AC+, 2400 AC+, 1600 AC+, etc.)
 via the local REST API.
 
 One-time device prerequisite:
-  Keep HEMS disabled in the Zendure app while Omnibattery is in control.
+  Keep HEMS disabled in the Zendure app while OpenBattery is in control.
   With HEMS enabled, the device's smart-matching loop overrides manual power
   setpoints after a few seconds.
 

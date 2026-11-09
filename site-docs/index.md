@@ -1,10 +1,10 @@
-![Omnibattery](assets/logo-github.png){ width="420" }
+![OpenBattery](assets/logo-github.png){ width="420" }
 
 # Use your home battery to reduce grid costs
 
-Omnibattery connects compatible home batteries to Home Assistant so they can follow household demand, store available solar energy and charge when your schedule or electricity price makes it worthwhile.
+OpenBattery connects compatible home batteries to Home Assistant so they can follow household demand, store available solar energy and charge when your schedule or electricity price makes it worthwhile.
 
-## Is Omnibattery for me?
+## Is OpenBattery for me?
 
 **Use it if** you already have a supported battery and a Home Assistant sensor that measures power imported from or exported to the grid. It is especially useful when you want one place to coordinate batteries, solar forecasts, electricity prices and household loads.
 
@@ -14,7 +14,7 @@ Check [whether your exact battery is compatible](compatibility.md) before instal
 
 ## Supported brands at a glance
 
-| Brand | How Omnibattery connects | Start here |
+| Brand | How OpenBattery connects | Start here |
 |---|---|---|
 | **Marstek Venus** | Modbus TCP, Modbus RTU or a LilyGo RS-485/ESPHome bridge | [Marstek setup](configuration/batteries/marstek.md) |
 | **Zendure SolarFlow** | Local HTTP API | [Zendure setup](configuration/batteries/zendure.md) |
@@ -24,7 +24,7 @@ Check [whether your exact battery is compatible](compatibility.md) before instal
 | **Hoymiles MS-A2 and HiBattery** | MQTT through Home Assistant | [Hoymiles MQTT setup](configuration/batteries/hoymiles.md) |
 | **Indevolt SolidFlex and PowerFlex** | Local HTTP API | [Indevolt setup](configuration/batteries/indevolt.md) |
 
-Omnibattery can coordinate supported brands in the same installation. Check the [installation requirements](installation.md#before-you-start) before changing any manufacturer settings.
+OpenBattery can coordinate supported brands in the same installation. Check the [installation requirements](installation.md#before-you-start) before changing any manufacturer settings.
 
 ## What it can do for you
 
@@ -50,9 +50,9 @@ Omnibattery can coordinate supported brands in the same installation. Check the 
 
 ## How to start
 
-1. [Check the requirements and install Omnibattery](installation.md).
+1. [Check the requirements and install OpenBattery](installation.md).
 2. Add the integration and connect your grid sensor and battery.
-3. Open the Omnibattery sidebar panel to confirm power and state of charge, then enable only the features that suit your home.
+3. Open the OpenBattery sidebar panel to confirm power and state of charge, then enable only the features that suit your home.
 
 Already using **Marstek Venus Energy Manager**? Follow the [upgrade guide](upgrading-from-marstek-vem.md) so your settings, entity history and dashboards remain connected.
 
@@ -60,10 +60,10 @@ Already using **Marstek Venus Energy Manager**? Follow the [upgrade guide](upgra
 
 The sidebar panel is installed with the integration; it does not require another Home Assistant Community Store (HACS) card or YAML dashboard configuration. Use **Overview** to follow live energy flow and daily history, **Batteries** to inspect each unit, and **Control** to enable and adjust optional features.
 
-![Omnibattery dashboard showing home energy flow](assets/dashboard.gif)
+![OpenBattery dashboard showing home energy flow](assets/dashboard.png)
 
 ??? "Advanced details"
-    Omnibattery's proportional–derivative (PD) controller reacts when the grid sensor publishes a new value and adjusts battery power toward the configured grid target, including zero import or export. Tuning profiles from **Very smooth** to **Very aggressive** and the **PD Control Quality** sensor help identify a response that is stable, oscillating or slow. An optional direct-tracking mode follows the grid reading 1:1 in one control cycle, without integral, derivative, smoothing or rate-limit behavior.
+    OpenBattery's proportional–derivative (PD) controller reacts when the grid sensor publishes a new value and adjusts battery power toward the configured grid target, including zero import or export. Tuning profiles from **Very smooth** to **Very aggressive** and the **PD Control Quality** sensor help identify a response that is stable, oscillating or slow. An optional direct-tracking mode follows the grid reading 1:1 in one control cycle, without integral, derivative, smoothing or rate-limit behavior.
 
     The integration can coordinate up to ten batteries. It uses state-of-charge priorities, energy hysteresis and efficiency-aware sharing while applying per-battery and system power limits. See [Multi-battery management](features/multi-battery.md).
 
@@ -80,7 +80,7 @@ The sidebar panel is installed with the integration; it does not require another
     - [Load exclusion](features/load-exclusion.md) for electric vehicle chargers and other large loads, with an individual exclusion setting from 0–100%
     - Proactive Home Assistant fault and alarm notifications when a battery driver provides that telemetry; **System Alarm Status** summarizes the fleet as `OK`, `Warning` or `Fault`
 
-    State of charge (SOC) is the battery's remaining usable energy. The battery management system (BMS) applies the device's own cell and safety limits in addition to Omnibattery's software controls.
+    State of charge (SOC) is the battery's remaining usable energy. The battery management system (BMS) applies the device's own cell and safety limits in addition to OpenBattery's software controls.
 
 ## Disclaimer
 
@@ -91,6 +91,6 @@ The sidebar panel is installed with the integration; it does not require another
 
 ## Support
 
-If you find this integration useful, you can support the project:
+Report bugs and suggest improvements in [OpenBattery issues](https://github.com/thomasvt1/openbattery/issues), or ask a setup question in [Discussions](https://github.com/thomasvt1/openbattery/discussions).
 
-<a href="https://buymeacoffee.com/ffunes" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" width="145"></a>
+OpenBattery is an independent GPL-3.0 fork of [ffunes/Omnibattery](https://github.com/ffunes/Omnibattery). Thanks to the upstream contributors for the original integration. Some inherited hardware screenshots may show the previous name.

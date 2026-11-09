@@ -1,4 +1,4 @@
-"""Constants for the Omnibattery integration.
+"""Constants for the OpenBattery integration.
 
 Backward-compatible facade. Definitions live in:
   - integration_const.py : integration/feature configuration constants

@@ -1,6 +1,6 @@
 # Varias baterías
 
-Omnibattery coordina todas las baterías configuradas como un sistema, respetando a la vez los límites y controles de cada batería. Elige qué baterías deben participar y reparte la potencia solicitada entre las que son elegibles.
+OpenBattery coordina todas las baterías configuradas como un sistema, respetando a la vez los límites y controles de cada batería. Elige qué baterías deben participar y reparte la potencia solicitada entre las que son elegibles.
 
 ## ¿Lo necesito?
 
@@ -10,16 +10,16 @@ Omnibattery coordina todas las baterías configuradas como un sistema, respetand
 
 ## Antes de empezar
 
-- Añade todas las baterías a la misma entrada de configuración de Omnibattery. Una entrada admite hasta **10 baterías**.
+- Añade todas las baterías a la misma entrada de configuración de OpenBattery. Una entrada admite hasta **10 baterías**.
 - Confirma que cada batería se actualiza de forma fiable e informa de estado de carga (SOC) y potencia.
 - Decide si alguna batería necesita control manual o debe excluirse de una dirección.
 
 ## Cómo activarlo
 
-1. Abre **Ajustes → Dispositivos y servicios → Omnibattery → Configurar**.
+1. Abre **Ajustes → Dispositivos y servicios → OpenBattery → Configurar**.
 2. Añade o revisa cada batería en la sección de configuración de baterías.
 3. Termina el formulario y deja que la integración se recargue.
-4. Abre el panel de Omnibattery y revisa **Allow Charge**, **Allow Discharge**, **Manual Battery Control**, **Primary Battery** y **Charge Priority**.
+4. Abre el panel de OpenBattery y revisa **Allow Charge**, **Allow Discharge**, **Manual Battery Control**, **Primary Battery** y **Charge Priority**.
 
 Este comportamiento es automático cuando la entrada de configuración contiene varias baterías; no hay un interruptor independiente para varias baterías.
 
@@ -161,7 +161,7 @@ Consulta [solución de problemas](../troubleshooting.md) para comprobaciones por
 
     ## Control manual por batería
 
-    Cada batería también expone `switch.*_battery_manual_mode`. Al activarlo, Omnibattery primero envía y verifica una orden de `0 W`, borra el modo forzado y las consignas de potencia de software de la integración, y retira esa batería del grupo automático. El estado del interruptor se conserva por batería, de modo que la exclusión sobrevive a un reinicio. La batería sigue siendo consultada y permanece incluida en la telemetría física de batería/red, pero no recibe consignas automáticas de potencia; la gestión de seguridad del driver y del BMS sigue activa.
+    Cada batería también expone `switch.*_battery_manual_mode`. Al activarlo, OpenBattery primero envía y verifica una orden de `0 W`, borra el modo forzado y las consignas de potencia de software de la integración, y retira esa batería del grupo automático. El estado del interruptor se conserva por batería, de modo que la exclusión sobrevive a un reinicio. La batería sigue siendo consultada y permanece incluida en la telemetría física de batería/red, pero no recibe consignas automáticas de potencia; la gestión de seguridad del driver y del BMS sigue activa.
 
     Al desactivar el interruptor, la batería conserva el control manual mientras se verifica la orden final de reposo. Solo entonces vuelve al grupo automático y se programa un ciclo de control inmediato. Si falla el traspaso a reposo, el interruptor sigue activado y la batería permanece manual.
 

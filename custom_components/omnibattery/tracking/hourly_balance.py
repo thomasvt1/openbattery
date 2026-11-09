@@ -1,4 +1,4 @@
-"""Hourly net balance manager for Omnibattery."""
+"""Hourly net balance manager for OpenBattery."""
 from __future__ import annotations
 
 import logging

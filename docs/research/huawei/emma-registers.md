@@ -54,7 +54,7 @@ by the EMMA locally, which raises the same question this integration keeps
 meeting elsewhere: two parties deciding the same thing on one meter.
 
 Home Assistant has an OCPP integration that plays the same server role, so the
-charger could be surfaced there as entities without evcc. Nothing in Omnibattery
+charger could be surfaced there as entities without evcc. Nothing in OpenBattery
 does this today, and a charger is a load rather than a battery — it would be a
 separate piece of work, not a driver.
 
@@ -78,7 +78,7 @@ Huawei uses elsewhere for settings (42000, 47000) finds nothing at all.
 | 41214, 41215 | SmartGuard power supply configuration | enum16 | — | — | — | — |
 
 `40000 = 2` is the register behind an observation this integration keeps running
-into: the energy manager regulates the same meter Omnibattery does, because it
+into: the energy manager regulates the same meter OpenBattery does, because it
 is set to maximum self-consumption. Register 40004 holds the time-of-use plan
 that would have to be cleared before that mode could be left. Neither has been
 written here — this page records what is possible, not a recommendation.
@@ -98,7 +98,7 @@ written here — this page records what is possible, not a recommendation.
 **31657 is the useful one for control.** It is the EMMA's own grid meter, live on
 every request — 25 ms per read, 20 of 20 on the reference installation — where
 the `huawei_solar` integration publishes the same figure on a 30 s coordinator.
-The Omnibattery driver reads it directly and offers it as a sensor, so an
+The OpenBattery driver reads it directly and offers it as a sensor, so an
 installation metered by an EMMA needs no second meter.
 
 **30356 looks like the house load and is not usable as one.** The EMMA derives it

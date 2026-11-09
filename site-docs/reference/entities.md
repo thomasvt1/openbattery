@@ -1,6 +1,6 @@
 # Home Assistant entities
 
-This reference lists the entity families Omnibattery can create. Your installation shows only the entities supported by its battery driver and the features you configured.
+This reference lists the entity families OpenBattery can create. Your installation shows only the entities supported by its battery driver and the features you configured.
 
 ## Find the entity you need
 
@@ -34,7 +34,7 @@ Per-battery entities normally use `<domain>.<battery-name>_<key>`, shown below a
 
 ## System device
 
-These entities belong to **Omnibattery System** rather than one battery.
+These entities belong to **OpenBattery System** rather than one battery.
 
 ??? "Power, energy, and learning sensors"
 

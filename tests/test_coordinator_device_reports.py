@@ -20,7 +20,7 @@ class _Coordinator:
     """The narrow slice of the coordinator this sync touches."""
 
     def __init__(self, data):
-        self.name = "Omnibattery Marstek Venus"
+        self.name = "OpenBattery Marstek Venus"
         self.data = data
         self.needs_software_max_charge = False
         self.needs_software_max_discharge = False

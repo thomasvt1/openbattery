@@ -10,14 +10,14 @@ A weekly full charge gives a lithium iron phosphate (LFP) battery regular time a
 
 ## Before you start
 
-- Omnibattery must be able to charge the battery automatically.
+- OpenBattery must be able to charge the battery automatically.
 - Leave **100% Charge Voltage Taper** on for each compatible battery if you want a settled cell-balance reading.
 - If **Charge Delay** is enabled, decide whether the weekly cycle may start immediately or should wait for expected solar.
 - A battery in **Manual Battery Control** is excluded until automatic control resumes.
 
 ## How to enable it
 
-1. Open the Omnibattery sidebar dashboard and select **Control**.
+1. Open the OpenBattery sidebar dashboard and select **Control**.
 2. In **Weekly Full Charge**, turn on **Weekly Full Charge**.
 3. Choose **Weekly Full Charge Day**.
 4. If you use **Charge Delay**, turn on **Delay Weekly Full Charge** to wait for solar; leave it off to start the weekly cycle without that delay.
@@ -94,9 +94,9 @@ unconditional guarantee of reaching 100%.
 The full-charge sensor exposes the monthly source, selected date, decision
 reason, forecast timestamp and per-battery completion history.
 
-**Weekly Full Charge** reports `idle`, `charging`, or `complete`. On the selected day, Omnibattery temporarily raises the charge target to 100% for batteries under automatic control. It marks the cycle complete only after every participating battery is considered full, then restores each configured limit.
+**Weekly Full Charge** reports `idle`, `charging`, or `complete`. On the selected day, OpenBattery temporarily raises the charge target to 100% for batteries under automatic control. It marks the cycle complete only after every participating battery is considered full, then restores each configured limit.
 
-With [predictive charging](../configuration/predictive-charging/index.md), the remaining energy needed for the weekly target enters the plan. Omnibattery can buy that energy during the configured charging period when forecast solar will not cover it. Without predictive charging, the cycle relies on available solar and may not complete on a cloudy day.
+With [predictive charging](../configuration/predictive-charging/index.md), the remaining energy needed for the weekly target enters the plan. OpenBattery can buy that energy during the configured charging period when forecast solar will not cover it. Without predictive charging, the cycle relies on available solar and may not complete on a cloudy day.
 
 The sensor's `batteries` attribute shows the live SOC and completion evidence for each battery. On compatible batteries, **Cell Delta**, **Balance Status**, and **Last Balance Read** update after the top-of-charge measurement. See [Is my battery healthy?](cell-balance-monitor.md) to interpret the result.
 
@@ -118,9 +118,9 @@ The sensor's `batteries` attribute shows the live SOC and completion evidence fo
 
     The weekly feature raises the target SOC to 100%; it does not use a separate balancing algorithm. With **100% Charge Voltage Taper** enabled, charging is limited to 200 W after the control cell voltage enters the 3.48 V taper zone. The balance measurement is taken after charging stops and the cells rest for 60 seconds.
 
-    Omnibattery does not treat a single 3.60 V observation as proof that a battery is full. For Venus E batteries, completion can come from a reported SOC of 100% or a confirmed BMS cutoff. A cutoff is confirmed when the battery was commanded to charge, delivered power falls to 10 W or less, and the inverter remains in Standby for five consecutive control cycles. The same cutoff path covers a pack whose SOC counter has drifted below 100%.
+    OpenBattery does not treat a single 3.60 V observation as proof that a battery is full. For Venus E batteries, completion can come from a reported SOC of 100% or a confirmed BMS cutoff. A cutoff is confirmed when the battery was commanded to charge, delivered power falls to 10 W or less, and the inverter remains in Standby for five consecutive control cycles. The same cutoff path covers a pack whose SOC counter has drifted below 100%.
 
-    Venus A/D batteries can contain coupled packs. Their reported maximum cell voltage may represent only one pack, so Omnibattery keeps the 200 W tapered command active until the BMS cutoff is confirmed. A pack reaching the voltage threshold cannot finish the whole cycle by itself.
+    Venus A/D batteries can contain coupled packs. Their reported maximum cell voltage may represent only one pack, so OpenBattery keeps the 200 W tapered command active until the BMS cutoff is confirmed. A pack reaching the voltage threshold cannot finish the whole cycle by itself.
 
     Every battery with current data participates except batteries in **Manual Battery Control**. Configured limits are restored only after all participating batteries complete. The 60-second cell-delta measurement is diagnostic and does not hold the weekly cycle open.
 
@@ -128,10 +128,10 @@ The sensor's `batteries` attribute shows the live SOC and completion evidence fo
 
     **SOC recalibration and retry behavior**
 
-    Outside the weekly cycle, a Venus E battery that reaches 3.60 V while reporting below 99% SOC can be kept at the 200 W taper until its BMS cuts off. If the first cutoff occurs above 3.60 V and SOC is still below 100%, Omnibattery waits for the cell to relax to 3.57 V and permits one more 200 W attempt. This is a best-effort opportunity for the BMS to recalibrate its SOC counter; firmware decides whether recalibration occurs.
+    Outside the weekly cycle, a Venus E battery that reaches 3.60 V while reporting below 99% SOC can be kept at the 200 W taper until its BMS cuts off. If the first cutoff occurs above 3.60 V and SOC is still below 100%, OpenBattery waits for the cell to relax to 3.57 V and permits one more 200 W attempt. This is a best-effort opportunity for the BMS to recalibrate its SOC counter; firmware decides whether recalibration occurs.
 
     **Hardware and software limits**
 
-    Marstek Venus E v2 exposes charging-cutoff register `44000`, which the cycle temporarily raises to 100%. Venus E v3 and Venus A/D have no hardware SOC-cutoff register in Omnibattery and use software enforcement. Other drivers use their declared hardware or software control capability. In every case, the saved limit is restored when the cycle completes or is stopped.
+    Marstek Venus E v2 exposes charging-cutoff register `44000`, which the cycle temporarily raises to 100%. Venus E v3 and Venus A/D have no hardware SOC-cutoff register in OpenBattery and use software enforcement. Other drivers use their declared hardware or software control capability. In every case, the saved limit is restored when the cycle completes or is stopped.
 
     For recovery of a persistent red balance result, use the optional [Marstek active-balance blueprint](../automations/blueprints.md#active-cell-balancing-for-one-marstek-battery). It takes control of one battery through **Manual Battery Control** and is independent of the weekly feature.

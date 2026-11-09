@@ -21,7 +21,7 @@ connection, and ``standby()`` must release over that same path: a release sent
 as a service call has no device to address there, and fails silently.
 
 Sign conventions:
-  Omnibattery net power: +charge / −discharge
+  OpenBattery net power: +charge / −discharge
   Huawei 37001 charge/discharge power: +charge / −discharge  → identical, no flip.
 
 **A forcible command is a ceiling, not a request.** The inverter produces
@@ -32,7 +32,7 @@ from the battery and leaves the MPPT tracker down entirely, and the missing
 production then reads as the deficit that asks for more discharge. So while the
 strings carry voltage this driver commands nothing at all and leaves the
 inverter to its own regulation, which is the better controller in daylight
-anyway. **A Huawei battery is under Omnibattery's control after dark only.**
+anyway. **A Huawei battery is under OpenBattery's control after dark only.**
 
 Idle semantics deserve a note, and they are the opposite of what a register
 battery does. ``stop_forcible_charge`` hands control back to the inverter's own
@@ -176,7 +176,7 @@ _HW_MAX_POWER_W = 15000
 
 # A forcible command carries a duration and expires on its own. Long enough that
 # a re-issue is never racing the timer, short enough to act as a watchdog: if
-# Omnibattery dies mid-command, the inverter returns to its own control within
+# OpenBattery dies mid-command, the inverter returns to its own control within
 # this window instead of staying latched.
 _COMMAND_DURATION_MIN = 10
 
@@ -192,7 +192,7 @@ _MIN_WRITE_INTERVAL_S = 20.0
 _COMMAND_REFRESH_S = 240.0
 
 # Documented ranges of the inverter's own cutoff registers. They are narrower
-# than the SOC window Omnibattery lets the user pick, which is why the software
+# than the SOC window OpenBattery lets the user pick, which is why the software
 # enforces the window and these writes are only a best-effort backstop.
 _CHARGE_CUTOFF_RANGE = (90.0, 100.0)      # register 47081
 _DISCHARGE_CUTOFF_RANGE = (0.0, 20.0)     # register 47082
@@ -769,7 +769,7 @@ class HuaweiSolarDriver(BatteryDriver):
         ):
             regs = await self._meter_client.async_read_holding_block(_REG_METER_POWER, 2)
             if regs is not None:
-                # Sign matches the Omnibattery convention already: positive is
+                # Sign matches the OpenBattery convention already: positive is
                 # import, negative export, verified against a separate meter.
                 grid_power = decode_i32(regs, 0)
                 if grid_power == _INVALID_RAW["i32"]:
@@ -1469,7 +1469,7 @@ class HuaweiSolarDriver(BatteryDriver):
         """Release the battery back to the inverter before shutting down.
 
         Unlike ``apply_setpoint(0)``, this is a real stop: leaving a forcible
-        command latched when Omnibattery goes away freezes the battery at
+        command latched when OpenBattery goes away freezes the battery at
         whatever it was last told — and on this hybrid a latched discharge also
         keeps the strings dark, so the installation loses its solar harvest
         until someone clears the registers by hand.

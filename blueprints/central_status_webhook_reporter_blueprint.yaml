@@ -1,7 +1,7 @@
 blueprint:
-  name: "Omnibattery - Central Status Webhook Reporter"
+  name: "OpenBattery - Central Status Webhook Reporter"
   description: >
-    Periodically sends selected Omnibattery and Home Assistant entity states to
+    Periodically sends selected OpenBattery and Home Assistant entity states to
     a central HTTP endpoint. The endpoint is configured once as a
     rest_command; this blueprint configures the site identifier, the entities
     to report, and the interval.
@@ -10,7 +10,7 @@ blueprint:
     configuration.yaml with payload: "{{ report }}". The documentation gives
     a complete example. Treat the endpoint URL as a secret.
   domain: automation
-  source_url: "https://github.com/ffunes/omnibattery/blob/main/blueprints/central_status_webhook_reporter_blueprint.yaml"
+  source_url: "https://github.com/thomasvt1/openbattery/blob/openbattery/blueprints/central_status_webhook_reporter_blueprint.yaml"
 
   input:
     report_service:
@@ -34,7 +34,7 @@ blueprint:
       description: >
         Select the system state and battery sensors to appear on the central
         dashboard, for example battery SOC, battery power, grid power, and
-        Omnibattery control state.
+        OpenBattery control state.
       selector:
         entity:
           multiple: true

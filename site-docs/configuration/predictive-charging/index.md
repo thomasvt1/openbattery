@@ -5,7 +5,7 @@ Predictive charging buys grid energy during cheap periods when the battery and e
 | Your tariff or price source | What you want | Recommended mode |
 |---|---|---|
 | The cheap periods repeat on a known weekly schedule | Allow grid charging only in the windows you choose | **[Time Slot](time-slot.md)** |
-| Your provider publishes future prices | Let Omnibattery choose the cheapest periods that still meet the energy deadline | **[Dynamic Pricing](dynamic-pricing.md)** |
+| Your provider publishes future prices | Let OpenBattery choose the cheapest periods that still meet the energy deadline | **[Dynamic Pricing](dynamic-pricing.md)** |
 | You can read only the price in effect now | Charge whenever the live price is below your threshold | **[Real-Time Price](real-time-price.md)** |
 | Energy costs the same all day and there is no fixed cheap window | Keep normal battery control and solar charging | **Do not enable predictive grid charging** |
 
@@ -13,7 +13,7 @@ All three modes calculate whether energy is missing. The difference is who choos
 
 ## Do I need it?
 
-**Use it if** your tariff has cheaper periods and you want Omnibattery to buy only the energy it expects the home to need.
+**Use it if** your tariff has cheaper periods and you want OpenBattery to buy only the energy it expects the home to need.
 
 **You do not need it if** grid energy costs the same all day, you want the battery to charge only from solar, or another energy manager already schedules grid charging.
 
@@ -21,15 +21,15 @@ All three modes calculate whether energy is missing. The difference is who choos
 
 - Configure the battery and a working [main grid sensor](../main-sensor.md).
 - Prepare the schedule or price source required by the mode in the table above.
-- A solar forecast is optional. A remaining-energy forecast is preferred because it does not count solar already produced; without a usable forecast, Omnibattery plans conservatively with no future solar.
+- A solar forecast is optional. A remaining-energy forecast is preferred because it does not count solar already produced; without a usable forecast, OpenBattery plans conservatively with no future solar.
 - A local household-consumption profile improves the estimate. See [Daily and hourly consumption estimate](../../features/consumption-estimate.md).
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure** and enable predictive charging configuration.
+1. Open **Settings → Devices & services → OpenBattery → Configure** and enable predictive charging configuration.
 2. Choose **Time Slot**, **Dynamic Pricing**, or **Real-Time Price** using the table above.
 3. Enter that mode's schedule or price source, add an optional solar forecast sensor, and finish the form.
-4. Open the Omnibattery **Control** tab and confirm **Predictive Charging** is on.
+4. Open the OpenBattery **Control** tab and confirm **Predictive Charging** is on.
 
 ![Choose a predictive charging mode](../../assets/screenshots/configuration/predictive-charging/mode-selector.png){ width="600" style="display: block; margin: 0 auto;" }
 
@@ -37,7 +37,7 @@ All three modes calculate whether energy is missing. The difference is who choos
 
 **Predictive Charging Active** shows whether a grid charge is needed, planned, or running. A visible cheap period can be informational when the battery and expected solar already cover demand; it is not always a pending charge.
 
-When grid charging is needed, Omnibattery targets only the calculated deficit instead of filling every battery to its maximum state of charge (SOC). In a multi-battery system, it shares that target according to each battery's available capacity. Reaching the grid-charge target does not block later solar surplus: the battery can continue in a solar-only state.
+When grid charging is needed, OpenBattery targets only the calculated deficit instead of filling every battery to its maximum state of charge (SOC). In a multi-battery system, it shares that target according to each battery's available capacity. Reaching the grid-charge target does not block later solar surplus: the battery can continue in a solar-only state.
 
 Use **Guaranteed Minimum SOC** if the whole-day balance looks sufficient but the battery often reaches its minimum before solar production begins. The switch and number entity set a reserve that must be available before the expected solar start.
 
@@ -59,7 +59,7 @@ Turn off **Predictive Charging** to pause all predictive grid charging and its D
 ??? "Advanced details"
     ### Energy decision and charge target
 
-    Omnibattery compares usable battery energy above minimum SOC, expected solar production, and expected household consumption over the mode's planning horizon:
+    OpenBattery compares usable battery energy above minimum SOC, expected solar production, and expected household consumption over the mode's planning horizon:
 
     ```text
     if usable_battery + solar_forecast < expected_consumption:
@@ -76,7 +76,7 @@ Turn off **Predictive Charging** to pause all predictive grid charging and its D
     target_soc    = current_soc + grid_charge / capacity × 100
     ```
 
-    **Example**: the battery needs 5 kWh to reach `max_soc`. Solar forecast is 13 kWh and expected consumption is 10 kWh, leaving a surplus of 3 kWh available for the battery. Omnibattery charges only **2 kWh** from the grid; solar handles the remaining 3 kWh during the day.
+    **Example**: the battery needs 5 kWh to reach `max_soc`. Solar forecast is 13 kWh and expected consumption is 10 kWh, leaving a surplus of 3 kWh available for the battery. OpenBattery charges only **2 kWh** from the grid; solar handles the remaining 3 kWh during the day.
 
     In a multi-battery fleet, the grid target is distributed in proportion to each battery's gap to its configured maximum SOC. Dynamic Pricing and Time Slot can also assign a quota to each period and transfer missed energy only to later periods that still meet its deadline.
 
@@ -86,7 +86,7 @@ Turn off **Predictive Charging** to pause all predictive grid charging and its D
 
     A predictive period remains responsible for the batteries until it ends or reaches its target. Normal proportional–derivative (PD) control does not immediately take over when household demand rises because grid import can still include the battery's previous charge command.
 
-    The import ceiling is the lower of contracted power and the capacity-protection limit when that feature is enabled. Omnibattery first reduces charging so the house gets the available grid capacity. If the calculation crosses into discharge during an ordinary overshoot, it keeps the smallest effective positive charge and preserves the incremental PD state.
+    The import ceiling is the lower of contracted power and the capacity-protection limit when that feature is enabled. OpenBattery first reduces charging so the house gets the available grid capacity. If the calculation crosses into discharge during an ordinary overshoot, it keeps the smallest effective positive charge and preserves the incremental PD state.
 
     A physical excess becomes an emergency only after three consecutive fresh meter publications confirm it. Emergency protection can then wait for inverter response and discharge only the settled excess. After two fresh samples show at least `max(200 W, 2 × PD deadband)` of available capacity, charging resumes from that margin rather than from maximum battery power.
 

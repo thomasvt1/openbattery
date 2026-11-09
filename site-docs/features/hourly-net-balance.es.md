@@ -4,20 +4,20 @@ El balance neto horario ajusta la potencia de la batería durante cada hora de r
 
 ## ¿Lo necesito?
 
-**Úsalo si** tu contrato eléctrico valora la energía neta de red dentro de cada hora de reloj y quieres que Omnibattery corrija una importación o exportación inicial antes de que termine esa hora.
+**Úsalo si** tu contrato eléctrico valora la energía neta de red dentro de cada hora de reloj y quieres que OpenBattery corrija una importación o exportación inicial antes de que termine esa hora.
 
 **No lo necesitas si** tu facturación usa otro periodo de liquidación, el control instantáneo de red cero ya cumple tu objetivo o no quieres que la batería gaste energía corrigiendo la hora actual.
 
 ## Antes de empezar
 
-- Configura el sensor de consumo de red que usa Omnibattery. Es la fuente alternativa de esta función.
+- Configura el sensor de consumo de red que usa OpenBattery. Es la fuente alternativa de esta función.
 - Activa el control automático de batería y asegúrate de que al menos una batería pueda actuar en la dirección requerida.
 - Si usas franjas horarias, la función solo opera mientras una franja configurada permita descargar. Sin franjas activadas, opera todo el día.
 - Comprueba si está activa la [protección de capacidad (peak shaving)](peak-shaving.md). Cuando interviene, su objetivo de seguridad tiene prioridad sobre la corrección horaria.
 
 ## Cómo activarlo
 
-1. Abre el panel lateral de Omnibattery y selecciona **Control**.
+1. Abre el panel lateral de OpenBattery y selecciona **Control**.
 2. Busca **Hourly net balance** y actívalo.
 3. Deja **Hourly Balance Target** en `0.0 kWh` para balance neto cero, o elige un objetivo positivo para importación neta y uno negativo para exportación neta.
 4. Empieza con el valor predeterminado de **Hourly Balance Max Offset** de `1,000 W` y confirma que **Balance Neto** empieza a seguir la hora actual.
@@ -26,7 +26,7 @@ El balance neto horario ajusta la potencia de la batería durante cada hora de r
 
 **Balance Neto** muestra la energía neta de red de la hora actual. Un estado positivo significa exportación neta; uno negativo, importación neta. Su estado indica si la función está inactiva, fuera de una franja horaria, compensando hacia importación o exportación, limitada por su desplazamiento máximo o bloqueada para cargar.
 
-La corrección cambia durante la hora. Por ejemplo, después de acumular importación neta, Omnibattery desplaza el objetivo de red hacia descarga o exportación durante el tiempo restante. No borra el historial medido; ajusta la potencia necesaria para aproximarse al objetivo al final de la hora.
+La corrección cambia durante la hora. Por ejemplo, después de acumular importación neta, OpenBattery desplaza el objetivo de red hacia descarga o exportación durante el tiempo restante. No borra el historial medido; ajusta la potencia necesaria para aproximarse al objetivo al final de la hora.
 
 ## Si no funciona
 
@@ -39,7 +39,7 @@ La corrección cambia durante la hora. Por ejemplo, después de acumular importa
 | El desplazamiento cambia demasiado a menudo | La histéresis del desplazamiento es demasiado pequeña para el ruido del medidor | Aumenta **Hourly Balance Hysteresis** |
 | No hay corrección cerca del objetivo | La desviación está dentro de la tolerancia energética | Reduce **Hourly Balance Deadband** si una corrección más precisa compensa el ciclado adicional |
 | La corrección desaparece mientras está activa la protección de capacidad | La protección de capacidad controla el objetivo de red | Es lo esperado; su objetivo absoluto de seguridad sustituye los objetivos horarios y otros objetivos aditivos mientras está activa |
-| La fuente mostrada no está disponible | El sensor externo opcional de balance dejó de actualizarse | Restaura ese sensor; Omnibattery usa la integración de potencia de red cuando no detecta un sensor externo |
+| La fuente mostrada no está disponible | El sensor externo opcional de balance dejó de actualizarse | Restaura ese sensor; OpenBattery usa la integración de potencia de red cuando no detecta un sensor externo |
 
 ??? "Detalles avanzados"
     ### Ajustes
@@ -55,7 +55,7 @@ La corrección cambia durante la hora. Por ejemplo, después de acumular importa
 
     ### Cálculo
 
-    En cada ciclo de control, Omnibattery acumula importación y exportación para la hora civil local actual y calcula un desplazamiento aditivo del objetivo:
+    En cada ciclo de control, OpenBattery acumula importación y exportación para la hora civil local actual y calcula un desplazamiento aditivo del objetivo:
 
     ```text
     net_Wh = imported_Wh − exported_Wh
@@ -69,7 +69,7 @@ La corrección cambia durante la hora. Por ejemplo, después de acumular importa
 
     ### Fuente de datos
 
-    Omnibattery busca primero `sensor.balance_neto`. Supone que un valor positivo significa exportación y elige un método de lectura según la unidad y la clase de estado:
+    OpenBattery busca primero `sensor.balance_neto`. Supone que un valor positivo significa exportación y elige un método de lectura según la unidad y la clase de estado:
 
     | Tipo de fuente | Unidad | Clase de estado | Método de lectura |
     |---|---|---|---|
@@ -93,7 +93,7 @@ La corrección cambia durante la hora. Por ejemplo, después de acumular importa
 
     Mientras la carga está bloqueada, el desplazamiento positivo del objetivo permanece registrado. Esto evita que el controlador PD descargue la batería para cubrir la carga de casa mientras la red la suministra, y permite que la corrección guardada tenga efecto cuando desaparezca el bloqueo. Las correcciones en dirección de exportación no están bloqueadas por estas condiciones de carga.
 
-    El balance horario es un objetivo aditivo: Omnibattery lo suma al objetivo de red del usuario y otras preferencias aditivas. Una anulación absoluta activa sustituye esa suma. La protección de capacidad usa esa anulación, de modo que tiene prioridad mientras controla un pico.
+    El balance horario es un objetivo aditivo: OpenBattery lo suma al objetivo de red del usuario y otras preferencias aditivas. Una anulación absoluta activa sustituye esa suma. La protección de capacidad usa esa anulación, de modo que tiene prioridad mientras controla un pico.
 
     ### Atributos de diagnóstico y persistencia
 

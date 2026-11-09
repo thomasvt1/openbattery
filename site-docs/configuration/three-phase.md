@@ -12,15 +12,15 @@ Three-phase current protection limits automatic battery commands on the phase wh
 
 - Use a signed root mean square (RMS) current sensor in `A` or `mA` for every protected phase. Positive must mean grid import and negative must mean grid export after the global meter-sign setting is applied.
 - Know the current limit for each phase and leave operating margin below the fuse nameplate rating.
-- Confirm which physical phase each battery uses. Omnibattery cannot discover the wiring.
+- Confirm which physical phase each battery uses. OpenBattery cannot discover the wiring.
 - Treat this feature as an additional software guard, not as a replacement for breakers, inverter protection, or electrical design.
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure → Sensors** and enable **Three-phase current protection**.
+1. Open **Settings → Devices & services → OpenBattery → Configure → Sensors** and enable **Three-phase current protection**.
 2. For each protected phase, select its **L1/L2/L3 grid current sensor** and enter the matching **L1/L2/L3 fuse size (A)**. Leave both fields empty for an unused phase.
 3. In each battery's setup, set **Physical battery phase** to its actual conductor. Choose **Unassigned** only when the battery is outside the protected phase layout.
-4. Finish setup, then turn on **Three-Phase Current Protection** from the Omnibattery dashboard or device page.
+4. Finish setup, then turn on **Three-Phase Current Protection** from the OpenBattery dashboard or device page.
 5. Confirm that **Three-Phase Protection Status** reports **Active** under normal load.
 
 ## What you will see
@@ -47,7 +47,7 @@ When the protection switch is on, each battery's **Physical Battery Phase** sele
 | The phase meter still exceeds the configured limit | An external load, command latency, or a manual command caused the excess | Reduce the configured operating limit and keep manual commands within the electrical envelope |
 
 ??? "Advanced details"
-    For each phase, Omnibattery reconstructs current that does not come from the battery, then intersects the meter limit with an absolute battery-current limit:
+    For each phase, OpenBattery reconstructs current that does not come from the battery, then intersects the meter limit with an absolute battery-current limit:
 
     ```text
     base_current = phase_current - battery_current_on_phase

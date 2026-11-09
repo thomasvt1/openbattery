@@ -1,6 +1,6 @@
 # Sessy Home Battery
 
-Omnibattery controla una Sessy mediante la interfaz local de su dongle de red. No se necesita conexión a la nube.
+OpenBattery controla una Sessy mediante la interfaz local de su dongle de red. No se necesita conexión a la nube.
 
 ## ¿Lo necesito?
 
@@ -17,7 +17,7 @@ El soporte de Sessy aún busca más personas para probarlo. Incluye el modelo y 
 
 ## Cómo añadirla
 
-1. En el asistente de configuración de Omnibattery, elige **Sessy**.
+1. En el asistente de configuración de OpenBattery, elige **Sessy**.
 2. Introduce un **Name** descriptivo y el **Host** del dongle.
 3. Mantén **HTTP port** en `80` salvo que el dongle use otro puerto.
 4. Introduce el **Username** y **Password** del dongle y espera la prueba de conexión.
@@ -25,9 +25,9 @@ El soporte de Sessy aún busca más personas para probarlo. Incluye el modelo y 
 
 ## Qué verás
 
-Omnibattery proporciona control automático y controles por software **Force Mode** y de potencia. Activa **Battery Manual Control** antes de enviar un objetivo manual de carga, descarga o reposo. La integración envía un único objetivo de potencia neta mediante la interfaz local de Sessy.
+OpenBattery proporciona control automático y controles por software **Force Mode** y de potencia. Activa **Battery Manual Control** antes de enviar un objetivo manual de carga, descarga o reposo. La integración envía un único objetivo de potencia neta mediante la interfaz local de Sessy.
 
-El estado de carga (SOC), potencia, temperatura, energía y lectura FV del dispositivo pueden aparecer como entidades. La lectura FV es informativa: el driver Sessy no la anuncia como telemetría solar para los cálculos de control de Omnibattery.
+El estado de carga (SOC), potencia, temperatura, energía y lectura FV del dispositivo pueden aparecer como entidades. La lectura FV es informativa: el driver Sessy no la anuncia como telemetría solar para los cálculos de control de OpenBattery.
 
 ## Si no funciona
 
@@ -42,7 +42,7 @@ El estado de carga (SOC), potencia, temperatura, energía y lectura FV del dispo
 ??? "Detalles avanzados"
     Sessy usa límites asimétricos: `2,200 W` para carga y `1,700 W` para descarga. El formulario de configuración establece inicialmente esos límites y acepta una capacidad nominal de `0.01–100 kWh`.
 
-    La interfaz local utiliza valores de generación/descarga positivos, mientras que el signo interno de Omnibattery usa carga positiva y descarga negativa. El driver convierte el signo antes de enviar la consigna neta y la lee de vuelta para confirmarla.
+    La interfaz local utiliza valores de generación/descarga positivos, mientras que el signo interno de OpenBattery usa carga positiva y descarga negativa. El driver convierte el signo antes de enviar la consigna neta y la lee de vuelta para confirmarla.
 
     La estrategia y el objetivo de potencia de Sessy se controlan mediante su API local autenticada. No tiene registros de modo forzado como Marstek, escrituras de SOC de hardware, reducción gradual por tensión de celda ni telemetría de equilibrio de celdas.
 

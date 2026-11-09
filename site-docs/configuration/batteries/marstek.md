@@ -22,7 +22,7 @@ Use this connection for a Marstek Venus battery reached directly over Ethernet, 
 
 ## How to add it
 
-1. In the Omnibattery setup flow, choose **Marstek Venus**.
+1. In the OpenBattery setup flow, choose **Marstek Venus**.
 2. Enter a battery name and either **Host IP** or **Serial port**. Leave **Serial port** empty for a network connection.
 3. Keep **Modbus port** at `502` unless the battery or gateway uses another port.
 4. Enter the **Modbus slave ID** and select **Ev2**, **Ev3**, **A**, or **D**.
@@ -34,7 +34,7 @@ Use this connection for a Marstek Venus battery reached directly over Ethernet, 
 
 Marstek exposes automatic and manual charge/discharge control, state of charge (SOC), power and energy readings, and the sensors available in the selected register map. Solar and alarm readings appear only on models whose map provides them.
 
-Venus E v2 can use hardware SOC cutoffs. Omnibattery enforces the configured SOC limits in software for Venus E v3, Venus A, and Venus D. Venus A and Venus D also ask whether direct-current solar is connected so power-flow calculations can use the correct source.
+Venus E v2 can use hardware SOC cutoffs. OpenBattery enforces the configured SOC limits in software for Venus E v3, Venus A, and Venus D. Venus A and Venus D also ask whether direct-current solar is connected so power-flow calculations can use the correct source.
 
 ![Marstek configuration form](../../assets/screenshots/configuration/battery-config-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
@@ -44,15 +44,15 @@ Venus E v2 can use hardware SOC cutoffs. Omnibattery enforces the configured SOC
 |---|---|---|
 | The wizard reports **Cannot connect** | The address, serial path, port, slave ID, wiring, or selected map is wrong | Test network reachability or the serial adapter, then verify the model and slave ID |
 | Values are implausible or unavailable | The selected Venus version uses a different register map | Reconfigure the battery with the exact model version |
-| Venus E discharge never exceeds about 800 W although **Max Discharge Power** is higher | On versions older than v1.3.0, a value between 800 and 2,500 W was written straight into the 800/2,500 W selector (see the note below). On v1.3.0 or newer, a possible cause is the Marstek app's maximum output power set to `800 W` (often the default where plug-in batteries are limited to 800 W): it has been reported to take precedence over the register Omnibattery writes | Update Omnibattery first. If it persists, check the output power selector in the Marstek app, again after a battery reset. If 800 W is your legal limit, keep it and set **Max Discharge Power** to `800 W` so the controller and the forecasts plan with the real limit |
+| Venus E discharge never exceeds about 800 W although **Max Discharge Power** is higher | On versions older than v1.3.0, a value between 800 and 2,500 W was written straight into the 800/2,500 W selector (see the note below). On v1.3.0 or newer, a possible cause is the Marstek app's maximum output power set to `800 W` (often the default where plug-in batteries are limited to 800 W): it has been reported to take precedence over the register OpenBattery writes | Update OpenBattery first. If it persists, check the output power selector in the Marstek app, again after a battery reset. If 800 W is your legal limit, keep it and set **Max Discharge Power** to `800 W` so the controller and the forecasts plan with the real limit |
 | Venus D is limited to 2,200 W | EMS firmware is older than 149 or its version could not be read | Check the EMS firmware before expecting the higher limit |
 | A LilyGo-connected battery is missing | The direct Marstek route was selected | Return to the brand step and select **Marstek via LilyGo RS485 (ESPHome)** |
 | Charging slows near full | The optional full-charge taper is active | Check **100% Charge Voltage Taper** and the cell-voltage sensors |
 
 ??? "Advanced details"
-    Marstek uses native force mode and separate charge/discharge setpoints. The available registers depend on the selected version; Omnibattery derives force mode, solar, alarms, hardware SOC cutoffs, and RS-485 control capability from that map.
+    Marstek uses native force mode and separate charge/discharge setpoints. The available registers depend on the selected version; OpenBattery derives force mode, solar, alarms, hardware SOC cutoffs, and RS-485 control capability from that map.
 
-    On Venus E v2 and v3, the battery's maximum charge and discharge power registers are the same two-value selector the Marstek app shows: `800 W` or `2,500 W`. Omnibattery writes `800 W` when your **Max Charge Power** or **Max Discharge Power** is `800 W` or less, and `2,500 W` otherwise, then enforces your exact limit in software. Reading those registers directly therefore shows `800` or `2500`, not your setting.
+    On Venus E v2 and v3, the battery's maximum charge and discharge power registers are the same two-value selector the Marstek app shows: `800 W` or `2,500 W`. OpenBattery writes `800 W` when your **Max Charge Power** or **Max Discharge Power** is `800 W` or less, and `2,500 W` otherwise, then enforces your exact limit in software. Reading those registers directly therefore shows `800` or `2500`, not your setting.
 
     The optional **100% Charge Voltage Taper** is Marstek-specific. At a 100% target, it limits charging to `200 W` when the highest measured cell reaches `3.48 V`. Venus E pauses at `3.60 V` and waits `60 s` before evaluating cell imbalance. Coupled-pack Venus A and D systems continue at the taper power until the battery management system (BMS) ends charging. See [Cell balance monitor](../../features/cell-balance-monitor.md).
 

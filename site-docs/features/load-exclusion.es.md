@@ -28,8 +28,8 @@ Elige el comportamiento que coincide con tu objetivo:
 
 ## Cómo activarlo
 
-1. Añade el dispositivo mediante **Ajustes → Dispositivos y servicios → Omnibattery → Configurar → Dispositivos excluidos**, usando la [lista de configuración](../configuration/excluded-devices.md#como-activarlo).
-2. Abre el dispositivo del sistema Omnibattery o el panel y activa **Device – Enabled**.
+1. Añade el dispositivo mediante **Ajustes → Dispositivos y servicios → OpenBattery → Configurar → Dispositivos excluidos**, usando la [lista de configuración](../configuration/excluded-devices.md#como-activarlo).
+2. Abre el dispositivo del sistema OpenBattery o el panel y activa **Device – Enabled**.
 3. Establece **Device – Exclusion %** en la parte que la batería debe ignorar.
 4. Activa solo los controles de comportamiento en vivo que correspondan a tu objetivo: **Solar Surplus**, **Dynamic Power Control** o **Cover Home**.
 5. Arranca el dispositivo y observa el flujo de red, la potencia de batería y la entidad de potencia o actividad del dispositivo.
@@ -62,21 +62,21 @@ Si el dispositivo tiene configurada demanda restante prevista, la carga predicti
 ??? "Detalles avanzados"
     **Corrección de carga**
 
-    Para un dispositivo ya incluido en el contador principal, Omnibattery elimina la parte excluida antes de que el control proporcional–derivativo (PD) calcule su ajuste:
+    Para un dispositivo ya incluido en el contador principal, OpenBattery elimina la parte excluida antes de que el control proporcional–derivativo (PD) calcule su ajuste:
 
     ```text
     effective consumption = grid consumption - excluded device power
     control error = effective consumption - grid target
     ```
 
-    Si el contador principal no ve el dispositivo, Omnibattery suma primero su potencia para reconstruir la demanda total y después aplica el tratamiento configurado. Esto evita eliminar la misma carga dos veces.
+    Si el contador principal no ve el dispositivo, OpenBattery suma primero su potencia para reconstruir la demanda total y después aplica el tratamiento configurado. Esto evita eliminar la misma carga dos veces.
 
     **Temporización de Dynamic Power Control**
 
-    Se considera que un dispositivo medido está consumiendo por encima de 100 W. En la primera demanda, la carga de batería cede durante 30 segundos. Un aumento de al menos 200 W en el margen disponible, calculado como producción solar menos potencia de dispositivo, inicia otra cesión de 20 segundos. Si no hay sensor de producción solar disponible, Omnibattery sondea durante 20 segundos cada 5 minutos en su lugar.
+    Se considera que un dispositivo medido está consumiendo por encima de 100 W. En la primera demanda, la carga de batería cede durante 30 segundos. Un aumento de al menos 200 W en el margen disponible, calculado como producción solar menos potencia de dispositivo, inicia otra cesión de 20 segundos. Si no hay sensor de producción solar disponible, OpenBattery sondea durante 20 segundos cada 5 minutos en su lugar.
 
     Cuando baja la potencia del dispositivo, la descarga permanece bloqueada durante 5 minutos y la carga recibe una gracia de reinicio más corta. Un sensor de actividad activo también bloquea la carga antes de que aparezca la potencia medida, evitando un bloqueo de arranque en frío en el que la batería absorbe la exportación antes de que arranque la wallbox. Dynamic Power Control solo se aplica cuando el dispositivo está activado, incluido en el sensor principal de consumo, medido, no está en modo VE solo con estado y están activados tanto Solar Surplus como Dynamic Power Control.
 
     **Temporización de VE solo con estado**
 
-    Cuando se detecta por primera vez la carga, Omnibattery ordena 0 W, bloquea ambas direcciones y congela el estado PD durante 5 minutos. La pausa da tiempo al cargador para negociar la corriente con el vehículo. Después, puede reanudarse la carga por excedente solar mientras la descarga sigue bloqueada hasta que el estado de actividad deje de informar carga.
+    Cuando se detecta por primera vez la carga, OpenBattery ordena 0 W, bloquea ambas direcciones y congela el estado PD durante 5 minutos. La pausa da tiempo al cargador para negociar la corriente con el vehículo. Después, puede reanudarse la carga por excedente solar mientras la descarga sigue bloqueada hasta que el estado de actividad deje de informar carga.

@@ -6,17 +6,17 @@ Temperature charge limit protects a hot battery by reducing its power as the int
 
 **Use it if** one or more batteries repeatedly run hot because of their location, weather, or sustained high power, and you prefer a gradual reduction before the BMS reaches its own cutoff.
 
-**You do not need it if** battery temperatures remain comfortable at full power, or if your battery does not publish an internal-temperature reading to Omnibattery.
+**You do not need it if** battery temperatures remain comfortable at full power, or if your battery does not publish an internal-temperature reading to OpenBattery.
 
 ## Before you start
 
 - Confirm that each battery you want to protect has an **Internal Temperature** entity with a numeric value.
-- This is a system-level feature, but Omnibattery calculates the limit separately for each battery from its own temperature.
+- This is a system-level feature, but OpenBattery calculates the limit separately for each battery from its own temperature.
 - Decide whether charging alone should be limited. Discharge limiting is optional and uses the same temperature curve.
 
 ## How to enable it
 
-1. Open the Omnibattery sidebar dashboard and select **Control**.
+1. Open the OpenBattery sidebar dashboard and select **Control**.
 2. In **Temperature Charge Limit**, turn on **Temperature Charge Limit**.
 3. Set **Temperature Charge Limit**, **Temperature Charge Limit Band**, and **Temperature Charge Limit Floor**.
 4. Turn on **Temperature Discharge Limit** only if you also want hot batteries to reduce discharge power.
@@ -51,7 +51,7 @@ With the defaults, reduction starts above 40 °C and reaches the 40% floor at 50
 | Discharge remains unrestricted | Discharge limiting is optional | **Temperature Discharge Limit** |
 
 ??? "Advanced details"
-    The configured floor is a percentage of the current per-battery ceiling, after any earlier control limit. For temperature `T`, limit `L`, ramp band `B`, and floor fraction `F`, Omnibattery uses:
+    The configured floor is a percentage of the current per-battery ceiling, after any earlier control limit. For temperature `T`, limit `L`, ramp band `B`, and floor fraction `F`, OpenBattery uses:
 
     ```text
     factor = 1                                      when T <= L
@@ -62,6 +62,6 @@ With the defaults, reduction starts above 40 °C and reaches the 40% floor at 50
 
     The curve is continuous and has no separate cooldown latch or hysteresis. A missing or non-numeric temperature passes the existing limit through unchanged.
 
-    Omnibattery never raises a ceiling imposed elsewhere. After applying the percentage, it also respects any minimum reliable charge or discharge power declared by the battery driver. Drivers that declare no minimum can reach 0 W when the configured floor is 0%; a driver with a non-zero minimum remains at that declared operating floor.
+    OpenBattery never raises a ceiling imposed elsewhere. After applying the percentage, it also respects any minimum reliable charge or discharge power declared by the battery driver. Drivers that declare no minimum can reach 0 W when the configured floor is 0%; a driver with a non-zero minimum remains at that declared operating floor.
 
     **Temperature Discharge Limit** uses the same charge-tuned curve. It is disabled by default because discharge may tolerate heat differently; enable it when reducing both directions is appropriate for your installation.

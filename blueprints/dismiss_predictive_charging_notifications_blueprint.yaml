@@ -1,7 +1,7 @@
 blueprint:
-  name: "Omnibattery - Dismiss Predictive Charging Notifications"
+  name: "OpenBattery - Dismiss Predictive Charging Notifications"
   description: >
-    Automatically dismisses Omnibattery persistent notifications related to
+    Automatically dismisses OpenBattery persistent notifications related to
     predictive grid charging, including evaluations, price slots, and evening
     re-evaluations.
 
@@ -9,7 +9,7 @@ blueprint:
     automation. Disable the created automation to receive the notifications
     again.
   domain: automation
-  source_url: "https://github.com/ffunes/omnibattery/blob/main/blueprints/dismiss_predictive_charging_notifications_blueprint.yaml"
+  source_url: "https://github.com/thomasvt1/openbattery/blob/openbattery/blueprints/dismiss_predictive_charging_notifications_blueprint.yaml"
 
 trigger:
   - platform: persistent_notification

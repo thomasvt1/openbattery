@@ -1,8 +1,12 @@
-# Omnibattery for Home Assistant
+# OpenBattery for Home Assistant
 
-![Logo](assets/logo-github.png)
+![OpenBattery](assets/logo-github.png)
 
-**Omnibattery** is your one stop Home Assistant integration designed to monitor and control pluggable solar batteries, as of today, the following ones are supported:
+OpenBattery is an independent fork of [OmniBattery by ffunes and its contributors](https://github.com/ffunes/Omnibattery), released under the same [GPL-3.0 license](LICENSE). It builds on that work with configurable monthly full charges, optional forecast-based day selection, and an early price trigger.
+
+**Existing OmniBattery installations:** OpenBattery keeps the `omnibattery` integration domain, storage keys and entity IDs for compatibility. It replaces OmniBattery; install only one of them. See [Switching to OpenBattery](site-docs/installation.md#switching-from-omnibattery).
+
+**OpenBattery** is your one stop Home Assistant integration designed to monitor and control pluggable solar batteries, as of today, the following ones are supported:
 
 - Marstek Venus E and C (v2 and v3), Venus D and Venus A via Modbus TCP
 - Zendure SolarFlow 4000 Mix Pro, 4000 Mix AC+, 3000 Mix AC+, 2400 AC+, 2400 AC Pro, 1600 AC+, 800 Pro, 800 Plus and 800 (Local API)
@@ -22,7 +26,8 @@
 - **Negative-price opportunistic charging**: Optional Dynamic Pricing-only charging fills each battery to its configured maximum SOC during negative import-price slots, even without solar panels or a forecast energy deficit.
 - **Smart Pre-discharge / Anti-curtailment**: Optional Dynamic Pricing-only planning creates battery headroom before forecast PV surplus at negative-injection prices, then blocks discharge during the protected window while preserving SOC floors and safety ownership.
 - **Time Slots**: Per-battery windows with independent charge/discharge ticks, optional SOC and power overrides, and a manual mode that forces a fixed charge or discharge power. Up to 8 slots per integration.
-- **Weekly Full Charge**: Forces 100% SOC once a week for LFP cell balancing.
+- **Weekly or monthly full charge**: Keep the weekly cadence or use simple monthly scheduling without a forecast. Optional smart modes choose a day from a configured price forecast; the dynamic-price planner chooses charging hours. Natural full charges satisfy the monthly requirement per battery.
+- **Early monthly price trigger**: Start the month's full-charge cycle when the actual import price reaches your configured threshold.
 - **Solar-Aware Charge Delay**: Holds back grid charging while solar can still cover the required energy.
 - **Peak Shaving**: Reserves battery capacity to cover demand spikes above a configurable power threshold, keeping energy in reserve rather than covering all consumption.
 - **Load Exclusion**: Mask high-power devices (e.g. EV chargers) so the battery doesn't try to cover them.
@@ -38,18 +43,16 @@
 > **If you do not agree to these terms, DO NOT install or use this integration.**
 
 
-![Dashboard](assets/MVEM%20-%20Dashboard.gif)
+![OpenBattery dashboard](assets/dashboard.png)
 
 ## Support
 
-If you find this integration useful, you can support my work:
-
-<a href="https://buymeacoffee.com/ffunes" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" width="145" ></a>
+Report bugs and suggest improvements in [OpenBattery issues](https://github.com/thomasvt1/openbattery/issues). For setup questions, use [Discussions](https://github.com/thomasvt1/openbattery/discussions).
 ## Documentation
 
 Full documentation (configuration, features, entities, troubleshooting) is available at:
 
-**[https://ffunes.github.io/Omnibattery/](https://ffunes.github.io/Omnibattery/)**
+**[https://thomasvt1.github.io/openbattery/](https://thomasvt1.github.io/openbattery/)**
 
 ## Requirements
 
@@ -67,20 +70,20 @@ Full documentation (configuration, features, entities, troubleshooting) is avail
 
 **HACS (Recommended)**
 
-[![Open your Home Assistant instance and add a custom repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ffunes&repository=Omnibattery&category=integration)
+[![Open your Home Assistant instance and add a custom repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=thomasvt1&repository=openbattery&category=integration)
 
-Search for "Omnibattery", install, and restart Home Assistant.
+Add the custom repository using the button, search for "OpenBattery", install, and restart Home Assistant. This fork is installed as a custom repository, not from the default HACS catalog.
 
 **Manual**
 
-Download the release zip, extract the `omnibattery` folder, copy it to your Home Assistant `custom_components` directory, and restart.
+Download the [OpenBattery source archive](https://github.com/thomasvt1/openbattery/archive/refs/heads/openbattery.zip), extract its `custom_components/omnibattery` folder, copy that folder to your Home Assistant `custom_components` directory, and restart.
 
 ### Upgrading from Marstek Venus Energy Manager
 
 Everything is preserved: all configuration (PD tuning, time slots, thresholds), entity IDs (`marstek_venus_*`), recorder history, long-term statistics, dashboards, automations, and daily energy counters.
 
 > [!IMPORTANT]
-> You must pass through **v2.0.6** of the old *Marstek Venus Energy Manager* integration before switching to Omnibattery. That release writes a configuration backup to HA's `.storage` that survives the domain switch. Skipping it means you may have to reconfigure everything from scratch if HACS deletes the old entries during the switch.
+> You must pass through **v2.0.6** of the old *Marstek Venus Energy Manager* integration before switching to OpenBattery. That release writes a configuration backup to HA's `.storage` that survives the domain switch. Skipping it means you may have to reconfigure everything from scratch if HACS deletes the old entries during the switch.
 
 > [!TIP]
 > Take a full Home Assistant backup before starting (**Settings → System → Backups → Create backup**).
@@ -89,15 +92,15 @@ Everything is preserved: all configuration (PD tuning, time slots, thresholds), 
 
 In HACS, update **Marstek Venus Energy Manager** to **v2.0.6** and restart Home Assistant. The integration loads and silently writes a backup of your entire configuration.
 
-**Step 2 — Switch to Omnibattery**
+**Step 2 — Switch to OpenBattery**
 
-Add the Omnibattery repository in HACS and install it, then restart.
+Add the OpenBattery repository in HACS and install it, then restart.
 
 **Step 3 — Run the migration**
 
 After the restart, the old integration will appear broken or missing — this is expected. Go to:
 
-**Settings → Devices & Services → Add Integration → Omnibattery**
+**Settings → Devices & Services → Add Integration → OpenBattery**
 
 The setup flow detects your existing configuration and presents a confirmation screen. Confirm to run the migration. It will:
 - Recreate each config entry under the new `omnibattery` domain
@@ -112,20 +115,20 @@ Press **Ctrl+F5** so the renamed sidebar panel loads correctly.
 
 **Recovery: if you accidentally deleted the integration entirely**
 
-If the old config entries were deleted from *Settings → Devices & Services* before migrating, the backup written in Step 1 still survives. Go to **Add Integration → Omnibattery** — the flow will detect no live legacy entries but will find the backup and offer to restore it. Confirm to recreate everything from the backup.
+If the old config entries were deleted from *Settings → Devices & Services* before migrating, the backup written in Step 1 still survives. Go to **Add Integration → OpenBattery** — the flow will detect no live legacy entries but will find the backup and offer to restore it. Confirm to recreate everything from the backup.
 
 ---
 
 **Optional: rename system entities to `omnibattery_*`**
 
-After migration, system entities keep their old `marstek_venus_system_*` IDs. If you want to rename them, go to **Settings → Devices & Services → Omnibattery → ⋯ → Recreate entity IDs**. This renames them in-place with history preserved, but any automations, templates, or Energy dashboard entries that reference the old IDs must be updated manually.
+After migration, system entities keep their old `marstek_venus_system_*` IDs. If you want to rename them, go to **Settings → Devices & Services → OpenBattery → ⋯ → Recreate entity IDs**. This renames them in-place with history preserved, but any automations, templates, or Energy dashboard entries that reference the old IDs must be updated manually.
 
 ## Testbed Configuration
 
-- **Batteries**: 1× Marstek Venus E v2, 1x Marstek Venus E v3 and 1x Zendure Solarflow 2400 AC+.
-- **Connectivity**: Elfin-EW11 Modbus to WiFi converter.
-- **Metering**: Shelly Pro 3EM Energy Meter.
+The fork is tested with the inherited unit and Home Assistant flow suites and an isolated local Home Assistant instance with a simulated Modbus TCP Venus battery. Screenshots show this test instance. These checks do not certify physical battery behavior; see the [compatibility guide](site-docs/compatibility.md) for inherited device support.
 
 ## Acknowledgements
+
+OpenBattery derives from [ffunes/Omnibattery](https://github.com/ffunes/Omnibattery). Original contributors retain credit through the Git history, source notices and inherited changelog. See [NOTICE.md](NOTICE.md) for the fork's origin and compatibility policy.
 
 Special thanks to [ViperRNMC/marstek_venus_modbus](https://github.com/ViperRNMC/marstek_venus_modbus) for the Modbus register documentation that made this integration possible.

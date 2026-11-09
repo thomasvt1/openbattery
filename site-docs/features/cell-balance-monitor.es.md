@@ -20,7 +20,7 @@ El monitor de equilibrio de celdas compara la celda más alta y la más baja cer
 Esta función es automática; no hay un interruptor de monitorización ni un formulario de activación.
 
 1. Abre el dispositivo de la batería en Home Assistant y confirma que existen **Balance - Delta de Celda (al 100%)** y **Balance - Estado**.
-2. En el panel de Omnibattery, deja activado **Activar reducción por voltaje al cargar al 100%** para esa batería.
+2. En el panel de OpenBattery, deja activado **Activar reducción por voltaje al cargar al 100%** para esa batería.
 3. Deja que la batería complete una carga completa y comprueba después que se ha actualizado **Balance - Última Lectura**.
 
 ## Qué verás
@@ -44,7 +44,7 @@ Comprueba también estas entidades:
 - **Balance - Tendencia**: `rising`, `stable` o `falling` en las lecturas recientes.
 - **Balance - Delta Promedio (4 lecturas)**: la media de las cuatro últimas lecturas comparables.
 
-En baterías con datos por pack, **Balance - Delta de Celda (al 100%)** representa la peor diferencia interna entre los packs. Sus atributos `packs_mV` y `worst_pack` identifican el pack responsable del resultado; Omnibattery no resta la celda más baja de un pack de la celda más alta de otro.
+En baterías con datos por pack, **Balance - Delta de Celda (al 100%)** representa la peor diferencia interna entre los packs. Sus atributos `packs_mV` y `worst_pack` identifican el pack responsable del resultado; OpenBattery no resta la celda más baja de un pack de la celda más alta de otro.
 
 Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprint de equilibrio activo para Marstek](../automations/blueprints.md#balanceo-activo-de-una-bateria-marstek) con una batería Marstek compatible. Ejecútalo con una sola batería cada vez y sigue sus notificaciones de limpieza antes de devolver esa batería al control automático.
 
@@ -61,7 +61,7 @@ Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprin
 ??? "Detalles avanzados: interpretar mV y desequilibrio"
     **Por qué las mediciones se toman cerca de la carga completa**
 
-    La tensión de una celda de fosfato de hierro y litio (LFP) se mantiene relativamente plana durante buena parte del rango de carga utilizable. En esa región, las diferencias de tensión son una prueba poco fiable de una diferencia de estado de carga. Cerca de la rodilla superior, las tensiones de celda se separan con más claridad y el sistema de gestión de batería (BMS) puede identificar y descargar ligeramente las celdas adelantadas. Por ello, Omnibattery compara lecturas estabilizadas cerca del final de carga en lugar de tratar una diferencia en directo a mitad de carga como un resultado de salud.
+    La tensión de una celda de fosfato de hierro y litio (LFP) se mantiene relativamente plana durante buena parte del rango de carga utilizable. En esa región, las diferencias de tensión son una prueba poco fiable de una diferencia de estado de carga. Cerca de la rodilla superior, las tensiones de celda se separan con más claridad y el sistema de gestión de batería (BMS) puede identificar y descargar ligeramente las celdas adelantadas. Por ello, OpenBattery compara lecturas estabilizadas cerca del final de carga en lugar de tratar una diferencia en directo a mitad de carga como un resultado de salud.
 
     **La curva de carga LFP en detalle**
 
@@ -77,9 +77,9 @@ Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprin
 
     En la meseta, dos celdas que muestran tensiones casi iguales pueden diferir varios puntos porcentuales de SOC, por lo que una diferencia de tensión a mitad de carga no es una prueba útil de desequilibrio. También significa que el equilibrio pasivo no puede actuar ahí: el BMS descarga ligeramente la celda más alta mediante una resistencia y, para identificar qué celda es la más alta, necesita que la diferencia entre celdas supere el ruido de medida. Solo por encima de la rodilla las tensiones de celda se separan lo suficiente para que el BMS encuentre y descargue la celda adelantada; por eso los umbrales siguientes se sitúan en esa estrecha ventana cerca del final de carga, no en la zona plana intermedia.
 
-    **Cómo crea Omnibattery una lectura comparable**
+    **Cómo crea OpenBattery una lectura comparable**
 
-    Con **Activar reducción por voltaje al cargar al 100%** activado, la ruta de control entra en la zona de reducción gradual a 3,48 V y limita esa batería a 200 W. Una batería Venus E se detiene normalmente a 3,60 V, o antes cuando el BMS rechaza una orden de carga. La carga permanece entonces desactivada durante 60 segundos antes de que Omnibattery registre:
+    Con **Activar reducción por voltaje al cargar al 100%** activado, la ruta de control entra en la zona de reducción gradual a 3,48 V y limita esa batería a 200 W. Una batería Venus E se detiene normalmente a 3,60 V, o antes cuando el BMS rechaza una orden de carga. La carga permanece entonces desactivada durante 60 segundos antes de que OpenBattery registre:
 
     ```text
     cell_delta_mV = (maximum_cell_voltage - minimum_cell_voltage) × 1000
@@ -87,7 +87,7 @@ Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprin
 
     El enclavamiento de reducción gradual se libera después de que la celda de control baje de 3,44 V. Empezar y liberar a tensiones diferentes evita transiciones repetidas mientras la celda se relaja.
 
-    Las baterías Venus A/D pueden contener packs acoplados, y sus registros máximo/mínimo a nivel de batería describen el pack 1 en lugar de todos los packs. Por tanto, alcanzar 3,60 V no detiene la carga ni inicia por sí solo la medición. Omnibattery mantiene la orden de 200 W hasta confirmar un corte del BMS, espera 60 segundos y luego registra la peor diferencia interna entre los packs que proporcionan datos válidos. Se excluyen las diferencias de tensión entre packs porque cada pack tiene su propio BMS.
+    Las baterías Venus A/D pueden contener packs acoplados, y sus registros máximo/mínimo a nivel de batería describen el pack 1 en lugar de todos los packs. Por tanto, alcanzar 3,60 V no detiene la carga ni inicia por sí solo la medición. OpenBattery mantiene la orden de 200 W hasta confirmar un corte del BMS, espera 60 segundos y luego registra la peor diferencia interna entre los packs que proporcionan datos válidos. Se excluyen las diferencias de tensión entre packs porque cada pack tiene su propio BMS.
 
     Un corte del BMS requiere una solicitud de carga real, una potencia entregada de 10 W o menos y Standby durante cinco ciclos de control consecutivos. Así se evita clasificar una batería inactiva como completa. El mismo corte puede activar una lectura estabilizada por debajo de 3,60 V cuando la batería permanece en la zona de reducción gradual.
 
@@ -110,7 +110,7 @@ Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprin
 
     **Lógica de tendencia y notificaciones**
 
-    Omnibattery conserva hasta 52 lecturas comparables y calcula la media mostrada y la tendencia a partir de las cuatro últimas. Un cambio de más de 2 mV por lectura es `rising`; de menos de −2 mV por lectura es `falling`; los valores entre esos límites son `stable`.
+    OpenBattery conserva hasta 52 lecturas comparables y calcula la media mostrada y la tendencia a partir de las cuatro últimas. Un cambio de más de 2 mV por lectura es `rising`; de menos de −2 mV por lectura es `falling`; los valores entre esos límites son `stable`.
 
     La alerta de tendencia tiene en cuenta una referencia de fábrica de 180 mV. Se activa cuando la tendencia es ascendente y la media bruta de cuatro lecturas supera 220 mV. Las notificaciones de equilibrio de celdas tienen un periodo de espera de siete días por batería, por lo que una condición continua no crea una nueva notificación persistente en cada ciclo.
 
@@ -122,7 +122,7 @@ Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprin
 
     **Recalibración de SOC en Venus E**
 
-    Una batería Venus E puede alcanzar 3,60 V mientras su estado de carga (SOC) comunicado permanece por debajo del 99%. Cuando sucede fuera del ciclo semanal, Omnibattery puede continuar a 200 W hasta que el BMS corte. Si el SOC sigue por debajo del 100%, espera a que la celda se relaje hasta 3,57 V y permite un intento más a 200 W. Esto solo crea las condiciones para recalibrar; el firmware del BMS decide si cambia el SOC mostrado.
+    Una batería Venus E puede alcanzar 3,60 V mientras su estado de carga (SOC) comunicado permanece por debajo del 99%. Cuando sucede fuera del ciclo semanal, OpenBattery puede continuar a 200 W hasta que el BMS corte. Si el SOC sigue por debajo del 100%, espera a que la celda se relaje hasta 3,57 V y permite un intento más a 200 W. Esto solo crea las condiciones para recalibrar; el firmware del BMS decide si cambia el SOC mostrado.
 
     **Referencia de sensores y diagnóstico**
 
@@ -155,4 +155,4 @@ Si el naranja o el rojo persisten tras varias cargas completas, usa el [blueprin
 
     Estos atributos explican la ruta de control actual; **Balance - Estado** sigue siendo el resultado de salud mostrado al usuario.
 
-    El blueprint de equilibrio activo se ejecuta fuera del bucle de control normal de Omnibattery mediante **Manual Battery Control**. Su propia página es la referencia canónica de su secuencia de carga, reposo, reintentos y limpieza. Las mediciones estabilizadas publicadas por el blueprint entran en el mismo historial de **Balance - Delta de Celda (al 100%)** con `source: blueprint`.
+    El blueprint de equilibrio activo se ejecuta fuera del bucle de control normal de OpenBattery mediante **Manual Battery Control**. Su propia página es la referencia canónica de su secuencia de carga, reposo, reintentos y limpieza. Las mediciones estabilizadas publicadas por el blueprint entran en el mismo historial de **Balance - Delta de Celda (al 100%)** con `source: blueprint`.

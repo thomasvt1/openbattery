@@ -80,7 +80,7 @@ def normalize_nordpool_hacs_price(value, attrs: dict) -> float:
 
     HACS applies its ``price_in_cents`` and ``unit`` configuration to the
     sensor state and to every ``raw_today`` / ``raw_tomorrow`` value. Internal
-    Omnibattery thresholds use major currency/kWh, so undo those display-scale
+    OpenBattery thresholds use major currency/kWh, so undo those display-scale
     transformations at the provider boundary.
     """
     price = float(value)
@@ -144,7 +144,7 @@ def parse_nordpool_service_prices(response: dict, area: str | None = None) -> li
     The official Home Assistant integration returns one list per market area:
         {"SE3": [{"start": ISO8601, "end": ISO8601, "price": 320.5}, ...]}
     Service prices use currency/MWh, so they are divided by 1000 to match the
-    official current-price sensor and Omnibattery thresholds (currency/kWh).
+    official current-price sensor and OpenBattery thresholds (currency/kWh).
     """
     from datetime import datetime as _dt
 

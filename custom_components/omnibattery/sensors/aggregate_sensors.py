@@ -1,4 +1,4 @@
-"""Aggregate sensors for the Omnibattery integration."""
+"""Aggregate sensors for the OpenBattery integration."""
 from __future__ import annotations
 
 from homeassistant.components.sensor import SensorEntity, SensorDeviceClass, SensorStateClass
@@ -163,8 +163,8 @@ class DailyGridAtMinSocSensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -264,8 +264,8 @@ class PdControlQualitySensor(SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -432,7 +432,7 @@ class MarstekVenusAggregateSensor(RestoreEntity, SensorEntity):
     def _calculate_system_soc(self) -> float | None:
         """Calculate capacity-weighted SOC across the automatically controlled batteries.
 
-        A battery in manual mode is outside Omnibattery's control (cell balancing,
+        A battery in manual mode is outside OpenBattery's control (cell balancing,
         winter storage), so its SOC would hide how much the controlled fleet has
         left (#693). Only when every battery is manual do they all count.
         """
@@ -754,8 +754,8 @@ class MarstekVenusAggregateSensor(RestoreEntity, SensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -844,7 +844,7 @@ class SystemAlarmSensor(SensorEntity):
         """Attach to the system device."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }

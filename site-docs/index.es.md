@@ -1,10 +1,10 @@
-![Omnibattery](assets/logo-github.png){ width="420" }
+![OpenBattery](assets/logo-github.png){ width="420" }
 
 # Usa la batería de tu casa para reducir los costes de red
 
-Omnibattery conecta baterías domésticas compatibles a Home Assistant para que sigan el consumo de la casa, almacenen la energía solar disponible y carguen cuando tu horario o el precio de la electricidad lo hagan conveniente.
+OpenBattery conecta baterías domésticas compatibles a Home Assistant para que sigan el consumo de la casa, almacenen la energía solar disponible y carguen cuando tu horario o el precio de la electricidad lo hagan conveniente.
 
-## ¿Es Omnibattery para mí?
+## ¿Es OpenBattery para mí?
 
 **Úsalo si** ya tienes una batería compatible y un sensor de Home Assistant que mide la potencia importada de la red o exportada a ella. Es especialmente útil si quieres un único lugar para coordinar baterías, previsiones solares, precios de electricidad y cargas domésticas.
 
@@ -14,7 +14,7 @@ Comprueba [si tu batería exacta es compatible](compatibility.md) antes de insta
 
 ## Marcas compatibles de un vistazo
 
-| Marca | Cómo se conecta Omnibattery | Empieza aquí |
+| Marca | Cómo se conecta OpenBattery | Empieza aquí |
 |---|---|---|
 | **Marstek Venus** | Modbus TCP, Modbus RTU o un puente LilyGo RS-485/ESPHome | [Configuración de Marstek](configuration/batteries/marstek.md) |
 | **Zendure SolarFlow** | API HTTP local | [Configuración de Zendure](configuration/batteries/zendure.md) |
@@ -24,7 +24,7 @@ Comprueba [si tu batería exacta es compatible](compatibility.md) antes de insta
 | **Hoymiles MS-A2 y HiBattery** | MQTT a través de Home Assistant | [Configuración MQTT de Hoymiles](configuration/batteries/hoymiles.md) |
 | **Indevolt SolidFlex y PowerFlex** | API HTTP local | [Configuración de Indevolt](configuration/batteries/indevolt.md) |
 
-Omnibattery puede coordinar marcas compatibles en la misma instalación. Consulta los [requisitos de instalación](installation.md#before-you-start) antes de cambiar ajustes del fabricante.
+OpenBattery puede coordinar marcas compatibles en la misma instalación. Consulta los [requisitos de instalación](installation.md#before-you-start) antes de cambiar ajustes del fabricante.
 
 ## Qué puede hacer por ti
 
@@ -50,9 +50,9 @@ Omnibattery puede coordinar marcas compatibles en la misma instalación. Consult
 
 ## Cómo empezar
 
-1. [Comprueba los requisitos e instala Omnibattery](installation.md).
+1. [Comprueba los requisitos e instala OpenBattery](installation.md).
 2. Añade la integración y conecta el sensor de red y la batería.
-3. Abre el panel lateral de Omnibattery para confirmar la potencia y el estado de carga; después activa solo las funciones que encajen con tu casa.
+3. Abre el panel lateral de OpenBattery para confirmar la potencia y el estado de carga; después activa solo las funciones que encajen con tu casa.
 
 ¿Ya usas **Marstek Venus Energy Manager**? Sigue la [guía de actualización](upgrading-from-marstek-vem.md) para mantener conectados tus ajustes, el historial de entidades y los paneles.
 
@@ -60,10 +60,10 @@ Omnibattery puede coordinar marcas compatibles en la misma instalación. Consult
 
 El panel lateral se instala con la integración; no requiere otra tarjeta de Home Assistant Community Store (HACS) ni configuración YAML de panel. Usa **Resumen** para seguir el flujo de energía en directo y el historial diario, **Baterías** para revisar cada unidad y **Control** para activar y ajustar funciones opcionales.
 
-![Panel de Omnibattery que muestra el flujo de energía de la casa](assets/dashboard.gif)
+![Panel de OpenBattery que muestra el flujo de energía de la casa](assets/dashboard.png)
 
 ??? "Detalles avanzados"
-    El controlador proporcional–derivativo (PD) de Omnibattery reacciona cuando el sensor de red publica un valor nuevo y ajusta la potencia de la batería hacia el objetivo de red configurado, incluida la importación o el vertido cero. Los perfiles de ajuste, de **Muy suave** a **Muy agresivo**, y el sensor **PD Control Quality** ayudan a identificar una respuesta estable, oscilante o lenta. Un modo opcional de seguimiento directo sigue la lectura de red 1:1 en un ciclo de control, sin comportamiento integral, derivativo, de suavizado ni de limitación de rampa.
+    El controlador proporcional–derivativo (PD) de OpenBattery reacciona cuando el sensor de red publica un valor nuevo y ajusta la potencia de la batería hacia el objetivo de red configurado, incluida la importación o el vertido cero. Los perfiles de ajuste, de **Muy suave** a **Muy agresivo**, y el sensor **PD Control Quality** ayudan a identificar una respuesta estable, oscilante o lenta. Un modo opcional de seguimiento directo sigue la lectura de red 1:1 en un ciclo de control, sin comportamiento integral, derivativo, de suavizado ni de limitación de rampa.
 
     La integración puede coordinar hasta diez baterías. Usa prioridades de estado de carga, histéresis de energía y reparto que considera la eficiencia, a la vez que aplica límites de potencia por batería y del sistema. Consulta [Gestión de varias baterías](features/multi-battery.md).
 
@@ -80,7 +80,7 @@ El panel lateral se instala con la integración; no requiere otra tarjeta de Hom
     - [Exclusión de cargas](features/load-exclusion.md) para cargadores de vehículo eléctrico y otras cargas grandes, con un ajuste individual de exclusión de 0–100%
     - Notificaciones proactivas de fallos y alarmas de Home Assistant cuando un controlador de batería proporciona esa telemetría; **System Alarm Status** resume la flota como `OK`, `Warning` o `Fault`
 
-    El estado de carga (SOC) es la energía utilizable restante de la batería. El sistema de gestión de batería (BMS) aplica los límites propios de celdas y seguridad del dispositivo además de los controles de software de Omnibattery.
+    El estado de carga (SOC) es la energía utilizable restante de la batería. El sistema de gestión de batería (BMS) aplica los límites propios de celdas y seguridad del dispositivo además de los controles de software de OpenBattery.
 
 ## Aviso de responsabilidad
 
@@ -91,6 +91,6 @@ El panel lateral se instala con la integración; no requiere otra tarjeta de Hom
 
 ## Soporte
 
-Si esta integración te resulta útil, puedes apoyar el proyecto:
+Puedes informar de errores y proponer mejoras en [OpenBattery issues](https://github.com/thomasvt1/openbattery/issues), o hacer preguntas en [Discussions](https://github.com/thomasvt1/openbattery/discussions).
 
-<a href="https://buymeacoffee.com/ffunes" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" width="145"></a>
+OpenBattery es una bifurcación independiente con licencia GPL-3.0 de [ffunes/Omnibattery](https://github.com/ffunes/Omnibattery). Gracias a sus colaboradores por la integración original. Algunas capturas de configuración heredadas pueden mostrar el nombre anterior.

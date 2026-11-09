@@ -1,13 +1,13 @@
 {
   "domain": "omnibattery",
-  "name": "Omnibattery",
+  "name": "OpenBattery",
   "after_dependencies": [
     "recorder",
     "esphome",
     "mqtt"
   ],
   "codeowners": [
-    "@ffunes"
+    "@thomasvt1"
   ],
   "config_flow": true,
   "dependencies": [
@@ -20,14 +20,14 @@
       "registered_devices": true
     }
   ],
-  "documentation": "https://github.com/ffunes/omnibattery",
+  "documentation": "https://thomasvt1.github.io/openbattery/",
   "integration_type": "device",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/ffunes/omnibattery/issues",
+  "issue_tracker": "https://github.com/thomasvt1/openbattery/issues",
   "requirements": [
     "pymodbus>=3.8.0"
   ],
-  "version": "1.6.0",
+  "version": "1.7.0",
   "zeroconf": [
     "_modbus._tcp.local."
   ]

@@ -1,7 +1,7 @@
 """Tests for the v8 -> v9 entity-registry heal (``async_migrate_entry``).
 
 System-level entities used to key their ``unique_id`` on the config ``entry_id``.
-The Omnibattery domain migration creates a NEW entry, so those ids changed and HA
+The OpenBattery domain migration creates a NEW entry, so those ids changed and HA
 registered duplicates: the old entity became an orphan (stale entry_id prefix, no
 device) while the new one was bumped to a ``_2`` entity_id. v9 re-keys them onto
 the stable ``marstek_venus_system_`` prefix and removes the orphans.

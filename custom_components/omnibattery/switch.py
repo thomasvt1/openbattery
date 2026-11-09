@@ -1,4 +1,4 @@
-"""Switch platform for the Omnibattery integration."""
+"""Switch platform for the OpenBattery integration."""
 from __future__ import annotations
 
 import logging
@@ -582,8 +582,8 @@ class VacationModeSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -697,8 +697,8 @@ class PredictiveChargingSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -769,8 +769,8 @@ class PredictiveChargingNotificationsSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -856,8 +856,8 @@ class TimeSlotSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -908,8 +908,8 @@ class CapacityProtectionSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -964,8 +964,8 @@ class CapacityProtectionExcludedDevicesSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1023,8 +1023,8 @@ class ChargeDelaySwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1066,8 +1066,8 @@ class DelaySocSetpointEnabledSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1116,8 +1116,8 @@ class TempChargeLimitSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1166,8 +1166,8 @@ class TempChargeLimitDischargeSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1222,8 +1222,8 @@ class WeeklyFullChargeDelaySwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1302,8 +1302,8 @@ class ExcludedDeviceEnabledSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1383,8 +1383,8 @@ class ExcludedDeviceSolarSurplusSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1460,8 +1460,8 @@ class ExcludedDeviceDynamicPowerControlSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1543,8 +1543,8 @@ class ExcludedDeviceCoverHomeSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1610,7 +1610,7 @@ class ManualModeSwitch(SwitchEntity):
                     "You can now manually control each battery using the "
                     "'Set Forcible Charge/Discharge Power' controls, or — "
                     "for Anker — select another operating mode in the "
-                    "official Anker Solix integration without OmniBattery "
+                    "official Anker Solix integration without OpenBattery "
                     "reverting it.\n\n"
                     "Turn off Manual Mode to resume automatic control."
                 ),
@@ -1654,8 +1654,8 @@ class ManualModeSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1703,8 +1703,8 @@ class ThreePhaseProtectionSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1801,8 +1801,8 @@ class PrimaryFeedforwardSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1868,8 +1868,8 @@ class NoPdModeSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1926,8 +1926,8 @@ class OffgridModeSwitch(SwitchEntity):
         """Return information for the system device."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -1979,8 +1979,8 @@ class SurplusPriceHoldSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2029,8 +2029,8 @@ class DischargeReserveSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2079,8 +2079,8 @@ class SystemPowerLimitsSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2133,8 +2133,8 @@ class HourlyBalanceSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2179,8 +2179,8 @@ class MinSOCFloorSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2230,8 +2230,8 @@ class WeeklyFullChargeEnableSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2287,8 +2287,8 @@ class PriceDischargeControlSwitch(SwitchEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2347,8 +2347,8 @@ class PriceThresholdEnabledSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2402,8 +2402,8 @@ class SmartPredischargeSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -2466,8 +2466,8 @@ class NegativePriceChargingSwitch(SwitchEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 

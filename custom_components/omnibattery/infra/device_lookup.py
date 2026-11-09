@@ -3,7 +3,7 @@
 Home Assistant 2026.10 deprecates ``DeviceRegistry.async_get_device`` (device
 identifiers are only unique within a config entry now) and removes it in
 2027.8. The replacement, ``async_get_device_by_identifier``, does not exist on
-the older releases Omnibattery still supports, so this helper uses whichever
+the older releases OpenBattery still supports, so this helper uses whichever
 the running version has.
 """
 

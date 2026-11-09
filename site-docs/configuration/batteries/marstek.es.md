@@ -22,7 +22,7 @@ Usa esta conexión para una batería Marstek Venus a la que se llega directament
 
 ## Cómo añadirla
 
-1. En el asistente de configuración de Omnibattery, elige **Marstek Venus**.
+1. En el asistente de configuración de OpenBattery, elige **Marstek Venus**.
 2. Introduce un nombre de batería y **Host IP** o **Puerto serie (Modbus RTU)**. Deja **Puerto serie (Modbus RTU)** vacío para una conexión de red.
 3. Mantén **Puerto Modbus** en `502` salvo que la batería o pasarela use otro puerto.
 4. Introduce el **ID de esclavo Modbus** y selecciona **Ev2**, **Ev3**, **A** o **D**.
@@ -34,7 +34,7 @@ Usa esta conexión para una batería Marstek Venus a la que se llega directament
 
 Marstek expone control de carga/descarga automático y manual, estado de carga (SOC), lecturas de potencia y energía, y los sensores disponibles en el mapa de registros seleccionado. Las lecturas solares y de alarmas solo aparecen en los modelos cuyo mapa las proporciona.
 
-Venus E v2 puede usar cortes de SOC de hardware. Omnibattery aplica los límites de SOC configurados por software para Venus E v3, Venus A y Venus D. Venus A y Venus D también preguntan si hay solar de corriente continua conectada para que los cálculos de flujo de potencia usen la fuente correcta.
+Venus E v2 puede usar cortes de SOC de hardware. OpenBattery aplica los límites de SOC configurados por software para Venus E v3, Venus A y Venus D. Venus A y Venus D también preguntan si hay solar de corriente continua conectada para que los cálculos de flujo de potencia usen la fuente correcta.
 
 ![Formulario de configuración Marstek](../../assets/screenshots/configuration/battery-config-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
@@ -44,15 +44,15 @@ Venus E v2 puede usar cortes de SOC de hardware. Omnibattery aplica los límites
 |---|---|---|
 | El asistente indica **Cannot connect** | La dirección, ruta serie, puerto, ID de esclavo, cableado o mapa seleccionado es incorrecto | Prueba la conectividad de red o el adaptador serie y después verifica el modelo y el ID de esclavo |
 | Los valores son inverosímiles o no están disponibles | La versión Venus seleccionada usa otro mapa de registros | Vuelve a configurar la batería con la versión exacta del modelo |
-| La descarga de Venus E nunca supera unos 800 W aunque **Max Discharge Power** sea mayor | En versiones anteriores a v1.3.0, un valor entre 800 y 2.500 W se escribía tal cual en el selector de 800/2.500 W (ver la nota de abajo). En v1.3.0 o posterior, una posible causa es la potencia máxima de salida de la app Marstek en `800 W` (a menudo el valor por defecto donde las baterías enchufables están limitadas a 800 W): se ha observado que prevalece sobre el registro que escribe Omnibattery | Actualiza Omnibattery primero. Si persiste, comprueba el selector de potencia de salida en la app Marstek, también tras un reinicio de la batería. Si 800 W es tu límite legal, mantenlo y ajusta **Max Discharge Power** a `800 W` para que el controlador y las previsiones trabajen con el límite real |
+| La descarga de Venus E nunca supera unos 800 W aunque **Max Discharge Power** sea mayor | En versiones anteriores a v1.3.0, un valor entre 800 y 2.500 W se escribía tal cual en el selector de 800/2.500 W (ver la nota de abajo). En v1.3.0 o posterior, una posible causa es la potencia máxima de salida de la app Marstek en `800 W` (a menudo el valor por defecto donde las baterías enchufables están limitadas a 800 W): se ha observado que prevalece sobre el registro que escribe OpenBattery | Actualiza OpenBattery primero. Si persiste, comprueba el selector de potencia de salida en la app Marstek, también tras un reinicio de la batería. Si 800 W es tu límite legal, mantenlo y ajusta **Max Discharge Power** a `800 W` para que el controlador y las previsiones trabajen con el límite real |
 | Venus D está limitada a 2.200 W | El firmware EMS es anterior al 149 o no se pudo leer su versión | Comprueba el firmware EMS antes de esperar el límite superior |
 | Falta una batería conectada por LilyGo | Se seleccionó la vía Marstek directa | Vuelve al paso de marca y selecciona **Marstek via LilyGo RS485 (ESPHome)** |
 | La carga se ralentiza cerca del máximo | Está activa la reducción gradual de carga completa opcional | Comprueba **100% Charge Voltage Taper** y los sensores de tensión de celda |
 
 ??? "Detalles avanzados"
-    Marstek usa modo forzado nativo y consignas de carga y descarga independientes. Los registros disponibles dependen de la versión seleccionada; Omnibattery obtiene de ese mapa el modo forzado, solar, alarmas, cortes de SOC de hardware y la capacidad de control RS-485.
+    Marstek usa modo forzado nativo y consignas de carga y descarga independientes. Los registros disponibles dependen de la versión seleccionada; OpenBattery obtiene de ese mapa el modo forzado, solar, alarmas, cortes de SOC de hardware y la capacidad de control RS-485.
 
-    En Venus E v2 y v3, los registros de potencia máxima de carga y descarga de la batería son el mismo selector de dos valores que muestra la app Marstek: `800 W` o `2,500 W`. Omnibattery escribe `800 W` cuando tu **Max Charge Power** o **Max Discharge Power** es `800 W` o menos, y `2,500 W` en caso contrario; después aplica tu límite exacto por software. Por tanto, leer esos registros directamente muestra `800` o `2500`, no tu ajuste.
+    En Venus E v2 y v3, los registros de potencia máxima de carga y descarga de la batería son el mismo selector de dos valores que muestra la app Marstek: `800 W` o `2,500 W`. OpenBattery escribe `800 W` cuando tu **Max Charge Power** o **Max Discharge Power** es `800 W` o menos, y `2,500 W` en caso contrario; después aplica tu límite exacto por software. Por tanto, leer esos registros directamente muestra `800` o `2500`, no tu ajuste.
 
     La **100% Charge Voltage Taper** opcional es específica de Marstek. Con un objetivo del 100%, limita la carga a `200 W` cuando la celda medida más alta alcanza `3.48 V`. Venus E hace una pausa a `3.60 V` y espera `60 s` antes de evaluar el desequilibrio de celdas. Los sistemas Venus A y D con paquetes acoplados continúan a la potencia de reducción gradual hasta que el sistema de gestión de batería (BMS) termina la carga. Consulta [Monitor de equilibrio de celdas](../../features/cell-balance-monitor.md).
 

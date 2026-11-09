@@ -1,10 +1,10 @@
 # Hoymiles MQTT batteries
 
-Omnibattery controls supported Hoymiles batteries through the MQTT integration already configured in Home Assistant. Home Assistant owns the broker connection, so Omnibattery only needs the battery's device ID.
+OpenBattery controls supported Hoymiles batteries through the MQTT integration already configured in Home Assistant. Home Assistant owns the broker connection, so OpenBattery only needs the battery's device ID.
 
 ## Do I need it?
 
-| Supported product | Nominal capacity | Integration power ceiling | Solar visible to Omnibattery |
+| Supported product | Nominal capacity | Integration power ceiling | Solar visible to OpenBattery |
 |---|---:|---:|---|
 | MS-A2 | 2.24 kWh per unit; up to 4.48 kWh | 1,000 W per unit; up to 2,000 W | No |
 | HiBattery 1920 AC | 1.92 kWh per unit; up to 11.52 kWh | 1,000 W per unit; up to 6,000 W | No |
@@ -23,15 +23,15 @@ Omnibattery controls supported Hoymiles batteries through the MQTT integration a
 
 ## How to add it
 
-1. In the Omnibattery setup flow, choose **Hoymiles MQTT**.
+1. In the OpenBattery setup flow, choose **Hoymiles MQTT**.
 2. Enter a descriptive **Name** and the complete **MQTT device ID**. For a paired system, add it once with the master ID only.
 3. Leave **Battery model** on **Auto-detect** unless the firmware publishes an incorrect or generic model.
-4. Wait while Omnibattery receives live telemetry and the retained power-control discovery message.
+4. Wait while OpenBattery receives live telemetry and the retained power-control discovery message.
 5. Review the detected capacity and power ceilings, then choose the common state-of-charge limits.
 
 ## What you will see
 
-Omnibattery sends automatic and manual charge, discharge, and idle targets through MQTT. Turn on **Battery Manual Control** before using the software **Force Mode** and power controls. The command is refreshed while control remains active so the battery does not return to its internal strategy.
+OpenBattery sends automatic and manual charge, discharge, and idle targets through MQTT. Turn on **Battery Manual Control** before using the software **Force Mode** and power controls. The command is refreshed while control remains active so the battery does not return to its internal strategy.
 
 State of charge (SOC), battery power, voltage, temperature, capacity, and energy readings appear when published by the model. Only HiBattery 4020 X is treated as a system solar source. No supported Hoymiles profile exposes MPPT telemetry for Marstek-specific MPPT correction.
 
@@ -50,9 +50,9 @@ State of charge (SOC), battery power, voltage, temperature, capacity, and energy
 
     HiBattery 4020 X and 4020 AC profiles use a symmetric `2,500 W` integration ceiling even where larger expansion stacks may support more. Higher-power operation remains outside the current integration scope. A lower retained MQTT `min`/`max` envelope always wins.
 
-    Hoymiles MQTT does not expose writable SOC cutoffs or individual cell voltages. Omnibattery enforces SOC limits in software, and Marstek's cell-balance and voltage-taper features are unavailable.
+    Hoymiles MQTT does not expose writable SOC cutoffs or individual cell voltages. OpenBattery enforces SOC limits in software, and Marstek's cell-balance and voltage-taper features are unavailable.
 
-    Omnibattery publishes `mqtt_ctrl` plus the signed target, then refreshes the exact command every `30 s`. A failed refresh retries after `5 s`. On unload it sends idle and restores the device's general mode.
+    OpenBattery publishes `mqtt_ctrl` plus the signed target, then refreshes the exact command every `30 s`. A failed refresh retries after `5 s`. On unload it sends idle and restores the device's general mode.
 
     Existing entries from the former MS-A2-only flow are corrected during reconfiguration when discovery identifies a different model. Only old MS-A2 defaults are replaced; user-adjusted values are retained.
 

@@ -1,10 +1,10 @@
-site_name: Omnibattery
+site_name: OpenBattery
 site_description: Home Assistant custom integration for monitoring and controlling multiple home-battery brands
-site_author: ffunes
-site_url: https://ffunes.github.io/omnibattery/
-repo_url: https://github.com/ffunes/omnibattery
-repo_name: ffunes/omnibattery
-edit_uri: edit/main/site-docs/
+site_author: OpenBattery contributors
+site_url: https://thomasvt1.github.io/openbattery/
+repo_url: https://github.com/thomasvt1/openbattery
+repo_name: thomasvt1/openbattery
+edit_uri: edit/openbattery/site-docs/
 
 docs_dir: site-docs
 site_dir: _site
@@ -49,9 +49,9 @@ plugins:
   - redirects:
       redirect_maps:
         blueprints.md: automations/blueprints.md
-        es/blueprints.md: https://ffunes.github.io/omnibattery/es/automations/blueprints/
+        es/blueprints.md: https://thomasvt1.github.io/openbattery/es/automations/blueprints/
         reference/shelly-pro-3em-mqtt-script.md: hardware/shelly-pro-3em-mqtt-script.md
-        es/reference/shelly-pro-3em-mqtt-script.md: https://ffunes.github.io/omnibattery/es/hardware/shelly-pro-3em-mqtt-script/
+        es/reference/shelly-pro-3em-mqtt-script.md: https://thomasvt1.github.io/openbattery/es/hardware/shelly-pro-3em-mqtt-script/
   - i18n:
       docs_structure: suffix
       languages:
@@ -60,20 +60,20 @@ plugins:
           name: English
           build: true
         - locale: es
-          name: Español
+          name: EspaÃ±ol
           build: true
           nav_translations:
             Home: Inicio
             Get started: Empezar
-            Is my battery compatible?: ¿Es compatible mi batería?
-            Installation guide: Guía de instalación
+            Is my battery compatible?: Â¿Es compatible mi baterÃ­a?
+            Installation guide: GuÃ­a de instalaciÃ³n
             Upgrading from Marstek VEM: Actualizar desde Marstek VEM
             Configure: Configurar
-            Start here: Empieza aquí
-            Sensors and electrical limits: Sensores y límites eléctricos
+            Start here: Empieza aquÃ­
+            Sensors and electrical limits: Sensores y lÃ­mites elÃ©ctricos
             Main sensor: Sensor principal
-            Three-phase current protection: Protección de corriente trifásica
-            Your battery: Tu batería
+            Three-phase current protection: ProtecciÃ³n de corriente trifÃ¡sica
+            Your battery: Tu baterÃ­a
             Choose a brand: Elegir marca
             Marstek: Marstek
             ESPHome / LilyGo: ESPHome / LilyGo
@@ -83,37 +83,37 @@ plugins:
             Indevolt: Indevolt
             Hoymiles MQTT: Hoymiles MQTT
             Huawei: Huawei
-            Hoymiles MS-A2 setup: Instalación de Hoymiles MS-A2
+            Hoymiles MS-A2 setup: InstalaciÃ³n de Hoymiles MS-A2
             Time slots: Franjas horarias
             Large loads and EV chargers: Cargas grandes y cargadores VE
             Excluded devices: Dispositivos excluidos
-            Load exclusion: Exclusión de cargas
+            Load exclusion: ExclusiÃ³n de cargas
             Predictive charging: Carga predictiva
-            Which mode should I choose?: ¿Qué modo elijo?
+            Which mode should I choose?: Â¿QuÃ© modo elijo?
             Time Slot mode: Modo Franja Horaria
-            Dynamic Pricing mode: Modo Precio Dinámico
+            Dynamic Pricing mode: Modo Precio DinÃ¡mico
             Real-Time Price mode: Modo Precio en Tiempo Real
             Features: Funcionalidades
             Follow home consumption: Seguir el consumo de casa
             PD Controller: Controlador PD
             Hourly net balance: Balance neto horario
             Make the most of solar: Aprovechar el sol
-            Daily consumption estimate: Estimación de consumo diario
+            Daily consumption estimate: EstimaciÃ³n de consumo diario
             Solar charge delay: Retraso de carga solar
-            Protect your installation: Proteger la instalación
+            Protect your installation: Proteger la instalaciÃ³n
             Peak shaving: Peak shaving
-            Temperature charge limit: Límite de carga por temperatura
-            Care for your battery: Cuidar la batería
+            Temperature charge limit: LÃ­mite de carga por temperatura
+            Care for your battery: Cuidar la baterÃ­a
             Weekly full charge: Carga semanal completa
             Cell balance monitor: Monitor de equilibrio de celdas
-            Multiple batteries: Varias baterías
-            Daily operation timeline: Cronología diaria
+            Multiple batteries: Varias baterÃ­as
+            Daily operation timeline: CronologÃ­a diaria
             Hardware and meters: Hardware y medidores
             Shelly Pro 3EM MQTT scripts: Scripts MQTT para Shelly Pro 3EM
             Automations: Automatizaciones
             Blueprints: Blueprints
             Support: Soporte
-            Troubleshooting: Solución de problemas
+            Troubleshooting: SoluciÃ³n de problemas
             Changelog: Changelog
             Reference: Referencia
             HA entities: Entidades HA
@@ -122,14 +122,12 @@ plugins:
             Complete register table: Tabla completa de registros
             Contribute: Contribuir
             Architecture: Arquitectura
-            Battery driver requirements: Requisitos para drivers de batería
+            Battery driver requirements: Requisitos para drivers de baterÃ­a
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/ffunes/omnibattery
-    - icon: fontawesome/solid/mug-hot
-      link: https://buymeacoffee.com/ffunes
+      link: https://github.com/thomasvt1/openbattery
   version:
     provider: mike
 

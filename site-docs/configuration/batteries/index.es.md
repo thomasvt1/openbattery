@@ -1,6 +1,6 @@
 # Elige la conexión de tu batería
 
-Elige la vía que coincida con tu batería y con cómo está conectada a Home Assistant. Omnibattery puede coordinar hasta diez baterías compatibles, incluidas instalaciones con varias marcas.
+Elige la vía que coincida con tu batería y con cómo está conectada a Home Assistant. OpenBattery puede coordinar hasta diez baterías compatibles, incluidas instalaciones con varias marcas.
 
 ## Elige una marca de batería
 
@@ -21,7 +21,7 @@ La opción LilyGo es una vía de conexión independiente para una batería Marst
 
 ## Añade cada batería
 
-1. Abre **Ajustes → Dispositivos y servicios → Añadir integración** y selecciona **Omnibattery**. En una instalación existente, abre Omnibattery y elige **Configurar**.
+1. Abre **Ajustes → Dispositivos y servicios → Añadir integración** y selecciona **OpenBattery**. En una instalación existente, abre OpenBattery y elige **Configurar**.
 2. Elige el número de unidades de batería de la instalación.
 3. Selecciona la marca o vía de conexión de la primera batería.
 4. Sigue su guía de configuración y repite los pasos de marca y conexión para cada unidad restante.
@@ -35,8 +35,8 @@ La opción LilyGo es una vía de conexión independiente para una batería Marst
 
 | Ajuste | Qué cambia |
 |---|---|
-| **Name** | Identifica la batería en Home Assistant y en el panel de Omnibattery. |
-| **Max charge power** / **Max discharge power** | Limita lo que Omnibattery puede solicitar. Un límite de hardware comunicado por el dispositivo puede reducir el valor efectivo. |
+| **Name** | Identifica la batería en Home Assistant y en el panel de OpenBattery. |
+| **Max charge power** / **Max discharge power** | Limita lo que OpenBattery puede solicitar. Un límite de hardware comunicado por el dispositivo puede reducir el valor efectivo. |
 | **Max SOC** / **Min SOC** | Establece el límite superior de carga y el límite inferior de descarga. SOC significa estado de carga. |
 | **Charge hysteresis** | Evita ciclos rápidos tras llegar la batería a su límite superior. El mínimo es del 2%; consulta la [histéresis de carga](#histeresis-de-carga). |
 | **Backup Offgrid Threshold** | Mantiene una batería fuera del control automático mientras su salida de respaldo alimenta una carga por encima de este valor. |
@@ -46,12 +46,12 @@ La integración crea controles en tiempo de ejecución para los límites de esta
 
 ## Histéresis de carga
 
-Cuando una batería llega a su límite superior, Omnibattery anota el SOC de ese momento y deja de cargarla. La carga solo se reanuda cuando el SOC baja **por debajo** de ese valor menos la histéresis. Con un SOC máximo del 90% y el 2% predeterminado, la batería vuelve a cargar solo cuando su SOC está por debajo del 88%.
+Cuando una batería llega a su límite superior, OpenBattery anota el SOC de ese momento y deja de cargarla. La carga solo se reanuda cuando el SOC baja **por debajo** de ese valor menos la histéresis. Con un SOC máximo del 90% y el 2% predeterminado, la batería vuelve a cargar solo cuando su SOC está por debajo del 88%.
 
 El mínimo del 2% es deliberado y no se puede reducir. Cerca del tope, el SOC que comunica la batería oscila y suele cambiar a saltos de un punto entero. Con un margen menor, ese ruido bastaría para reanudar la carga una y otra vez en el límite superior. Cada reanudación activa y desactiva el relé de la batería; evitar esos ciclos continuos reduce su desgaste y preserva la vida útil de la batería.
 
 !!! note "Autoconsumo en el tope"
-    Algunas baterías, como algunos modelos de Anker, consumen un poco de su propia energía en reposo. Una vez llenas, su SOC puede bajar poco a poco del 90% al 88% sin descargar hacia la vivienda. Es lo esperado: la batería sigue dentro de la banda de histéresis y Omnibattery no la recarga. Si quieres que termine el día más alta, sube el **SOC máximo** en lugar de intentar quitar la histéresis.
+    Algunas baterías, como algunos modelos de Anker, consumen un poco de su propia energía en reposo. Una vez llenas, su SOC puede bajar poco a poco del 90% al 88% sin descargar hacia la vivienda. Es lo esperado: la batería sigue dentro de la banda de histéresis y OpenBattery no la recarga. Si quieres que termine el día más alta, sube el **SOC máximo** en lugar de intentar quitar la histéresis.
 
 ## Si la vía de batería no está clara
 
@@ -63,11 +63,11 @@ El mínimo del 2% es deliberado y no se puede reducir. Cerca del tope, el SOC qu
 | Un límite es menor de lo previsto | La envolvente detectada del dispositivo es menor que el límite de software configurado | Comprueba la tabla del modelo y el límite comunicado por la batería |
 
 ??? "Detalles avanzados"
-    Omnibattery solicita cada batería por separado, por lo que pueden mezclarse marcas compatibles en una instalación. Los límites individuales de cada batería siempre se aplican incluso cuando están configurados límites de carga o descarga a nivel del sistema. Establecer cualquiera de los límites del sistema en `0 W` desactiva ese límite.
+    OpenBattery solicita cada batería por separado, por lo que pueden mezclarse marcas compatibles en una instalación. Los límites individuales de cada batería siempre se aplican incluso cuando están configurados límites de carga o descarga a nivel del sistema. Establecer cualquiera de los límites del sistema en `0 W` desactiva ese límite.
 
     Los límites de potencia y estado de carga en tiempo de ejecución se conservan y restauran después de reiniciar Home Assistant. **Battery Manual Control** primero verifica un objetivo en reposo, saca la batería del grupo automático y también restaura ese control tras el reinicio.
 
-    **Backup Offgrid Threshold** tiene como valor predeterminado `50 W`. Déjalo en cero cuando no haya ninguna carga permanente conectada, o establécelo por encima de la carga normal permanente del puerto de respaldo para que un router o conmutador de red no parezca un evento de respaldo. Cuando **Backup Function** está activado y la carga medida supera el umbral, Omnibattery excluye la batería del control proporcional–derivativo (PD). Espera `5 min` después de que baje la carga antes de devolver la batería al grupo automático.
+    **Backup Offgrid Threshold** tiene como valor predeterminado `50 W`. Déjalo en cero cuando no haya ninguna carga permanente conectada, o establécelo por encima de la carga normal permanente del puerto de respaldo para que un router o conmutador de red no parezca un evento de respaldo. Cuando **Backup Function** está activado y la carga medida supera el umbral, OpenBattery excluye la batería del control proporcional–derivativo (PD). Espera `5 min` después de que baje la carga antes de devolver la batería al grupo automático.
 
     Configuración relacionada:
 

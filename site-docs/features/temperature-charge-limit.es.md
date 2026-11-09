@@ -6,17 +6,17 @@ El límite de carga por temperatura protege una batería caliente reduciendo su 
 
 **Úsalo si** una o varias baterías se calientan repetidamente por su ubicación, el clima o una potencia alta sostenida, y prefieres una reducción gradual antes de que el BMS alcance su propio corte.
 
-**No lo necesitas si** la temperatura de la batería se mantiene cómoda a plena potencia o tu batería no publica una lectura de temperatura interna en Omnibattery.
+**No lo necesitas si** la temperatura de la batería se mantiene cómoda a plena potencia o tu batería no publica una lectura de temperatura interna en OpenBattery.
 
 ## Antes de empezar
 
 - Confirma que cada batería que quieras proteger tiene una entidad **Temperatura interna** con valor numérico.
-- Es una función a nivel de sistema, pero Omnibattery calcula el límite por separado para cada batería a partir de su propia temperatura.
+- Es una función a nivel de sistema, pero OpenBattery calcula el límite por separado para cada batería a partir de su propia temperatura.
 - Decide si solo debe limitarse la carga. Limitar la descarga es opcional y usa la misma curva de temperatura.
 
 ## Cómo activarlo
 
-1. Abre el panel lateral de Omnibattery y selecciona **Control**.
+1. Abre el panel lateral de OpenBattery y selecciona **Control**.
 2. En **Límite de carga por temperatura**, activa **Límite de carga por temperatura**.
 3. Configura **Límite de carga por temperatura**, **Banda del límite de carga por temperatura** y **Suelo del límite de carga por temperatura**.
 4. Activa **Límite de descarga por temperatura** solo si también quieres que las baterías calientes reduzcan la potencia de descarga.
@@ -51,7 +51,7 @@ Con los valores predeterminados, la reducción empieza por encima de 40 °C y al
 | La descarga sigue sin límite | Limitar la descarga es opcional | **Límite de descarga por temperatura** |
 
 ??? "Detalles avanzados"
-    El suelo configurado es un porcentaje del techo actual por batería, tras cualquier límite de control anterior. Para temperatura `T`, límite `L`, banda de rampa `B` y fracción de suelo `F`, Omnibattery usa:
+    El suelo configurado es un porcentaje del techo actual por batería, tras cualquier límite de control anterior. Para temperatura `T`, límite `L`, banda de rampa `B` y fracción de suelo `F`, OpenBattery usa:
 
     ```text
     factor = 1                                      when T <= L
@@ -62,6 +62,6 @@ Con los valores predeterminados, la reducción empieza por encima de 40 °C y al
 
     La curva es continua y no tiene un cierre de enfriamiento ni histéresis independientes. Una temperatura ausente o no numérica mantiene sin cambios el límite existente.
 
-    Omnibattery nunca aumenta un techo impuesto en otro lugar. Tras aplicar el porcentaje, también respeta cualquier potencia mínima fiable de carga o descarga declarada por el controlador de batería. Los controladores que no declaran mínimo pueden alcanzar 0 W cuando el suelo configurado es 0%; uno con mínimo no nulo se mantiene en el suelo operativo declarado.
+    OpenBattery nunca aumenta un techo impuesto en otro lugar. Tras aplicar el porcentaje, también respeta cualquier potencia mínima fiable de carga o descarga declarada por el controlador de batería. Los controladores que no declaran mínimo pueden alcanzar 0 W cuando el suelo configurado es 0%; uno con mínimo no nulo se mantiene en el suelo operativo declarado.
 
     **Límite de descarga por temperatura** usa la misma curva ajustada para carga. Está desactivado de forma predeterminada porque la descarga puede tolerar el calor de otra manera; actívalo cuando reducir ambas direcciones sea apropiado para tu instalación.

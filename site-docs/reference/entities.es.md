@@ -1,6 +1,6 @@
 # Entidades de Home Assistant
 
-Esta referencia enumera las familias de entidades que puede crear Omnibattery. Tu instalación solo muestra las entidades que admite su controlador de batería y las funciones que hayas configurado.
+Esta referencia enumera las familias de entidades que puede crear OpenBattery. Tu instalación solo muestra las entidades que admite su controlador de batería y las funciones que hayas configurado.
 
 ## Encuentra la entidad que necesitas
 
@@ -34,7 +34,7 @@ Las entidades por batería normalmente usan `<domain>.<battery-name>_<key>`, mos
 
 ## Dispositivo del sistema
 
-Estas entidades pertenecen a **Omnibattery System**, no a una batería.
+Estas entidades pertenecen a **OpenBattery System**, no a una batería.
 
 ??? "Sensores de potencia, energía y aprendizaje"
 

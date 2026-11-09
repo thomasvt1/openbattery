@@ -1,6 +1,6 @@
 # Scripts MQTT para Shelly Pro 3EM
 
-Un Shelly Pro 3EM no proporciona de forma nativa una cadencia de telemetría MQTT de 1–2 segundos, y el [sensor principal](../configuration/main-sensor.md) de Omnibattery funciona mejor con un sensor de red que se actualice rápidamente. Los scripts de esta página se ejecutan en el propio dispositivo y publican telemetría cada segundo mediante MQTT, con MQTT Discovery de Home Assistant para que los sensores aparezcan automáticamente.
+Un Shelly Pro 3EM no proporciona de forma nativa una cadencia de telemetría MQTT de 1–2 segundos, y el [sensor principal](../configuration/main-sensor.md) de OpenBattery funciona mejor con un sensor de red que se actualice rápidamente. Los scripts de esta página se ejecutan en el propio dispositivo y publican telemetría cada segundo mediante MQTT, con MQTT Discovery de Home Assistant para que los sensores aparezcan automáticamente.
 
 ## ¿Qué script necesito?
 
@@ -17,9 +17,9 @@ Un Shelly Pro 3EM se configura con uno de dos perfiles de medición. Comprueba e
 - Home Assistant conectado al mismo broker MQTT.
 - MQTT Discovery activado en Home Assistant (el prefijo predeterminado es `homeassistant`).
 
-## Seleccionar el sensor en Omnibattery
+## Seleccionar el sensor en OpenBattery
 
-Cuando el script esté en ejecución, abre la configuración del [sensor principal](../configuration/main-sensor.md) de Omnibattery y selecciona el sensor de potencia total detectado (**Total Active Power**) como sensor de consumo de red. Observa el valor del sensor mientras importas y exportas: la convención estándar de Omnibattery es un valor **positivo** para la importación y **negativo** para la exportación. Si tu instalación informa de lo contrario, activa **Inverted meter sign** en lugar de editar el script.
+Cuando el script esté en ejecución, abre la configuración del [sensor principal](../configuration/main-sensor.md) de OpenBattery y selecciona el sensor de potencia total detectado (**Total Active Power**) como sensor de consumo de red. Observa el valor del sensor mientras importas y exportas: la convención estándar de OpenBattery es un valor **positivo** para la importación y **negativo** para la exportación. Si tu instalación informa de lo contrario, activa **Inverted meter sign** en lugar de editar el script.
 
 ## Perfil de tres contadores monofásicos
 
@@ -32,7 +32,7 @@ Cuando el script esté en ejecución, abre la configuración del [sensor princip
 2. Crea un script nuevo y pega el código siguiente.
 3. Guarda el script y, después, actívalo y ejecútalo.
 4. En Home Assistant, confirma que aparecen **Total Active Power** y los tres sensores por pinza, y que se actualizan aproximadamente una vez por segundo.
-5. Selecciona **Total Active Power** como se describe en [Seleccionar el sensor en Omnibattery](#seleccionar-el-sensor-en-omnibattery).
+5. Selecciona **Total Active Power** como se describe en [Seleccionar el sensor en OpenBattery](#seleccionar-el-sensor-en-openbattery).
 
 El script publica el estado en `shellypro3em/<device-id>/state` y la disponibilidad en `shellypro3em/<device-id>/availability`. El broker MQTT retiene los mensajes de descubrimiento, mientras que el estado se publica una vez por segundo.
 
@@ -303,7 +303,7 @@ Timer.set(STATE_INTERVAL_MS, true, publishState);
 2. Crea un script nuevo o sustituye el script del otro perfil de medición.
 3. Pega el código siguiente, guárdalo y, después, actívalo y ejecútalo.
 4. En Home Assistant, confirma que aparecen **Total Active Power** y los sensores por fase, y que se actualizan aproximadamente una vez por segundo.
-5. Selecciona **Total Active Power** como se describe en [Seleccionar el sensor en Omnibattery](#seleccionar-el-sensor-en-omnibattery).
+5. Selecciona **Total Active Power** como se describe en [Seleccionar el sensor en OpenBattery](#seleccionar-el-sensor-en-openbattery).
 
 Este script usa los mismos tópicos de estado y disponibilidad que el script del perfil monofásico, así que no ejecutes ambos scripts simultáneamente para el mismo dispositivo.
 

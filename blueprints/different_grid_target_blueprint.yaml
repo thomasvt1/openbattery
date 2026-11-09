@@ -1,7 +1,7 @@
 blueprint:
-  name: "Omnibattery - Different Grid Target For Charge And Discharge"
+  name: "OpenBattery - Different Grid Target For Charge And Discharge"
   description: >
-    Automatically changes the Omnibattery PD Target Grid Power depending on
+    Automatically changes the OpenBattery PD Target Grid Power depending on
     whether the system is charging or discharging.
 
     Default behavior:
@@ -9,12 +9,12 @@ blueprint:
     - While discharging: set grid target to +50 W, meaning import from grid.
     - While idle: leave the current target unchanged, unless idle reset is enabled.
   domain: automation
-  source_url: "https://github.com/ffunes/omnibattery/blob/main/blueprints/different_grid_target_blueprint.yaml"
+  source_url: "https://github.com/thomasvt1/openbattery/blob/openbattery/blueprints/different_grid_target_blueprint.yaml"
 
   input:
     charge_power_sensor:
       name: "System Charge Power Sensor"
-      description: "Omnibattery system charge power sensor."
+      description: "OpenBattery system charge power sensor."
       default: sensor.omnibattery_system_charge_power
       selector:
         entity:
@@ -23,7 +23,7 @@ blueprint:
 
     discharge_power_sensor:
       name: "System Discharge Power Sensor"
-      description: "Omnibattery system discharge power sensor."
+      description: "OpenBattery system discharge power sensor."
       default: sensor.omnibattery_system_discharge_power
       selector:
         entity:
@@ -32,7 +32,7 @@ blueprint:
 
     target_grid_power_number:
       name: "PD Target Grid Power Number"
-      description: "Omnibattery PD Target Grid Power number entity."
+      description: "OpenBattery PD Target Grid Power number entity."
       default: number.omnibattery_pd_target_grid_power
       selector:
         entity:

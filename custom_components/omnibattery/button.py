@@ -1,4 +1,4 @@
-"""Button platform for the Omnibattery integration."""
+"""Button platform for the OpenBattery integration."""
 from __future__ import annotations
 
 import logging
@@ -117,7 +117,7 @@ class ReevaluateDynamicPricingButton(ButtonEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }

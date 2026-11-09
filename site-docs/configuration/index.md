@@ -1,12 +1,12 @@
-# Configure Omnibattery for your home
+# Configure OpenBattery for your home
 
 Start with the grid meter and battery connection, then add only the controls your installation needs. This route keeps optional schedules, solar planning, and large-load rules out of the way until they solve a real problem for you.
 
 ## Do I need it?
 
-**Use it if** you are installing Omnibattery for the first time or deciding which optional setup sections apply to your home.
+**Use it if** you are installing OpenBattery for the first time or deciding which optional setup sections apply to your home.
 
-**You do not need it if** the integration is already working and you only want to operate an existing switch, number, or selector from the Omnibattery dashboard.
+**You do not need it if** the integration is already working and you only want to operate an existing switch, number, or selector from the OpenBattery dashboard.
 
 ## Before you start
 
@@ -17,7 +17,7 @@ Start with the grid meter and battery connection, then add only the controls you
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Add integration**, search for **Omnibattery**, and select your [grid sensor and electrical limits](main-sensor.md).
+1. Open **Settings → Devices & services → Add integration**, search for **OpenBattery**, and select your [grid sensor and electrical limits](main-sensor.md).
 2. If each phase needs its own current limit, follow [Three-phase current protection](three-phase.md) before continuing. Otherwise, leave it disabled.
 3. Add each battery through [Choose a brand](batteries/index.md) and enter its connection and operating limits.
 4. Follow the route below for optional behavior, then finish the setup.
@@ -40,21 +40,21 @@ flowchart TD
     J --> K
 ```
 
-![Open the Omnibattery configuration menu](../assets/screenshots/configuration/reconfigure-omnibattery.png){ width="650" style="display: block; margin: 0 auto;"}
+![Open the OpenBattery configuration menu](../assets/screenshots/configuration/reconfigure-omnibattery.png){ width="650" style="display: block; margin: 0 auto;"}
 
 ## What you will see
 
-The Omnibattery device exposes the controls that match your saved configuration. Time slots and excluded devices get their own live switches; phase protection, solar-priority behavior, and other enabled features also appear as controls. Use those entities for day-to-day changes without reopening setup.
+The OpenBattery device exposes the controls that match your saved configuration. Time slots and excluded devices get their own live switches; phase protection, solar-priority behavior, and other enabled features also appear as controls. Use those entities for day-to-day changes without reopening setup.
 
-To change the sensor, battery connection, schedule definition, or device definition, open **Settings → Devices & services → Omnibattery → Configure** and choose the relevant section.
+To change the sensor, battery connection, schedule definition, or device definition, open **Settings → Devices & services → OpenBattery → Configure** and choose the relevant section.
 
 ## If it does not work
 
 | Symptom | Likely cause | What to check |
 |---|---|---|
-| Omnibattery cannot continue past the first form | The grid sensor is unavailable or uses an unsupported unit | Confirm that the entity exists and reports power in `W` or `kW` |
+| OpenBattery cannot continue past the first form | The grid sensor is unavailable or uses an unsupported unit | Confirm that the entity exists and reports power in `W` or `kW` |
 | An optional section is missing after setup | It was skipped or its required sensor was not configured | Open **Configure** and revisit that section |
-| A saved setting does not appear on the dashboard | It is a setup value rather than a live control, or the entity is disabled | Check the Omnibattery device page and its disabled entities |
+| A saved setting does not appear on the dashboard | It is a setup value rather than a live control, or the entity is disabled | Check the OpenBattery device page and its disabled entities |
 | A live switch changes behavior but the setup form does not change | Runtime controls and setup fields serve different purposes | Use **Configure** for definitions; use dashboard entities for temporary operation |
 
 ??? "Advanced details"

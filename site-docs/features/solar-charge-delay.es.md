@@ -16,7 +16,7 @@ Aprovecha al máximo la energía solar retrasando la carga de la batería mientr
 
 ## Cómo activarlo
 
-1. Abre el panel lateral de Omnibattery y selecciona **Control**.
+1. Abre el panel lateral de OpenBattery y selecciona **Control**.
 2. Activa **Retraso de carga**.
 3. Configura **Margen de retraso de carga** para dejar tiempo suficiente para terminar de cargar antes de que finalice la producción solar prevista.
 4. Opcional: activa **Activar SOC mínimo antes del retraso** y configura **Objetivo de SOC del retraso de carga** para que la batería cargue hasta ese nivel antes de esperar.
@@ -56,7 +56,7 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
 | Un retraso liberado previamente debería aplicarse de nuevo hoy | Una liberación genuina queda fijada para el día | Desactiva y activa **Retraso de carga** para forzar una decisión nueva |
 
 ??? "Detalles avanzados"
-    Omnibattery modela la producción solar del día actual como una curva sinusoidal y compara la solar prevista restante hasta que termina la producción con la demanda restante del hogar y la energía de batería:
+    OpenBattery modela la producción solar del día actual como una curva sinusoidal y compara la solar prevista restante hasta que termina la producción con la demanda restante del hogar y la energía de batería:
 
     ```text
     net_solar_for_battery = remaining_solar - remaining_consumption
@@ -67,7 +67,7 @@ Consulta la [cronología diaria de funcionamiento](daily-operation-timeline.md) 
         allow charging
     ```
 
-    Omnibattery lee la previsión solar en directo sin una captura nocturna ni almacén de previsiones independiente. Un sensor guardado **Restante hoy** se usa directamente; las entradas antiguas de día completo sin modificar se convierten en una estimación de producción restante.
+    OpenBattery lee la previsión solar en directo sin una captura nocturna ni almacén de previsiones independiente. Un sensor guardado **Restante hoy** se usa directamente; las entradas antiguas de día completo sin modificar se convierten en una estimación de producción restante.
 
     El balance en directo se recalcula cuando la energía prevista cambia más de `0.05 kWh`, o cuando cambia su origen o conversión. Una previsión que empeora puede liberar el retraso inmediatamente; una que mejora mantiene el retraso activo hasta que se cumpla otra condición de liberación.
 

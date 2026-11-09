@@ -12,21 +12,21 @@ El modo Precio en tiempo real comprueba el precio vigente y carga desde la red c
 
 - Prepara un sensor de Home Assistant para el precio actual de electricidad.
 - Elige un **Umbral máximo de precio** fijo o un sensor opcional de precio medio diario. El sensor medio tiene prioridad cuando tiene un valor válido.
-- La previsión solar es opcional. Sin una, Omnibattery evalúa de forma conservadora sin solar futura.
+- La previsión solar es opcional. Sin una, OpenBattery evalúa de forma conservadora sin solar futura.
 - Configura los requisitos comunes descritos en [¿Qué modo debo elegir?](index.md).
 
 ## Cómo activarlo
 
-1. Abre **Ajustes → Dispositivos y servicios → Omnibattery → Configurar** y elige **Precio en tiempo real** como modo de carga predictiva.
+1. Abre **Ajustes → Dispositivos y servicios → OpenBattery → Configurar** y elige **Precio en tiempo real** como modo de carga predictiva.
 2. Selecciona **Sensor de precio de electricidad** y, si está disponible, **Sensor de precio medio diario**.
 3. Selecciona un sensor opcional de previsión solar y termina el formulario.
-4. En la pestaña **Control** de Omnibattery, establece **Umbral máximo de precio** si no proporcionaste un sensor medio y confirma que **Carga predictiva** está activada.
+4. En la pestaña **Control** de OpenBattery, establece **Umbral máximo de precio** si no proporcionaste un sensor medio y confirma que **Carga predictiva** está activada.
 
 ![Configura la fuente de precio actual](../../assets/screenshots/configuration/predictive-charging/real-time-price-form.png){ width="650" style="display: block; margin: 0 auto;" }
 
 ## Qué verás
 
-Cuando el precio actual está en o por debajo del umbral activo, Omnibattery comprueba el balance energético restante. Inicia la carga desde red solo cuando la energía de la batería y la solar esperada no cubren la demanda esperada de la vivienda. La carga se detiene cuando el precio sube por encima del umbral, se alcanza el objetivo calculado o una regla de permiso de carga o seguridad la bloquea.
+Cuando el precio actual está en o por debajo del umbral activo, OpenBattery comprueba el balance energético restante. Inicia la carga desde red solo cuando la energía de la batería y la solar esperada no cubren la demanda esperada de la vivienda. La carga se detiene cuando el precio sube por encima del umbral, se alcanza el objetivo calculado o una regla de permiso de carga o seguridad la bloquea.
 
 Este modo no reserva un periodo futuro más barato, no asigna cuotas futuras de precio ni expone **Reevaluar carga predictiva**. Comprueba de nuevo en cada ciclo de control. Las [franjas horarias de funcionamiento](../time-slots.md) configuradas pueden seguir restringiendo cuándo se permite cargar.
 
@@ -63,7 +63,7 @@ Activa **Descarga basada en precio** si también quieres conservar la batería m
 
     Si ninguno proporciona un valor, Precio en tiempo real no realiza ninguna acción de carga. Si el precio en vivo deja de estar disponible durante una carga, la carga se detiene y la energía no entregada se registra como déficit no cubierto.
 
-    El objetivo energético sigue siendo predictivo: Omnibattery calcula el déficit del horizonte actual y un objetivo por batería. Lo que permanece reactivo es la selección de periodo. Un sensor de precio actual no puede demostrar que existirá un periodo futuro ni que cumplirá un plazo energético, así que este modo no crea reservas futuras.
+    El objetivo energético sigue siendo predictivo: OpenBattery calcula el déficit del horizonte actual y un objetivo por batería. Lo que permanece reactivo es la selección de periodo. Un sensor de precio actual no puede demostrar que existirá un periodo futuro ni que cumplirá un plazo energético, así que este modo no crea reservas futuras.
 
     **Margen de seguridad de previsión solar** se resta de la solar esperada. Las instalaciones nuevas empiezan con aproximadamente el 5% de la capacidad total de batería configurada; si la capacidad se desconoce durante la configuración, el método alternativo es no aplicar margen. Es una entidad de control en vivo, no un campo del formulario de configuración.
 

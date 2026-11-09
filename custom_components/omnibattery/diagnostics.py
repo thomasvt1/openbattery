@@ -1,4 +1,4 @@
-"""Diagnostics for Omnibattery config entries.
+"""Diagnostics for OpenBattery config entries.
 
 Home Assistant calls :func:`async_get_config_entry_diagnostics` when the user
 presses *Download diagnostics* on the integration. It returns a JSON-serialisable

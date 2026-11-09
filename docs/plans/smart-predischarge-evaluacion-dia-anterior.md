@@ -2,7 +2,7 @@
 
 ## Decisión
 
-La [discusión #325](https://github.com/ffunes/Omnibattery/discussions/325)
+La [discusión #325](https://github.com/thomasvt1/openbattery/discussions/325)
 es una **feature request válida e interesante**, con prioridad recomendada
 **media**.
 

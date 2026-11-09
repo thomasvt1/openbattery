@@ -1,6 +1,6 @@
 # Is my battery compatible?
 
-Omnibattery can automatically control the batteries below from Home Assistant. Find your exact model, prepare the connection it needs, and check its limit before you install.
+OpenBattery can automatically control the batteries below from Home Assistant. Find your exact model, prepare the connection it needs, and check its limit before you install.
 
 | Brand / model | What you need | What control you get | Important limit | Guide |
 |---|---|---|---|---|
@@ -12,7 +12,7 @@ Omnibattery can automatically control the batteries below from Home Assistant. F
 | **Zendure SolarFlow 800, 800 Plus, or 800 Pro** | A stable local IP address and Zendure HEMS disabled. | Automatic control; no dedicated solar telemetry; device SOC limits. | 1,000 W charge, 800 W discharge. | [Zendure SolarFlow](configuration/batteries/zendure.md) |
 | **Zendure SolarFlow 1600 AC+, 2400 AC Pro, 2400 AC+, 3000 Mix AC+, or 4000 Mix AC+** | A stable local IP address and Zendure HEMS disabled. | Automatic control; no dedicated solar telemetry; device SOC limits. | Same in both directions: 1,600 / 2,400 / 2,400 / 3,000 / 4,000 W. HEMS takes control back if it is enabled. | [Zendure SolarFlow](configuration/batteries/zendure.md) |
 | **Zendure SolarFlow 4000 Mix Pro** | A stable local IP address and Zendure HEMS disabled. | Automatic control; dual MPPT solar telemetry; device SOC limits. | Up to 4,000 W both ways. HEMS takes control back if it is enabled. | [Zendure SolarFlow](configuration/batteries/zendure.md) |
-| **Anker SOLIX Solarbank Max AC or XE AC** | Modbus TCP and **Third-Party Control** enabled in the Anker app. | Automatic control; no independent solar telemetry; hardware SOC limits. | One Modbus client at a time: no other integration can connect alongside Omnibattery. | [Anker SOLIX](configuration/batteries/anker.md) |
+| **Anker SOLIX Solarbank Max AC or XE AC** | Modbus TCP and **Third-Party Control** enabled in the Anker app. | Automatic control; no independent solar telemetry; hardware SOC limits. | One Modbus client at a time: no other integration can connect alongside OpenBattery. | [Anker SOLIX](configuration/batteries/anker.md) |
 | **Anker SOLIX Solarbank 4 E5000 Pro** | Modbus TCP and **Third-Party Control** enabled in the Anker app. | Automatic control; independent solar telemetry; hardware SOC limits. | Close other Modbus clients before setup. | [Anker SOLIX](configuration/batteries/anker.md) |
 | **Sessy Home Battery** | A reachable Sessy dongle and the credentials printed on it. | Automatic control; its PV reading is informational, not controller solar telemetry; software SOC limits. | 2,200 W charge, 1,700 W discharge. The first command after standby can be delayed. | [Sessy Home Battery](configuration/batteries/sessy.md) |
 | **Indevolt SolidFlex 2000** (PowerFlex 2000, SolidFlex/PowerFlex 1200 and 3000, and SolidFlex 3600 use the same API) | The local API enabled with **HTTP** and the working mode set to **Realtime** in the Indevolt app. | Automatic control; software SOC limits; the reserve and power limits stay in sync with the Indevolt app. | Up to 2,400 W (SolidFlex 2000). | [Indevolt SolidFlex / PowerFlex](configuration/batteries/indevolt.md) |
@@ -23,4 +23,4 @@ Omnibattery can automatically control the batteries below from Home Assistant. F
 
 ## My battery is not listed
 
-A supported model needs reliable local telemetry, charge and discharge control, and a safe idle command. See the [battery driver requirements](reference/driver-requirements-template.md) before requesting a new model, then [open a GitHub issue](https://github.com/ffunes/omnibattery/issues) with the model, firmware, connection method, and any vendor protocol documentation.
+A supported model needs reliable local telemetry, charge and discharge control, and a safe idle command. See the [battery driver requirements](reference/driver-requirements-template.md) before requesting a new model, then [open a GitHub issue](https://github.com/thomasvt1/openbattery/issues) with the model, firmware, connection method, and any vendor protocol documentation.

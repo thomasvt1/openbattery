@@ -1,6 +1,6 @@
 """Async Modbus TCP client for Huawei SUN2000 inverters.
 
-Huawei exposes everything Omnibattery needs through FC03 holding registers, and
+Huawei exposes everything OpenBattery needs through FC03 holding registers, and
 accepts set-points through FC16 — the same function code the reference
 integration uses for every write, single registers included.
 

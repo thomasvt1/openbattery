@@ -1,16 +1,16 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
   - name: "🆘 Help with setup or configuration"
-    url: https://github.com/ffunes/Omnibattery/discussions/new?category=q-a
+    url: https://github.com/thomasvt1/openbattery/discussions
     about: >
       Questions about installing, configuring, or using the integration belong in
       GitHub Discussions. Please do not open a bug report unless you can describe
       an unexpected behavior after completing the setup.
   - name: 💡 General Feature Request / Idea
-    url: https://github.com/ffunes/Omnibattery/discussions/new?category=feature-ideas
+    url: https://github.com/thomasvt1/openbattery/discussions
     about: >
-      General ideas go through community voting in Discussions. To request support
-      for a new battery model, use the Battery Support link below instead.
+      Share ideas and discuss changes to OpenBattery. To request support for a
+      new battery model, use the Battery Support link below instead.
   - name: "🔋 New battery support"
-    url: https://github.com/ffunes/Omnibattery/discussions/new?category=battery-requests
+    url: https://github.com/thomasvt1/openbattery/discussions
     about: Request support for a new battery brand or model through Discussions.

@@ -1,6 +1,6 @@
 # Multiple batteries
 
-Omnibattery coordinates all configured batteries as one system while keeping per-battery limits and controls. It chooses which batteries should participate, then shares the requested power among those that are eligible.
+OpenBattery coordinates all configured batteries as one system while keeping per-battery limits and controls. It chooses which batteries should participate, then shares the requested power among those that are eligible.
 
 ## Do I need it?
 
@@ -10,16 +10,16 @@ Omnibattery coordinates all configured batteries as one system while keeping per
 
 ## Before you start
 
-- Add every battery to the same Omnibattery config entry. A config entry supports up to **10 batteries**.
+- Add every battery to the same OpenBattery config entry. A config entry supports up to **10 batteries**.
 - Confirm that each battery updates reliably and reports state of charge (SOC) and power.
 - Decide whether any battery needs manual control or should be excluded from one direction.
 
 ## How to enable it
 
-1. Open **Settings → Devices & services → Omnibattery → Configure**.
+1. Open **Settings → Devices & services → OpenBattery → Configure**.
 2. Add or review each battery in the battery setup section.
 3. Finish the form and let the integration reload.
-4. Open the Omnibattery panel and review **Allow Charge**, **Allow Discharge**, **Manual Battery Control**, **Primary Battery**, and **Charge Priority**.
+4. Open the OpenBattery panel and review **Allow Charge**, **Allow Discharge**, **Manual Battery Control**, **Primary Battery**, and **Charge Priority**.
 
 This behavior is automatic when the config entry contains multiple batteries; there is no separate multi-battery switch.
 
@@ -161,7 +161,7 @@ See [troubleshooting](../troubleshooting.md) for symptom-led checks.
 
     ## Manual control per battery
 
-    Each battery also exposes `switch.*_battery_manual_mode`. When enabled, Omnibattery first sends and verifies a `0 W` command, clears the integration's software force mode and power setpoints, and removes that battery from the automatic pool. The switch state is persisted per battery, so the exclusion survives a restart. The battery continues to be polled and remains included in physical battery/grid telemetry, but it receives no automatic power setpoints; driver and BMS safety handling remains active.
+    Each battery also exposes `switch.*_battery_manual_mode`. When enabled, OpenBattery first sends and verifies a `0 W` command, clears the integration's software force mode and power setpoints, and removes that battery from the automatic pool. The switch state is persisted per battery, so the exclusion survives a restart. The battery continues to be polled and remains included in physical battery/grid telemetry, but it receives no automatic power setpoints; driver and BMS safety handling remains active.
 
     Turning the switch off keeps the battery under manual ownership while the final idle command is verified. Only then is it returned to the automatic pool and an immediate control cycle scheduled. If the idle handoff fails, the switch stays enabled and the battery remains manual.
 

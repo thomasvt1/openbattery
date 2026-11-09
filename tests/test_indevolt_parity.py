@@ -99,7 +99,7 @@ async def test_the_mac_address_comes_from_the_device_identity(reported, shown):
 
 async def test_the_indevolt_meter_is_not_presented_as_the_grid_meter():
     # 11016 trails the P1 meter by 10-20 s: its own name, and off by default,
-    # so nobody mistakes it for the grid sensor Omnibattery regulates on.
+    # so nobody mistakes it for the grid sensor OpenBattery regulates on.
     assert _definition("indevolt_meter_power")["enabled_by_default"] is False
     assert _definition("indevolt_meter_connected")["enabled_by_default"] is False
     clock, device, driver = await _settled()

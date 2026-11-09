@@ -1,10 +1,10 @@
 # Arquitectura
 
-Esta página presenta el código actual de Omnibattery para colaboradores. Muestra dónde termina el soporte de hardware, dónde empieza el control compartido y qué módulos poseen cada parte de un ciclo de telemetría o de consigna.
+Esta página presenta el código actual de OpenBattery para colaboradores. Muestra dónde termina el soporte de hardware, dónde empieza el control compartido y qué módulos poseen cada parte de un ciclo de telemetría o de consigna.
 
 ## Mapa del sistema
 
-Omnibattery crea un `MarstekVenusDataUpdateCoordinator` por cada batería configurada. La clase conserva su nombre histórico, pero coordina todas las marcas admitidas. Cada coordinador posee un `BatteryDriver` concreto, su bloqueo de conexión, caché de telemetría, calendario de sondeo, estado de salud y límites efectivos.
+OpenBattery crea un `MarstekVenusDataUpdateCoordinator` por cada batería configurada. La clase conserva su nombre histórico, pero coordina todas las marcas admitidas. Cada coordinador posee un `BatteryDriver` concreto, su bloqueo de conexión, caché de telemetría, calendario de sondeo, estado de salud y límites efectivos.
 
 Una entrada de configuración también crea un `ChargeDischargeController` para la flota. El controlador lee el sensor de red de Home Assistant, combina bloqueadores y anulaciones de funciones, calcula la orden de flota, pide a `PowerDistribution` que seleccione baterías y distribuya potencia, y después escribe mediante cada coordinador y controlador.
 

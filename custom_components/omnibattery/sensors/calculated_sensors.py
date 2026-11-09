@@ -1,4 +1,4 @@
-"""Calculated sensors for the Omnibattery integration."""
+"""Calculated sensors for the OpenBattery integration."""
 from __future__ import annotations
 
 import time

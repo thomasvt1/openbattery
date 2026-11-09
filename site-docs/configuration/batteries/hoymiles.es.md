@@ -1,10 +1,10 @@
 # Baterías Hoymiles MQTT
 
-Omnibattery controla las baterías Hoymiles compatibles mediante la integración MQTT ya configurada en Home Assistant. Home Assistant controla la conexión con el broker, por lo que Omnibattery solo necesita el ID de dispositivo de la batería.
+OpenBattery controla las baterías Hoymiles compatibles mediante la integración MQTT ya configurada en Home Assistant. Home Assistant controla la conexión con el broker, por lo que OpenBattery solo necesita el ID de dispositivo de la batería.
 
 ## ¿Lo necesito?
 
-| Producto compatible | Capacidad nominal | Límite de potencia de integración | Solar visible para Omnibattery |
+| Producto compatible | Capacidad nominal | Límite de potencia de integración | Solar visible para OpenBattery |
 |---|---:|---:|---|
 | MS-A2 | 2,24 kWh por unidad; hasta 4,48 kWh | 1.000 W por unidad; hasta 2.000 W | No |
 | HiBattery 1920 AC | 1,92 kWh por unidad; hasta 11,52 kWh | 1.000 W por unidad; hasta 6.000 W | No |
@@ -23,15 +23,15 @@ Omnibattery controla las baterías Hoymiles compatibles mediante la integración
 
 ## Cómo añadirla
 
-1. En el asistente de configuración de Omnibattery, elige **Hoymiles MQTT**.
+1. En el asistente de configuración de OpenBattery, elige **Hoymiles MQTT**.
 2. Introduce un **Name** descriptivo y el **MQTT device ID** completo. En un sistema emparejado, añádelo una sola vez con el ID del maestro.
 3. Deja **Battery model** en **Auto-detect** salvo que el firmware publique un modelo incorrecto o genérico.
-4. Espera mientras Omnibattery recibe telemetría en vivo y el mensaje retenido de descubrimiento del control de potencia.
+4. Espera mientras OpenBattery recibe telemetría en vivo y el mensaje retenido de descubrimiento del control de potencia.
 5. Revisa la capacidad y los límites de potencia detectados, y después elige los límites comunes de estado de carga.
 
 ## Qué verás
 
-Omnibattery envía objetivos automáticos y manuales de carga, descarga y reposo por MQTT. Activa **Battery Manual Control** antes de usar **Force Mode** y los controles de potencia por software. La orden se actualiza mientras el control permanece activo para que la batería no vuelva a su estrategia interna.
+OpenBattery envía objetivos automáticos y manuales de carga, descarga y reposo por MQTT. Activa **Battery Manual Control** antes de usar **Force Mode** y los controles de potencia por software. La orden se actualiza mientras el control permanece activo para que la batería no vuelva a su estrategia interna.
 
 El estado de carga (SOC), potencia de batería, tensión, temperatura, capacidad y lecturas de energía aparecen cuando el modelo las publica. Solo HiBattery 4020 X se considera una fuente solar del sistema. Ningún perfil Hoymiles compatible expone telemetría MPPT para la corrección MPPT específica de Marstek.
 
@@ -50,9 +50,9 @@ El estado de carga (SOC), potencia de batería, tensión, temperatura, capacidad
 
     Los perfiles HiBattery 4020 X y 4020 AC usan un límite de integración simétrico de `2,500 W` incluso cuando pilas de expansión mayores pueden admitir más. El funcionamiento a mayor potencia queda fuera del alcance actual de la integración. Una envolvente MQTT `min`/`max` retenida menor siempre prevalece.
 
-    Hoymiles MQTT no expone cortes de SOC escribibles ni tensiones de celdas individuales. Omnibattery aplica los límites de SOC por software y las funciones Marstek de equilibrio de celdas y reducción gradual por tensión no están disponibles.
+    Hoymiles MQTT no expone cortes de SOC escribibles ni tensiones de celdas individuales. OpenBattery aplica los límites de SOC por software y las funciones Marstek de equilibrio de celdas y reducción gradual por tensión no están disponibles.
 
-    Omnibattery publica `mqtt_ctrl` más el objetivo con signo y después actualiza la orden exacta cada `30 s`. Una actualización fallida se reintenta tras `5 s`. Al descargar la integración envía reposo y restaura el modo general del dispositivo.
+    OpenBattery publica `mqtt_ctrl` más el objetivo con signo y después actualiza la orden exacta cada `30 s`. Una actualización fallida se reintenta tras `5 s`. Al descargar la integración envía reposo y restaura el modo general del dispositivo.
 
     Las entradas existentes del anterior asistente exclusivo para MS-A2 se corrigen al reconfigurarlas cuando el descubrimiento identifica un modelo distinto. Solo se sustituyen los valores predeterminados antiguos de MS-A2; se conservan los valores ajustados por el usuario.
 

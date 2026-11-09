@@ -2,7 +2,7 @@
   "issues": {
     "recorder_excluded_sensors": {
       "title": "Sensors excluded from Recorder",
-      "description": "Recorder excludes these sensors used by Omnibattery to recover solar and household consumption profiles: {sensors}. Include them in Recorder by adjusting its include/exclude rules, then restart Home Assistant to apply the configuration. The warning clears automatically once they are included. Missing past samples cannot be recovered; live learning and existing stored profiles continue to work."
+      "description": "Recorder excludes these sensors used by OpenBattery to recover solar and household consumption profiles: {sensors}. Include them in Recorder by adjusting its include/exclude rules, then restart Home Assistant to apply the configuration. The warning clears automatically once they are included. Missing past samples cannot be recovered; live learning and existing stored profiles continue to work."
     },
     "indevolt_flash_writes_paused": {
       "title": "Indevolt setting writes paused to protect the battery: {name}",
@@ -10,49 +10,49 @@
         "step": {
           "confirm": {
             "title": "Turn Indevolt setting writes back on",
-            "description": "Omnibattery has written the minimum SOC and power limits of **{name}** {allowance} times in the past year, so it paused writing them. This is a safety net, not a limit on you: it keeps an automation or script that changes these settings too often from quietly wearing out the battery's flash memory, which wears a little with every write. Changes made in the Indevolt app are still picked up.\n\nCheck your automations and scripts for anything that changes these settings often. Then confirm here to turn writing back on; a new allowance of {allowance} writes starts. If the changes were intended, just confirm."
+            "description": "OpenBattery has written the minimum SOC and power limits of **{name}** {allowance} times in the past year, so it paused writing them. This is a safety net, not a limit on you: it keeps an automation or script that changes these settings too often from quietly wearing out the battery's flash memory, which wears a little with every write. Changes made in the Indevolt app are still picked up.\n\nCheck your automations and scripts for anything that changes these settings often. Then confirm here to turn writing back on; a new allowance of {allowance} writes starts. If the changes were intended, just confirm."
           }
         },
         "abort": {
-          "battery_unavailable": "The battery is not loaded right now. Try again once Omnibattery is connected to it."
+          "battery_unavailable": "The battery is not loaded right now. Try again once OpenBattery is connected to it."
         }
       }
     },
     "excluded_device_ev_type": {
       "title": "Mark your EV charger among excluded devices",
-      "description": "The new energy-flow diagram (switch it on with the button in the flow card header) draws EV chargers on their own cable, next to the car. Omnibattery cannot tell which excluded device is the EV charger, so until you mark it, its power is shown on the other excluded-devices cable (the outdoor unit) and the EV cable stays empty. Open Options → Excluded devices and save your devices again, ticking \"EV charger\" on the charger (leave it unticked on the others). This only affects how the diagram is drawn, not battery control. The notice disappears once the devices have been saved."
+      "description": "The new energy-flow diagram (switch it on with the button in the flow card header) draws EV chargers on their own cable, next to the car. OpenBattery cannot tell which excluded device is the EV charger, so until you mark it, its power is shown on the other excluded-devices cable (the outdoor unit) and the EV cable stays empty. Open Options → Excluded devices and save your devices again, ticking \"EV charger\" on the charger (leave it unticked on the others). This only affects how the diagram is drawn, not battery control. The notice disappears once the devices have been saved."
     },
     "battery_not_delivering": {
       "title": "Battery {battery} is not delivering power",
-      "description": "{battery} has been accepting charge/discharge commands without delivering power for {minutes} minutes ({reason}). Omnibattery keeps it out of the pool and retries it every {cooldown} minutes, so the rest of the fleet covers the house meanwhile. The battery itself or its connection needs attention: check that it is not sitting in standby under its own app's control, and that the connection is not saturated. Switching Manual Battery Control on and off again for that battery often restores it."
+      "description": "{battery} has been accepting charge/discharge commands without delivering power for {minutes} minutes ({reason}). OpenBattery keeps it out of the pool and retries it every {cooldown} minutes, so the rest of the fleet covers the house meanwhile. The battery itself or its connection needs attention: check that it is not sitting in standby under its own app's control, and that the connection is not saturated. Switching Manual Battery Control on and off again for that battery often restores it."
     },
     "configured_sensor_missing": {
       "title": "Configured sensor no longer exists",
-      "description": "Omnibattery is configured with {sensors}, which does not exist in Home Assistant. Every feature that reads it is inactive. The stored reference is kept on purpose, because the entity picker cannot show an entity that is gone and would otherwise clear your setting silently: open Options → Sensors and pick a replacement, or clear the field once the entity is back."
+      "description": "OpenBattery is configured with {sensors}, which does not exist in Home Assistant. Every feature that reads it is inactive. The stored reference is kept on purpose, because the entity picker cannot show an entity that is gone and would otherwise clear your setting silently: open Options → Sensors and pick a replacement, or clear the field once the entity is back."
     },
     "dead_main_sensor": {
       "title": "Grid power sensor has stopped publishing",
-      "description": "The configured grid sensor {sensor} has not published a reading for {minutes} minutes. Omnibattery cannot regulate without it, so it has stopped automatic control: every battery under automatic control is set to 0W (the last command was {power}W) and predictive grid charging is paused. Manual mode and manual time slots are left as they are. Automatic control resumes by itself as soon as {sensor} publishes a valid reading again. Note that a sensor frozen on a valid value looks perfectly healthy in Home Assistant: check that {sensor} still updates, and that the integration or bridge behind it has not wedged."
+      "description": "The configured grid sensor {sensor} has not published a reading for {minutes} minutes. OpenBattery cannot regulate without it, so it has stopped automatic control: every battery under automatic control is set to 0W (the last command was {power}W) and predictive grid charging is paused. Manual mode and manual time slots are left as they are. Automatic control resumes by itself as soon as {sensor} publishes a valid reading again. Note that a sensor frozen on a valid value looks perfectly healthy in Home Assistant: check that {sensor} still updates, and that the integration or bridge behind it has not wedged."
     },
     "dead_main_sensor_since_start": {
       "title": "Grid power sensor has not reported since the restart",
-      "description": "The configured grid sensor {sensor} has not published a valid reading in the {minutes} minutes since Home Assistant started. Omnibattery cannot regulate without it. If Home Assistant did not shut down cleanly, a battery can still be running its last command from before the restart, so Omnibattery has stopped automatic control: every battery under automatic control is set to 0W and predictive grid charging is paused. Manual mode and manual time slots are left as they are. Automatic control starts by itself as soon as {sensor} publishes a valid reading. Check that {sensor} exists and updates, and that the integration or device behind it came back after the restart."
+      "description": "The configured grid sensor {sensor} has not published a valid reading in the {minutes} minutes since Home Assistant started. OpenBattery cannot regulate without it. If Home Assistant did not shut down cleanly, a battery can still be running its last command from before the restart, so OpenBattery has stopped automatic control: every battery under automatic control is set to 0W and predictive grid charging is paused. Manual mode and manual time slots are left as they are. Automatic control starts by itself as soon as {sensor} publishes a valid reading. Check that {sensor} exists and updates, and that the integration or device behind it came back after the restart."
     },
     "slow_main_sensor": {
       "title": "Grid power sensor updates too slowly",
-      "description": "The configured grid sensor {sensor} updates about every {observed_interval} seconds. Updates every {warning_interval} seconds or more are slower than recommended and may reduce regulation quality. Omnibattery still follows the latest reading until it is more than {stale_limit} seconds old. Use a faster sensor if you need tighter real-time control."
+      "description": "The configured grid sensor {sensor} updates about every {observed_interval} seconds. Updates every {warning_interval} seconds or more are slower than recommended and may reduce regulation quality. OpenBattery still follows the latest reading until it is more than {stale_limit} seconds old. Use a faster sensor if you need tighter real-time control."
     },
     "price_data_unusable": {
       "title": "Price data unusable",
-      "description": "Omnibattery could not parse usable price slots from {sensor} for over {minutes} minutes (status: {status}). Price-aware charging is inactive: dynamic-pricing scheduling and the price-aware charge-delay release fall back to their no-price behaviour. Check that the sensor is available and that its price attribute is a list of entries; a template sensor must emit ISO-8601 timestamps, because a rendered Python datetime cannot be converted back into a list."
+      "description": "OpenBattery could not parse usable price slots from {sensor} for over {minutes} minutes (status: {status}). Price-aware charging is inactive: dynamic-pricing scheduling and the price-aware charge-delay release fall back to their no-price behaviour. Check that the sensor is available and that its price attribute is a list of entries; a template sensor must emit ISO-8601 timestamps, because a rendered Python datetime cannot be converted back into a list."
     },
     "solar_forecast_unusable": {
       "title": "Solar forecast unusable",
-      "description": "The configured solar forecast sensor {sensor} has been unavailable or unreadable for over {minutes} minutes. Omnibattery keeps running, but every feature that depends on the forecast is now blind: the charge delay unlocks for the rest of the day, grid-charge decisions assume no sun at all and may book grid slots you do not need, and remaining-solar estimates read as 0 kWh. Check the sensor or the integration that provides it."
+      "description": "The configured solar forecast sensor {sensor} has been unavailable or unreadable for over {minutes} minutes. OpenBattery keeps running, but every feature that depends on the forecast is now blind: the charge delay unlocks for the rest of the day, grid-charge decisions assume no sun at all and may book grid slots you do not need, and remaining-solar estimates read as 0 kWh. Check the sensor or the integration that provides it."
     },
     "solar_forecast_remaining_recommended": {
       "title": "Use a remaining solar forecast",
-      "description": "{sensor} is a legacy whole-day solar forecast. Omnibattery still supports it, but past forecast errors can make intraday decisions inaccurate. Configure the provider's \"remaining today\" forecast sensor in Omnibattery options for a more accurate remaining-solar calculation."
+      "description": "{sensor} is a legacy whole-day solar forecast. OpenBattery still supports it, but past forecast errors can make intraday decisions inaccurate. Configure the provider's \"remaining today\" forecast sensor in OpenBattery options for a more accurate remaining-solar calculation."
     },
     "three_phase_sensor_degraded": {
       "title": "Three-phase protection is running blind on {phase}",
@@ -67,10 +67,10 @@
     "step": {
       "migrate_legacy": {
         "title": "Migrate from Marstek Venus",
-        "description": "Found {count} existing Marstek Venus configuration(s). Migrating to Omnibattery keeps all your entities, history and settings intact. Continue?"
+        "description": "Found {count} existing Marstek Venus configuration(s). Migrating to OpenBattery keeps all your entities, history and settings intact. Continue?"
       },
       "user": {
-        "title": "Configure Omnibattery",
+        "title": "Configure OpenBattery",
         "description": "Select the sensor that measures grid import/export power. Optionally, configure the solar forecast sensor for advanced features.",
         "data": {
           "consumption_sensor": "Grid consumption sensor",
@@ -117,7 +117,7 @@
       },
       "phase_assignments": {
         "title": "Battery {battery_num} phase assignment",
-        "description": "Select the physical AC phase where {battery_name} is connected, or choose Unassigned if it is not connected to a protected phase. Omnibattery cannot discover this wiring automatically.",
+        "description": "Select the physical AC phase where {battery_name} is connected, or choose Unassigned if it is not connected to a protected phase. OpenBattery cannot discover this wiring automatically.",
         "data": {
           "battery_phase": "Physical battery phase"
         }
@@ -136,7 +136,7 @@
           "brand": "Brand"
         },
         "data_description": {
-          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for Omnibattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
+          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for OpenBattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
         }
       },
       "battery_connection": {
@@ -163,7 +163,7 @@
       },
       "battery_connection_zendure": {
         "title": "Configure battery {battery_num} — Connection (Zendure)",
-        "description": "Enter connection details for the Zendure SolarFlow battery {battery_num}. Keep HEMS disabled in the Zendure app for Omnibattery control.",
+        "description": "Enter connection details for the Zendure SolarFlow battery {battery_num}. Keep HEMS disabled in the Zendure app for OpenBattery control.",
         "data": {
           "name": "Name",
           "host": "IP Address",
@@ -338,7 +338,7 @@
           "activity_sensor": "State or binary sensor that becomes 'on' or reports 'Charging'/'Cargando' when the device requests power. Required for Dynamic Power Control and for a new EV charger without power telemetry.",
           "included_in_consumption": "✓ CHECKED = Home sensor ALREADY includes this device → Battery will NOT power it (excluded). ✗ UNCHECKED = Home sensor doesn't see it → Battery WILL power it (additional)",
           "allow_solar_surplus": "If checked, the device will be able to consume energy directly from solar panels (surplus) without the battery trying to compensate. Recommended for high consumption devices like EV chargers.",
-          "dynamic_power_control": "Enable for devices that automatically adjust their own demand from the grid meter, such as a solar-surplus wallbox. If an activity sensor is configured, Omnibattery yields before power appears; otherwise it reacts to the power sensor. It then uses genuine leftover export.",
+          "dynamic_power_control": "Enable for devices that automatically adjust their own demand from the grid meter, such as a solar-surplus wallbox. If an activity sensor is configured, OpenBattery yields before power appears; otherwise it reacts to the power sensor. It then uses genuine leftover export.",
           "cover_home_when_active": "Requires Solar Surplus and a solar-production sensor. The battery may cover the home's own load while this device is active; only the device's grid share stays excluded.",
           "ev_charger_no_telemetry": "✓ CHECKED = Use the Activity / EV charging sensor instead of numeric power telemetry. Existing configurations that placed this state sensor in Device power sensor continue to work. When charging is detected, the battery pauses for 5 minutes; afterwards it may only charge from solar surplus and never discharges for the EV.",
           "is_ev_charger": "Tick it if this device is an electric-vehicle charger. It is used only by the animated energy-flow diagram, to draw the device on the EV charger cable instead of the excluded-devices cable. It does not change how the battery manages the device.",
@@ -626,12 +626,12 @@
       },
       "reconfigure_battery_indevolt_request_speed": {
         "title": "Reconfigure battery {battery_num} — Request speed (Indevolt)",
-        "description": "A higher request speed lets your battery react sooner to meter changes, which can improve net zero. The options:\n\n- **Conservative** (5s) is Indevolt's recommendation and the default. It suits a meter that updates every 5s, the usual rate in Home Assistant: a faster speed won't make the battery react sooner with such a meter.\n- **Normal** (3s) suits a meter that updates every 3s.\n- **Fast** (2s) suits a meter that updates every 2s. With a meter that updates every second it is the safe choice: the battery then gets a new command at most every 2s.\n- **Maximum** (1s) sends a command up to every second and no longer waits 1s between requests, which is below Indevolt's documented minimum. It only helps with a meter that updates every second; with a slower meter, pick **Fast**. With **Maximum**, also set PD Min Cycle Interval to 0 when every battery in Omnibattery is an Indevolt.",
+        "description": "A higher request speed lets your battery react sooner to meter changes, which can improve net zero. The options:\n\n- **Conservative** (5s) is Indevolt's recommendation and the default. It suits a meter that updates every 5s, the usual rate in Home Assistant: a faster speed won't make the battery react sooner with such a meter.\n- **Normal** (3s) suits a meter that updates every 3s.\n- **Fast** (2s) suits a meter that updates every 2s. With a meter that updates every second it is the safe choice: the battery then gets a new command at most every 2s.\n- **Maximum** (1s) sends a command up to every second and no longer waits 1s between requests, which is below Indevolt's documented minimum. It only helps with a meter that updates every second; with a slower meter, pick **Fast**. With **Maximum**, also set PD Min Cycle Interval to 0 when every battery in OpenBattery is an Indevolt.",
         "data": {
           "indevolt_request_speed": "Request speed"
         },
         "data_description": {
-          "indevolt_request_speed": "Every speed faster than 5s is at your own risk: you are responsible for checking that your battery, Home Assistant and network can keep up. On the device page, Request interval (effective) should keep matching your choice, and Read latency (P95) and Write latency (P95) should stay well below 1s.\n\nFeel free to try it: when the battery answers slowly or not at all, Omnibattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered."
+          "indevolt_request_speed": "Every speed faster than 5s is at your own risk: you are responsible for checking that your battery, Home Assistant and network can keep up. On the device page, Request interval (effective) should keep matching your choice, and Read latency (P95) and Write latency (P95) should stay well below 1s.\n\nFeel free to try it: when the battery answers slowly or not at all, OpenBattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered."
         }
       },
       "reconfigure_battery_anker": {
@@ -670,7 +670,7 @@
           },
           "data_description": {
             "name": "Descriptive name to identify this battery",
-            "host": "Address of the Modbus proxy or inverter Omnibattery reads from",
+            "host": "Address of the Modbus proxy or inverter OpenBattery reads from",
             "port": "Modbus TCP port (default 502)",
             "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.",
             "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.",
@@ -679,7 +679,7 @@
         },
       "reconfigure_battery_hoymiles": {
         "title": "Reconfigure battery {battery_num} — Hoymiles MQTT",
-        "description": "Enter the Hoymiles MQTT device ID; Home Assistant manages the broker and Omnibattery detects the model.",
+        "description": "Enter the Hoymiles MQTT device ID; Home Assistant manages the broker and OpenBattery detects the model.",
         "data": {"name": "Name", "device_id": "MQTT device ID", "hoymiles_model": "Battery model"},
         "data_description": {"hoymiles_model": "Use automatic discovery unless the device publishes an incorrect or generic model."}
       },
@@ -710,7 +710,7 @@
       },
       "battery_connection_indevolt": {
         "title": "Configure battery {battery_num} — Connection (Indevolt)",
-        "description": "Enter the IP address of Indevolt battery {battery_num}. In the Indevolt app, enable the local API with the **HTTP** protocol (not HTTP Digest). Omnibattery controls the battery only in **Realtime** mode, which you select in the Indevolt app; it never changes the mode itself.",
+        "description": "Enter the IP address of Indevolt battery {battery_num}. In the Indevolt app, enable the local API with the **HTTP** protocol (not HTTP Digest). OpenBattery controls the battery only in **Realtime** mode, which you select in the Indevolt app; it never changes the mode itself.",
         "data": {
           "name": "Name",
           "host": "IP Address",
@@ -724,23 +724,23 @@
       },
       "indevolt_request_speed": {
         "title": "Configure battery {battery_num} — Request speed (Indevolt)",
-        "description": "A higher request speed lets your battery react sooner to meter changes, which can improve net zero. The options:\n\n- **Conservative** (5s) is Indevolt's recommendation and the default. It suits a meter that updates every 5s, the usual rate in Home Assistant: a faster speed won't make the battery react sooner with such a meter.\n- **Normal** (3s) suits a meter that updates every 3s.\n- **Fast** (2s) suits a meter that updates every 2s. With a meter that updates every second it is the safe choice: the battery then gets a new command at most every 2s.\n- **Maximum** (1s) sends a command up to every second and no longer waits 1s between requests, which is below Indevolt's documented minimum. It only helps with a meter that updates every second; with a slower meter, pick **Fast**. With **Maximum**, also set PD Min Cycle Interval to 0 when every battery in Omnibattery is an Indevolt.",
+        "description": "A higher request speed lets your battery react sooner to meter changes, which can improve net zero. The options:\n\n- **Conservative** (5s) is Indevolt's recommendation and the default. It suits a meter that updates every 5s, the usual rate in Home Assistant: a faster speed won't make the battery react sooner with such a meter.\n- **Normal** (3s) suits a meter that updates every 3s.\n- **Fast** (2s) suits a meter that updates every 2s. With a meter that updates every second it is the safe choice: the battery then gets a new command at most every 2s.\n- **Maximum** (1s) sends a command up to every second and no longer waits 1s between requests, which is below Indevolt's documented minimum. It only helps with a meter that updates every second; with a slower meter, pick **Fast**. With **Maximum**, also set PD Min Cycle Interval to 0 when every battery in OpenBattery is an Indevolt.",
         "data": {
           "indevolt_request_speed": "Request speed"
         },
         "data_description": {
-          "indevolt_request_speed": "Every speed faster than 5s is at your own risk: you are responsible for checking that your battery, Home Assistant and network can keep up. On the device page, Request interval (effective) should keep matching your choice, and Read latency (P95) and Write latency (P95) should stay well below 1s.\n\nFeel free to try it: when the battery answers slowly or not at all, Omnibattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered."
+          "indevolt_request_speed": "Every speed faster than 5s is at your own risk: you are responsible for checking that your battery, Home Assistant and network can keep up. On the device page, Request interval (effective) should keep matching your choice, and Read latency (P95) and Write latency (P95) should stay well below 1s.\n\nFeel free to try it: when the battery answers slowly or not at all, OpenBattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered."
         }
       },
       "indevolt_mode_notice": {
         "title": "Battery {battery_num} — Realtime mode required",
-        "description": "The battery is not in Realtime mode. Setup continues and Omnibattery monitors the battery, but it controls the battery only once you select **Realtime** in the Indevolt app. Control then starts automatically."
+        "description": "The battery is not in Realtime mode. Setup continues and OpenBattery monitors the battery, but it controls the battery only once you select **Realtime** in the Indevolt app. Control then starts automatically."
       },
       "battery_connection_huawei": {
         "title": "Configure battery {battery_num} — Connection (Huawei)",
-        "description": "Omnibattery reads this battery over Modbus and sends its set-points through the Huawei Solar integration, so it needs both: a Modbus endpoint and the battery device. Point the Modbus address at a Modbus proxy rather than straight at the inverter — the Huawei Solar integration already holds a connection to it.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides Omnibattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
+        "description": "OpenBattery reads this battery over Modbus and sends its set-points through the Huawei Solar integration, so it needs both: a Modbus endpoint and the battery device. Point the Modbus address at a Modbus proxy rather than straight at the inverter — the Huawei Solar integration already holds a connection to it.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides OpenBattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
         "data": {"name": "Name", "host": "IP Address", "port": "Modbus Port", "slave_id": "Modbus slave id (leave empty to search)", "huawei_battery_device": "Huawei Solar battery device", "huawei_direct_write": "Direct Modbus writes"},
-        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter Omnibattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
+        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter OpenBattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
       },
       "battery_connection_huawei_slave": {
         "title": "Configure battery {battery_num} — Choose inverter",
@@ -770,15 +770,15 @@
       "hoymiles_no_power_ctrl": "This MQTT device ID publishes telemetry but no power control. In a paired Hoymiles system only the master can be controlled: add the master's device ID once, not the slave.",
       "indevolt_http_digest": "The battery asks for a password: its local API is set to HTTP Digest. Select HTTP in the Indevolt app and try again.",
       "no_battery": "Inverter reached, but it reports no battery. Check that the LUNA2000 is attached and the Modbus slave ID points at the inverter.",
-      "huawei_device_required": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
-      "huawei_solar_missing": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
+      "huawei_device_required": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
+      "huawei_solar_missing": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
       "huawei_device_mismatch": "The chosen battery device belongs to a different inverter than the Modbus address points at. With cascaded inverters the readings would come from one unit while the commands landed on another. Check the device and the slave id.",
       "esphome_entities_missing": "The selected ESPHome device is missing required entities: {missing}. Make sure it runs the marstek-lilygo-rs485 firmware with the stock entity names.",
       "sensor_not_found": "Solar forecast sensor does not exist. Verify the sensor is available.",
       "invalid_unit": "Solar forecast sensor must have 'kWh' or 'Wh' as unit.",
       "solar_production_sensor_not_found": "Solar production sensor does not exist. Verify the sensor is available.",
       "solar_production_invalid_unit": "Solar production sensor must have 'W' or 'kW' as unit.",
-      "solar_production_sensor_circular": "A solar sensor created by OmniBattery cannot be reused as an external solar production input.",
+      "solar_production_sensor_circular": "A solar sensor created by OpenBattery cannot be reused as an external solar production input.",
       "offgrid_sensor_must_differ": "The off-grid power sensor must differ from the normal grid sensor.",
       "offgrid_sensor_not_found": "The off-grid power sensor does not exist or is unavailable.",
       "offgrid_sensor_invalid_unit": "The off-grid power sensor must have 'W' or 'kW' as unit.",
@@ -812,7 +812,7 @@
       "already_configured": "This integration is already configured.",
       "reconfigure_successful": "Battery connection settings updated successfully.",
       "no_legacy_entries": "No legacy Marstek Venus configuration was found to migrate.",
-      "migration_successful": "Migrated {count} configuration(s) to Omnibattery. Your entities, history and settings were preserved.",
+      "migration_successful": "Migrated {count} configuration(s) to OpenBattery. Your entities, history and settings were preserved.",
       "restore_successful": "Restored {count} configuration(s). Your entities, history and settings were recovered."
     }
   },
@@ -826,7 +826,7 @@
         }
       },
       "init": {
-        "title": "Reconfigure Omnibattery",
+        "title": "Reconfigure OpenBattery",
         "description": "Select which section you want to configure.",
         "menu_options": {
           "sensors": "Sensors",
@@ -890,7 +890,7 @@
       },
       "phase_assignments": {
         "title": "Battery {battery_num} phase assignment",
-        "description": "Select the physical AC phase where {battery_name} is connected, or choose Unassigned if it is not connected to a protected phase. Omnibattery cannot discover this wiring automatically.",
+        "description": "Select the physical AC phase where {battery_name} is connected, or choose Unassigned if it is not connected to a protected phase. OpenBattery cannot discover this wiring automatically.",
         "data": {
           "battery_phase": "Physical battery phase"
         }
@@ -917,7 +917,7 @@
           "brand": "Brand"
         },
         "data_description": {
-          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for Omnibattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
+          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for OpenBattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
         }
       },
       "battery_connection": {
@@ -944,7 +944,7 @@
       },
       "battery_connection_zendure": {
         "title": "Configure battery {battery_num} — Connection (Zendure)",
-        "description": "Modify connection details for the Zendure SolarFlow battery {battery_num}. Keep HEMS disabled in the Zendure app for Omnibattery control.",
+        "description": "Modify connection details for the Zendure SolarFlow battery {battery_num}. Keep HEMS disabled in the Zendure app for OpenBattery control.",
         "data": {
           "name": "Name",
           "host": "IP Address",
@@ -1113,7 +1113,7 @@
           "activity_sensor": "State or binary sensor that becomes 'on' or reports 'Charging'/'Cargando' when the device requests power. Required for Dynamic Power Control and for a new EV charger without power telemetry.",
           "included_in_consumption": "✓ CHECKED = Home sensor ALREADY includes this device → Battery will NOT power it (excluded). ✗ UNCHECKED = Home sensor doesn't see it → Battery WILL power it (additional)",
           "allow_solar_surplus": "If checked, the device will be able to consume energy directly from solar panels (surplus) without the battery trying to compensate. Recommended for high consumption devices like EV chargers.",
-          "dynamic_power_control": "Enable for devices that automatically adjust their own demand from the grid meter, such as a solar-surplus wallbox. If an activity sensor is configured, Omnibattery yields before power appears; otherwise it reacts to the power sensor. It then uses genuine leftover export.",
+          "dynamic_power_control": "Enable for devices that automatically adjust their own demand from the grid meter, such as a solar-surplus wallbox. If an activity sensor is configured, OpenBattery yields before power appears; otherwise it reacts to the power sensor. It then uses genuine leftover export.",
           "cover_home_when_active": "Requires Solar Surplus and a solar-production sensor. The battery may cover the home's own load while this device is active; only the device's grid share stays excluded.",
           "ev_charger_no_telemetry": "✓ CHECKED = Use the Activity / EV charging sensor instead of numeric power telemetry. Existing configurations that placed this state sensor in Device power sensor continue to work. When charging is detected, the battery pauses for 5 minutes; afterwards it may only charge from solar surplus and never discharges for the EV.",
           "is_ev_charger": "Tick it if this device is an electric-vehicle charger. It is used only by the animated energy-flow diagram, to draw the device on the EV charger cable instead of the excluded-devices cable. It does not change how the battery manages the device.",
@@ -1365,23 +1365,23 @@
       },
       "indevolt_request_speed": {
         "title": "Configure battery {battery_num} — Request speed (Indevolt)",
-        "description": "A higher request speed lets your battery react sooner to meter changes, which can improve net zero. The options:\n\n- **Conservative** (5s) is Indevolt's recommendation and the default. It suits a meter that updates every 5s, the usual rate in Home Assistant: a faster speed won't make the battery react sooner with such a meter.\n- **Normal** (3s) suits a meter that updates every 3s.\n- **Fast** (2s) suits a meter that updates every 2s. With a meter that updates every second it is the safe choice: the battery then gets a new command at most every 2s.\n- **Maximum** (1s) sends a command up to every second and no longer waits 1s between requests, which is below Indevolt's documented minimum. It only helps with a meter that updates every second; with a slower meter, pick **Fast**. With **Maximum**, also set PD Min Cycle Interval to 0 when every battery in Omnibattery is an Indevolt.",
+        "description": "A higher request speed lets your battery react sooner to meter changes, which can improve net zero. The options:\n\n- **Conservative** (5s) is Indevolt's recommendation and the default. It suits a meter that updates every 5s, the usual rate in Home Assistant: a faster speed won't make the battery react sooner with such a meter.\n- **Normal** (3s) suits a meter that updates every 3s.\n- **Fast** (2s) suits a meter that updates every 2s. With a meter that updates every second it is the safe choice: the battery then gets a new command at most every 2s.\n- **Maximum** (1s) sends a command up to every second and no longer waits 1s between requests, which is below Indevolt's documented minimum. It only helps with a meter that updates every second; with a slower meter, pick **Fast**. With **Maximum**, also set PD Min Cycle Interval to 0 when every battery in OpenBattery is an Indevolt.",
         "data": {
           "indevolt_request_speed": "Request speed"
         },
         "data_description": {
-          "indevolt_request_speed": "Every speed faster than 5s is at your own risk: you are responsible for checking that your battery, Home Assistant and network can keep up. On the device page, Request interval (effective) should keep matching your choice, and Read latency (P95) and Write latency (P95) should stay well below 1s.\n\nFeel free to try it: when the battery answers slowly or not at all, Omnibattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered."
+          "indevolt_request_speed": "Every speed faster than 5s is at your own risk: you are responsible for checking that your battery, Home Assistant and network can keep up. On the device page, Request interval (effective) should keep matching your choice, and Read latency (P95) and Write latency (P95) should stay well below 1s.\n\nFeel free to try it: when the battery answers slowly or not at all, OpenBattery's Indevolt driver automatically steps back to a calmer pace until the response time has recovered."
         }
       },
       "indevolt_mode_notice": {
         "title": "Battery {battery_num} — Realtime mode required",
-        "description": "The battery is not in Realtime mode. Setup continues and Omnibattery monitors the battery, but it controls the battery only once you select **Realtime** in the Indevolt app. Control then starts automatically."
+        "description": "The battery is not in Realtime mode. Setup continues and OpenBattery monitors the battery, but it controls the battery only once you select **Realtime** in the Indevolt app. Control then starts automatically."
       },
       "battery_connection_huawei": {
         "title": "Configure battery {battery_num} — Connection (Huawei)",
-        "description": "Modify the Modbus endpoint and the Huawei Solar battery device used for battery {battery_num}.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides Omnibattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
+        "description": "Modify the Modbus endpoint and the Huawei Solar battery device used for battery {battery_num}.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides OpenBattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
         "data": {"name": "Name", "host": "IP Address", "port": "Modbus Port", "slave_id": "Modbus slave id (leave empty to search)", "huawei_battery_device": "Huawei Solar battery device", "huawei_direct_write": "Direct Modbus writes"},
-        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter Omnibattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
+        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter OpenBattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
       },
       "battery_connection_huawei_slave": {
         "title": "Configure battery {battery_num} — Choose inverter",
@@ -1411,15 +1411,15 @@
       "hoymiles_no_power_ctrl": "This MQTT device ID publishes telemetry but no power control. In a paired Hoymiles system only the master can be controlled: add the master's device ID once, not the slave.",
       "indevolt_http_digest": "The battery asks for a password: its local API is set to HTTP Digest. Select HTTP in the Indevolt app and try again.",
       "no_battery": "Inverter reached, but it reports no battery. Check that the LUNA2000 is attached and the Modbus slave ID points at the inverter.",
-      "huawei_device_required": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
-      "huawei_solar_missing": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
+      "huawei_device_required": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
+      "huawei_solar_missing": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
       "huawei_device_mismatch": "The chosen battery device belongs to a different inverter than the Modbus address points at. With cascaded inverters the readings would come from one unit while the commands landed on another. Check the device and the slave id.",
       "esphome_entities_missing": "The selected ESPHome device is missing required entities: {missing}. Make sure it runs the marstek-lilygo-rs485 firmware with the stock entity names.",
       "sensor_not_found": "Solar forecast sensor does not exist. Verify the sensor is available.",
       "invalid_unit": "Solar forecast sensor must have 'kWh' or 'Wh' as unit.",
       "solar_production_sensor_not_found": "Solar production sensor does not exist. Verify the sensor is available.",
       "solar_production_invalid_unit": "Solar production sensor must have 'W' or 'kW' as unit.",
-      "solar_production_sensor_circular": "A solar sensor created by OmniBattery cannot be reused as an external solar production input.",
+      "solar_production_sensor_circular": "A solar sensor created by OpenBattery cannot be reused as an external solar production input.",
       "offgrid_sensor_must_differ": "The off-grid power sensor must differ from the normal grid sensor.",
       "offgrid_sensor_not_found": "The off-grid power sensor does not exist or is unavailable.",
       "offgrid_sensor_invalid_unit": "The off-grid power sensor must have 'W' or 'kW' as unit.",

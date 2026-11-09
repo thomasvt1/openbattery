@@ -1,10 +1,10 @@
 # Zendure SolarFlow
 
-Omnibattery controla los dispositivos Zendure SolarFlow compatibles mediante su interfaz de red local. Detecta el modelo durante la configuración y aplica la envolvente de potencia correspondiente.
+OpenBattery controla los dispositivos Zendure SolarFlow compatibles mediante su interfaz de red local. Detecta el modelo durante la configuración y aplica la envolvente de potencia correspondiente.
 
 ## ¿Lo necesito?
 
-| Modelo compatible | Carga máxima en CA | Descarga máxima en CA | Entrada solar visible para Omnibattery |
+| Modelo compatible | Carga máxima en CA | Descarga máxima en CA | Entrada solar visible para OpenBattery |
 |---|---:|---:|---|
 | SolarFlow 800 / 800 Plus / 800 Pro | 1.000 W | 800 W | Sin telemetría MPPT específica |
 | SolarFlow 1600 AC+ | 1.600 W | 1.600 W | No |
@@ -13,7 +13,7 @@ Omnibattery controla los dispositivos Zendure SolarFlow compatibles mediante su 
 | SolarFlow 4000 Mix AC+ | 4.000 W | 4.000 W | No |
 | SolarFlow 4000 Mix Pro | 4.000 W | 4.000 W | Telemetría MPPT dual |
 
-**Úsalo si** Home Assistant puede llegar al SolarFlow en la red local y puedes mantener desactivado el sistema de gestión energética doméstica (HEMS) de Zendure. **No uses ambos controladores a la vez:** HEMS anula la orden de Omnibattery después de unos segundos.
+**Úsalo si** Home Assistant puede llegar al SolarFlow en la red local y puedes mantener desactivado el sistema de gestión energética doméstica (HEMS) de Zendure. **No uses ambos controladores a la vez:** HEMS anula la orden de OpenBattery después de unos segundos.
 
 ## Antes de empezar
 
@@ -24,15 +24,15 @@ Omnibattery controla los dispositivos Zendure SolarFlow compatibles mediante su 
 
 ## Cómo añadirlo
 
-1. En el asistente de configuración de Omnibattery, elige **Zendure SolarFlow**.
+1. En el asistente de configuración de OpenBattery, elige **Zendure SolarFlow**.
 2. Introduce un **Name** descriptivo y el **Host IP** del dispositivo.
 3. Mantén **HTTP port** en `80` salvo que tu red use otro puerto.
-4. Espera mientras Omnibattery lee el informe del dispositivo y detecta el modelo.
+4. Espera mientras OpenBattery lee el informe del dispositivo y detecta el modelo.
 5. Introduce la capacidad nominal y elige límites de potencia y estado de carga dentro de la envolvente detectada.
 
 ## Qué verás
 
-Omnibattery proporciona control automático y controles por software **Force Mode**, **Set Charge Power** y **Set Discharge Power**. Activa **Battery Manual Control** antes de usar esos valores manuales. La orden activa se envía mediante la interfaz local del dispositivo; mantén HEMS desactivado para que Zendure no recupere el control.
+OpenBattery proporciona control automático y controles por software **Force Mode**, **Set Charge Power** y **Set Discharge Power**. Activa **Battery Manual Control** antes de usar esos valores manuales. La orden activa se envía mediante la interfaz local del dispositivo; mantén HEMS desactivado para que Zendure no recupere el control.
 
 El estado de carga (SOC), potencia de batería, temperatura, energía y otras lecturas aparecen cuando el modelo las comunica. Solo SolarFlow 4000 Mix Pro proporciona telemetría específica de seguimiento del punto de máxima potencia (MPPT) mediante esta conexión.
 
@@ -49,7 +49,7 @@ El estado de carga (SOC), potencia de batería, temperatura, energía y otras le
 ??? "Detalles avanzados"
     La configuración lee `/properties/report` y asigna el producto comunicado a un perfil de modelo. El informe sigue siendo la fuente autorizada cuando anuncia un límite de carga menor que el perfil.
 
-    Zendure no tiene registros de modo forzado como Marstek. Para el control en vivo, Omnibattery escribe el modo de carga o descarga y su límite con el control no persistente activado, y después actualiza el objetivo durante los ciclos normales del controlador. Las escrituras de configuración, como los límites de SOC, usan modo persistente.
+    Zendure no tiene registros de modo forzado como Marstek. Para el control en vivo, OpenBattery escribe el modo de carga o descarga y su límite con el control no persistente activado, y después actualiza el objetivo durante los ciclos normales del controlador. Las escrituras de configuración, como los límites de SOC, usan modo persistente.
 
     Las entradas existentes de SolarFlow 2400 AC+ se pueden promocionar automáticamente cuando el dispositivo comunica después un identificador de producto SolarFlow 4000 Mix. Los límites de usuario guardados se conservan hasta que los aumentes en las opciones de batería.
 

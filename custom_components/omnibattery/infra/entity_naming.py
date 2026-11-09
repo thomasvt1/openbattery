@@ -29,11 +29,11 @@ def english_entity_id(domain: str, device_name: str, key: str) -> str:
 
 # System (aggregate) entities keep a stable, brand-legacy ``unique_id`` prefix so
 # the registry identity — and the long-term statistics/history tied to it —
-# survive the Omnibattery rebrand untouched. Never change this; the v9 heal
+# survive the OpenBattery rebrand untouched. Never change this; the v9 heal
 # migration and existing installs depend on it.
 SYSTEM_UNIQUE_ID_PREFIX = "marstek_venus_system_"
 
-# The *suggested* object id, however, uses the Omnibattery prefix. Existing
+# The *suggested* object id retains the compatible ``omnibattery`` prefix. Existing
 # installs keep their stored ``sensor.marstek_venus_system_*`` id until the user
 # opts in via HA's built-in "Recreate entity IDs" (which regenerates from the
 # suggested object id); fresh installs are born ``omnibattery_*``.
@@ -56,7 +56,7 @@ def system_entity_id(domain: str, key: str) -> str:
 
 
 def is_omnibattery_solar_entity(hass, entity_id: str | None) -> bool:
-    """Return whether an entity is one of OmniBattery's solar outputs.
+    """Return whether an entity is one of OpenBattery's solar outputs.
 
     Check the stable registry identity as well as current and legacy suggested
     IDs so renamed aggregate and per-battery entities are both covered.
@@ -85,7 +85,7 @@ def is_omnibattery_solar_entity(hass, entity_id: str | None) -> bool:
 def excluded_device_name(hass, device: dict) -> str:
     """Return an excluded device's Home Assistant name, with an ID fallback.
 
-    Excluded-device controls are registered on the Omnibattery system device, so
+    Excluded-device controls are registered on the OpenBattery system device, so
     their translated names need an explicit per-device prefix.  Prefer the name
     the user gave the configured source entity rather than exposing its object
     ID.  The fallback keeps setup resilient when the source entity is currently

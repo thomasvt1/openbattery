@@ -1,22 +1,22 @@
 # Resumen de registros Modbus de Marstek
 
-Esta referencia cubre los controladores basados en registros de Marstek Venus que utiliza Omnibattery. Los demás controladores de batería usan su propia API local, MQTT o contrato de entidades de Home Assistant, y no utilizan este mapa.
+Esta referencia cubre los controladores basados en registros de Marstek Venus que utiliza OpenBattery. Los demás controladores de batería usan su propia API local, MQTT o contrato de entidades de Home Assistant, y no utilizan este mapa.
 
 !!! warning "La escritura de registros puede interrumpir el control normal"
-    Prioriza las entidades y controles de Omnibattery. Las escrituras directas pueden entrar en conflicto con el control automático, seleccionar un modo de funcionamiento inseguro o dejar activa una consigna obsoleta. No escribas una dirección sin haber comprobado el modelo, la familia de firmware, el tipo de dato, la escala y el valor permitido.
+    Prioriza las entidades y controles de OpenBattery. Las escrituras directas pueden entrar en conflicto con el control automático, seleccionar un modo de funcionamiento inseguro o dejar activa una consigna obsoleta. No escribas una dirección sin haber comprobado el modelo, la familia de firmware, el tipo de dato, la escala y el valor permitido.
 
 La [tabla completa de registros](registers.md) es una referencia técnica **solo en inglés**.
 
 ## Familias de firmware
 
-| Código en la tabla completa | Selección de hardware de Omnibattery |
+| Código en la tabla completa | Selección de hardware de OpenBattery |
 |---|---|
 | `a` | Venus A |
 | `d` | Venus D |
 | `e_v12` | Venus E v2 |
 | `e_v3` | Venus E v3 |
 
-Una celda vacía significa que Omnibattery no define esa clave para la familia seleccionada. No demuestra que la dirección física no sea utilizada por el firmware.
+Una celda vacía significa que OpenBattery no define esa clave para la familia seleccionada. No demuestra que la dirección física no sea utilizada por el firmware.
 
 ## Cómo leer la tabla
 
@@ -57,8 +57,8 @@ Los límites de estado de carga de Venus E v3, Venus A y Venus D se aplican medi
 1. Confirma la familia de hardware seleccionada en la entrada de configuración.
 2. Compara la entidad de Home Assistant relacionada con la fila de la tabla completa.
 3. Comprueba si la fila es de telemetría, configuración o una orden de control inmediata.
-4. Descarga los diagnósticos de Omnibattery antes de modificar nada.
+4. Descarga los diagnósticos de OpenBattery antes de modificar nada.
 5. Usa primero la [guía de solución de problemas](../troubleshooting.md) y las entidades de batería.
 
 ??? "Temporización del transporte"
-    Omnibattery aplica por sí mismo la cadencia y los tiempos de espera específicos de cada firmware. Venus E v3, Venus A y Venus D requieren un mínimo de 150 ms entre mensajes Modbus TCP; Venus E v2 requiere 50 ms. El sondeo o las escrituras externas en la misma conexión pueden retrasar las respuestas e interferir con el tráfico del controlador. Una pasarela RS-485 usa un perfil de cadencia distinto y más corto que el servidor Modbus TCP nativo de la batería.
+    OpenBattery aplica por sí mismo la cadencia y los tiempos de espera específicos de cada firmware. Venus E v3, Venus A y Venus D requieren un mínimo de 150 ms entre mensajes Modbus TCP; Venus E v2 requiere 50 ms. El sondeo o las escrituras externas en la misma conexión pueden retrasar las respuestas e interferir con el tráfico del controlador. Una pasarela RS-485 usa un perfil de cadencia distinto y más corto que el servidor Modbus TCP nativo de la batería.

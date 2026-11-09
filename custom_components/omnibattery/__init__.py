@@ -1,4 +1,4 @@
-"""The Omnibattery integration."""
+"""The OpenBattery integration."""
 from __future__ import annotations
 
 import asyncio
@@ -336,7 +336,7 @@ PLATFORMS: list[Platform] = [
 # Sidebar dashboard panel served with the integration.
 PANEL_URL_PATH = "omnibattery"
 PANEL_STATIC_PATH = "/omnibattery_static"
-PANEL_TITLE = "Omnibattery"
+PANEL_TITLE = "OpenBattery"
 PANEL_ICON = "mdi:home-battery"
 _PANEL_REGISTERED_KEY = "_panel_registered"
 _STATIC_REGISTERED_KEY = "_panel_static_registered"
@@ -9367,7 +9367,7 @@ class ChargeDischargeController:
 
         self._missing_sensors_reported = missing
         _LOGGER.warning(
-            "Configured sensor(s) %s do not exist in Home Assistant - Omnibattery "
+            "Configured sensor(s) %s do not exist in Home Assistant - OpenBattery "
             "keeps the stored reference; pick a replacement in the options flow",
             ", ".join(missing),
         )
@@ -10857,8 +10857,8 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
               to the floor so SOC drift can't shrink the deadband into chatter.
     v8 -> v9: re-key system-level entity unique_ids off the config entry_id and
               onto a stable "marstek_venus_system_" prefix, and heal the duplicate
-              entities the Omnibattery domain migration created (orphan + `_2`).
-    v9 -> v10: rename config entry title to "Omnibattery".
+              entities the OpenBattery domain migration created (orphan + `_2`).
+    v9 -> v10: rename config entry title to "OpenBattery".
     v10 -> v11: add the disabled-by-default three-phase protection schema and
                 normalize an empty battery phase on existing batteries.
     v11 -> v12: distinguish MPPT-capable Venus A/D hardware from installations
@@ -11035,7 +11035,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     if entry.version < 9:
         # System-level entities used to key their unique_id on the config
-        # entry_id (`f"{entry.entry_id}_{key}"`). The Omnibattery domain
+        # entry_id (`f"{entry.entry_id}_{key}"`). The OpenBattery domain
         # migration creates a NEW config entry (new entry_id), so those
         # unique_ids changed and HA registered duplicates: the old entities
         # became orphans (device_id None, stale entry_id prefix) while the new
@@ -11100,14 +11100,14 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 healed += 1
 
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 9 "
+            "OpenBattery: migrated config entry to version 9 "
             "(re-keyed %d system entity unique_id(s) to stable prefix; "
             "removed post-rebrand duplicates)",
             healed,
         )
 
     if entry.version < 10:
-        _LOGGER.info("Omnibattery: migrated config entry to version 10 (renamed title to Omnibattery)")
+        _LOGGER.info("OpenBattery: migrated config entry to version 10 (renamed title to OpenBattery)")
 
     if entry.version < 11:
         # Never infer or enable a physical phase layout during migration.  Empty
@@ -11124,7 +11124,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             for battery in new_data.get("batteries", [])
         ]
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 11 "
+            "OpenBattery: migrated config entry to version 11 "
             "(three-phase protection disabled; battery phases normalized)",
         )
 
@@ -11142,7 +11142,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             for battery in new_data.get("batteries", [])
         ]
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 12 "
+            "OpenBattery: migrated config entry to version 12 "
             "(recorded whether Venus A/D MPPT panels are connected)",
         )
 
@@ -11191,7 +11191,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 ent_reg.async_update_entity(keeper.entity_id, new_unique_id=new_uid)
 
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 13 "
+            "OpenBattery: migrated config entry to version 13 "
             "(merged dp/rt price-discharge-control switches into price_discharge_control%s)",
             "; removed stale duplicate from a past mode switch" if removed_duplicate else "",
         )
@@ -11209,7 +11209,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             ent_reg.async_remove(entity_id)
 
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 14 "
+            "OpenBattery: migrated config entry to version 14 "
             "(removed predictive_grid_charge_margin_pct; superseded by the "
             "solar-forecast safety margin)",
         )
@@ -11247,7 +11247,7 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             new_data.pop(CONF_PREDISCHARGE_RESERVE_SOC, None)
 
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 15 "
+            "OpenBattery: migrated config entry to version 15 "
             "(dropped the export-power knobs; discharge power is now the limit)",
         )
 
@@ -11270,13 +11270,13 @@ async def async_migrate_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
                 ent_reg.async_remove(entity_id)
 
         _LOGGER.info(
-            "Omnibattery: migrated config entry to version 16 "
+            "OpenBattery: migrated config entry to version 16 "
             "(high-price switches merged into the high_price_sale select)",
         )
 
     hass.config_entries.async_update_entry(
         entry,
-        title="Omnibattery",
+        title="OpenBattery",
         data=new_data,
         version=16,
     )
@@ -11522,7 +11522,7 @@ async def _async_migrate_legacy_active_balance(
                     "message": (
                         "The old integrated active-balance run could not be migrated "
                         f"safely ({err}). The battery is held in manual mode at 0 W. "
-                        "Keep it available and reload Omnibattery to retry."
+                        "Keep it available and reload OpenBattery to retry."
                     ),
                 },
             )
@@ -11634,7 +11634,7 @@ async def _setup_batteries_per_link(batteries, setup_battery):
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Omnibattery from a config entry.
+    """Set up OpenBattery from a config entry.
 
     A setup that raises or is cancelled after a battery connected is never
     unloaded, so its connections stayed open. A Marstek v3 or a single-slot

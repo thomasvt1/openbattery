@@ -1,6 +1,6 @@
 # Reserve battery power for demand peaks
 
-Protect your installation with capacity protection (peak shaving): below a battery state of charge (SOC) threshold, Omnibattery saves energy for demand that would exceed your chosen grid-import limit. This can reduce contracted-power peaks and keep a reserve for later.
+Protect your installation with capacity protection (peak shaving): below a battery state of charge (SOC) threshold, OpenBattery saves energy for demand that would exceed your chosen grid-import limit. This can reduce contracted-power peaks and keep a reserve for later.
 
 ## Do I need it?
 
@@ -19,7 +19,7 @@ Peak shaving is an optional reserve strategy. Contracted-power emergency protect
 
 ## How to enable it
 
-1. Open the Omnibattery sidebar panel and select **Control**.
+1. Open the OpenBattery sidebar panel and select **Control**.
 2. Turn on **Peak Shaving**.
 3. Set **Peak Shaving SOC Threshold**. Below this average fleet SOC, the battery preserves capacity for peaks.
 4. Set **Peak Shaving Limit** to the grid-import threshold you want the battery to hold.
@@ -60,7 +60,7 @@ See the [daily operation timeline](daily-operation-timeline.md) to compare peak-
 | The battery discharges during a price-protected period | A physical peak or contracted-power emergency takes priority | Grid import and the active protection status |
 
 ??? "Advanced details"
-    Below the conservation threshold, Omnibattery reconstructs household load from grid and battery AC telemetry and applies this target:
+    Below the conservation threshold, OpenBattery reconstructs household load from grid and battery AC telemetry and applies this target:
 
     ```text
     battery_discharge = max(0, household_load - peak_limit)
@@ -70,7 +70,7 @@ See the [daily operation timeline](daily-operation-timeline.md) to compare peak-
 
     **Peak Shaving for Excluded Devices** is disabled by default. Above the conservation threshold, ordinary home coverage stays unchanged and only the excluded share that would leave physical grid import over the limit is added back. With `1,000 W` of normal demand, `4,000 W` excluded, and a `3,000 W` limit, the battery supplies `2,000 W`: `1,000 W` for normal demand and `1,000 W` to shave the excluded load. Below the threshold, capacity protection already applies the limit to total demand.
 
-    During an active predictive charging period, household demand has priority. Omnibattery first reduces positive battery charging, then commands idle and waits for inverter and meter telemetry to settle. If import remains too high, Peak Shaving uses the lower of its configured limit and maximum contracted power. Independently, physical import above maximum contracted power can trigger emergency discharge, including for excluded loads seen by the grid connection.
+    During an active predictive charging period, household demand has priority. OpenBattery first reduces positive battery charging, then commands idle and waits for inverter and meter telemetry to settle. If import remains too high, Peak Shaving uses the lower of its configured limit and maximum contracted power. Independently, physical import above maximum contracted power can trigger emergency discharge, including for excluded loads seen by the grid connection.
 
     Price-based discharge restrictions and protected negative-price periods cannot suppress a legitimate peak-shaving or contracted-power emergency command. Stopping predictive charge, Peak Shaving discharge, normal proportional–derivative (PD) discharge, and emergency discharge remain separate actions. When stable import capacity returns, discharge stops, telemetry settles, and predictive charging resumes with hysteresis; its SOC target and pending energy remain preserved.
 

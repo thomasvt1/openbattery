@@ -1,15 +1,15 @@
 """Indevolt user settings on the config channel, kept in sync both ways.
 
-Three Indevolt settings have an Omnibattery counterpart: the reserve (min SOC),
+Three Indevolt settings have an OpenBattery counterpart: the reserve (min SOC),
 the max AC input (max charge power) and the max AC output (max discharge power).
 They live in the battery's flash, so they are written only on a direct user
 action (see FLASH WEAR in ``infra/indevolt_client.py``):
 
-* **Omnibattery -> device:** a number entity or an options-flow save requests a
+* **OpenBattery -> device:** a number entity or an options-flow save requests a
   value. After a debounce the value is compared with what the device holds and
   written only if it differs, within a yearly allowance shared by the three
   settings. Every flash write is logged at INFO.
-* **Device -> Omnibattery:** a value changed elsewhere (the Indevolt app, the
+* **Device -> OpenBattery:** a value changed elsewhere (the Indevolt app, the
   official integration) is adopted and stored in the battery's config, without
   writing anything.
 
@@ -39,7 +39,7 @@ _LOGGER = logging.getLogger(__name__)
 @dataclass(frozen=True)
 class Setting:
     key: str  # logical key: coordinator data and number entity
-    config_key: str  # the battery config key Omnibattery keeps
+    config_key: str  # the battery config key OpenBattery keeps
     read_point: int
     write_point: int  # a CONFIG_WRITE_POINTS member
 
@@ -66,7 +66,7 @@ DEBOUNCE_S = 3.0
 # also one that failed: a battery can store a value and still not answer. Once
 # this many writes fall within a rolling year, writing stays off until the user
 # turns it back on in Repairs, which starts a new allowance; changes made on the
-# device are still adopted. Without a person stepping in, Omnibattery therefore
+# device are still adopted. Without a person stepping in, OpenBattery therefore
 # writes the battery's flash at most 100 times a year, whatever goes wrong. A
 # person changing settings stays far below it; an automation that changes them
 # every day reaches it after 100 days, and the Repairs issue says why.
@@ -158,7 +158,7 @@ class IndevoltSettings:
         return None if value is None else int(round(value))
 
     def published(self, key: str) -> int | None:
-        """The value Omnibattery should show and use: a requested or just-written
+        """The value OpenBattery should show and use: a requested or just-written
         value until the device reports it, otherwise the device's own."""
         if key in self._pending:
             return self._pending[key][0]
@@ -214,7 +214,7 @@ class IndevoltSettings:
 
         A value that differs from the last one both sides agreed on was changed
         in the options flow (which reloads the entry), so it is user intent. An
-        equal value means nothing changed on Omnibattery's side: the device stays
+        equal value means nothing changed on OpenBattery's side: the device stays
         the source of truth and is adopted on the next read. Without an agreed
         value (first start) nothing is written either.
         """
@@ -234,10 +234,10 @@ class IndevoltSettings:
                              self._name, setting.key, configured, synced)
                 self.request(setting.key, configured, origin="options flow")
 
-    # --- device -> Omnibattery ---------------------------------------------------------
+    # --- device -> OpenBattery ---------------------------------------------------------
 
     def on_telemetry(self) -> None:
-        """Confirm written values and adopt values changed outside Omnibattery."""
+        """Confirm written values and adopt values changed outside OpenBattery."""
         self._load_guard()  # raises the Repairs issue again after a restart
         now = self._clock()
         for setting in SETTINGS:

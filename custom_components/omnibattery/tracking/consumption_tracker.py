@@ -885,7 +885,7 @@ class ConsumptionTracker:
         if is_omnibattery_solar_entity(self._hass, entity_id):
             if not getattr(self, "_solar_self_reference_warned", False):
                 _LOGGER.error(
-                    "Ignoring invalid solar production sensor %s: an OmniBattery "
+                    "Ignoring invalid solar production sensor %s: an OpenBattery "
                     "solar output cannot be reused as an external input",
                     entity_id,
                 )

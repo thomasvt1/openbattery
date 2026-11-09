@@ -4,20 +4,20 @@ Hourly net balance adjusts battery power during each clock hour so grid import m
 
 ## Do I need it?
 
-**Use it if** your electricity contract values net grid energy within each clock hour and you want Omnibattery to correct an early import or export before that hour ends.
+**Use it if** your electricity contract values net grid energy within each clock hour and you want OpenBattery to correct an early import or export before that hour ends.
 
 **You do not need it if** your billing uses a different settlement period, instant zero-grid control already meets your goal, or you do not want the battery to spend energy correcting the current hour.
 
 ## Before you start
 
-- Configure the grid consumption sensor used by Omnibattery. It is the fallback source for this feature.
+- Configure the grid consumption sensor used by OpenBattery. It is the fallback source for this feature.
 - Enable automatic battery control and make sure at least one battery can act in the required direction.
 - If you use time slots, the feature operates only while a configured slot allows discharge. With no enabled slots, it operates all day.
 - Check whether [capacity protection (peak shaving)](peak-shaving.md) is active. When it intervenes, its safety target takes precedence over the hourly correction.
 
 ## How to enable it
 
-1. Open the Omnibattery sidebar panel and select **Control**.
+1. Open the OpenBattery sidebar panel and select **Control**.
 2. Find **Hourly net balance** and turn it on.
 3. Leave **Hourly Balance Target** at `0.0 kWh` for net zero, or choose a positive target for net import and a negative target for net export.
 4. Start with the default **Hourly Balance Max Offset** of `1,000 W`, then confirm that **Balance Neto** begins tracking the current hour.
@@ -26,7 +26,7 @@ Hourly net balance adjusts battery power during each clock hour so grid import m
 
 **Balance Neto** shows the current hour's net grid energy. A positive state means net export; a negative state means net import. Its status indicates whether the feature is idle, outside a time slot, compensating toward import or export, capped by its maximum offset, or blocked from charging.
 
-The correction changes during the hour. For example, after net import has accumulated, Omnibattery shifts the grid target toward discharge or export for the remaining time. It does not erase the measured history; it adjusts the power needed to approach the target by the end of the hour.
+The correction changes during the hour. For example, after net import has accumulated, OpenBattery shifts the grid target toward discharge or export for the remaining time. It does not erase the measured history; it adjusts the power needed to approach the target by the end of the hour.
 
 ## If it does not work
 
@@ -39,7 +39,7 @@ The correction changes during the hour. For example, after net import has accumu
 | The offset changes too often | Offset hysteresis is too small for the meter noise | Increase **Hourly Balance Hysteresis** |
 | No correction occurs near the target | The deviation is inside the energy tolerance | Reduce **Hourly Balance Deadband** if tighter correction is worth the extra cycling |
 | Correction disappears while peak shaving is active | Capacity protection owns the grid target | This is expected; its absolute safety target replaces hourly and other additive targets while active |
-| The displayed source is unavailable | The optional external balance sensor stopped updating | Restore that sensor; Omnibattery uses the grid-power integration when no external sensor is detected |
+| The displayed source is unavailable | The optional external balance sensor stopped updating | Restore that sensor; OpenBattery uses the grid-power integration when no external sensor is detected |
 
 ??? "Advanced details"
     ### Settings
@@ -55,7 +55,7 @@ The correction changes during the hour. For example, after net import has accumu
 
     ### Calculation
 
-    On every control cycle, Omnibattery accumulates import and export for the current local civil hour and calculates an additive target offset:
+    On every control cycle, OpenBattery accumulates import and export for the current local civil hour and calculates an additive target offset:
 
     ```text
     net_Wh = imported_Wh − exported_Wh
@@ -69,7 +69,7 @@ The correction changes during the hour. For example, after net import has accumu
 
     ### Data source
 
-    Omnibattery first looks for `sensor.balance_neto`. It assumes a positive value means export and chooses a reading method from the unit and state class:
+    OpenBattery first looks for `sensor.balance_neto`. It assumes a positive value means export and chooses a reading method from the unit and state class:
 
     | Source type | Unit | State class | Reading method |
     |---|---|---|---|
@@ -93,7 +93,7 @@ The correction changes during the hour. For example, after net import has accumu
 
     While charging is blocked, the positive target offset remains registered. This prevents the PD controller from discharging the battery to cover the home load while the grid supplies it, and allows the stored correction to take effect when the blocker clears. Export-direction corrections are not blocked by these charge conditions.
 
-    Hourly balance is an additive target: Omnibattery sums it with the user's grid target and other additive preferences. An active absolute override replaces that sum. Capacity protection uses such an override, so it takes precedence while controlling a peak.
+    Hourly balance is an additive target: OpenBattery sums it with the user's grid target and other additive preferences. An active absolute override replaces that sum. Capacity protection uses such an override, so it takes precedence while controlling a peak.
 
     ### Diagnostic attributes and persistence
 

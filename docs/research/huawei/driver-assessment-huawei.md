@@ -70,7 +70,7 @@ existing driver model, both described in [§13](#13-what-a-dc-coupled-hybrid-bre
 - [x] Real, fresh SOC as a percentage — register 37004, verified against the
       `huawei_solar` sensor.
 - [x] Real battery power — register 37001, `+charge / −discharge`, already the
-      Omnibattery convention.
+      OpenBattery convention.
 - [x] Power-limited charging — `huawei_solar.forcible_charge`.
 - [x] Power-limited discharging — `huawei_solar.forcible_discharge`.
 - [x] A safe idle. **Not the obvious one** — see §13.1.
@@ -102,7 +102,7 @@ existing driver model, both described in [§13](#13-what-a-dc-coupled-hybrid-bre
 All registers FC03 holding, unit id 4, verified against the corresponding
 `huawei_solar` sensor on the same installation.
 
-| Omnibattery key | B/R/O | Register | Type | Scale → unit | Cadence | Src | Tested |
+| OpenBattery key | B/R/O | Register | Type | Scale → unit | Cadence | Src | Tested |
 |---|---|---|---|---|---|---|---|
 | `battery_soc` | B | 37004 | u16 | ÷10 → % | high | N | [x] |
 | `battery_power` | B | 37001 | i32 | → W, +charge/−discharge | high | N | [x] |
@@ -260,7 +260,7 @@ it appears nowhere in the telemetry.
 
 **An EMMA carries the grid meter, and it is worth reading here.** Register
 31657 on the EMMA's own unit id is its built-in meter's active power, already in
-the sign convention Omnibattery uses. It answers live on every request — 25 ms
+the sign convention OpenBattery uses. It answers live on every request — 25 ms
 per read, 20 of 20 on the reference installation — where `huawei_solar`
 publishes the same figure on a 30 s coordinator, far too slow to control
 against. An installation with an EMMA is metered by it and may well have no
@@ -530,7 +530,7 @@ a battery in it. Guarding on state of charge instead would buy back the dawn
 refusal for a full battery, which is the larger of the two faults.
 
 What this costs is real and belongs in the decision: **a Huawei battery is
-under Omnibattery's control after dark, and during the day only for a charge it
+under OpenBattery's control after dark, and during the day only for a charge it
 would not curtail.** Otherwise it follows its own energy manager. An
 installation whose second battery is AC-coupled still gets full control of that
 one, which is where the surplus can be steered.
@@ -626,7 +626,7 @@ Blocking items:
 - Safe limits:     registers 37046/37048
 - Freshness:       2-3 s at the register; failed blocks omit their keys
 
-Omnibattery adaptations:
+OpenBattery adaptations:
 - Split transport: native Modbus for telemetry, services or direct registers for control
 - Dynamic discharge limit from the inverter's AC headroom
 - Per-string power derived from separate voltage and current registers

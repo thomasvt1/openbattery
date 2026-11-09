@@ -81,7 +81,7 @@ async def _mount_entry(hass: HomeAssistant) -> MockConfigEntry:
     _register_domain(hass)
     entry = MockConfigEntry(
         domain=DOMAIN,
-        title="Omnibattery",
+        title="OpenBattery",
         unique_id=ENTRY_UNIQUE_ID,
         data=ENTRY_DATA,
         options=ENTRY_OPTIONS,

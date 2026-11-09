@@ -511,7 +511,7 @@ class HoymilesMqttDriver(BatteryDriver):
     def _build_capabilities(self) -> DriverCapabilities:
         # ``has_mppt_pv`` remains false even for 4020 X: its MQTT battery-power
         # value is already the cell-side value, unlike the Marstek DC-bus value
-        # for which Omnibattery's MPPT correction capability was designed.
+        # for which OpenBattery's MPPT correction capability was designed.
         return DriverCapabilities(
             False, False, True, self._max_charge_w, self._max_discharge_w,
             False, False, False, has_solar_telemetry=self._has_pv,

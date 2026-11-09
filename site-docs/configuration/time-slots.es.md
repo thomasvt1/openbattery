@@ -17,7 +17,7 @@ Las franjas horarias le permiten permitir la carga o descarga solo durante los p
 
 ## Cómo activarlo
 
-1. Abra **Configuración → Dispositivos y servicios → Omnibattery → Configurar → Franjas horarias** y habilite **Configurar franjas horarias**.
+1. Abra **Configuración → Dispositivos y servicios → OpenBattery → Configurar → Franjas horarias** y habilite **Configurar franjas horarias**.
 2. Configure **Hora de inicio**, **Hora de finalización**, **Días de la semana** y **Batería objetivo**. El final debe ser posterior al inicio del mismo día.
 3. Seleccione **Permitir carga**, **Permitir descarga** o ambos, luego deje **Modo de operación** en **PD** para control automático.
 4. Opcional: habilite **Anular SOC máximo/mínimo de ranura** o **Anular potencia de carga/descarga máxima de ranura** y complete el formulario de detalles por batería.
@@ -27,7 +27,7 @@ Las franjas horarias le permiten permitir la carga o descarga solo durante los p
 
 ## lo que veras
 
-Cada ranura guardada crea un interruptor **Time Slot N** en el dispositivo del sistema Omnibattery. Apágalo para pausar ese espacio sin borrar sus tiempos y límites; actívelo para restaurar la regla guardada. El estado del interruptor persiste durante los reinicios.
+Cada ranura guardada crea un interruptor **Time Slot N** en el dispositivo del sistema OpenBattery. Apágalo para pausar ese espacio sin borrar sus tiempos y límites; actívelo para restaurar la regla guardada. El estado del interruptor persiste durante los reinicios.
 
 Durante una ranura PD activa, la batería continúa respondiendo a la demanda de la red y del hogar dentro de las direcciones permitidas y los límites de cualquier ranura. Durante una ranura Manual activa, la batería seleccionada se fuerza a la carga o descarga configurada a menos que intervenga un bloqueador de seguridad.
 
@@ -50,7 +50,7 @@ Durante una ranura PD activa, la batería continúa respondiendo a la demanda de
 
     **Anulaciones y límites**
 
-    Omnibattery acepta hasta 8 ranuras. En forma detallada, el SOC mínimo oscila entre 12 y 30 %, el SOC máximo entre 80 y 100 % y la potencia comienza en 100 W y termina en el hardware máximo de cada batería en pasos de 50 W. En el modo PD, los valores de potencia limitan el control automático. En modo Manual, el valor seleccionado se convierte en la potencia exacta solicitada.
+    OpenBattery acepta hasta 8 ranuras. En forma detallada, el SOC mínimo oscila entre 12 y 30 %, el SOC máximo entre 80 y 100 % y la potencia comienza en 100 W y termina en el hardware máximo de cada batería en pasos de 50 W. En el modo PD, los valores de potencia limitan el control automático. En modo Manual, el valor seleccionado se convierte en la potencia exacta solicitada.
 
     Una ranura Manual válida necesita la anulación de energía habilitada y exactamente una dirección seleccionada. Ordena directamente a la batería ese ciclo de control y la elimina de la asignación de PD. La propiedad del modo manual de la batería, el SOC mínimo y máximo y la pausa del EV siguen siendo autoritativos. Los comandos manuales de intervalo de tiempo pueden omitir la [sobre automática trifásica](three-phase.md).
 

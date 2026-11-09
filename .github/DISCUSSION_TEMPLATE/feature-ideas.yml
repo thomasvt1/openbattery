@@ -5,11 +5,11 @@ body:
       value: |
         ## Feature idea
 
-        Use this form to propose an improvement that could benefit Omnibattery users. Explain the problem first so the community can compare possible solutions.
+        Use this form to propose an improvement that could benefit OpenBattery users. Explain the problem first so the community can compare possible solutions.
 
         Search existing discussions before posting. If a similar idea already exists, add your use case and vote with 👍 on the original post instead of creating a duplicate.
 
-        To request support for a new battery brand or model, use the [New battery support form](https://github.com/ffunes/Omnibattery/discussions/new?category=battery-requests).
+        To request support for a new battery brand or model, use the [New battery support form](https://github.com/thomasvt1/openbattery/discussions).
 
         > Do not publish passwords, tokens, API keys, complete serial numbers, IP addresses, or other personal information.
 
@@ -43,8 +43,8 @@ body:
     id: proposed_solution
     attributes:
       label: Proposed solution
-      description: Explain how you think Omnibattery could address the problem. You do not need to provide technical details.
-      placeholder: Omnibattery could...
+      description: Explain how you think OpenBattery could address the problem. You do not need to provide technical details.
+      placeholder: OpenBattery could...
     validations:
       required: true
 
@@ -62,7 +62,7 @@ body:
     attributes:
       label: Who would benefit from this?
       options:
-        - Most Omnibattery users
+        - Most OpenBattery users
         - Users of several battery brands or drivers
         - Users of one existing battery driver
         - Users with a specific installation or workflow

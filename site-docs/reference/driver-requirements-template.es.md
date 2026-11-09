@@ -1,6 +1,6 @@
 # Añadir un controlador de batería
 
-Esta guía lleva una nueva integración de baterías desde la evidencia del fabricante hasta una solicitud de extracción (pull request) revisable en Omnibattery. Un controlador puede utilizar registros, una interfaz de programación de aplicaciones (API) local, Mensajería con Cola de Transmisión Telemétrica (MQTT), o entidades de Home Assistant, pero debe exponer el mismo comportamiento semántico de batería a través de `drivers/base.py::BatteryDriver`.
+Esta guía lleva una nueva integración de baterías desde la evidencia del fabricante hasta una solicitud de extracción (pull request) revisable en OpenBattery. Un controlador puede utilizar registros, una interfaz de programación de aplicaciones (API) local, Mensajería con Cola de Transmisión Telemétrica (MQTT), o entidades de Home Assistant, pero debe exponer el mismo comportamiento semántico de batería a través de `drivers/base.py::BatteryDriver`.
 
 Comienza con evidencia de hardware real. Un documento de protocolo por sí solo no puede establecer la polaridad, la escalada, la persistencia de comandos, la latencia o un comportamiento seguro tras una escritura parcial.
 
@@ -73,7 +73,7 @@ Recopila suficiente detalle para responder a todas estas preguntas:
 - Para cada campo, ¿cuáles son su tipo, orden de bytes, unidad, escala, signo, rango válido y valores sentinel?
 - Para cada escritura, ¿cuáles son su rango, paso, persistencia, confirmación y respuesta de error?
 - ¿Son atómicos los comandos de multi-escritura? Si no, ¿qué orden y vuelta atrás alcanzan un estado seguro?
-- ¿Un comando sobrevive el reinicio del dispositivo, pérdida de red, recarga de Home Assistant y apagado de Omnibattery?
+- ¿Un comando sobrevive el reinicio del dispositivo, pérdida de red, recarga de Home Assistant y apagado de OpenBattery?
 - ¿Una escritura frecuente actualiza memoria volátil o flash persistente?
 
 Mantén capturas de solicitud/respuesta borradas y observaciones de hardware. Nunca incluyas credenciales, tokens, direcciones de red o números de serie completos en pruebas, diagnósticos, documentación o solicitudes de extracción.
@@ -86,7 +86,7 @@ Mantén capturas de solicitud/respuesta borradas y observaciones de hardware. Nu
 
 Una API solo en la nube no se rechaza automáticamente. Su latencia, expiración, cuotas y comportamiento durante interrupciones deben seguir soportando reposo seguro y el ritmo de control requerido.
 
-## Mapear el protocolo del fabricante a Omnibattery
+## Mapear el protocolo del fabricante a OpenBattery
 
 El controlador traduce detalles del protocolo en claves lógicas canónicas y operaciones. Registros, puntos finales, temas, nombres de servicio y modos propietarios deben permanecer dentro del controlador o su cliente de transporte.
 
@@ -354,7 +354,7 @@ Las pruebas de unidad demuestran lógica de traducción; no demuestran el compor
 - [ ] Interrumpir cada etapa de una secuencia de multi-escritura y verificar el estado seguro documentado.
 - [ ] Confirmar que escrituras fallidas no entran en la caché como estado confirmado.
 - [ ] Ejercitar comportamiento de SOC mínimo y máximo con protecciones BMS aún activas.
-- [ ] Detener Omnibattery y verificar `standby()` más cualquier restauración de control del fabricante.
+- [ ] Detener OpenBattery y verificar `standby()` más cualquier restauración de control del fabricante.
 - [ ] Ejecutar en una piscina de múltiples marcas y verificar que la entrega medida coincide con la asignación.
 
 Mantén registros o trazas borrados que muestren el comando solicitado, confirmación y respuesta física medida. Estado claramente qué entradas de matriz permanecen sin probar.
@@ -401,7 +401,7 @@ No afirmar soporte basado solo en pruebas simuladas. La marca debe ser seleccion
 
     **Mapeo de telemetría**
 
-    | Clave Omnibattery | B/R/O | Campo del fabricante | R/E | Tipo/orden | Escala y unidad | Rango/sentinels | Ritmo/TTL | N/D/C/X | Evidencia | Probado |
+    | Clave OpenBattery | B/R/O | Campo del fabricante | R/E | Tipo/orden | Escala y unidad | Rango/sentinels | Ritmo/TTL | N/D/C/X | Evidencia | Probado |
     |---|---|---|---|---|---|---|---|---|---|---|---|
     | `battery_soc` | B | `...` | E | `...` | `... → %` | `...` | `...` | `...` | `...` | [ ] |
     | `battery_power` | B | `...` | E | `...` | `... → W` | `...` | `...` | `...` | `...` | [ ] |

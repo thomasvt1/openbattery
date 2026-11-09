@@ -1,4 +1,4 @@
-"""Public event bridge from the active-balance blueprint to Omnibattery."""
+"""Public event bridge from the active-balance blueprint to OpenBattery."""
 from __future__ import annotations
 
 import logging

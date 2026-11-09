@@ -1,4 +1,4 @@
-"""Binary sensor platform for the Omnibattery integration."""
+"""Binary sensor platform for the OpenBattery integration."""
 from __future__ import annotations
 
 import logging
@@ -233,8 +233,8 @@ class CapacityProtectionStatusSensor(BinarySensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -288,8 +288,8 @@ class SurplusPriceHoldSensor(BinarySensorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -345,8 +345,8 @@ class DischargeReserveSensor(BinarySensorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -490,8 +490,8 @@ class CurtailmentStatusSensor(BinarySensorEntity):
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }
 
@@ -905,7 +905,7 @@ class PredictiveChargingStatusSensor(BinarySensorEntity):
         """Return device information for the system."""
         return {
             "identifiers": {(DOMAIN, "marstek_venus_system")},
-            "name": "Omnibattery System",
-            "manufacturer": "Omnibattery",
+            "name": "OpenBattery System",
+            "manufacturer": "OpenBattery",
             "model": "Multi-Battery System",
         }

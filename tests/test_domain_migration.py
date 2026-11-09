@@ -308,7 +308,7 @@ async def test_config_flow_triggers_migration(hass: HomeAssistant) -> None:
             for e in er.async_entries_for_config_entry(registry, old_entry.entry_id)
         }
 
-        # Start "Add Omnibattery" -> detects legacy entries -> confirm form.
+        # Start "Add OpenBattery" -> detects legacy entries -> confirm form.
         result = await hass.config_entries.flow.async_init(
             NEW_DOMAIN, context={"source": "user"}
         )
@@ -354,7 +354,7 @@ class _OldSystemFlow(ConfigFlow):
 
 
 class _NewSystemFlow(ConfigFlow):
-    """Stand-in for the real Omnibattery config flow (config_flow.py VERSION=10)."""
+    """Stand-in for the real OpenBattery config flow (config_flow.py VERSION=10)."""
 
     VERSION = 10
     MINOR_VERSION = 1

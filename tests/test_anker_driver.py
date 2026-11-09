@@ -270,7 +270,7 @@ async def test_read_telemetry_uses_fc04_for_input_and_inverts_battery_power():
     client.async_read_holding_block.assert_not_awaited()
 
     assert snap["battery_soc"] == 47
-    assert snap["battery_power"] == -612  # inverted to Omnibattery convention
+    assert snap["battery_power"] == -612  # inverted to OpenBattery convention
     assert snap["ac_power"] == 612  # shared AC convention: +discharge
 
 
@@ -639,7 +639,7 @@ async def test_read_telemetry_rejects_transient_zero_power_glitch():
 
     client = _fake_client()
     regs = [0] * 51
-    wire = encode_int32(-2000)  # Anker wire −charge → Omnibattery +2000
+    wire = encode_int32(-2000)  # Anker wire −charge → OpenBattery +2000
     regs[8] = wire[0]
     regs[9] = wire[1]
     client.async_read_input_block = AsyncMock(return_value=regs)

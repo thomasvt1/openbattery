@@ -4,19 +4,19 @@ El control proporcional–derivativo (PD) ajusta la potencia de la batería seg�
 
 ## ¿Lo necesito?
 
-**Úsalo si** quieres que Omnibattery siga automáticamente los cambios del consumo de casa. Es el modo de control normal y sirve para la mayoría de instalaciones.
+**Úsalo si** quieres que OpenBattery siga automáticamente los cambios del consumo de casa. Es el modo de control normal y sirve para la mayoría de instalaciones.
 
 **No necesitas ajustarlo si** el flujo de red se mantiene cerca del objetivo sin cambios repetidos de carga y descarga. Las diferencias pequeñas y estables dentro de la banda muerta son intencionadas y evitan microciclos ineficientes.
 
 ## Antes de empezar
 
 - Configura un sensor de consumo de red que funcione y se actualice con frecuencia.
-- Permite que Omnibattery controle la batería automáticamente; el modo manual y otras reglas activas pueden tomar el control temporalmente.
+- Permite que OpenBattery controle la batería automáticamente; el modo manual y otras reglas activas pueden tomar el control temporalmente.
 - Comprueba que la batería puede cargar y descargar y que no está ya en un límite de estado de carga o de potencia.
 
 ## Cómo activarlo
 
-1. Abre el panel lateral de Omnibattery y selecciona **Control**.
+1. Abre el panel lateral de OpenBattery y selecciona **Control**.
 2. En **PD controller**, activa **PD control**. Esto desactiva **No-PD Direct Tracking** porque ambos modos son mutuamente excluyentes.
 3. Selecciona **Balanced** en **PD tuning profile** y deja sin cambios los controles manuales de ganancias.
 4. Observa **PD Control Quality** mientras cambian las cargas normales de casa.
@@ -97,9 +97,9 @@ Después de cambiar un ajuste, deja que la métrica de calidad refleje el nuevo 
 
     Si la salida de la batería está limitada por debajo del cambio máximo del perfil, el limitador de rampa puede no actuar antes de que la batería alcance su tope. Usa un perfil más suave o establece un cambio máximo personalizado menor cuando ese primer paso produzca sobreimpulso.
 
-    Las potencias mínimas de carga y descarga pueden evitar un funcionamiento ineficiente a baja potencia. Durante la espera del relé, Omnibattery mantiene la dirección activa en el mínimo configurado o en `100 W` cuando ese mínimo está desactivado. Un gran desequilibrio evita esta retención. Las inversiones de carga a descarga usan la protección de cruce por cero independiente de abajo.
+    Las potencias mínimas de carga y descarga pueden evitar un funcionamiento ineficiente a baja potencia. Durante la espera del relé, OpenBattery mantiene la dirección activa en el mínimo configurado o en `100 W` cuando ese mínimo está desactivado. Un gran desequilibrio evita esta retención. Las inversiones de carga a descarga usan la protección de cruce por cero independiente de abajo.
 
-    Los límites de potencia del sistema pueden limitar opcionalmente la potencia combinada de carga y descarga sin reducir el límite propio de cada batería. Cuando se activan, aparecen los dos controles de tope en el dispositivo Omnibattery System; `0 W` desactiva un tope.
+    Los límites de potencia del sistema pueden limitar opcionalmente la potencia combinada de carga y descarga sin reducir el límite propio de cada batería. Cuando se activan, aparecen los dos controles de tope en el dispositivo OpenBattery System; `0 W` desactiva un tope.
 
     ![Configuración avanzada del controlador PD](../assets/screenshots/configuration/advanced-pd-controller-config.png){ width="650" style="display: block; margin: 0 auto;"}
 
@@ -131,4 +131,4 @@ Después de cambiar un ajuste, deja que la métrica de calidad refleje el nuevo 
 
     Una batería con **Backup Function** activada queda excluida cuando **AC Offgrid Power** supera su **Backup Offgrid Threshold**, o cuando esa lectura de potencia no está disponible. El umbral predeterminado es `50 W`, por lo que pequeñas cargas permanentes en la salida de respaldo no retiran la batería del control normal.
 
-    Mientras está excluida, Omnibattery sigue consultando datos de solo lectura, pero no envía a esa batería órdenes de potencia, modo forzado, configuración ni carga completa semanal. Tras volver la potencia aislada por debajo del umbral, la exclusión se mantiene `5 min`; desactivar **Backup Function** elimina el periodo de espera inmediatamente.
+    Mientras está excluida, OpenBattery sigue consultando datos de solo lectura, pero no envía a esa batería órdenes de potencia, modo forzado, configuración ni carga completa semanal. Tras volver la potencia aislada por debajo del umbral, la exclusión se mantiene `5 min`; desactivar **Backup Function** elimina el periodo de espera inmediatamente.

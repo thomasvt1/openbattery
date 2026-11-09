@@ -1,9 +1,9 @@
 # Complete Marstek register table (English only)
 
-This table documents the Marstek register definitions used by Omnibattery. It is intentionally maintained in English only so addresses, types, scales, and safety notes have one technical source.
+This table documents the Marstek register definitions used by OpenBattery. It is intentionally maintained in English only so addresses, types, scales, and safety notes have one technical source.
 
 !!! warning "Read before writing"
-    Rows described as switches, selects, numbers, schedules, or commands can change battery operation. Use Omnibattery entities where possible and verify the configured hardware family before any direct write.
+    Rows described as switches, selects, numbers, schedules, or commands can change battery operation. Use OpenBattery entities where possible and verify the configured hardware family before any direct write.
 
 | Key / Name                        | Description                                | Type    | Bytes | Scale  | Unit | a     | d     | e_v12 | e_v3 |
 |:----------------------------------|:-------------------------------------------|:--------|:-----:|:------:|:----:|:-----:|:-----:|:------:|:-----:|

@@ -1,22 +1,22 @@
 # Marstek Modbus register overview
 
-This reference covers the Marstek Venus register-backed drivers used by Omnibattery. Other battery drivers use their own local API, MQTT, or Home Assistant entity contract and do not use this map.
+This reference covers the Marstek Venus register-backed drivers used by OpenBattery. Other battery drivers use their own local API, MQTT, or Home Assistant entity contract and do not use this map.
 
 !!! warning "Writing registers can interrupt normal control"
-    Prefer Omnibattery entities and controls. Raw writes can conflict with automatic control, select an unsafe operating mode, or leave a stale setpoint active. Do not write an address unless you have verified the model, firmware family, data type, scale, and allowed value.
+    Prefer OpenBattery entities and controls. Raw writes can conflict with automatic control, select an unsafe operating mode, or leave a stale setpoint active. Do not write an address unless you have verified the model, firmware family, data type, scale, and allowed value.
 
 The [complete register table](registers.md) is an English-only technical reference.
 
 ## Firmware families
 
-| Code in the complete table | Omnibattery hardware selection |
+| Code in the complete table | OpenBattery hardware selection |
 |---|---|
 | `a` | Venus A |
 | `d` | Venus D |
 | `e_v12` | Venus E v2 |
 | `e_v3` | Venus E v3 |
 
-A blank cell means that Omnibattery does not define that key for the selected family. It does not prove that the physical address is unused by the firmware.
+A blank cell means that OpenBattery does not define that key for the selected family. It does not prove that the physical address is unused by the firmware.
 
 ## How to read the table
 
@@ -57,8 +57,8 @@ Venus E v3, Venus A, and Venus D state-of-charge cutoffs are enforced in softwar
 1. Confirm the hardware family selected in the config entry.
 2. Compare the related Home Assistant entity with the row in the complete table.
 3. Check whether the row is telemetry, configuration, or an immediate control command.
-4. Download Omnibattery diagnostics before changing anything.
+4. Download OpenBattery diagnostics before changing anything.
 5. Use the [troubleshooting guide](../troubleshooting.md) and battery entities first.
 
 ??? "Transport timing"
-    Omnibattery applies firmware-specific pacing and timeouts itself. Venus E v3, Venus A, and Venus D require a minimum of 150 ms between Modbus TCP messages; Venus E v2 requires 50 ms. External polling or writes on the same connection can delay replies and interfere with controller traffic. An RS-485 gateway uses a separate, shorter pacing profile from the battery's native Modbus TCP server.
+    OpenBattery applies firmware-specific pacing and timeouts itself. Venus E v3, Venus A, and Venus D require a minimum of 150 ms between Modbus TCP messages; Venus E v2 requires 50 ms. External polling or writes on the same connection can delay replies and interfere with controller traffic. An RS-485 gateway uses a separate, shorter pacing profile from the battery's native Modbus TCP server.

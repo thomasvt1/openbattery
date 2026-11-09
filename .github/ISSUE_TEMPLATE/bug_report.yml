@@ -1,5 +1,5 @@
 name: "🐛 Bug report"
-description: Report reproducible unexpected behavior in a configured Omnibattery installation
+description: Report reproducible unexpected behavior in a configured OpenBattery installation
 title: "[BUG] "
 labels:
   - bug
@@ -9,11 +9,11 @@ body:
       value: |
         ## Before opening a bug report
 
-        A bug means that **Omnibattery behaves unexpectedly after it has been installed and configured successfully**.
+        A bug means that **OpenBattery behaves unexpectedly after it has been installed and configured successfully**.
 
-        If you need help installing the integration, connecting a battery, choosing settings, or understanding how something works, please [ask in Q&A](https://github.com/ffunes/Omnibattery/discussions/new?category=q-a) instead.
+        If you need help installing the integration, connecting a battery, choosing settings, or understanding how something works, please [ask in Q&A](https://github.com/thomasvt1/openbattery/discussions) instead.
 
-        Search existing issues first and test with the latest Omnibattery release. Reports without enough information to reproduce or investigate the problem may be moved to Discussions or closed.
+        Search existing issues first and test with the latest OpenBattery release. Reports without enough information to reproduce or investigate the problem may be moved to Discussions or closed.
 
         > Do not publish passwords, tokens, API keys, complete serial numbers, IP addresses, or other personal information.
 
@@ -37,8 +37,8 @@ body:
   - type: input
     id: integration_version
     attributes:
-      label: Omnibattery version
-      description: Find this in HACS or the Omnibattery integration information.
+      label: OpenBattery version
+      description: Find this in HACS or the OpenBattery integration information.
       placeholder: 1.2.0
     validations:
       required: true
@@ -72,7 +72,7 @@ body:
     attributes:
       label: What happened?
       description: Describe the observed behavior, when it started, and how often it occurs.
-      placeholder: After..., Omnibattery...
+      placeholder: After..., OpenBattery...
     validations:
       required: true
 
@@ -93,8 +93,8 @@ body:
     id: expected_behavior
     attributes:
       label: Expected behavior
-      description: Explain what you expected Omnibattery to do instead.
-      placeholder: Omnibattery should...
+      description: Explain what you expected OpenBattery to do instead.
+      placeholder: OpenBattery should...
     validations:
       required: true
 
@@ -111,7 +111,7 @@ body:
     id: diagnostics
     attributes:
       label: Diagnostics file
-      description: Optional. In Home Assistant, open Settings → Devices & services → Omnibattery, choose Download diagnostics, and drag the downloaded file here. Review it before uploading.
+      description: Optional. In Home Assistant, open Settings → Devices & services → OpenBattery, choose Download diagnostics, and drag the downloaded file here. Review it before uploading.
 
   - type: textarea
     id: additional_context
@@ -124,7 +124,7 @@ body:
     attributes:
       label: Confirmations
       options:
-        - label: I am using the latest available Omnibattery release and restarted Home Assistant after updating.
+        - label: I am using the latest available OpenBattery release and restarted Home Assistant after updating.
           required: true
         - label: I searched the documentation, existing issues, and existing discussions.
           required: true

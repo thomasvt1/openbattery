@@ -1,6 +1,6 @@
 # Indevolt: changes outside the Indevolt files
 
-Omnibattery's core serves many manufacturers, so Indevolt behaviour lives in
+OpenBattery's core serves many manufacturers, so Indevolt behaviour lives in
 its own files:
 
 - `custom_components/omnibattery/infra/indevolt_client.py`: transport, flash
@@ -73,7 +73,7 @@ the same ones Sessy and Huawei use:
   `control_status` sensor, which showed the raw key before).
 - **Why:** the card's inverter chip shows what the battery itself does. In its
   own self-consumption mode a paused Indevolt may well be discharging, so the
-  card said "Discharging" with nothing showing that Omnibattery was not
+  card said "Discharging" with nothing showing that OpenBattery was not
   steering it.
 - **Change:** while `control_status` is anything but `active` or `starting`,
   the card shows its translated state (for example "Paused: not in Realtime
@@ -129,7 +129,7 @@ the same ones Sessy and Huawei use:
 - **Why:** the entity reads `coordinator.data`, which only catches up when the
   key's read group is next polled (up to 5s for "medium"). Home Assistant's own
   device page then snapped the slider back to the old value and jumped to the
-  new one seconds later, which looks like a failed write. The Omnibattery panel
+  new one seconds later, which looks like a failed write. The OpenBattery panel
   hid this with its own pending state. Found when the Indevolt settings became
   writable; Marstek and Zendure register sliders had the same jump.
 - **Change:** after a write the driver accepted, the entity stores the written
@@ -151,7 +151,7 @@ Everything else was met with existing mechanisms:
   0, so selection skips the battery; `apply_setpoint` returns `ok=False` with
   the reason and `net_power_from_data` returns `None`, so a command that still
   arrives (for example from a manual slot) is refused visibly. A 0 W command
-  is accepted without sending anything, because no command of Omnibattery's
+  is accepted without sending anything, because no command of OpenBattery's
   runs on the battery; the core's manual-control handoff relies on that.
 - **User settings, both ways.** Min SOC, max charge and max discharge power
   are flash settings on the battery (1142 → 6105, 1138 → 11009, 1147 → 11011).

@@ -58,7 +58,7 @@ PACK_CELL_POINTS = ((9021, 9023), (9040, 9042), (9059, 9061), (9154, 9156), (921
 
 # Every point of Indevolt's SetData tables, which the official library also uses.
 # Every one of them except 47015 is flash-backed. 1142, 1138 and 1147 are the user
-# settings Omnibattery may write on the config channel, on a direct user action
+# settings OpenBattery may write on the config channel, on a direct user action
 # only. 1 is the load setting and 12197-12244 are its 48 load points.
 KNOWN_FLASH_POINTS = (
     47005, 4, 1, 6505, 1142, 11009, 11010, 1146, 1147, 2618, 1143, 2802, 8646, 8647,
@@ -66,7 +66,7 @@ KNOWN_FLASH_POINTS = (
     *range(12197, 12245),
 )
 # Points Indevolt documents in both its GetData and its SetData table under the
-# same number; the call decides whether it is read or written. Omnibattery reads
+# same number; the call decides whether it is read or written. OpenBattery reads
 # these (limits, feed-in, grid charging, the forced full charge) and never writes them.
 READ_AND_WRITE_POINTS = frozenset({11009, 11010, 2618, 8646, 8647})
 
@@ -142,7 +142,7 @@ class FakeIndevoltDevice:
     limit_w: int = 2400  # hardware ceiling (114/115)
     charge_setting_w: int | None = None  # max AC input: read 11009, written via 1138
     discharge_setting_w: int | None = None  # max AC output: read 11011/11032, written via 1147
-    feedin_w: int | None = None  # feed-in limit 11010 (never written by Omnibattery)
+    feedin_w: int | None = None  # feed-in limit 11010 (never written by OpenBattery)
     # Config-channel writes are a test failure unless a test opts in here.
     allow_config_writes: bool = False
     reject_config: bool = False  # the device answers {result: false} to a setting
@@ -165,7 +165,7 @@ class FakeIndevoltDevice:
     action: int = 0
     rt_power: int = 0
     rt_target: int = 5
-    power_w: float = 0.0  # Omnibattery sign: + charging
+    power_w: float = 0.0  # OpenBattery sign: + charging
     action_state: int | None = None  # 0 once the device stopped at its target
     # A move commanded from standby starts (and the echo leaves standby) only
     # this long after the write; a real SF2000 takes 10–15 s.

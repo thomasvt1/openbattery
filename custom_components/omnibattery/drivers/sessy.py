@@ -3,7 +3,7 @@
 Sessy's dongle exposes a small local JSON API protected by the credentials
 printed on the dongle. The controller uses the API power strategy and its signed
 setpoint: Sessy uses positive values for generation/discharge, whereas
-Omnibattery uses positive values for charging.
+OpenBattery uses positive values for charging.
 """
 
 from __future__ import annotations
@@ -204,7 +204,7 @@ class SessyLocalDriver(BatteryDriver):
                              read_back: bool = True) -> SetpointResult:
         applied = max(-self._capabilities.max_discharge_power_w,
                       min(self._capabilities.max_charge_power_w, int(net_power_w)))
-        # Sessy positive = generation (discharge); Omnibattery positive = charge.
+        # Sessy positive = generation (discharge); OpenBattery positive = charge.
         if not await self._post_json("/api/v1/power/active_strategy", {"strategy": _API_STRATEGY}):
             return SetpointResult(False, applied, False, failure_reason="strategy_write_failed")
         if not await self._post_json("/api/v1/power/setpoint", {"setpoint": -applied}):

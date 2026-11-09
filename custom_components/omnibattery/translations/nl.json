@@ -2,7 +2,7 @@
   "issues": {
     "recorder_excluded_sensors": {
       "title": "Sensoren uitgesloten van Recorder",
-      "description": "Recorder sluit deze sensoren uit die Omnibattery gebruikt om zonne- en huishoudelijke verbruiksprofielen te herstellen: {sensors}. Pas de include/exclude-regels van Recorder aan zodat deze sensoren worden opgenomen en herstart Home Assistant om de configuratie toe te passen. De waarschuwing verdwijnt automatisch zodra ze worden opgenomen. Ontbrekende historische metingen kunnen niet worden hersteld; live leren en bestaande opgeslagen profielen blijven werken."
+      "description": "Recorder sluit deze sensoren uit die OpenBattery gebruikt om zonne- en huishoudelijke verbruiksprofielen te herstellen: {sensors}. Pas de include/exclude-regels van Recorder aan zodat deze sensoren worden opgenomen en herstart Home Assistant om de configuratie toe te passen. De waarschuwing verdwijnt automatisch zodra ze worden opgenomen. Ontbrekende historische metingen kunnen niet worden hersteld; live leren en bestaande opgeslagen profielen blijven werken."
     },
     "indevolt_flash_writes_paused": {
       "title": "Schrijven van Indevolt-instellingen gepauzeerd ter bescherming van de batterij: {name}",
@@ -10,25 +10,25 @@
         "step": {
           "confirm": {
             "title": "Indevolt-instellingen weer laten schrijven",
-            "description": "Omnibattery heeft de minimale SOC en de vermogenslimieten van **{name}** het afgelopen jaar {allowance} keer geschreven en heeft het schrijven daarom gepauzeerd. Dit is een vangnet, geen beperking voor jou: het voorkomt dat een automatisering of script die deze instellingen te vaak wijzigt ongemerkt het flashgeheugen van de batterij verslijt; dat slijt een beetje bij elke schrijfactie. Wijzigingen in de Indevolt-app worden nog wel overgenomen.\n\nControleer je automatiseringen en scripts op iets dat deze instellingen vaak wijzigt. Bevestig daarna hier om het schrijven weer aan te zetten; er begint dan een nieuw tegoed van {allowance} schrijfacties. Waren de wijzigingen de bedoeling, bevestig dan gewoon."
+            "description": "OpenBattery heeft de minimale SOC en de vermogenslimieten van **{name}** het afgelopen jaar {allowance} keer geschreven en heeft het schrijven daarom gepauzeerd. Dit is een vangnet, geen beperking voor jou: het voorkomt dat een automatisering of script die deze instellingen te vaak wijzigt ongemerkt het flashgeheugen van de batterij verslijt; dat slijt een beetje bij elke schrijfactie. Wijzigingen in de Indevolt-app worden nog wel overgenomen.\n\nControleer je automatiseringen en scripts op iets dat deze instellingen vaak wijzigt. Bevestig daarna hier om het schrijven weer aan te zetten; er begint dan een nieuw tegoed van {allowance} schrijfacties. Waren de wijzigingen de bedoeling, bevestig dan gewoon."
           }
         },
         "abort": {
-          "battery_unavailable": "De batterij is nu niet geladen. Probeer het opnieuw zodra Omnibattery ermee verbonden is."
+          "battery_unavailable": "De batterij is nu niet geladen. Probeer het opnieuw zodra OpenBattery ermee verbonden is."
         }
       }
     },
     "excluded_device_ev_type": {
       "title": "Markeer je EV-lader bij de uitgesloten apparaten",
-      "description": "Het nieuwe energiestroomdiagram (inschakelen met de knop in de kop van de stroomkaart) tekent EV-laders op een eigen kabel, naast de auto. Omnibattery kan niet weten welk uitgesloten apparaat de lader is; totdat je het markeert, wordt het vermogen ervan op de kabel van de overige uitgesloten apparaten (de buitenunit) getoond en blijft de EV-kabel leeg. Open Opties → Uitgesloten apparaten en sla je apparaten opnieuw op, met \"EV-lader\" aangevinkt bij de lader (laat het uit bij de andere). Dit heeft alleen invloed op hoe het diagram wordt getekend, niet op de batterijbesturing. De melding verdwijnt zodra de apparaten zijn opgeslagen."
+      "description": "Het nieuwe energiestroomdiagram (inschakelen met de knop in de kop van de stroomkaart) tekent EV-laders op een eigen kabel, naast de auto. OpenBattery kan niet weten welk uitgesloten apparaat de lader is; totdat je het markeert, wordt het vermogen ervan op de kabel van de overige uitgesloten apparaten (de buitenunit) getoond en blijft de EV-kabel leeg. Open Opties → Uitgesloten apparaten en sla je apparaten opnieuw op, met \"EV-lader\" aangevinkt bij de lader (laat het uit bij de andere). Dit heeft alleen invloed op hoe het diagram wordt getekend, niet op de batterijbesturing. De melding verdwijnt zodra de apparaten zijn opgeslagen."
     },
     "battery_not_delivering": {
       "title": "Batterij {battery} levert geen vermogen",
-      "description": "{battery} neemt al {minutes} minuten laad-/ontlaadopdrachten aan zonder vermogen te leveren ({reason}). Omnibattery houdt hem buiten de verdeling en probeert het elke {cooldown} minuten opnieuw, zodat de rest van de vloot het huis ondertussen dekt. De batterij zelf of de verbinding ermee heeft aandacht nodig: controleer of hij niet in stand-by staat onder besturing van zijn eigen app en of de verbinding niet overbelast is. Handmatige batterijbesturing voor die batterij aan- en weer uitzetten herstelt hem vaak."
+      "description": "{battery} neemt al {minutes} minuten laad-/ontlaadopdrachten aan zonder vermogen te leveren ({reason}). OpenBattery houdt hem buiten de verdeling en probeert het elke {cooldown} minuten opnieuw, zodat de rest van de vloot het huis ondertussen dekt. De batterij zelf of de verbinding ermee heeft aandacht nodig: controleer of hij niet in stand-by staat onder besturing van zijn eigen app en of de verbinding niet overbelast is. Handmatige batterijbesturing voor die batterij aan- en weer uitzetten herstelt hem vaak."
     },
     "configured_sensor_missing": {
       "title": "Geconfigureerde sensor bestaat niet meer",
-      "description": "Omnibattery is geconfigureerd met {sensors}, die niet in Home Assistant bestaat. Alle functies die hem uitlezen zijn inactief. De opgeslagen verwijzing blijft bewust bewaard, omdat de entiteitskiezer een verdwenen entiteit niet kan tonen en je instelling stilzwijgend zou wissen: open Opties → Sensoren en kies een vervanger, of maak het veld leeg zodra de entiteit terug is."
+      "description": "OpenBattery is geconfigureerd met {sensors}, die niet in Home Assistant bestaat. Alle functies die hem uitlezen zijn inactief. De opgeslagen verwijzing blijft bewust bewaard, omdat de entiteitskiezer een verdwenen entiteit niet kan tonen en je instelling stilzwijgend zou wissen: open Opties → Sensoren en kies een vervanger, of maak het veld leeg zodra de entiteit terug is."
     },
     "three_phase_sensor_degraded": {
       "title": "Driefasebeveiliging werkt blind op {phase}",
@@ -40,37 +40,37 @@
     },
     "dead_main_sensor": {
       "title": "Netvermogenssensor publiceert niet meer",
-      "description": "De ingestelde netsensor {sensor} heeft al {minutes} minuten geen meting gepubliceerd. Omnibattery kan zonder die meting niet regelen en heeft daarom de automatische regeling gestopt: elke batterij onder automatische regeling staat op 0W (het laatste commando was {power}W) en voorspellend laden van het net is gepauzeerd. Handmatige modus en handmatige tijdsloten blijven zoals ze zijn. De automatische regeling hervat vanzelf zodra {sensor} weer een geldige meting publiceert. Let op: een sensor die op een geldige waarde is vastgelopen ziet er in Home Assistant volkomen gezond uit. Controleer of {sensor} nog bijwerkt en of de integratie of bridge erachter niet is vastgelopen."
+      "description": "De ingestelde netsensor {sensor} heeft al {minutes} minuten geen meting gepubliceerd. OpenBattery kan zonder die meting niet regelen en heeft daarom de automatische regeling gestopt: elke batterij onder automatische regeling staat op 0W (het laatste commando was {power}W) en voorspellend laden van het net is gepauzeerd. Handmatige modus en handmatige tijdsloten blijven zoals ze zijn. De automatische regeling hervat vanzelf zodra {sensor} weer een geldige meting publiceert. Let op: een sensor die op een geldige waarde is vastgelopen ziet er in Home Assistant volkomen gezond uit. Controleer of {sensor} nog bijwerkt en of de integratie of bridge erachter niet is vastgelopen."
     },
     "dead_main_sensor_since_start": {
       "title": "Netvermogenssensor publiceert niet sinds de herstart",
-      "description": "De ingestelde netsensor {sensor} heeft in de {minutes} minuten sinds Home Assistant is gestart geen geldige meting gepubliceerd. Omnibattery kan zonder die meting niet regelen. Als Home Assistant niet netjes is afgesloten, kan een batterij nog het laatste commando van vóór de herstart uitvoeren. Omnibattery heeft daarom de automatische regeling gestopt: elke batterij onder automatische regeling staat op 0W en voorspellend laden van het net is gepauzeerd. Handmatige modus en handmatige tijdsloten blijven zoals ze zijn. De automatische regeling start vanzelf zodra {sensor} een geldige meting publiceert. Controleer of {sensor} bestaat en bijwerkt, en of de integratie of het apparaat erachter na de herstart weer werkt."
+      "description": "De ingestelde netsensor {sensor} heeft in de {minutes} minuten sinds Home Assistant is gestart geen geldige meting gepubliceerd. OpenBattery kan zonder die meting niet regelen. Als Home Assistant niet netjes is afgesloten, kan een batterij nog het laatste commando van vóór de herstart uitvoeren. OpenBattery heeft daarom de automatische regeling gestopt: elke batterij onder automatische regeling staat op 0W en voorspellend laden van het net is gepauzeerd. Handmatige modus en handmatige tijdsloten blijven zoals ze zijn. De automatische regeling start vanzelf zodra {sensor} een geldige meting publiceert. Controleer of {sensor} bestaat en bijwerkt, en of de integratie of het apparaat erachter na de herstart weer werkt."
     },
     "slow_main_sensor": {
       "title": "De netvermogenssensor werkt te langzaam bij",
-      "description": "De geconfigureerde netsensor {sensor} werkt ongeveer elke {observed_interval} seconden bij. Intervallen van {warning_interval} seconden of meer zijn trager dan aanbevolen en kunnen de regelkwaliteit verminderen. Omnibattery volgt de laatste meting totdat deze ouder is dan {stale_limit} seconden. Gebruik een snellere sensor als u een nauwkeurigere realtime regeling nodig hebt."
+      "description": "De geconfigureerde netsensor {sensor} werkt ongeveer elke {observed_interval} seconden bij. Intervallen van {warning_interval} seconden of meer zijn trager dan aanbevolen en kunnen de regelkwaliteit verminderen. OpenBattery volgt de laatste meting totdat deze ouder is dan {stale_limit} seconden. Gebruik een snellere sensor als u een nauwkeurigere realtime regeling nodig hebt."
     },
     "price_data_unusable": {
       "title": "Prijsdata onbruikbaar",
-      "description": "Omnibattery kon langer dan {minutes} minuten geen bruikbare prijsslots uit {sensor} lezen (status: {status}). Prijsgestuurd laden is daardoor inactief: de dynamic-pricing planning en de prijsgestuurde vrijgave van de laadvertraging vallen terug op hun gedrag zonder prijzen. Controleer of de sensor beschikbaar is en of het prijsattribuut een lijst met items is; een template-sensor moet ISO-8601-tijdstempels teruggeven, omdat een gerenderd Python-datetime niet terug naar een lijst kan worden omgezet."
+      "description": "OpenBattery kon langer dan {minutes} minuten geen bruikbare prijsslots uit {sensor} lezen (status: {status}). Prijsgestuurd laden is daardoor inactief: de dynamic-pricing planning en de prijsgestuurde vrijgave van de laadvertraging vallen terug op hun gedrag zonder prijzen. Controleer of de sensor beschikbaar is en of het prijsattribuut een lijst met items is; een template-sensor moet ISO-8601-tijdstempels teruggeven, omdat een gerenderd Python-datetime niet terug naar een lijst kan worden omgezet."
     },
     "solar_forecast_unusable": {
       "title": "Zonneprognose onbruikbaar",
-      "description": "De ingestelde zonneprognose-sensor {sensor} is al meer dan {minutes} minuten niet beschikbaar of onleesbaar. Omnibattery blijft draaien, maar alles wat op de prognose leunt werkt nu blind: de laadvertraging geeft de rest van de dag vrij, beslissingen over netladen gaan uit van geen enkele zon en kunnen onnodig netlaadslots boeken, en de resterende-zon-schatting leest 0 kWh. Controleer de sensor of de integratie die hem levert."
+      "description": "De ingestelde zonneprognose-sensor {sensor} is al meer dan {minutes} minuten niet beschikbaar of onleesbaar. OpenBattery blijft draaien, maar alles wat op de prognose leunt werkt nu blind: de laadvertraging geeft de rest van de dag vrij, beslissingen over netladen gaan uit van geen enkele zon en kunnen onnodig netlaadslots boeken, en de resterende-zon-schatting leest 0 kWh. Controleer de sensor of de integratie die hem levert."
     },
     "solar_forecast_remaining_recommended": {
       "title": "Gebruik een resterende zonneprognose",
-      "description": "{sensor} is een verouderde zonneprognose voor de hele dag. Omnibattery blijft deze ondersteunen, maar eerdere prognosefouten kunnen beslissingen binnen de dag onnauwkeurig maken. Configureer in de Omnibattery-opties de provider-sensor voor de prognose \"vandaag resterend\" om de resterende zonne-energie nauwkeuriger te berekenen."
+      "description": "{sensor} is een verouderde zonneprognose voor de hele dag. OpenBattery blijft deze ondersteunen, maar eerdere prognosefouten kunnen beslissingen binnen de dag onnauwkeurig maken. Configureer in de OpenBattery-opties de provider-sensor voor de prognose \"vandaag resterend\" om de resterende zonne-energie nauwkeuriger te berekenen."
     }
   },
   "config": {
     "step": {
       "migrate_legacy": {
         "title": "Migreren vanuit Marstek Venus",
-        "description": "Er zijn {count} bestaande Marstek Venus-configuratie(s) gevonden. Migreren naar Omnibattery behoudt al uw entiteiten, geschiedenis en instellingen. Doorgaan?"
+        "description": "Er zijn {count} bestaande Marstek Venus-configuratie(s) gevonden. Migreren naar OpenBattery behoudt al uw entiteiten, geschiedenis en instellingen. Doorgaan?"
       },
       "user": {
-        "title": "Omnibattery configureren",
+        "title": "OpenBattery configureren",
         "description": "Selecteer de sensor die het netimport/-exportvermogen meet. Optioneel kunt u de zonne-voorspellingssensor configureren voor geavanceerde functies.",
         "data": {
           "consumption_sensor": "Netverbruikssensor",
@@ -134,7 +134,7 @@
           "brand": "Batterijmerk"
         },
         "data_description": {
-          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for Omnibattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
+          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for OpenBattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
         }
       },
       "battery_connection": {
@@ -161,7 +161,7 @@
       },
       "battery_connection_zendure": {
         "title": "Batterij {battery_num} configureren — Verbinding (Zendure)",
-        "description": "Voer verbindingsgegevens in voor de Zendure SolarFlow-batterij {battery_num}. Houd HEMS uitgeschakeld in de Zendure-app voor bediening door Omnibattery.",
+        "description": "Voer verbindingsgegevens in voor de Zendure SolarFlow-batterij {battery_num}. Houd HEMS uitgeschakeld in de Zendure-app voor bediening door OpenBattery.",
         "data": {
           "name": "Naam",
           "host": "IP-adres",
@@ -342,7 +342,7 @@
           "activity_sensor": "Status- of binaire sensor die 'on' of een laadstatus meldt wanneer het apparaat vermogen vraagt. Vereist voor dynamische vermogensregeling en voor een nieuwe EV-lader zonder telemetrie.",
           "included_in_consumption": "✓ AANGEVINKT = Huissensor bevat dit apparaat AL → Batterij zal het NIET voeden (uitgesloten). ✗ NIET AANGEVINKT = Huissensor ziet het niet → Batterij zal het voeden (extra)",
           "allow_solar_surplus": "Indien aangevinkt, kan het apparaat energie rechtstreeks van de zonnepanelen (overschot) verbruiken zonder dat de batterij probeert te compenseren. Aanbevolen voor apparaten met hoog verbruik zoals EV-laders.",
-          "dynamic_power_control": "Schakel dit in voor apparaten die hun vraag automatisch via de netmeter regelen. Met een activiteitssensor wijkt Omnibattery voordat vermogen verschijnt; anders reageert het op de vermogenssensor. Daarna wordt alleen het werkelijk resterende overschot gebruikt.",
+          "dynamic_power_control": "Schakel dit in voor apparaten die hun vraag automatisch via de netmeter regelen. Met een activiteitssensor wijkt OpenBattery voordat vermogen verschijnt; anders reageert het op de vermogenssensor. Daarna wordt alleen het werkelijk resterende overschot gebruikt.",
           "cover_home_when_active": "Vereist Zonne-overschot en een sensor voor zonneproductie. De batterij mag het eigen huisverbruik dekken terwijl dit apparaat actief is; alleen het netaandeel van het apparaat blijft uitgesloten.",
           "ev_charger_no_telemetry": "✓ AANGEVINKT = Gebruikt de sensor Apparaat actief / EV-laden in plaats van numerieke telemetrie. Bestaande configuraties met deze sensor in het vermogensveld blijven werken. Bij gedetecteerd laden pauzeert de batterij 5 minuten; daarna laadt ze alleen met zonne-overschot en ontlaadt nooit voor de EV.",
           "is_ev_charger": "Aanvinken als dit apparaat een laadpaal voor elektrische voertuigen is. Wordt alleen gebruikt door het geanimeerde energiestroomdiagram, om het apparaat op de kabel van de EV-lader te tekenen in plaats van op de kabel van uitgesloten apparaten. Verandert niet hoe de batterij het apparaat beheert.",
@@ -630,12 +630,12 @@
       },
       "reconfigure_battery_indevolt_request_speed": {
         "title": "Batterij {battery_num} opnieuw configureren — Verzoeksnelheid (Indevolt)",
-        "description": "Met een hogere verzoeksnelheid reageert je batterij sneller op meterveranderingen, wat een betere nul-op-de-meter (NoM) kan opleveren. De opties:\n\n- **Conservatief** (5s) is het advies van Indevolt en de standaard. Het past bij een meter die elke 5s bijwerkt, het gebruikelijke tempo in Home Assistant: met zo'n meter reageert de batterij bij een hogere snelheid niet sneller.\n- **Normaal** (3s) past bij een meter die elke 3s bijwerkt.\n- **Snel** (2s) past bij een meter die elke 2s bijwerkt. Met een meter die elke seconde bijwerkt is het de veilige keuze: de batterij krijgt dan hooguit elke 2s een nieuwe opdracht.\n- **Maximaal** (1s) stuurt tot elke seconde een opdracht en wacht niet langer 1s tussen verzoeken, wat onder het gedocumenteerde minimum van Indevolt ligt. Het helpt alleen met een meter die elke seconde bijwerkt; kies bij een tragere meter **Snel**. Zet bij **Maximaal** ook PD Min. Cyclusinterval op 0 als elke batterij in Omnibattery een Indevolt is.",
+        "description": "Met een hogere verzoeksnelheid reageert je batterij sneller op meterveranderingen, wat een betere nul-op-de-meter (NoM) kan opleveren. De opties:\n\n- **Conservatief** (5s) is het advies van Indevolt en de standaard. Het past bij een meter die elke 5s bijwerkt, het gebruikelijke tempo in Home Assistant: met zo'n meter reageert de batterij bij een hogere snelheid niet sneller.\n- **Normaal** (3s) past bij een meter die elke 3s bijwerkt.\n- **Snel** (2s) past bij een meter die elke 2s bijwerkt. Met een meter die elke seconde bijwerkt is het de veilige keuze: de batterij krijgt dan hooguit elke 2s een nieuwe opdracht.\n- **Maximaal** (1s) stuurt tot elke seconde een opdracht en wacht niet langer 1s tussen verzoeken, wat onder het gedocumenteerde minimum van Indevolt ligt. Het helpt alleen met een meter die elke seconde bijwerkt; kies bij een tragere meter **Snel**. Zet bij **Maximaal** ook PD Min. Cyclusinterval op 0 als elke batterij in OpenBattery een Indevolt is.",
         "data": {
           "indevolt_request_speed": "Verzoeksnelheid"
         },
         "data_description": {
-          "indevolt_request_speed": "Elke snelheid sneller dan 5s is op eigen risico: je bent zelf verantwoordelijk om te controleren of je batterij, Home Assistant en netwerk het kunnen bijhouden. Op de apparaatpagina hoort Verzoekinterval (effectief) gelijk te blijven aan je keuze, en horen Leeslatentie (P95) en Schrijflatentie (P95) ruim onder 1s te blijven.\n\nUitproberen kan: antwoordt de batterij traag of niet, dan schakelt de Indevolt-driver van Omnibattery automatisch terug naar een rustiger tempo, totdat de reactiesnelheid weer hersteld is."
+          "indevolt_request_speed": "Elke snelheid sneller dan 5s is op eigen risico: je bent zelf verantwoordelijk om te controleren of je batterij, Home Assistant en netwerk het kunnen bijhouden. Op de apparaatpagina hoort Verzoekinterval (effectief) gelijk te blijven aan je keuze, en horen Leeslatentie (P95) en Schrijflatentie (P95) ruim onder 1s te blijven.\n\nUitproberen kan: antwoordt de batterij traag of niet, dan schakelt de Indevolt-driver van OpenBattery automatisch terug naar een rustiger tempo, totdat de reactiesnelheid weer hersteld is."
         }
       },
       "reconfigure_battery_anker": {
@@ -674,7 +674,7 @@
           },
           "data_description": {
             "name": "Descriptive name to identify this battery",
-            "host": "Address of the Modbus proxy or inverter Omnibattery reads from",
+            "host": "Address of the Modbus proxy or inverter OpenBattery reads from",
             "port": "Modbus TCP port (default 502)",
             "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.",
             "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.",
@@ -683,7 +683,7 @@
         },
       "reconfigure_battery_hoymiles": {
         "title": "Batterij {battery_num} opnieuw configureren — Hoymiles MQTT",
-        "description": "Voer de Hoymiles MQTT-apparaat-ID in; Home Assistant beheert de broker en Omnibattery detecteert het model.",
+        "description": "Voer de Hoymiles MQTT-apparaat-ID in; Home Assistant beheert de broker en OpenBattery detecteert het model.",
         "data": {"name": "Naam", "device_id": "MQTT-apparaat-ID", "hoymiles_model": "Batterijmodel"},
         "data_description": {"hoymiles_model": "Gebruik automatische detectie tenzij het apparaat een onjuist of generiek model publiceert."}
       },
@@ -714,7 +714,7 @@
       },
       "battery_connection_indevolt": {
         "title": "Batterij {battery_num} configureren — Verbinding (Indevolt)",
-        "description": "Voer het IP-adres van Indevolt-batterij {battery_num} in. Schakel in de Indevolt-app de lokale API in met het protocol **HTTP** (niet HTTP Digest). Omnibattery stuurt de batterij alleen aan in de modus **Realtime**, die je in de Indevolt-app kiest; de modus zelf wijzigt Omnibattery nooit.",
+        "description": "Voer het IP-adres van Indevolt-batterij {battery_num} in. Schakel in de Indevolt-app de lokale API in met het protocol **HTTP** (niet HTTP Digest). OpenBattery stuurt de batterij alleen aan in de modus **Realtime**, die je in de Indevolt-app kiest; de modus zelf wijzigt OpenBattery nooit.",
         "data": {
           "name": "Naam",
           "host": "IP-adres",
@@ -728,23 +728,23 @@
       },
       "indevolt_request_speed": {
         "title": "Batterij {battery_num} configureren — Verzoeksnelheid (Indevolt)",
-        "description": "Met een hogere verzoeksnelheid reageert je batterij sneller op meterveranderingen, wat een betere nul-op-de-meter (NoM) kan opleveren. De opties:\n\n- **Conservatief** (5s) is het advies van Indevolt en de standaard. Het past bij een meter die elke 5s bijwerkt, het gebruikelijke tempo in Home Assistant: met zo'n meter reageert de batterij bij een hogere snelheid niet sneller.\n- **Normaal** (3s) past bij een meter die elke 3s bijwerkt.\n- **Snel** (2s) past bij een meter die elke 2s bijwerkt. Met een meter die elke seconde bijwerkt is het de veilige keuze: de batterij krijgt dan hooguit elke 2s een nieuwe opdracht.\n- **Maximaal** (1s) stuurt tot elke seconde een opdracht en wacht niet langer 1s tussen verzoeken, wat onder het gedocumenteerde minimum van Indevolt ligt. Het helpt alleen met een meter die elke seconde bijwerkt; kies bij een tragere meter **Snel**. Zet bij **Maximaal** ook PD Min. Cyclusinterval op 0 als elke batterij in Omnibattery een Indevolt is.",
+        "description": "Met een hogere verzoeksnelheid reageert je batterij sneller op meterveranderingen, wat een betere nul-op-de-meter (NoM) kan opleveren. De opties:\n\n- **Conservatief** (5s) is het advies van Indevolt en de standaard. Het past bij een meter die elke 5s bijwerkt, het gebruikelijke tempo in Home Assistant: met zo'n meter reageert de batterij bij een hogere snelheid niet sneller.\n- **Normaal** (3s) past bij een meter die elke 3s bijwerkt.\n- **Snel** (2s) past bij een meter die elke 2s bijwerkt. Met een meter die elke seconde bijwerkt is het de veilige keuze: de batterij krijgt dan hooguit elke 2s een nieuwe opdracht.\n- **Maximaal** (1s) stuurt tot elke seconde een opdracht en wacht niet langer 1s tussen verzoeken, wat onder het gedocumenteerde minimum van Indevolt ligt. Het helpt alleen met een meter die elke seconde bijwerkt; kies bij een tragere meter **Snel**. Zet bij **Maximaal** ook PD Min. Cyclusinterval op 0 als elke batterij in OpenBattery een Indevolt is.",
         "data": {
           "indevolt_request_speed": "Verzoeksnelheid"
         },
         "data_description": {
-          "indevolt_request_speed": "Elke snelheid sneller dan 5s is op eigen risico: je bent zelf verantwoordelijk om te controleren of je batterij, Home Assistant en netwerk het kunnen bijhouden. Op de apparaatpagina hoort Verzoekinterval (effectief) gelijk te blijven aan je keuze, en horen Leeslatentie (P95) en Schrijflatentie (P95) ruim onder 1s te blijven.\n\nUitproberen kan: antwoordt de batterij traag of niet, dan schakelt de Indevolt-driver van Omnibattery automatisch terug naar een rustiger tempo, totdat de reactiesnelheid weer hersteld is."
+          "indevolt_request_speed": "Elke snelheid sneller dan 5s is op eigen risico: je bent zelf verantwoordelijk om te controleren of je batterij, Home Assistant en netwerk het kunnen bijhouden. Op de apparaatpagina hoort Verzoekinterval (effectief) gelijk te blijven aan je keuze, en horen Leeslatentie (P95) en Schrijflatentie (P95) ruim onder 1s te blijven.\n\nUitproberen kan: antwoordt de batterij traag of niet, dan schakelt de Indevolt-driver van OpenBattery automatisch terug naar een rustiger tempo, totdat de reactiesnelheid weer hersteld is."
         }
       },
       "indevolt_mode_notice": {
         "title": "Batterij {battery_num} — Realtime-modus vereist",
-        "description": "De batterij staat niet in de Realtime-modus. De installatie gaat verder en Omnibattery houdt de batterij in de gaten, maar stuurt haar pas aan zodra je in de Indevolt-app **Realtime** kiest. De aansturing start dan vanzelf."
+        "description": "De batterij staat niet in de Realtime-modus. De installatie gaat verder en OpenBattery houdt de batterij in de gaten, maar stuurt haar pas aan zodra je in de Indevolt-app **Realtime** kiest. De aansturing start dan vanzelf."
       },
       "battery_connection_huawei": {
         "title": "Configure battery {battery_num} — Connection (Huawei)",
-        "description": "Omnibattery reads this battery over Modbus and sends its set-points through the Huawei Solar integration, so it needs both: a Modbus endpoint and the battery device. Point the Modbus address at a Modbus proxy rather than straight at the inverter — the Huawei Solar integration already holds a connection to it.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides Omnibattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
+        "description": "OpenBattery reads this battery over Modbus and sends its set-points through the Huawei Solar integration, so it needs both: a Modbus endpoint and the battery device. Point the Modbus address at a Modbus proxy rather than straight at the inverter — the Huawei Solar integration already holds a connection to it.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides OpenBattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
         "data": {"name": "Name", "host": "IP Address", "port": "Modbus Port", "slave_id": "Modbus slave id (leave empty to search)", "huawei_battery_device": "Huawei Solar battery device", "huawei_direct_write": "Direct Modbus writes"},
-        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter Omnibattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
+        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter OpenBattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
       },
       "battery_connection_huawei_slave": {
         "title": "Configure battery {battery_num} — Choose inverter",
@@ -774,15 +774,15 @@
       "hoymiles_no_power_ctrl": "Deze MQTT-apparaat-ID publiceert telemetrie maar geen vermogensregeling. In een gekoppeld Hoymiles-systeem is alleen de master aanstuurbaar: voeg de apparaat-ID van de master één keer toe, niet die van de slave.",
       "indevolt_http_digest": "De batterij vraagt om een wachtwoord: de lokale API staat op HTTP Digest. Kies HTTP in de Indevolt-app en probeer het opnieuw.",
       "no_battery": "Inverter reached, but it reports no battery. Check that the LUNA2000 is attached and the Modbus slave ID points at the inverter.",
-      "huawei_device_required": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
-      "huawei_solar_missing": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
+      "huawei_device_required": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
+      "huawei_solar_missing": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
       "huawei_device_mismatch": "The chosen battery device belongs to a different inverter than the Modbus address points at. With cascaded inverters the readings would come from one unit while the commands landed on another. Check the device and the slave id.",
       "esphome_entities_missing": "Het geselecteerde ESPHome-apparaat mist vereiste entiteiten: {missing}. Zorg dat het de marstek-lilygo-rs485-firmware met de originele entiteitsnamen draait.",
       "sensor_not_found": "Zonnevoorspellingssensor bestaat niet. Controleer of de sensor beschikbaar is.",
       "invalid_unit": "Zonnevoorspellingssensor moet 'kWh' of 'Wh' als eenheid hebben.",
       "solar_production_sensor_not_found": "Zonneproductiesensor bestaat niet. Controleer of de sensor beschikbaar is.",
       "solar_production_invalid_unit": "Zonneproductiesensor moet 'W' of 'kW' als eenheid hebben.",
-      "solar_production_sensor_circular": "Een door OmniBattery gemaakte zonnesensor kan niet opnieuw als externe zonneproductie-invoer worden gebruikt.",
+      "solar_production_sensor_circular": "Een door OpenBattery gemaakte zonnesensor kan niet opnieuw als externe zonneproductie-invoer worden gebruikt.",
       "offgrid_sensor_must_differ": "De off-grid vermogenssensor moet verschillen van de normale netsensor.",
       "offgrid_sensor_not_found": "De off-grid vermogenssensor bestaat niet of is niet beschikbaar.",
       "offgrid_sensor_invalid_unit": "De off-grid vermogenssensor moet 'W' of 'kW' als eenheid hebben.",
@@ -816,7 +816,7 @@
       "already_configured": "Deze integratie is al geconfigureerd.",
       "reconfigure_successful": "Verbindingsinstellingen van de batterij succesvol bijgewerkt.",
       "no_legacy_entries": "Er is geen bestaande Marstek Venus-configuratie gevonden om te migreren.",
-      "migration_successful": "{count} configuratie(s) zijn gemigreerd naar Omnibattery. Uw entiteiten, geschiedenis en instellingen zijn behouden.",
+      "migration_successful": "{count} configuratie(s) zijn gemigreerd naar OpenBattery. Uw entiteiten, geschiedenis en instellingen zijn behouden.",
       "restore_successful": "{count} configuratie(s) hersteld. Je entiteiten, geschiedenis en instellingen zijn hersteld."
     }
   },
@@ -855,7 +855,7 @@
         "data": {"battery_phase": "Fysieke batterijfase"}
       },
       "init": {
-        "title": "Omnibattery opnieuw configureren",
+        "title": "OpenBattery opnieuw configureren",
         "description": "Selecteer de sectie die u wilt configureren.",
         "menu_options": {
           "sensors": "Sensoren",
@@ -919,7 +919,7 @@
           "brand": "Batterijmerk"
         },
         "data_description": {
-          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for Omnibattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
+          "brand": "Marstek Venus: Modbus TCP. Zendure SolarFlow: local HTTP (HEMS must be disabled for OpenBattery control). Anker SOLIX Solarbank Max AC / 4 E5000 Pro: Modbus TCP (enable Modbus TCP under Third-Party Control in the Anker app; only one Modbus client at a time). Sessy: local HTTP."
         }
       },
       "battery_connection": {
@@ -946,7 +946,7 @@
       },
       "battery_connection_zendure": {
         "title": "Batterij {battery_num} configureren — Verbinding (Zendure)",
-        "description": "Wijzig verbindingsgegevens voor de Zendure SolarFlow-batterij {battery_num}. Houd HEMS uitgeschakeld in de Zendure-app voor bediening door Omnibattery.",
+        "description": "Wijzig verbindingsgegevens voor de Zendure SolarFlow-batterij {battery_num}. Houd HEMS uitgeschakeld in de Zendure-app voor bediening door OpenBattery.",
         "data": {
           "name": "Naam",
           "host": "IP-adres",
@@ -1121,7 +1121,7 @@
           "activity_sensor": "Status- of binaire sensor die 'on' of een laadstatus meldt wanneer het apparaat vermogen vraagt. Vereist voor dynamische vermogensregeling en voor een nieuwe EV-lader zonder telemetrie.",
           "included_in_consumption": "✓ AANGEVINKT = Huissensor bevat dit apparaat AL → Batterij zal het NIET voeden (uitgesloten). ✗ NIET AANGEVINKT = Huissensor ziet het niet → Batterij zal het voeden (extra)",
           "allow_solar_surplus": "Indien aangevinkt, kan het apparaat energie rechtstreeks van de zonnepanelen (overschot) verbruiken zonder dat de batterij probeert te compenseren. Aanbevolen voor apparaten met hoog verbruik zoals EV-laders.",
-          "dynamic_power_control": "Schakel dit in voor apparaten die hun vraag automatisch via de netmeter regelen. Met een activiteitssensor wijkt Omnibattery voordat vermogen verschijnt; anders reageert het op de vermogenssensor. Daarna wordt alleen het werkelijk resterende overschot gebruikt.",
+          "dynamic_power_control": "Schakel dit in voor apparaten die hun vraag automatisch via de netmeter regelen. Met een activiteitssensor wijkt OpenBattery voordat vermogen verschijnt; anders reageert het op de vermogenssensor. Daarna wordt alleen het werkelijk resterende overschot gebruikt.",
           "cover_home_when_active": "Vereist Zonne-overschot en een sensor voor zonneproductie. De batterij mag het eigen huisverbruik dekken terwijl dit apparaat actief is; alleen het netaandeel van het apparaat blijft uitgesloten.",
           "ev_charger_no_telemetry": "✓ AANGEVINKT = Gebruikt de sensor Apparaat actief / EV-laden in plaats van numerieke telemetrie. Bestaande configuraties met deze sensor in het vermogensveld blijven werken. Bij gedetecteerd laden pauzeert de batterij 5 minuten; daarna laadt ze alleen met zonne-overschot en ontlaadt nooit voor de EV.",
           "is_ev_charger": "Aanvinken als dit apparaat een laadpaal voor elektrische voertuigen is. Wordt alleen gebruikt door het geanimeerde energiestroomdiagram, om het apparaat op de kabel van de EV-lader te tekenen in plaats van op de kabel van uitgesloten apparaten. Verandert niet hoe de batterij het apparaat beheert.",
@@ -1373,23 +1373,23 @@
       },
       "indevolt_request_speed": {
         "title": "Batterij {battery_num} configureren — Verzoeksnelheid (Indevolt)",
-        "description": "Met een hogere verzoeksnelheid reageert je batterij sneller op meterveranderingen, wat een betere nul-op-de-meter (NoM) kan opleveren. De opties:\n\n- **Conservatief** (5s) is het advies van Indevolt en de standaard. Het past bij een meter die elke 5s bijwerkt, het gebruikelijke tempo in Home Assistant: met zo'n meter reageert de batterij bij een hogere snelheid niet sneller.\n- **Normaal** (3s) past bij een meter die elke 3s bijwerkt.\n- **Snel** (2s) past bij een meter die elke 2s bijwerkt. Met een meter die elke seconde bijwerkt is het de veilige keuze: de batterij krijgt dan hooguit elke 2s een nieuwe opdracht.\n- **Maximaal** (1s) stuurt tot elke seconde een opdracht en wacht niet langer 1s tussen verzoeken, wat onder het gedocumenteerde minimum van Indevolt ligt. Het helpt alleen met een meter die elke seconde bijwerkt; kies bij een tragere meter **Snel**. Zet bij **Maximaal** ook PD Min. Cyclusinterval op 0 als elke batterij in Omnibattery een Indevolt is.",
+        "description": "Met een hogere verzoeksnelheid reageert je batterij sneller op meterveranderingen, wat een betere nul-op-de-meter (NoM) kan opleveren. De opties:\n\n- **Conservatief** (5s) is het advies van Indevolt en de standaard. Het past bij een meter die elke 5s bijwerkt, het gebruikelijke tempo in Home Assistant: met zo'n meter reageert de batterij bij een hogere snelheid niet sneller.\n- **Normaal** (3s) past bij een meter die elke 3s bijwerkt.\n- **Snel** (2s) past bij een meter die elke 2s bijwerkt. Met een meter die elke seconde bijwerkt is het de veilige keuze: de batterij krijgt dan hooguit elke 2s een nieuwe opdracht.\n- **Maximaal** (1s) stuurt tot elke seconde een opdracht en wacht niet langer 1s tussen verzoeken, wat onder het gedocumenteerde minimum van Indevolt ligt. Het helpt alleen met een meter die elke seconde bijwerkt; kies bij een tragere meter **Snel**. Zet bij **Maximaal** ook PD Min. Cyclusinterval op 0 als elke batterij in OpenBattery een Indevolt is.",
         "data": {
           "indevolt_request_speed": "Verzoeksnelheid"
         },
         "data_description": {
-          "indevolt_request_speed": "Elke snelheid sneller dan 5s is op eigen risico: je bent zelf verantwoordelijk om te controleren of je batterij, Home Assistant en netwerk het kunnen bijhouden. Op de apparaatpagina hoort Verzoekinterval (effectief) gelijk te blijven aan je keuze, en horen Leeslatentie (P95) en Schrijflatentie (P95) ruim onder 1s te blijven.\n\nUitproberen kan: antwoordt de batterij traag of niet, dan schakelt de Indevolt-driver van Omnibattery automatisch terug naar een rustiger tempo, totdat de reactiesnelheid weer hersteld is."
+          "indevolt_request_speed": "Elke snelheid sneller dan 5s is op eigen risico: je bent zelf verantwoordelijk om te controleren of je batterij, Home Assistant en netwerk het kunnen bijhouden. Op de apparaatpagina hoort Verzoekinterval (effectief) gelijk te blijven aan je keuze, en horen Leeslatentie (P95) en Schrijflatentie (P95) ruim onder 1s te blijven.\n\nUitproberen kan: antwoordt de batterij traag of niet, dan schakelt de Indevolt-driver van OpenBattery automatisch terug naar een rustiger tempo, totdat de reactiesnelheid weer hersteld is."
         }
       },
       "indevolt_mode_notice": {
         "title": "Batterij {battery_num} — Realtime-modus vereist",
-        "description": "De batterij staat niet in de Realtime-modus. De installatie gaat verder en Omnibattery houdt de batterij in de gaten, maar stuurt haar pas aan zodra je in de Indevolt-app **Realtime** kiest. De aansturing start dan vanzelf."
+        "description": "De batterij staat niet in de Realtime-modus. De installatie gaat verder en OpenBattery houdt de batterij in de gaten, maar stuurt haar pas aan zodra je in de Indevolt-app **Realtime** kiest. De aansturing start dan vanzelf."
       },
       "battery_connection_huawei": {
         "title": "Configure battery {battery_num} — Connection (Huawei)",
-        "description": "Modify the Modbus endpoint and the Huawei Solar battery device used for battery {battery_num}.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides Omnibattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
+        "description": "Modify the Modbus endpoint and the Huawei Solar battery device used for battery {battery_num}.\n\nA Huawei inverter accepts only ONE Modbus connection at a time. If anything else talks to it besides OpenBattery — the Huawei Solar integration, evcc, another system — you need a Modbus proxy in front that fans the connection out to several clients, for example {proxy_url}. Enter the proxy's address and port instead of the inverter's. The slave id is searched for automatically when the one entered does not answer.",
         "data": {"name": "Name", "host": "IP Address", "port": "Modbus Port", "slave_id": "Modbus slave id (leave empty to search)", "huawei_battery_device": "Huawei Solar battery device", "huawei_direct_write": "Direct Modbus writes"},
-        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter Omnibattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
+        "data_description": {"name": "Descriptive name to identify this battery", "host": "Address of the Modbus proxy or inverter OpenBattery reads from", "port": "Modbus TCP port (default 502)", "slave_id": "Unit id of the inverter — not of the energy manager or a charger. Leave it empty and setup goes looking: it tries the usual ids, identifies each inverter by its model register and takes the one with a battery attached. If several answer — Huawei inverters can be cascaded — a selection step follows. The search takes about 15 seconds.", "huawei_battery_device": "Only needed when direct Modbus writes are off, in which case set-points go through the Huawei Solar integration's services. With direct writes, leave it empty.", "huawei_direct_write": "Write set-points as Modbus registers instead of calling the Huawei Solar integration's services. Same register sequence, but without the detour through the service layer or the wait on that integration's communication lock. Off by default — enable it once the proven path is working."}
       },
       "battery_connection_huawei_slave": {
         "title": "Configure battery {battery_num} — Choose inverter",
@@ -1419,15 +1419,15 @@
       "hoymiles_no_power_ctrl": "Deze MQTT-apparaat-ID publiceert telemetrie maar geen vermogensregeling. In een gekoppeld Hoymiles-systeem is alleen de master aanstuurbaar: voeg de apparaat-ID van de master één keer toe, niet die van de slave.",
       "indevolt_http_digest": "De batterij vraagt om een wachtwoord: de lokale API staat op HTTP Digest. Kies HTTP in de Indevolt-app en probeer het opnieuw.",
       "no_battery": "Inverter reached, but it reports no battery. Check that the LUNA2000 is attached and the Modbus slave ID points at the inverter.",
-      "huawei_device_required": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
-      "huawei_solar_missing": "Without direct Modbus writes, Omnibattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
+      "huawei_device_required": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services, and those address it by device. Either pick the device or enable direct writes.",
+      "huawei_solar_missing": "Without direct Modbus writes, OpenBattery controls the battery through the Huawei Solar integration's services — but that integration is not set up here. Install and configure it via HACS, or enable direct writes.",
       "huawei_device_mismatch": "The chosen battery device belongs to a different inverter than the Modbus address points at. With cascaded inverters the readings would come from one unit while the commands landed on another. Check the device and the slave id.",
       "esphome_entities_missing": "Het geselecteerde ESPHome-apparaat mist vereiste entiteiten: {missing}. Zorg dat het de marstek-lilygo-rs485-firmware met de originele entiteitsnamen draait.",
       "sensor_not_found": "Zonnevoorspellingssensor bestaat niet. Controleer of de sensor beschikbaar is.",
       "invalid_unit": "Zonnevoorspellingssensor moet 'kWh' of 'Wh' als eenheid hebben.",
       "solar_production_sensor_not_found": "Zonneproductiesensor bestaat niet. Controleer of de sensor beschikbaar is.",
       "solar_production_invalid_unit": "Zonneproductiesensor moet 'W' of 'kW' als eenheid hebben.",
-      "solar_production_sensor_circular": "Een door OmniBattery gemaakte zonnesensor kan niet opnieuw als externe zonneproductie-invoer worden gebruikt.",
+      "solar_production_sensor_circular": "Een door OpenBattery gemaakte zonnesensor kan niet opnieuw als externe zonneproductie-invoer worden gebruikt.",
       "offgrid_sensor_must_differ": "De off-grid vermogenssensor moet verschillen van de normale netsensor.",
       "offgrid_sensor_not_found": "De off-grid vermogenssensor bestaat niet of is niet beschikbaar.",
       "offgrid_sensor_invalid_unit": "De off-grid vermogenssensor moet 'W' of 'kW' als eenheid hebben.",

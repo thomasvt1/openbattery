@@ -1,16 +1,16 @@
 # Entender el plan de batería de hoy
 
-Usa la cronología diaria de operación para ver cómo Omnibattery ha aprovechado el sol y protegido tu instalación hoy, y qué espera hacer después. Combina energía medida de casa y solar con acciones de batería y el plan de carga activo; es una vista de diagnóstico y no controla la batería.
+Usa la cronología diaria de operación para ver cómo OpenBattery ha aprovechado el sol y protegido tu instalación hoy, y qué espera hacer después. Combina energía medida de casa y solar con acciones de batería y el plan de carga activo; es una vista de diagnóstico y no controla la batería.
 
 ## ¿Lo necesito?
 
 **Úsala si** quieres entender por qué la batería cargó, descargó, esperó al sol o dejó sin usar un periodo de carga desde red.
 
-**No la necesitas** para operar Omnibattery. El controlador sigue funcionando con el panel cerrado, y abrir la tarjeta no activa una decisión de control.
+**No la necesitas** para operar OpenBattery. El controlador sigue funcionando con el panel cerrado, y abrir la tarjeta no activa una decisión de control.
 
 ## Antes de empezar
 
-- Instala el panel lateral de Omnibattery y deja que la integración recopile datos del día actual.
+- Instala el panel lateral de OpenBattery y deja que la integración recopile datos del día actual.
 - Configura el [aprendizaje de consumo de casa](consumption-estimate.md) y una fuente solar para obtener las curvas más completas.
 - Configura carga predictiva por Precio dinámico o Franja horaria si quieres ver decisiones futuras de carga desde red en la cronología. Precio en tiempo real registra las activaciones cuando suceden y, de forma intencionada, no tiene calendario futuro.
 
@@ -18,7 +18,7 @@ Usa la cronología diaria de operación para ver cómo Omnibattery ha aprovechad
 
 La cronología es automática; no hay interruptor que activar.
 
-1. Abre el panel lateral de Omnibattery.
+1. Abre el panel lateral de OpenBattery.
 2. Selecciona **Overview** y busca **Daily Operation Timeline**.
 3. Desplázate sobre una celda para abrir sus detalles. En dispositivos táctiles, toca el intervalo.
 4. Usa la flecha de navegación derecha o el desplazamiento horizontal para ver la mañana local siguiente.
@@ -51,7 +51,7 @@ La cronología depende de la [estimación de consumo](consumption-estimate.md), 
 | Una celda amarilla no se volvió verde | Se proyectó carga solar pero no entró energía en la batería | Límites de batería, SOC y la información emergente del intervalo |
 | Una celda muestra más de una acción | Los flujos sucedieron simultáneamente | El patrón diagonal y el texto accesible de la información emergente |
 | La celda actual difiere del resultado final | Su parte sin terminar sigue proyectada | Vuelve a comprobarlo cuando se cierre el cuarto de hora |
-| Los datos ausentes aparecen como un hueco | Omnibattery conserva los valores no disponibles | Disponibilidad de las entidades de fuente; los valores ausentes no se convierten en cero |
+| Los datos ausentes aparecen como un hueco | OpenBattery conserva los valores no disponibles | Disponibilidad de las entidades de fuente; los valores ausentes no se convierten en cero |
 
 ??? "Detalles avanzados"
     La tarjeta contiene `96` celdas fijas de `15-minute` para el día local y hasta `48` celdas de ampliación para las siguientes `12 hours`, con un horizonte visible máximo de `144` celdas. Las curvas de energía usan `kWh/15 min`; el SOC usa un eje de `0–100%`.

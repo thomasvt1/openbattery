@@ -1,4 +1,4 @@
-"""Config flow for Omnibattery integration."""
+"""Config flow for OpenBattery integration."""
 from __future__ import annotations
 
 import asyncio
@@ -590,7 +590,7 @@ def _soc_selector_limits(
         min_lo, min_hi, min_default = 0, 30, 10
     elif brand == "huawei":
         # The inverter keeps its own discharge cutoff as a backstop; this window
-        # is what Omnibattery enforces on top of it.
+        # is what OpenBattery enforces on top of it.
         min_lo, min_hi, min_default = 0, 30, 10
     else:
         min_lo, min_hi, min_default = 12, 30, 12
@@ -601,7 +601,7 @@ def _soc_selector_limits(
             min_hi = int(DriverCapabilities.discharge_cutoff_range[1])
             max_lo = int(DriverCapabilities.charge_cutoff_range[0])
 
-    # Omnibattery enforces the charge ceiling in software. Sessy's reported SOC
+    # OpenBattery enforces the charge ceiling in software. Sessy's reported SOC
     # spans 0–100 %, so the standard 100 % ceiling is valid for this driver.
     return min_lo, min_hi, min_default, max_lo, 100, 100
 
@@ -646,7 +646,7 @@ async def _indevolt_probe(user_input: dict) -> tuple[dict, dict] | str:
     try:
         info = await IndevoltDriver.probe(host, port)
     except IndevoltAuthenticationError:
-        # The local API is set to HTTP Digest; Omnibattery uses plain HTTP.
+        # The local API is set to HTTP Digest; OpenBattery uses plain HTTP.
         return "indevolt_http_digest"
     except ValueError:
         return "cannot_connect"
@@ -670,7 +670,7 @@ def _indevolt_prefill(battery_data: dict, info: dict, stored: dict | None = None
 
     On its first start the driver adopts the battery's own settings and writes
     nothing (drivers/indevolt_settings.py), so a form value that differs would
-    be replaced without notice. A setting that Omnibattery and the battery
+    be replaced without notice. A setting that OpenBattery and the battery
     already agreed on (``stored``) keeps its configured value.
     """
     stored = stored or {}
@@ -1480,7 +1480,7 @@ def _preserve_values_in_error_forms(flow_class):
 
 @_preserve_values_in_error_forms
 class MarstekVenusConfigFlow(LegacyDomainMigrationMixin, ConfigFlow, domain=DOMAIN):
-    """Handle a config flow for Omnibattery."""
+    """Handle a config flow for OpenBattery."""
 
     VERSION = 16
 
@@ -1995,7 +1995,7 @@ class MarstekVenusConfigFlow(LegacyDomainMigrationMixin, ConfigFlow, domain=DOMA
         )
 
     async def async_step_indevolt_request_speed(self, user_input: dict[str, Any] | None = None) -> FlowResult:
-        """Choose how fast Omnibattery may send requests to the Indevolt battery."""
+        """Choose how fast OpenBattery may send requests to the Indevolt battery."""
         if user_input is not None:
             self._current_battery_data[CONF_INDEVOLT_REQUEST_SPEED] = _indevolt_request_speed(user_input)
             return await self.async_step_battery_limits()
@@ -3048,7 +3048,7 @@ class MarstekVenusConfigFlow(LegacyDomainMigrationMixin, ConfigFlow, domain=DOMA
         self.config_data.setdefault(CONF_THREE_PHASE_ENABLED, DEFAULT_THREE_PHASE_ENABLED)
         self.config_data[CONF_ENABLE_BALANCE_MONITOR] = True
         return self.async_create_entry(
-            title="Omnibattery",
+            title="OpenBattery",
             data=normalize_solar_forecast_config(self.config_data),
         )
 
@@ -4686,7 +4686,7 @@ class OptionsFlowHandler(OptionsFlow):
         )
 
     async def async_step_indevolt_request_speed(self, user_input: dict[str, Any] | None = None) -> FlowResult:
-        """Choose how fast Omnibattery may send requests to the Indevolt battery."""
+        """Choose how fast OpenBattery may send requests to the Indevolt battery."""
         if user_input is not None:
             self._current_battery_data[CONF_INDEVOLT_REQUEST_SPEED] = _indevolt_request_speed(user_input)
             return await self.async_step_battery_limits()

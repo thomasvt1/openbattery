@@ -1,6 +1,6 @@
 # ¿Es compatible mi batería?
 
-Omnibattery puede controlar automáticamente desde Home Assistant las baterías siguientes. Busca tu modelo exacto, prepara la conexión que necesita y comprueba su límite antes de instalar.
+OpenBattery puede controlar automáticamente desde Home Assistant las baterías siguientes. Busca tu modelo exacto, prepara la conexión que necesita y comprueba su límite antes de instalar.
 
 | Marca / modelo | Lo que necesitas | Qué control obtienes | Límite importante | Guía |
 |---|---|---|---|---|
@@ -12,7 +12,7 @@ Omnibattery puede controlar automáticamente desde Home Assistant las baterías 
 | **Zendure SolarFlow 800, 800 Plus o 800 Pro** | Una dirección IP local estable y HEMS de Zendure desactivado. | Control automático; sin telemetría solar específica; límites de SOC del dispositivo. | 1.000 W de carga, 800 W de descarga. | [Zendure SolarFlow](configuration/batteries/zendure.md) |
 | **Zendure SolarFlow 1600 AC+, 2400 AC Pro, 2400 AC+, 3000 Mix AC+ o 4000 Mix AC+** | Una dirección IP local estable y HEMS de Zendure desactivado. | Control automático; sin telemetría solar específica; límites de SOC del dispositivo. | Igual en ambas direcciones: 1.600 / 2.400 / 2.400 / 3.000 / 4.000 W. HEMS recupera el control si se activa. | [Zendure SolarFlow](configuration/batteries/zendure.md) |
 | **Zendure SolarFlow 4000 Mix Pro** | Una dirección IP local estable y HEMS de Zendure desactivado. | Control automático; telemetría solar MPPT doble; límites de SOC del dispositivo. | Hasta 4.000 W en ambos sentidos. HEMS recupera el control si se activa. | [Zendure SolarFlow](configuration/batteries/zendure.md) |
-| **Anker SOLIX Solarbank Max AC o XE AC** | Modbus TCP y **Third-Party Control** activado en la aplicación de Anker. | Control automático; sin telemetría solar independiente; límites de SOC del hardware. | Un cliente Modbus cada vez: ninguna otra integración puede conectarse a la vez que Omnibattery. | [Anker SOLIX](configuration/batteries/anker.md) |
+| **Anker SOLIX Solarbank Max AC o XE AC** | Modbus TCP y **Third-Party Control** activado en la aplicación de Anker. | Control automático; sin telemetría solar independiente; límites de SOC del hardware. | Un cliente Modbus cada vez: ninguna otra integración puede conectarse a la vez que OpenBattery. | [Anker SOLIX](configuration/batteries/anker.md) |
 | **Anker SOLIX Solarbank 4 E5000 Pro** | Modbus TCP y **Third-Party Control** activado en la aplicación de Anker. | Control automático; telemetría solar independiente; límites de SOC del hardware. | Cierra otros clientes Modbus antes de configurar. | [Anker SOLIX](configuration/batteries/anker.md) |
 | **Sessy Home Battery** | Un dongle Sessy accesible y las credenciales impresas en él. | Control automático; su lectura FV es informativa, no telemetría solar del controlador; límites de SOC por software. | 2.200 W de carga, 1.700 W de descarga. La primera orden tras el modo de espera puede retrasarse. | [Sessy Home Battery](configuration/batteries/sessy.md) |
 | **Indevolt SolidFlex 2000** (PowerFlex 2000, SolidFlex/PowerFlex 1200 y 3000, y SolidFlex 3600 usan la misma API) | La API local activada con **HTTP** y el modo de trabajo en **Tiempo real** en la app de Indevolt. | Control automático; límites de SOC por software; la reserva y los límites de potencia se mantienen sincronizados con la app de Indevolt. | Hasta 2.400 W (SolidFlex 2000). | [Indevolt SolidFlex / PowerFlex](configuration/batteries/indevolt.md) |
@@ -23,4 +23,4 @@ Omnibattery puede controlar automáticamente desde Home Assistant las baterías 
 
 ## Mi batería no aparece
 
-Un modelo compatible necesita telemetría local fiable, control de carga y descarga y una orden de reposo segura. Consulta los [requisitos para controladores de batería](reference/driver-requirements-template.md) antes de solicitar un modelo nuevo; después [abre una incidencia en GitHub](https://github.com/ffunes/omnibattery/issues) con el modelo, firmware, método de conexión y cualquier documentación del protocolo del fabricante.
+Un modelo compatible necesita telemetría local fiable, control de carga y descarga y una orden de reposo segura. Consulta los [requisitos para controladores de batería](reference/driver-requirements-template.md) antes de solicitar un modelo nuevo; después [abre una incidencia en GitHub](https://github.com/thomasvt1/openbattery/issues) con el modelo, firmware, método de conexión y cualquier documentación del protocolo del fabricante.

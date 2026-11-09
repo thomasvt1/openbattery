@@ -221,7 +221,7 @@ class BalanceMonitor:
         """Record a settled cell delta reported by the active-balance blueprint.
 
         The blueprint owns the battery while this method is called, but the
-        voltage values always come from Omnibattery's coordinator. This keeps
+        voltage values always come from OpenBattery's coordinator. This keeps
         the integration's history and sensor updates on the same telemetry
         path as normal top-charge measurements.
         """

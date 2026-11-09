@@ -1,16 +1,16 @@
 # Understand today's battery plan
 
-Use the daily operation timeline to see how Omnibattery made the most of solar and protected your installation today, and what it expects to do next. It combines measured household and solar energy with battery actions and the active charging plan; it is a diagnostic view and does not control the battery.
+Use the daily operation timeline to see how OpenBattery made the most of solar and protected your installation today, and what it expects to do next. It combines measured household and solar energy with battery actions and the active charging plan; it is a diagnostic view and does not control the battery.
 
 ## Do I need it?
 
 **Use it if** you want to understand why the battery charged, discharged, waited for solar, or left a grid-charging period unused.
 
-**You do not need it** to operate Omnibattery. The controller continues working when the panel is closed, and opening the card does not trigger a control decision.
+**You do not need it** to operate OpenBattery. The controller continues working when the panel is closed, and opening the card does not trigger a control decision.
 
 ## Before you start
 
-- Install the Omnibattery sidebar panel and allow the integration to collect current-day data.
+- Install the OpenBattery sidebar panel and allow the integration to collect current-day data.
 - Configure [household consumption learning](consumption-estimate.md) and a solar source for the most complete curves.
 - Configure Dynamic Pricing or Time Slot predictive charging if you want future grid-charge decisions on the timeline. Real-Time Price records activations as they happen and intentionally has no future calendar.
 
@@ -18,7 +18,7 @@ Use the daily operation timeline to see how Omnibattery made the most of solar a
 
 The timeline is automatic; there is no switch to enable.
 
-1. Open the Omnibattery sidebar panel.
+1. Open the OpenBattery sidebar panel.
 2. Select **Overview** and find **Daily Operation Timeline**.
 3. Move across a cell to open its details. On touch devices, tap the interval.
 4. Use the right navigation arrow or horizontal scrolling to view the next local morning.
@@ -51,7 +51,7 @@ The timeline depends on the [consumption estimate](consumption-estimate.md), [So
 | A yellow cell did not become green | Solar charging was projected but no energy entered the battery | Battery limits, SOC, and the interval tooltip |
 | A cell shows more than one action | Flows occurred simultaneously | The diagonal pattern and accessible tooltip text |
 | The current cell differs from the eventual result | Its unfinished portion is still projected | Recheck after the quarter closes |
-| Missing data appears as a gap | Omnibattery preserves unavailable values | Source entity availability; missing values are not converted to zero |
+| Missing data appears as a gap | OpenBattery preserves unavailable values | Source entity availability; missing values are not converted to zero |
 
 ??? "Advanced details"
     The card contains `96` fixed `15-minute` cells for the local day and up to `48` extension cells for the following `12 hours`, for a maximum visible horizon of `144` cells. Energy curves use `kWh/15 min`; SOC uses a `0–100%` axis.
