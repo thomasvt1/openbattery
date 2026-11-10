@@ -1,0 +1,48 @@
+name: Prepare upstream sync
+
+on:
+  schedule:
+    - cron: "13 5 * * *"
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: "Upstream tag, branch or SHA (empty = latest stable release)"
+        type: string
+        default: ""
+      dry_run:
+        description: "Test the merge without pushing or opening a PR"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: upstream-sync
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.repository == 'thomasvt1/openbattery'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: openbattery
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Prepare reviewable merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_REF: ${{ inputs.upstream_ref }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          args=()
+          if [[ "$DRY_RUN" == "true" ]]; then args+=(--dry-run); fi
+          python scripts/sync_upstream.py --upstream-ref "$UPSTREAM_REF" "${args[@]}"

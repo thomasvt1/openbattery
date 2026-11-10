@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js")
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js")
 
 # Expected group of each predictive item, in render order: each discharge
 # feature keeps its switch, its sliders and its status row in one group.

@@ -3,7 +3,7 @@
 from pathlib import Path
 
 
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js")
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js")
 
 
 def test_delayed_solar_opportunity_keeps_yellow_window_and_clock_context():

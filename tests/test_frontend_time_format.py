@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js")
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js")
 
 
 def test_dashboard_clock_honors_home_assistant_time_format_preference():

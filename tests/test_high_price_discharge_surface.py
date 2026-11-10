@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 COMPONENT = Path("custom_components/omnibattery")
-PANEL = COMPONENT / "frontend" / "marstek-panel.js"
+PANEL = COMPONENT / "frontend" / "openbattery" / "panel.js"
 TRANSLATIONS = ["strings.json"] + [
     f"translations/{lang}.json" for lang in ("ca", "de", "en", "es", "fr", "nl")
 ]

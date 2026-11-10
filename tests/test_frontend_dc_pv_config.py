@@ -2,7 +2,7 @@
 from pathlib import Path
 
 
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js")
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js")
 
 
 def test_panel_keeps_ac_power_when_mppt_inputs_are_declared_unused():

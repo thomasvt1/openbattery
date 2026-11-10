@@ -29,7 +29,7 @@
  */
 
 const FALLBACK_DOMAIN = "omnibattery";
-const FALLBACK_TITLE = "OpenBattery";
+const FALLBACK_TITLE = "Omnibattery";
 const DAILY_OPERATION_BASE_INTERVALS = 96;
 // The part after midnight follows the plan: the timeline publishes how many
 // quarters it covers (extended_horizon.interval_count), 48 by default and at
@@ -54,24 +54,6 @@ const DAILY_OPERATION_SUNSET_ZERO_INTERVALS = 4;
 // names in translations/*.json so the panel reads consistently with HA.
 const I18N = {
   en: {
-    phaseTitle: "Phase monitoring",
-    phaseOn: "Protection on",
-    phaseOff: "Protection off",
-    phaseLimit: "Limit {value} A",
-    phaseNoLimit: "No limit configured",
-    phaseHeadroom: "{value} A remaining",
-    phaseExcess: "{value} A over limit",
-    phaseOver: "Over limit",
-    phaseNear: "Near limit",
-    phaseNormal: "Within limit",
-    phaseStale: "Reading is stale",
-    phaseUnavailable: "Check current sensor",
-    phaseIncomplete: "Complete phase setup",
-    phaseNoBatteries: "No batteries assigned",
-    phaseUnassigned: "Unassigned batteries: {names}",
-    phaseImport: "Import",
-    phaseExport: "Export",
-    phaseIdle: "No flow",
     subtitle: "Control Panel",
     live: "Live",
     evCharger: "EV charger",
@@ -111,7 +93,7 @@ const I18N = {
     diagIntegration: "Integration", diagPhaseProtection: "Phase protection", diagPdState: "PD state", diagNetBalance: "Net balance", diagAlarm: "Alarm",
     diagActiveBatteries: "Active batteries", diagNonResponsive: "No response",
     diagDischargeWindow: "Discharge window", diagPredictive: "Predictive charging", diagCurtailment: "Smart pre-discharge", diagSurplusHold: "Surplus price hold", highPriceSale: "High-price sale", diagHighPriceDischarge: "High-price sale status", diagDischargeReserve: "Discharge reserve",
-    diagPeak: "Peak shaving reserve", diagWeeklyCharge: "Scheduled charge", diagChargeDelay: "Charge delay",
+    diagPeak: "Peak shaving reserve", diagWeeklyCharge: "Weekly charge", diagChargeDelay: "Charge delay",
     nResponsive: "{n} no response", none: "None", disabled: "Disabled",
     noBatteriesTitle: "No batteries",
     noBatteriesMsg: "No battery devices were detected in this integration.",
@@ -145,7 +127,7 @@ const I18N = {
     itemSocThreshold: "SOC threshold", itemPeakLimit: "Peak limit", itemExcludedPeakShaving: "Peak shaving for excluded devices",
     itemArbitrageMargin: "Min. arbitrage margin", itemRoundTripEfficiency: "Round-trip efficiency", itemMaxPrice: "Max price (charge)", itemDischargePrice: "Discharge price floor", itemMaxPriceManual: "Manual charge price", itemDischargePriceManual: "Manual discharge price", itemPriceDischarge: "Discharge only above price", itemReevaluatePrices: "Re-evaluate now", itemNegativePriceCharging: "Charge at negative prices", itemPredictiveNotifications: "Notifications", itemSmartPredischarge: "Smart pre-discharge", itemNegativeThreshold: "Negative injection threshold", itemPredischargeReserve: "Pre-discharge reserve SOC", itemSurplusHoldSaving: "Surplus hold min. saving", itemDischargeReserveSaving: "Discharge reserve min. saving",
     itemDelaySafety: "Safety margin", itemDelaySoc: "Delay target SOC", itemDelaySocEnable: "Delay target SOC enabled", itemDelayDeadband: "Balance deadband",
-    secHourly: "Hourly balance", hourlyEsOnly: "Only useful in Spain (RD 244/2019) · detected country: {c}", secWeeklyFull: "Scheduled full charge", itemFullSchedule: "Full charge schedule", itemMonthlySource: "Monthly scheduling", itemMonthlyForecast: "Forecast sensor", itemMonthlyPriceEnabled: "Early monthly charge below price", itemMonthlyPrice: "Early charge price (same basis as import sensor)", itemWeeklyDay: "Full charge day", itemWeeklyDelay: "Wait for solar charge delay", itemHourlyTarget: "Target net balance", itemHourlyMaxOffset: "Max power offset", itemHourlyDeadband: "Deadband", itemHourlyHysteresis: "Hysteresis",
+    secHourly: "Hourly balance", hourlyEsOnly: "Only useful in Spain (RD 244/2019) · detected country: {c}", secWeeklyFull: "Weekly full charge", itemWeeklyDay: "Full charge day", itemWeeklyDelay: "Wait for solar charge delay", itemHourlyTarget: "Target net balance", itemHourlyMaxOffset: "Max power offset", itemHourlyDeadband: "Deadband", itemHourlyHysteresis: "Hysteresis",
     secSlots: "Configured slots", itemSlot: "Slot",
     secExcluded: "Excluded devices", itemExcludedDevice: "Excluded device", itemSolarSurplus: "Solar surplus", itemDynamicPowerControl: "Dynamic power control", itemCoverHome: "Cover home", itemExclusionPct: "Exclusion %",
     secSysLimits: "System power limits", itemSysMaxCharge: "System max charge", itemSysMaxDischarge: "System max discharge",
@@ -163,24 +145,6 @@ const I18N = {
     slotStateLabel: "State", slotActiveWord: "active", slotInactiveWord: "inactive",
   },
   es: {
-    phaseTitle: "Monitorización de fases",
-    phaseOn: "Protección activada",
-    phaseOff: "Protección desactivada",
-    phaseLimit: "Límite {value} A",
-    phaseNoLimit: "Sin límite configurado",
-    phaseHeadroom: "{value} A disponibles",
-    phaseExcess: "{value} A sobre el límite",
-    phaseOver: "Límite superado",
-    phaseNear: "Cerca del límite",
-    phaseNormal: "Dentro del límite",
-    phaseStale: "Lectura desactualizada",
-    phaseUnavailable: "Revisa el sensor de corriente",
-    phaseIncomplete: "Completa la configuración",
-    phaseNoBatteries: "Sin baterías asignadas",
-    phaseUnassigned: "Baterías sin asignar: {names}",
-    phaseImport: "Importación",
-    phaseExport: "Exportación",
-    phaseIdle: "Sin flujo",
     subtitle: "Panel de Control",
     live: "En vivo",
     evCharger: "Cargador VE",
@@ -254,7 +218,7 @@ const I18N = {
     itemSocThreshold: "Umbral de SOC", itemPeakLimit: "Límite de pico", itemExcludedPeakShaving: "Reducción de picos para dispositivos excluidos",
     itemArbitrageMargin: "Margen mínimo de arbitraje", itemRoundTripEfficiency: "Eficiencia de ciclo completo", itemMaxPrice: "Precio máximo (carga)", itemDischargePrice: "Precio mínimo de descarga", itemMaxPriceManual: "Precio de carga manual", itemDischargePriceManual: "Precio de descarga manual", itemPriceDischarge: "Descargar solo si precio alto", itemReevaluatePrices: "Reevaluar ahora", itemNegativePriceCharging: "Cargar con precios negativos", itemPredictiveNotifications: "Notificaciones", itemSmartPredischarge: "Predescarga inteligente", itemNegativeThreshold: "Umbral de inyección negativa", itemPredischargeReserve: "SOC de reserva de predescarga", itemSurplusHoldSaving: "Ahorro mínimo para retener excedente", itemDischargeReserveSaving: "Ahorro mínimo de reserva de descarga",
     itemDelaySafety: "Margen de seguridad", itemDelaySoc: "SOC objetivo de retardo", itemDelaySocEnable: "SOC objetivo de retardo activo", itemDelayDeadband: "Banda muerta de balance",
-    secHourly: "Balance horario", hourlyEsOnly: "Solo útil en España (RD 244/2019) · país detectado: {c}", secWeeklyFull: "Carga semanal completa", itemFullSchedule: "Full charge schedule", itemMonthlySource: "Monthly scheduling", itemMonthlyForecast: "Forecast sensor", itemMonthlyPriceEnabled: "Early monthly charge below price", itemMonthlyPrice: "Early charge price (same basis as import sensor)", itemWeeklyDay: "Día de carga completa", itemWeeklyDelay: "Esperar al retraso por solar", itemHourlyTarget: "Objetivo de balance neto", itemHourlyMaxOffset: "Offset máx. de potencia", itemHourlyDeadband: "Banda muerta", itemHourlyHysteresis: "Histéresis",
+    secHourly: "Balance horario", hourlyEsOnly: "Solo útil en España (RD 244/2019) · país detectado: {c}", secWeeklyFull: "Carga semanal completa", itemWeeklyDay: "Día de carga completa", itemWeeklyDelay: "Esperar al retraso por solar", itemHourlyTarget: "Objetivo de balance neto", itemHourlyMaxOffset: "Offset máx. de potencia", itemHourlyDeadband: "Banda muerta", itemHourlyHysteresis: "Histéresis",
     secSlots: "Franjas configuradas", itemSlot: "Franja",
     secExcluded: "Dispositivos excluidos", itemExcludedDevice: "Dispositivo excluido", itemSolarSurplus: "Excedente solar", itemDynamicPowerControl: "Control dinámico de potencia", itemCoverHome: "Cubrir hogar", itemExclusionPct: "% excluido",
     secSysLimits: "Límites de potencia del sistema", itemSysMaxCharge: "Máx. carga del sistema", itemSysMaxDischarge: "Máx. descarga del sistema",
@@ -272,24 +236,6 @@ const I18N = {
     slotStateLabel: "Estado", slotActiveWord: "activa", slotInactiveWord: "inactiva",
   },
   ca: {
-    phaseTitle: "Monitoratge de fases",
-    phaseOn: "Protecció activada",
-    phaseOff: "Protecció desactivada",
-    phaseLimit: "Límit {value} A",
-    phaseNoLimit: "Sense límit configurat",
-    phaseHeadroom: "{value} A disponibles",
-    phaseExcess: "{value} A sobre el límit",
-    phaseOver: "Límit superat",
-    phaseNear: "Prop del límit",
-    phaseNormal: "Dins del límit",
-    phaseStale: "Lectura desactualitzada",
-    phaseUnavailable: "Revisa el sensor de corrent",
-    phaseIncomplete: "Completa la configuració",
-    phaseNoBatteries: "Sense bateries assignades",
-    phaseUnassigned: "Bateries sense assignar: {names}",
-    phaseImport: "Importació",
-    phaseExport: "Exportació",
-    phaseIdle: "Sense flux",
     subtitle: "Tauler de control",
     ctlLock: "Bloqueja els controls", ctlUnlock: "Desbloqueja els controls",
     live: "En directe",
@@ -359,7 +305,7 @@ const I18N = {
     itemSocThreshold: "Llindar de SOC", itemPeakLimit: "Límit de pic", itemExcludedPeakShaving: "Reducció de pics per a dispositius exclosos",
     itemArbitrageMargin: "Marge mínim d'arbitratge", itemRoundTripEfficiency: "Eficiència de cicle complet", itemMaxPrice: "Preu màxim (càrrega)", itemDischargePrice: "Preu mínim de descàrrega", itemMaxPriceManual: "Preu de càrrega manual", itemDischargePriceManual: "Preu de descàrrega manual", itemPriceDischarge: "Descarregar només si preu alt", itemReevaluatePrices: "Reavaluar ara", itemNegativePriceCharging: "Carregar amb preus negatius", itemPredictiveNotifications: "Notificacions", itemSmartPredischarge: "Predescàrrega intel·ligent", itemNegativeThreshold: "Llindar d'injecció negativa", itemPredischargeReserve: "SOC de reserva de predescàrrega", itemSurplusHoldSaving: "Estalvi mínim per retenir excedent", itemDischargeReserveSaving: "Estalvi mínim de reserva de descàrrega",
     itemDelaySafety: "Marge de seguretat", itemDelaySoc: "SOC objectiu de retard", itemDelaySocEnable: "SOC objectiu de retard actiu", itemDelayDeadband: "Banda morta de balanç",
-    secHourly: "Balanç horari", hourlyEsOnly: "Només útil a Espanya (RD 244/2019) · país detectat: {c}", secWeeklyFull: "Càrrega setmanal completa", itemFullSchedule: "Full charge schedule", itemMonthlySource: "Monthly scheduling", itemMonthlyForecast: "Forecast sensor", itemMonthlyPriceEnabled: "Early monthly charge below price", itemMonthlyPrice: "Early charge price (same basis as import sensor)", itemWeeklyDay: "Dia de càrrega completa", itemWeeklyDelay: "Espera el retard per solar", itemHourlyTarget: "Objectiu de balanç net", itemHourlyMaxOffset: "Offset màx. de potència", itemHourlyDeadband: "Banda morta", itemHourlyHysteresis: "Histèresi",
+    secHourly: "Balanç horari", hourlyEsOnly: "Només útil a Espanya (RD 244/2019) · país detectat: {c}", secWeeklyFull: "Càrrega setmanal completa", itemWeeklyDay: "Dia de càrrega completa", itemWeeklyDelay: "Espera el retard per solar", itemHourlyTarget: "Objectiu de balanç net", itemHourlyMaxOffset: "Offset màx. de potència", itemHourlyDeadband: "Banda morta", itemHourlyHysteresis: "Histèresi",
     secSlots: "Franges configurades", itemSlot: "Franja",
     secExcluded: "Dispositius exclosos", itemExcludedDevice: "Dispositiu exclòs", itemSolarSurplus: "Excedent solar", itemDynamicPowerControl: "Control dinàmic de potència", itemCoverHome: "Cobre la llar", itemExclusionPct: "% exclòs",
     secSysLimits: "Límits de potència del sistema", itemSysMaxCharge: "Màx. càrrega del sistema", itemSysMaxDischarge: "Màx. descàrrega del sistema",
@@ -377,24 +323,6 @@ const I18N = {
     slotStateLabel: "Estat", slotActiveWord: "activa", slotInactiveWord: "inactiva",
   },
   de: {
-    phaseTitle: "Phasenüberwachung",
-    phaseOn: "Schutz aktiv",
-    phaseOff: "Schutz aus",
-    phaseLimit: "Grenze {value} A",
-    phaseNoLimit: "Keine Grenze eingestellt",
-    phaseHeadroom: "{value} A verfügbar",
-    phaseExcess: "{value} A über der Grenze",
-    phaseOver: "Grenze überschritten",
-    phaseNear: "Nahe der Grenze",
-    phaseNormal: "Innerhalb der Grenze",
-    phaseStale: "Messwert veraltet",
-    phaseUnavailable: "Stromsensor prüfen",
-    phaseIncomplete: "Phaseneinrichtung abschließen",
-    phaseNoBatteries: "Keine Batterien zugeordnet",
-    phaseUnassigned: "Nicht zugeordnete Batterien: {names}",
-    phaseImport: "Bezug",
-    phaseExport: "Einspeisung",
-    phaseIdle: "Kein Stromfluss",
     subtitle: "Bedienfeld",
     ctlLock: "Steuerelemente sperren", ctlUnlock: "Steuerelemente entsperren",
     live: "Live",
@@ -464,7 +392,7 @@ const I18N = {
     itemSocThreshold: "SOC-Schwelle", itemPeakLimit: "Spitzenlimit", itemExcludedPeakShaving: "Spitzenlastkappung für ausgeschlossene Geräte",
     itemArbitrageMargin: "Min. Arbitragemarge", itemRoundTripEfficiency: "Round-Trip-Wirkungsgrad", itemMaxPrice: "Max. Preis (Laden)", itemDischargePrice: "Entlade-Preisuntergrenze", itemMaxPriceManual: "Manueller Ladepreis", itemDischargePriceManual: "Manueller Entladepreis", itemPriceDischarge: "Nur über Preis entladen", itemReevaluatePrices: "Jetzt neu bewerten", itemNegativePriceCharging: "Bei negativen Preisen laden", itemPredictiveNotifications: "Benachrichtigungen", itemSmartPredischarge: "Intelligente Vorentladung", itemNegativeThreshold: "Schwelle für negative Einspeisung", itemPredischargeReserve: "Vorentlade-Reserve-SOC", itemSurplusHoldSaving: "Min. Ersparnis für Überschussbremse", itemDischargeReserveSaving: "Min. Ersparnis für Entladereserve",
     itemDelaySafety: "Sicherheitspuffer", itemDelaySoc: "Verzögerungs-Ziel-SOC", itemDelaySocEnable: "Verzögerungs-Ziel-SOC aktiv", itemDelayDeadband: "Bilanz-Totband",
-    secHourly: "Stündliche Balance", hourlyEsOnly: "Nur in Spanien sinnvoll (RD 244/2019) · erkanntes Land: {c}", secWeeklyFull: "Wöchentliche Vollladung", itemFullSchedule: "Full charge schedule", itemMonthlySource: "Monthly scheduling", itemMonthlyForecast: "Forecast sensor", itemMonthlyPriceEnabled: "Early monthly charge below price", itemMonthlyPrice: "Early charge price (same basis as import sensor)", itemWeeklyDay: "Tag der Vollladung", itemWeeklyDelay: "Auf Solar-Ladeverzögerung warten", itemHourlyTarget: "Ziel-Nettobalance", itemHourlyMaxOffset: "Max. Leistungs-Offset", itemHourlyDeadband: "Totband", itemHourlyHysteresis: "Hysterese",
+    secHourly: "Stündliche Balance", hourlyEsOnly: "Nur in Spanien sinnvoll (RD 244/2019) · erkanntes Land: {c}", secWeeklyFull: "Wöchentliche Vollladung", itemWeeklyDay: "Tag der Vollladung", itemWeeklyDelay: "Auf Solar-Ladeverzögerung warten", itemHourlyTarget: "Ziel-Nettobalance", itemHourlyMaxOffset: "Max. Leistungs-Offset", itemHourlyDeadband: "Totband", itemHourlyHysteresis: "Hysterese",
     secSlots: "Konfigurierte Zeitfenster", itemSlot: "Zeitfenster",
     secExcluded: "Ausgeschlossene Geräte", itemExcludedDevice: "Ausgeschlossenes Gerät", itemSolarSurplus: "Solarüberschuss", itemDynamicPowerControl: "Dynamische Leistungsregelung", itemCoverHome: "Haus decken", itemExclusionPct: "Ausschluss %",
     secSysLimits: "System-Leistungsgrenzen", itemSysMaxCharge: "System-Max.-Ladeleistung", itemSysMaxDischarge: "System-Max.-Entladeleistung",
@@ -482,24 +410,6 @@ const I18N = {
     slotStateLabel: "Status", slotActiveWord: "aktiv", slotInactiveWord: "inaktiv",
   },
   fr: {
-    phaseTitle: "Suivi des phases",
-    phaseOn: "Protection activée",
-    phaseOff: "Protection désactivée",
-    phaseLimit: "Limite {value} A",
-    phaseNoLimit: "Aucune limite configurée",
-    phaseHeadroom: "{value} A disponibles",
-    phaseExcess: "{value} A au-dessus de la limite",
-    phaseOver: "Limite dépassée",
-    phaseNear: "Proche de la limite",
-    phaseNormal: "Sous la limite",
-    phaseStale: "Mesure périmée",
-    phaseUnavailable: "Vérifier le capteur de courant",
-    phaseIncomplete: "Terminer la configuration",
-    phaseNoBatteries: "Aucune batterie affectée",
-    phaseUnassigned: "Batteries non affectées : {names}",
-    phaseImport: "Importation",
-    phaseExport: "Exportation",
-    phaseIdle: "Aucun flux",
     subtitle: "Panneau de contrôle",
     ctlLock: "Verrouiller les commandes", ctlUnlock: "Déverrouiller les commandes",
     live: "En direct",
@@ -569,7 +479,7 @@ const I18N = {
     itemSocThreshold: "Seuil SOC", itemPeakLimit: "Limite de pointe", itemExcludedPeakShaving: "Écrêtement des pointes pour appareils exclus",
     itemArbitrageMargin: "Marge d'arbitrage min.", itemRoundTripEfficiency: "Rendement aller-retour", itemMaxPrice: "Prix max. (charge)", itemDischargePrice: "Prix plancher de décharge", itemMaxPriceManual: "Prix de charge manuel", itemDischargePriceManual: "Prix de décharge manuel", itemPriceDischarge: "Décharger si prix élevé", itemReevaluatePrices: "Réévaluer maintenant", itemNegativePriceCharging: "Charger aux prix négatifs", itemPredictiveNotifications: "Notifications", itemSmartPredischarge: "Pré-décharge intelligente", itemNegativeThreshold: "Seuil d'injection négative", itemPredischargeReserve: "SOC de réserve de pré-décharge", itemSurplusHoldSaving: "Économie min. pour retenir le surplus", itemDischargeReserveSaving: "Économie min. pour réserve de décharge",
     itemDelaySafety: "Marge de sécurité", itemDelaySoc: "SOC cible du délai", itemDelaySocEnable: "SOC cible du délai actif", itemDelayDeadband: "Bande morte de bilan",
-    secHourly: "Bilan horaire", hourlyEsOnly: "Utile uniquement en Espagne (RD 244/2019) · pays détecté : {c}", secWeeklyFull: "Charge complète hebdomadaire", itemFullSchedule: "Full charge schedule", itemMonthlySource: "Monthly scheduling", itemMonthlyForecast: "Forecast sensor", itemMonthlyPriceEnabled: "Early monthly charge below price", itemMonthlyPrice: "Early charge price (same basis as import sensor)", itemWeeklyDay: "Jour de charge complète", itemWeeklyDelay: "Attendre le délai de charge solaire", itemHourlyTarget: "Cible bilan net", itemHourlyMaxOffset: "Décalage max. puissance", itemHourlyDeadband: "Bande morte", itemHourlyHysteresis: "Hystérésis",
+    secHourly: "Bilan horaire", hourlyEsOnly: "Utile uniquement en Espagne (RD 244/2019) · pays détecté : {c}", secWeeklyFull: "Charge complète hebdomadaire", itemWeeklyDay: "Jour de charge complète", itemWeeklyDelay: "Attendre le délai de charge solaire", itemHourlyTarget: "Cible bilan net", itemHourlyMaxOffset: "Décalage max. puissance", itemHourlyDeadband: "Bande morte", itemHourlyHysteresis: "Hystérésis",
     secSlots: "Créneaux configurés", itemSlot: "Créneau",
     secExcluded: "Appareils exclus", itemExcludedDevice: "Appareil exclu", itemSolarSurplus: "Surplus solaire", itemDynamicPowerControl: "Contrôle dynamique de puissance", itemCoverHome: "Couvrir maison", itemExclusionPct: "% exclu",
     secSysLimits: "Limites de puissance du système", itemSysMaxCharge: "Charge max. système", itemSysMaxDischarge: "Décharge max. système",
@@ -587,24 +497,6 @@ const I18N = {
     slotStateLabel: "État", slotActiveWord: "actif", slotInactiveWord: "inactif",
   },
   nl: {
-    phaseTitle: "Fasebewaking",
-    phaseOn: "Beveiliging aan",
-    phaseOff: "Beveiliging uit",
-    phaseLimit: "Limiet {value} A",
-    phaseNoLimit: "Geen limiet ingesteld",
-    phaseHeadroom: "{value} A beschikbaar",
-    phaseExcess: "{value} A boven limiet",
-    phaseOver: "Boven limiet",
-    phaseNear: "Bijna op limiet",
-    phaseNormal: "Binnen limiet",
-    phaseStale: "Meting verouderd",
-    phaseUnavailable: "Controleer stroomsensor",
-    phaseIncomplete: "Voltooi fase-instelling",
-    phaseNoBatteries: "Geen batterijen toegewezen",
-    phaseUnassigned: "Niet-toegewezen batterijen: {names}",
-    phaseImport: "Afname",
-    phaseExport: "Teruglevering",
-    phaseIdle: "Geen stroom",
     subtitle: "Bedieningspaneel",
     ctlLock: "Bediening vergrendelen", ctlUnlock: "Bediening ontgrendelen",
     live: "Live",
@@ -674,7 +566,7 @@ const I18N = {
     itemSocThreshold: "SOC-drempel", itemPeakLimit: "Pieklimiet", itemExcludedPeakShaving: "Piekbegrenzing voor uitgesloten apparaten",
     itemArbitrageMargin: "Min. arbitragemarge", itemRoundTripEfficiency: "Retourrendement", itemMaxPrice: "Max. prijs (laden)", itemDischargePrice: "Ontlaad-prijsondergrens", itemMaxPriceManual: "Handmatige laadprijs", itemDischargePriceManual: "Handmatige ontlaadprijs", itemPriceDischarge: "Alleen ontladen bij hoge prijs", itemReevaluatePrices: "Nu herberekenen", itemNegativePriceCharging: "Laden bij negatieve prijzen", itemPredictiveNotifications: "Meldingen", itemSmartPredischarge: "Slim voorontladen", itemNegativeThreshold: "Drempel negatieve injectie", itemPredischargeReserve: "Reserve-SOC voorontladen", itemSurplusHoldSaving: "Min. besparing voor prijsrem", itemDischargeReserveSaving: "Min. besparing voor ontlaadreserve",
     itemDelaySafety: "Veiligheidsmarge", itemDelaySoc: "Doel-SOC vertraging", itemDelaySocEnable: "Doel-SOC vertraging actief", itemDelayDeadband: "Balans dode band",
-    secHourly: "Uurbalans", hourlyEsOnly: "Alleen nuttig in Spanje (RD 244/2019) · gedetecteerd land: {c}", secWeeklyFull: "Gepland volledig laden", itemFullSchedule: "Full charge schedule", itemMonthlySource: "Monthly scheduling", itemMonthlyForecast: "Forecast sensor", itemMonthlyPriceEnabled: "Early monthly charge below price", itemMonthlyPrice: "Early charge price (same basis as import sensor)", itemWeeklyDay: "Dag volledige lading", itemWeeklyDelay: "Wachten op zonne-laadvertraging", itemHourlyTarget: "Doel nettosaldo", itemHourlyMaxOffset: "Max. vermogensoffset", itemHourlyDeadband: "Dodeband", itemHourlyHysteresis: "Hysterese",
+    secHourly: "Uurbalans", hourlyEsOnly: "Alleen nuttig in Spanje (RD 244/2019) · gedetecteerd land: {c}", secWeeklyFull: "Wekelijkse volledige lading", itemWeeklyDay: "Dag volledige lading", itemWeeklyDelay: "Wachten op zonne-laadvertraging", itemHourlyTarget: "Doel nettosaldo", itemHourlyMaxOffset: "Max. vermogensoffset", itemHourlyDeadband: "Dodeband", itemHourlyHysteresis: "Hysterese",
     secSlots: "Geconfigureerde tijdvakken", itemSlot: "Tijdvak",
     secExcluded: "Uitgesloten apparaten", itemExcludedDevice: "Uitgesloten apparaat", itemSolarSurplus: "Zonne-overschot", itemDynamicPowerControl: "Dynamische vermogensregeling", itemCoverHome: "Huis dekken", itemExclusionPct: "Uitsluiting %",
     secSysLimits: "Systeemvermogenslimieten", itemSysMaxCharge: "Max. systeemladen", itemSysMaxDischarge: "Max. systeemontladen",
@@ -969,7 +861,7 @@ const K = {
   storedEnergy: "stored_energy", // kWh
   batteryTotalEnergy: "battery_total_energy", // capacity kWh
   inverterState: "inverter_state",
-  controlStatus: "control_status", // Indevolt: whether OpenBattery is steering it
+  controlStatus: "control_status", // Indevolt: whether Omnibattery is steering it
   dailyCharge: "total_daily_charging_energy",
   dailyDischarge: "total_daily_discharging_energy",
   maxChargePower: "max_charge_power",
@@ -1154,12 +1046,7 @@ const SYS_SECTIONS = [
     icon: "mdi:calendar-check",
     items: [
       { key: "weekly_full_charge_enabled", domain: "switch", lk: "itemEnable", icon: "mdi:calendar-check", gate: true },
-      { key: "full_charge_schedule", domain: "select", lk: "itemFullSchedule", icon: "mdi:calendar-sync" },
-      { key: "monthly_full_charge_source", domain: "select", lk: "itemMonthlySource", icon: "mdi:calendar-search", when: { full_charge_schedule: "monthly" } },
-      { key: "monthly_full_charge_forecast_sensor", domain: "select", lk: "itemMonthlyForecast", icon: "mdi:chart-line", when: { full_charge_schedule: "monthly", monthly_full_charge_source: "sensor" } },
-      { key: "monthly_full_charge_price_enabled", domain: "switch", lk: "itemMonthlyPriceEnabled", icon: "mdi:currency-eur", when: { full_charge_schedule: "monthly" } },
-      { key: "monthly_full_charge_price", domain: "number", dep: "monthly_full_charge_price_enabled", lk: "itemMonthlyPrice", icon: "mdi:currency-eur", when: { full_charge_schedule: "monthly" } },
-      { key: "weekly_full_charge_day", domain: "select", lk: "itemWeeklyDay", icon: "mdi:calendar-week", when: [{ full_charge_schedule: "weekly" }, { full_charge_schedule: "monthly", monthly_full_charge_source: "simple" }] },
+      { key: "weekly_full_charge_day", domain: "select", lk: "itemWeeklyDay", icon: "mdi:calendar-week" },
       { key: "weekly_full_charge_delay", domain: "switch", lk: "itemWeeklyDelay", icon: "mdi:timer-sand" },
     ],
   },
@@ -1411,8 +1298,8 @@ const SYS_HELP = {
     secManual: "When ON, automatic control (PD, predictive charging, time slots, peak shaving…) is paused and every battery is set to 0 W (idle). Turn it OFF to resume automatic control.",
     secOffgridMeter: "Selects the configured off-grid power sensor as the source for control and derived statistics. It does not enable any battery off-grid/EPS port. A battery actively supplying its own off-grid output remains excluded from PD.",
     vacation_mode: "When ON, household-consumption learning and the legacy daily average are paused. Physical consumption meters, the daily-operation graph and battery control continue normally. Forecasts use a constant baseline calculated from 01:00–05:00: a night is valid after 3 hours of coverage, using the median of up to the last three valid nights. Turn it OFF to resume learning; vacation data remains excluded from Recorder backfill.",
-    battery_manual_mode: "When ON, this battery is idled once and removed from automatic control. Its manual force mode and setpoints can then be selected while other batteries continue automatically. OpenBattery software limits do not constrain it, but the battery's own BMS/driver protections still apply. Global Manual Mode is separate.",
-    secWeeklyFull: "Schedule a full charge weekly or monthly. Simple monthly mode uses the last selected weekday; smart monthly mode chooses a day using a price forecast. Configured charge limits are restored after completion.",
+    battery_manual_mode: "When ON, this battery is idled once and removed from automatic control. Its manual force mode and setpoints can then be selected while other batteries continue automatically. Omnibattery software limits do not constrain it, but the battery's own BMS/driver protections still apply. Global Manual Mode is separate.",
+    secWeeklyFull: "Select the day of the week when batteries should charge to 100% for cell balancing. After reaching 100%, the system reverts to your configured maximum charge limit.",
     secSlots: "Define when and how the batteries are allowed to operate. The ticks control each direction, SOC and power. Manual mode forces an exact power, bypassing the PD algorithm.",
     secExcluded: "Configure devices with special management: you can EXCLUDE devices that should NOT be powered by battery, or ADD devices that SHOULD be powered by battery even if they're not in the home consumption sensor.",
     secCommon: "System-wide controls. Vacation Mode pauses household-consumption learning without stopping physical metering or battery control. The remaining knobs are shared by both the PD controller and No-PD direct tracking; changing them affects whichever control mode is active.",
@@ -1446,13 +1333,7 @@ const SYS_HELP = {
     excluded_device_dynamic_power_control: "For devices that dynamically adjust their own demand using a grid meter. Requires Solar Surplus and an activity / EV charging sensor, which requests priority before power appears. Genuine leftover export may still charge the battery.",
     excluded_device_cover_home: "If ON (needs Solar Surplus + a solar sensor), the battery covers the home's own load while this device runs, importing from grid only for the device itself. If OFF, the battery stays idle whenever the device is active.",
     excluded_device_exclusion_pct: "How much of this device's demand stays excluded from the battery. 100% (default) = fully excluded (battery never powers it); lower values let the battery cover the rest (e.g. 60% → battery may cover 40%). Only affects devices with a power sensor.",
-    full_charge_schedule: "Weekly uses the selected weekday every week. Monthly uses its last occurrence in the month; an earlier full charge counts.",
-    monthly_full_charge_source: "Simple needs no forecast. Smart ranks the next five days in the final week. Jeroen.nl forecasts apply to the Netherlands; see the provider usage terms before enabling.",
-    monthly_full_charge_forecast_sensor: "Smart sensor mode reads raw_today, raw_tomorrow and raw_forecast intervals with start, end and value attributes.",
-    monthly_full_charge_price_enabled: "In monthly mode, allow an early cycle when the actual import price is at or below the configured trigger. This starts a full-charge cycle; it is not a price cap for the entire cycle.",
-    monthly_full_charge_price: "Use the same per-kWh price basis as your import price source, including taxes and fees if that source includes them. Existing grid-charging settings still apply.",
-    weekly_full_charge_enabled: "Enable scheduled full charges using the weekly or monthly schedule below. Configured SOC limits are restored after completion.",
-    weekly_full_charge_delay: "Applies to weekly, simple monthly and smart monthly charging. When ON, the full charge waits for the configured solar charge delay to release charging on the selected day. When OFF, it bypasses that delay. Other charging limits still apply.",
+    weekly_full_charge_enabled: "When ON, batteries charge to 100% one day per week (chosen below) for cell balancing, then revert to your configured max SOC.",
     price_discharge_control: "When ON, the battery only discharges when the current price is above the max price threshold (or today's auto average if unset). If time slots restrict discharge, both conditions must be met.",
     reevaluate_dynamic_pricing: "Rebuild today's predictive charge plan right now, using the latest prices and solar forecast, instead of waiting for the automatic daily run. In time slot mode it re-runs the balance on the next cycle inside a charging window.",
     hourly_balance_target_net_wh: "Target net grid energy per hour. 0 = neutral (no net import/export). Positive = aim to import this much; negative = aim to export. Range -2 to 2 kWh.",
@@ -1504,7 +1385,7 @@ const SYS_HELP = {
     secManual: "Cuando está ACTIVADO, el control automático (PD, carga predictiva, franjas horarias, reducción de picos…) se pausa y todas las baterías se ponen a 0 W (en reposo). DESACTÍVALO para reanudar el control automático.",
     secOffgridMeter: "Selecciona el sensor de potencia off-grid configurado como fuente del control y de las estadísticas derivadas. No habilita ningún puerto off-grid/EPS. Una batería que suministre por su propia salida off-grid sigue excluida del PD.",
     vacation_mode: "Al ACTIVARLO se pausan el aprendizaje del consumo doméstico y la media diaria heredada. Los contadores físicos, el gráfico de operación diaria y el control de las baterías siguen funcionando normalmente. Las previsiones usan un baseline constante calculado entre las 01:00 y las 05:00: una noche es válida con 3 horas de cobertura y se usa la mediana de hasta las tres últimas noches válidas. DESACTÍVALO para reanudar el aprendizaje; los datos vacacionales seguirán excluidos del backfill de Recorder.",
-    battery_manual_mode: "Al ACTIVARLO, esta batería pasa una vez a 0 W y sale del control automático. Sus modos y consignas manuales se pueden elegir entonces; las demás baterías continúan en automático. Los límites de software de OpenBattery no la restringen, pero sí las protecciones propias del BMS/driver. El Modo manual global es independiente.",
+    battery_manual_mode: "Al ACTIVARLO, esta batería pasa una vez a 0 W y sale del control automático. Sus modos y consignas manuales se pueden elegir entonces; las demás baterías continúan en automático. Los límites de software de Omnibattery no la restringen, pero sí las protecciones propias del BMS/driver. El Modo manual global es independiente.",
     secWeeklyFull: "Selecciona el día de la semana en el que las baterías deben cargarse al 100% para el balanceo de celdas. Una vez alcanzado el 100%, el sistema revertirá al límite de carga máximo configurado.",
     secSlots: "Define cuándo y cómo se permite operar a las baterías. Los ticks permiten controlar cada dirección, el SOC y la potencia. El modo manual fuerza una potencia exacta ignorando el algoritmo PD.",
     secExcluded: "Configura dispositivos con gestión especial: puedes EXCLUIR dispositivos que NO deben alimentarse por batería, o AÑADIR dispositivos que SÍ debe alimentar la batería aunque no estén en el sensor de consumo del hogar.",
@@ -1591,7 +1472,7 @@ const SYS_HELP = {
     secManual: "Quan està ACTIVAT, el control automàtic (PD, càrrega predictiva, franges horàries, reducció de pics…) es pausa i totes les bateries es posen a 0 W (en repòs). DESACTIVA'L per reprendre el control automàtic.",
     secOffgridMeter: "Selecciona el sensor de potència off-grid configurat com a font del control i de les estadístiques derivades. No habilita cap port off-grid/EPS de cap bateria. Una bateria que subministri per la seva pròpia sortida off-grid continua exclosa del PD.",
     vacation_mode: "Quan està ACTIVAT, es pausen l'aprenentatge del consum domèstic i la mitjana diària heretada. Els comptadors físics, el gràfic d'operació diària i el control de les bateries continuen funcionant normalment. Les previsions utilitzen un baseline constant calculat entre la 01:00 i les 05:00: una nit és vàlida amb 3 hores de cobertura i s'utilitza la mediana de fins a les tres últimes nits vàlides. DESACTIVA'L per reprendre l'aprenentatge; les dades de vacances continuaran excloses del backfill de Recorder.",
-    battery_manual_mode: "Quan s'ACTIVA, aquesta bateria passa una vegada a 0 W i surt del control automàtic. Els seus modes i consignes manuals es poden triar aleshores; les altres bateries segueixen en automàtic. Els límits de programari d'OpenBattery no la restringeixen, però sí les proteccions pròpies del BMS/driver. El mode manual global és independent.",
+    battery_manual_mode: "Quan s'ACTIVA, aquesta bateria passa una vegada a 0 W i surt del control automàtic. Els seus modes i consignes manuals es poden triar aleshores; les altres bateries segueixen en automàtic. Els límits de programari d'Omnibattery no la restringeixen, però sí les proteccions pròpies del BMS/driver. El mode manual global és independent.",
     secWeeklyFull: "Selecciona el dia de la setmana en què les bateries s'han de carregar al 100% per a l'equilibratge de cel·les. Un cop assolit el 100%, el sistema tornarà al límit de càrrega màxim configurat.",
     secSlots: "Defineix quan i com es permet operar a les bateries. Els ticks permeten controlar cada direcció, el SOC i la potència. El mode manual força una potència exacta ignorant l'algorisme PD.",
     secExcluded: "Configura dispositius amb gestió especial: pots EXCLOURE dispositius que NO s'han d'alimentar per bateria, o AFEGIR dispositius que SÍ ha d'alimentar la bateria encara que no estiguin al sensor de consum de la llar.",
@@ -1678,7 +1559,7 @@ const SYS_HELP = {
     secManual: "Wenn EIN, wird die automatische Regelung (PD, prädiktives Laden, Zeitfenster, Lastspitzenkappung…) pausiert und jede Batterie auf 0 W (Leerlauf) gesetzt. Schalte AUS, um die automatische Regelung fortzusetzen.",
     secOffgridMeter: "Wählt den konfigurierten Off-Grid-Leistungssensor als Quelle für Regelung und abgeleitete Statistiken. Es wird kein Off-Grid-/EPS-Anschluss einer Batterie aktiviert. Eine Batterie, die aktiv über ihren eigenen Off-Grid-Ausgang versorgt, bleibt von der PD-Regelung ausgeschlossen.",
     vacation_mode: "Wenn EIN, werden das Lernen des Haushaltsverbrauchs und der bisherige Tagesmittelwert pausiert. Physische Verbrauchszähler, das Tagesbetriebsdiagramm und die Batteriesteuerung laufen normal weiter. Prognosen verwenden eine konstante Grundlast aus 01:00–05:00 Uhr: Eine Nacht gilt ab 3 Stunden Abdeckung; verwendet wird der Median der bis zu drei letzten gültigen Nächte. Schalte AUS, um das Lernen fortzusetzen; Urlaubsdaten bleiben vom Recorder-Backfill ausgeschlossen.",
-    battery_manual_mode: "Wenn EIN, wird diese Batterie einmal auf 0 W gesetzt und aus der automatischen Regelung genommen. Ihr manueller Modus und ihre Sollwerte können danach gewählt werden; andere Batterien laufen automatisch weiter. OpenBattery-Softwaregrenzen wirken nicht, die eigenen BMS-/Treiber-Schutzfunktionen jedoch schon. Der globale manuelle Modus ist unabhängig.",
+    battery_manual_mode: "Wenn EIN, wird diese Batterie einmal auf 0 W gesetzt und aus der automatischen Regelung genommen. Ihr manueller Modus und ihre Sollwerte können danach gewählt werden; andere Batterien laufen automatisch weiter. Omnibattery-Softwaregrenzen wirken nicht, die eigenen BMS-/Treiber-Schutzfunktionen jedoch schon. Der globale manuelle Modus ist unabhängig.",
     secWeeklyFull: "Wähle den Wochentag, an dem die Batterien zum Zellausgleich auf 100% geladen werden. Nach Erreichen von 100% kehrt das System zum konfigurierten maximalen Ladelimit zurück.",
     secSlots: "Lege fest, wann und wie die Batterien arbeiten dürfen. Die Häkchen steuern jede Richtung, SOC und Leistung. Der manuelle Modus erzwingt eine exakte Leistung und umgeht den PD-Algorithmus.",
     secExcluded: "Geräte mit spezieller Verwaltung konfigurieren: Du kannst Geräte AUSSCHLIESSEN, die NICHT von der Batterie versorgt werden sollen, oder Geräte HINZUFÜGEN, die von der Batterie versorgt werden SOLLEN, auch wenn sie nicht im Hausverbrauchssensor erfasst sind.",
@@ -1765,7 +1646,7 @@ const SYS_HELP = {
     secManual: "Quand ACTIVÉ, le contrôle automatique (PD, charge prédictive, plages horaires, écrêtage des pics…) est mis en pause et chaque batterie est réglée à 0 W (repos). DÉSACTIVE-le pour reprendre le contrôle automatique.",
     secOffgridMeter: "Sélectionne le capteur de puissance hors réseau configuré comme source de la régulation et des statistiques dérivées. Cela n'active aucun port hors réseau/EPS d'une batterie. Une batterie qui alimente activement sa propre sortie hors réseau reste exclue du PD.",
     vacation_mode: "Quand il est ACTIVÉ, l'apprentissage de la consommation du foyer et l'ancienne moyenne journalière sont suspendus. Les compteurs physiques, le graphique d'opération quotidienne et le contrôle des batteries continuent normalement. Les prévisions utilisent une charge de base constante calculée de 01:00 à 05:00 : une nuit est valide avec 3 heures de couverture et la médiane des trois dernières nuits valides au maximum est utilisée. DÉSACTIVE-le pour reprendre l'apprentissage ; les données de vacances restent exclues du backfill Recorder.",
-    battery_manual_mode: "Lorsque cette option est activée, cette batterie passe une fois à 0 W et sort du contrôle automatique. Son mode et ses consignes manuels peuvent ensuite être choisis ; les autres batteries continuent en automatique. Les limites logicielles d'OpenBattery ne s'appliquent pas, mais les protections du BMS/driver restent actives. Le mode manuel global est indépendant.",
+    battery_manual_mode: "Lorsque cette option est activée, cette batterie passe une fois à 0 W et sort du contrôle automatique. Son mode et ses consignes manuels peuvent ensuite être choisis ; les autres batteries continuent en automatique. Les limites logicielles d'Omnibattery ne s'appliquent pas, mais les protections du BMS/driver restent actives. Le mode manuel global est indépendant.",
     secWeeklyFull: "Sélectionne le jour de la semaine où les batteries doivent se charger à 100% pour l'équilibrage des cellules. Une fois 100% atteint, le système revient à la limite de charge maximale configurée.",
     secSlots: "Définis quand et comment les batteries sont autorisées à fonctionner. Les cases contrôlent chaque direction, le SOC et la puissance. Le mode manuel force une puissance exacte en contournant l'algorithme PD.",
     secExcluded: "Configure des appareils avec une gestion spéciale : tu peux EXCLURE des appareils qui ne doivent PAS être alimentés par la batterie, ou AJOUTER des appareils qui DOIVENT être alimentés par la batterie même s'ils ne sont pas dans le capteur de consommation domestique.",
@@ -1852,7 +1733,7 @@ const SYS_HELP = {
     secManual: "Wanneer AAN, wordt de automatische regeling (PD, voorspellend laden, tijdvensters, piekafvlakking…) gepauzeerd en wordt elke batterij op 0 W (rust) gezet. Zet UIT om de automatische regeling te hervatten.",
     secOffgridMeter: "Selecteert de geconfigureerde off-grid-vermogenssensor als bron voor de regeling en de afgeleide statistieken. Dit activeert geen off-grid-/EPS-poort van een batterij. Een batterij die actief via haar eigen off-grid-uitgang levert, blijft uitgesloten van PD.",
     vacation_mode: "Wanneer AAN, worden het leren van het huishoudverbruik en het oude daggemiddelde gepauzeerd. Fysieke verbruiksmeters, de dagelijkse werkinggrafiek en de batterijregeling blijven normaal werken. Prognoses gebruiken een constante basislast uit 01:00–05:00: een nacht is geldig vanaf 3 uur dekking en de mediaan van maximaal de laatste drie geldige nachten wordt gebruikt. Zet UIT om het leren te hervatten; vakantiegegevens blijven uitgesloten van Recorder-backfill.",
-    battery_manual_mode: "Als deze optie AAN staat, wordt deze batterij eenmalig op 0 W gezet en uit de automatische regeling gehaald. De handmatige modus en setpoints kunnen daarna worden gekozen; andere batterijen blijven automatisch werken. Softwarelimieten van OpenBattery gelden niet, maar de eigen BMS-/driverbeveiliging wel. De globale handmatige modus staat hier los van.",
+    battery_manual_mode: "Als deze optie AAN staat, wordt deze batterij eenmalig op 0 W gezet en uit de automatische regeling gehaald. De handmatige modus en setpoints kunnen daarna worden gekozen; andere batterijen blijven automatisch werken. Softwarelimieten van Omnibattery gelden niet, maar de eigen BMS-/driverbeveiliging wel. De globale handmatige modus staat hier los van.",
     secWeeklyFull: "Selecteer de dag van de week waarop de batterijen tot 100% moeten laden voor celbalancering. Na het bereiken van 100% keert het systeem terug naar de geconfigureerde maximale laadlimiet.",
     secSlots: "Bepaal wanneer en hoe de batterijen mogen werken. De vinkjes regelen elke richting, SOC en vermogen. De handmatige modus forceert een exact vermogen en omzeilt het PD-algoritme.",
     secExcluded: "Configureer apparaten met speciaal beheer: je kunt apparaten UITSLUITEN die NIET door de batterij gevoed mogen worden, of apparaten TOEVOEGEN die WEL door de batterij gevoed moeten worden, ook al staan ze niet in de huisverbruikssensor.",
@@ -1990,8 +1871,6 @@ class MarstekVenusPanel extends HTMLElement {
   }
   disconnectedCallback() {
     this._detachDailyOperationGlobalListeners();
-    clearTimeout(this._phaseMonitorTimer);
-    this._phaseMonitorTimer = null;
     if (this._histTimer) clearInterval(this._histTimer);
     this._histTimer = null;
     this._historyStarted = false;
@@ -2598,7 +2477,7 @@ class MarstekVenusPanel extends HTMLElement {
     const brand = document.createElement("div");
     brand.className = "brand";
     brand.innerHTML = `
-      <div class="logo"><img src="${new URL('openbattery-icon.png', import.meta.url)}" alt="" aria-hidden="true"></div>
+      <div class="logo">O</div>
       <div class="btext">
         <div class="bt-name">${this._title()}</div>
         <div class="bt-sub">${this._t("subtitle")}</div>
@@ -2630,8 +2509,6 @@ class MarstekVenusPanel extends HTMLElement {
   }
 
   _setView(view) {
-    clearTimeout(this._phaseMonitorTimer);
-    this._phaseMonitorTimer = null;
     this._view = view;
     for (const [id, el] of Object.entries(this._tabEls || {})) {
       el.classList.toggle("active", id === view);
@@ -2681,7 +2558,6 @@ class MarstekVenusPanel extends HTMLElement {
     // 2×2 chart grid on the right (top row auto-fits Energía hoy, bottom fills)
     return wrap("res-stack", [
       c.soc,
-      c.phases,
       wrap("resumen-lower", [
         c.flow,
         wrap("charts-2x2", [c.daily, c.weekly, c.power, c.mini]),
@@ -2704,125 +2580,12 @@ class MarstekVenusPanel extends HTMLElement {
     this._cards = {
       flow: this._buildFlowCard(),
       soc: this._buildSocCard(),
-      phases: this._buildPhaseMonitoringCard(),
       daily: this._buildDailyCard(),
       weekly: this._buildWeeklyCard(),
       power: this._buildPowerHistoryCard(),
       mini: this._buildMiniHistory(),
       dailyOperation: this._buildDailyOperationTimelineCard(),
     };
-  }
-
-  // ----- Live phase loading ------------------------------------------------
-  _buildPhaseMonitoringCard() {
-    const { card, head } = this._card(this._t("phaseTitle"), "mdi:sine-wave");
-    card.classList.add("phase-card");
-    card.hidden = true;
-    const badge = document.createElement("span");
-    head.appendChild(badge);
-    const body = document.createElement("div");
-    body.className = "phase-grid";
-    const rows = {};
-    for (const phase of ["l1", "l2", "l3"]) {
-      const row = document.createElement("section");
-      row.className = "phase-row";
-      row.innerHTML = `<div class="phase-heading"><h3>${phase.toUpperCase()}</h3>
-        <span class="phase-status"></span></div>
-        <div class="phase-values"><button class="phase-reading" type="button"></button><span class="phase-limit"></span></div>
-        <div class="phase-track" role="meter" aria-valuemin="0" aria-valuemax="100"><span></span></div>
-        <div class="phase-margin"></div><div class="phase-batteries"></div>`;
-      body.appendChild(row);
-      rows[phase] = {
-        row, status: row.querySelector(".phase-status"), reading: row.querySelector(".phase-reading"),
-        limit: row.querySelector(".phase-limit"), track: row.querySelector(".phase-track"),
-        fill: row.querySelector(".phase-track span"), margin: row.querySelector(".phase-margin"),
-        batteries: row.querySelector(".phase-batteries"),
-      };
-    }
-    const unassigned = document.createElement("div");
-    unassigned.className = "phase-unassigned";
-    card.append(body, unassigned);
-    this._r.phases = { card, badge, rows, unassigned };
-    return card;
-  }
-
-  _phaseMonitoringState() {
-    const entity = this._hass.states[this._sysEntityId(K.phaseProtection)];
-    const attrs = entity?.attributes;
-    if (!attrs?.monitoring) return null;
-    const timestamp = Date.parse(attrs.monitoring_updated_at);
-    const sourceStale = !Number.isFinite(timestamp) || Date.now() - timestamp >= 65000;
-    const unavailable = ["unknown", "unavailable"].includes(entity.state);
-    const finite = value => typeof value === "number" && Number.isFinite(value) ? value : null;
-    let expiresAt = null;
-    const rows = ["l1", "l2", "l3"].flatMap(phase => {
-      const data = attrs.monitoring[phase];
-      if (!data || (!data.sensor && !data.limit_a && !data.batteries?.length)) return [];
-      const deadline = timestamp + Math.max(0, 65 - (finite(data.age_s) || 0)) * 1000;
-      const stale = sourceStale || Date.now() >= deadline;
-      const reading = unavailable || stale ? null : finite(data.reading_a);
-      if (reading != null) expiresAt = Math.min(expiresAt ?? deadline, deadline);
-      const limit = finite(data.limit_a) > 0 ? data.limit_a : null;
-      const utilization = reading != null && limit != null ? finite(data.utilization_pct) : null;
-      const status = unavailable || stale ? "unavailable" : data.status;
-      const statusKey = status === "not_configured" ? "phaseIncomplete"
-        : reading == null || utilization == null ? (stale || data.reason === "sensor_stale" ? "phaseStale" : "phaseUnavailable")
-        : status === "over_limit" ? "phaseOver" : status === "near_limit" ? "phaseNear" : "phaseNormal";
-      const direction = reading == null ? "" : this._t(reading > 0 ? "phaseImport" : reading < 0 ? "phaseExport" : "phaseIdle");
-      return [{
-        phase, sensor: data.sensor, reading, limit, utilization, statusKey, direction,
-        headroom: utilization == null ? null : finite(data.headroom_a),
-        overload: utilization == null ? null : finite(data.overload_a),
-        tone: utilization == null ? "neutral" : status === "over_limit" ? "bad" : status === "near_limit" ? "warn" : "good",
-        batteries: Array.isArray(data.batteries) ? data.batteries : [],
-      }];
-    });
-    return {
-      rows, expiresAt, enabled: attrs.protection_enabled === true,
-      unassigned: Array.isArray(attrs.unassigned_batteries) ? attrs.unassigned_batteries : [],
-    };
-  }
-
-  _patchPhaseMonitoring() {
-    clearTimeout(this._phaseMonitorTimer);
-    this._phaseMonitorTimer = null;
-    const refs = this._r.phases;
-    if (!refs) return;
-    const state = this._phaseMonitoringState();
-    refs.card.hidden = !state?.rows.length;
-    if (refs.card.hidden) return;
-    if (state.expiresAt != null) {
-      this._phaseMonitorTimer = setTimeout(() => {
-        this._phaseMonitorTimer = null;
-        if (this.isConnected && this._view === "resumen") this._patchPhaseMonitoring();
-      }, Math.max(0, state.expiresAt - Date.now()) + 10);
-    }
-    this._setChip(refs.badge, this._t(state.enabled ? "phaseOn" : "phaseOff"), "neutral");
-    for (const [phase, ref] of Object.entries(refs.rows)) {
-      const data = state.rows.find(row => row.phase === phase);
-      ref.row.hidden = !data;
-      if (!data) continue;
-      ref.row.dataset.tone = data.tone;
-      ref.status.textContent = this._t(data.statusKey);
-      const amps = data.reading == null ? "—" : `${this._nf(Math.abs(data.reading), 1)} A`;
-      ref.reading.textContent = [amps, data.direction].filter(Boolean).join(" · ");
-      const entityId = this._hass.states[data.sensor] ? data.sensor : null;
-      this._linkMoreInfo(ref.reading, entityId);
-      ref.reading.disabled = !entityId;
-      ref.reading.setAttribute("aria-label", `${phase.toUpperCase()}: ${ref.reading.textContent}. ${this._t("moreInfo")}`);
-      ref.limit.textContent = data.limit == null ? this._t("phaseNoLimit") : this._t("phaseLimit", { value: this._nf(data.limit, 1) });
-      ref.track.hidden = data.utilization == null;
-      ref.fill.style.width = `${this._clamp(data.utilization || 0, 0, 100)}%`;
-      ref.track.setAttribute("aria-label", `${phase.toUpperCase()} · ${this._t("phaseTitle")}`);
-      ref.track.setAttribute("aria-valuenow", this._clamp(data.utilization || 0, 0, 100));
-      ref.track.setAttribute("aria-valuetext", `${this._nf(data.utilization, 0)}% · ${amps} · ${ref.limit.textContent}`);
-      ref.margin.textContent = data.overload > 0 ? this._t("phaseExcess", { value: this._nf(data.overload, 1) })
-        : data.headroom != null ? this._t("phaseHeadroom", { value: this._nf(data.headroom, 1) })
-        : this._t(data.statusKey);
-      ref.batteries.textContent = data.batteries.join(" · ") || this._t("phaseNoBatteries");
-    }
-    refs.unassigned.hidden = !state.unassigned.length;
-    refs.unassigned.textContent = this._t("phaseUnassigned", { names: state.unassigned.join(" · ") });
   }
 
   // ----- Daily operation timeline ------------------------------------------
@@ -5637,7 +5400,6 @@ class MarstekVenusPanel extends HTMLElement {
       el.title = `${this._t(row.lk)}: ${text}`; // full value on hover (chips ellipsize)
     }
 
-    this._patchPhaseMonitoring();
     this._patchDailyOperationTimeline();
   }
 
@@ -6444,7 +6206,7 @@ class MarstekVenusPanel extends HTMLElement {
       r.state.style.display = "none";
     }
 
-    // control-status chip: only while OpenBattery is not steering the battery.
+    // control-status chip: only while Omnibattery is not steering the battery.
     // The inverter chip above still shows what the battery itself is doing
     // (in its own self-consumption mode it may well be discharging).
     if (ctlState && ctlState !== "active" && ctlState !== "starting" && ctlState !== "soc_calibration") {
@@ -6977,14 +6739,6 @@ class MarstekVenusPanel extends HTMLElement {
     for (const sec of defs) {
       const rows = [];
       for (const item of sec.items) {
-        // Source-specific controls participate in the section signature, so
-        // changing the source rebuilds the card without a page reload.
-        if (item.when) {
-          const alternatives = Array.isArray(item.when) ? item.when : [item.when];
-          if (!alternatives.some((condition) => Object.entries(condition).every(([key, value]) =>
-            (byKey.get(key) || []).some((id) => this._hass.states[id]?.state === value)
-          ))) continue;
-        }
         const ids = byKey.get(item.key) || [];
         for (const id of ids) {
           // Skip registry leftovers of a de-configured feature (e.g. pricing
@@ -7543,7 +7297,6 @@ class MarstekVenusPanel extends HTMLElement {
     if (domain === "switch") {
       const btn = document.createElement("button");
       btn.className = "ctl-toggle";
-      btn.title = this._help(item.key);
       btn.innerHTML = `<span class="ctl-knob"></span>`;
       btn.addEventListener("click", () => hass.callService("switch", "toggle", { entity_id: id }));
       frag.appendChild(btn);
@@ -7839,12 +7592,11 @@ class MarstekVenusPanel extends HTMLElement {
       .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
       .brand .logo {
         width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; cursor: pointer;
-        background: #e5faf2; color: var(--accent-ink);
+        background: var(--accent); color: var(--accent-ink);
         font-family: var(--font-display); font-weight: 700; font-size: 17px;
         box-shadow: 0 5px 16px oklch(0.78 0.15 var(--accent-h) / 0.4);
       }
       .brand .bt-name { font-family: var(--font-display); font-size: 15px; font-weight: 600; }
-      .brand .logo img { width: 32px; height: 32px; object-fit: contain; }
       .brand .bt-sub { font-size: 11px; color: var(--ink-dim); }
 
       .tabs { display: flex; align-items: stretch; gap: 2px; height: 100%; overflow-x: auto; scrollbar-width: none; }
@@ -7879,26 +7631,6 @@ class MarstekVenusPanel extends HTMLElement {
       .card-head .ic { color: var(--ink-dim); display: grid; place-items: center; }
 
       .res-stack { display: flex; flex-direction: column; gap: var(--gap); }
-      .phase-card[hidden], .phase-row[hidden], .phase-track[hidden], .phase-unassigned[hidden] { display: none; }
-      .phase-card .card-head { flex-wrap: wrap; }
-      .phase-card .card-head > .chip { margin-left: auto; }
-      .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 24px; }
-      .phase-row { min-width: 0; --phase-fill: var(--accent); }
-      .phase-row[data-tone="warn"] { --phase-fill: var(--warning-color, #d69200); }
-      .phase-row[data-tone="bad"] { --phase-fill: var(--error-color, #db4437); }
-      .phase-heading, .phase-values { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-      .phase-heading h3 { margin: 0; font-size: 15px; font-weight: 650; }
-      .phase-status, .phase-limit, .phase-batteries, .phase-unassigned { font-size: 12px; color: var(--ink-mid); }
-      .phase-values { margin-top: 12px; flex-wrap: wrap; gap: 4px 12px; }
-      .phase-reading { padding: 0; border: 0; background: none; color: var(--ink); font: inherit; font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
-      .phase-reading:disabled { opacity: 1; }
-      .phase-reading:not(:disabled):hover { text-decoration: underline; text-underline-offset: 4px; }
-      .phase-reading:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
-      .phase-track { height: 7px; background: var(--bg-2); border-radius: 4px; overflow: hidden; margin: 10px 0; }
-      .phase-track > span { display: block; height: 100%; background: var(--phase-fill); }
-      .phase-margin { margin-top: 10px; font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
-      .phase-batteries { margin-top: 6px; line-height: 1.5; overflow-wrap: anywhere; }
-      .phase-unassigned { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
       /* lower row: Flujo (left) + 2×2 chart grid (right), equal height */
       .resumen-lower { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.6fr); gap: var(--gap); align-items: stretch; }
       /* top row = "Energía hoy" content height (min-content): Energía semanal

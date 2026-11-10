@@ -12,7 +12,7 @@ from pathlib import Path
 
 import pytest
 
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js").resolve()
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js").resolve()
 
 HARNESS = r"""
 const fs = require("fs");

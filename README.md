@@ -6,6 +6,8 @@ OpenBattery is an independent fork of [OmniBattery by ffunes and its contributor
 
 **Existing OmniBattery installations:** OpenBattery keeps the `omnibattery` integration domain, storage keys and entity IDs for compatibility. It replaces OmniBattery; install only one of them. See [Switching to OpenBattery](site-docs/installation.md#switching-from-omnibattery).
 
+**Upstream maintenance:** OpenBattery prepares reviewable sync PRs from stable OmniBattery releases and owns its frontend separately. See [Keeping OpenBattery in sync](UPSTREAM.md) for the workflow and merge policy.
+
 **OpenBattery** is your one stop Home Assistant integration designed to monitor and control pluggable solar batteries, as of today, the following ones are supported:
 
 - Marstek Venus E and C (v2 and v3), Venus D and Venus A via Modbus TCP

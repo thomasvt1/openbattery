@@ -12,7 +12,7 @@ from pathlib import Path
 
 
 COMPONENT = Path("custom_components/omnibattery")
-PANEL = COMPONENT / "frontend" / "marstek-panel.js"
+PANEL = COMPONENT / "frontend" / "openbattery" / "panel.js"
 
 # Items the plan asks to move behind "Advanced settings" (T3, diagPredictive).
 ADV_KEYS = {

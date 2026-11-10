@@ -13,7 +13,7 @@ import pytest
 
 from custom_components import omnibattery
 
-PANEL = Path(omnibattery.__file__).parent / "frontend/marstek-panel.js"
+PANEL = Path(omnibattery.__file__).parent / "frontend/openbattery/panel.js"
 HARNESS = r"""
 (async () => {
 const fs = require('node:fs');
