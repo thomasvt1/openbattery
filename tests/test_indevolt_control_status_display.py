@@ -12,7 +12,7 @@ from pathlib import Path
 from custom_components.omnibattery.drivers.indevolt import CONTROL_STATUS_OPTIONS
 
 COMPONENT = Path("custom_components/omnibattery")
-PANEL = COMPONENT / "frontend" / "marstek-panel.js"
+PANEL = COMPONENT / "frontend" / "openbattery" / "panel.js"
 LANGUAGES = ("ca", "de", "en", "es", "fr", "nl")
 
 

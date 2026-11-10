@@ -182,7 +182,7 @@ def test_home_consumption_statistic_reads_the_selected_offgrid_meter():
 
 def test_dashboard_exposes_the_offgrid_mode_switch():
     panel = Path(
-        "custom_components/omnibattery/frontend/marstek-panel.js"
+        "custom_components/omnibattery/frontend/openbattery/panel.js"
     ).read_text(encoding="utf-8")
 
     assert 'key: "offgrid_mode", domain: "switch"' in panel

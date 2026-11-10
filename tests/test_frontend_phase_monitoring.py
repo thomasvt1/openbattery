@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-PANEL = Path(__file__).resolve().parents[1] / "custom_components/omnibattery/frontend/marstek-panel.js"
+PANEL = Path(__file__).resolve().parents[1] / "custom_components/omnibattery/frontend/openbattery/panel.js"
 HARNESS = r"""
 (async () => {
 const fs = require('node:fs');

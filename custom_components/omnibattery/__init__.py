@@ -40,6 +40,7 @@ from homeassistant.util import dt as dt_util
 import voluptuous as vol
 from pymodbus.exceptions import ConnectionException
 
+from .openbattery_brand import PANEL_ELEMENT, PANEL_MODULE, PANEL_TITLE
 from .const import (
     DOMAIN,
     NOTIFICATION_ID_PREFIX,
@@ -336,7 +337,6 @@ PLATFORMS: list[Platform] = [
 # Sidebar dashboard panel served with the integration.
 PANEL_URL_PATH = "omnibattery"
 PANEL_STATIC_PATH = "/omnibattery_static"
-PANEL_TITLE = "OpenBattery"
 PANEL_ICON = "mdi:home-battery"
 _PANEL_REGISTERED_KEY = "_panel_registered"
 _STATIC_REGISTERED_KEY = "_panel_static_registered"
@@ -469,7 +469,7 @@ async def _async_register_frontend_panel(hass: HomeAssistant, entry: ConfigEntry
 
         # Cache-bust by the JS file mtime (changes on every edit/deploy); fall
         # back to the integration version if the file can't be stat'd.
-        js_file = frontend_dir / "marstek-panel.js"
+        js_file = frontend_dir / PANEL_MODULE
         try:
             cache_bust = str(int(js_file.stat().st_mtime))
         except Exception:  # noqa: BLE001
@@ -550,8 +550,8 @@ async def _async_register_frontend_panel(hass: HomeAssistant, entry: ConfigEntry
         await panel_custom.async_register_panel(
             hass,
             frontend_url_path=PANEL_URL_PATH,
-            webcomponent_name="marstek-venus-panel",
-            module_url=f"{PANEL_STATIC_PATH}/marstek-panel.js?v={cache_bust}",
+            webcomponent_name=PANEL_ELEMENT,
+            module_url=f"{PANEL_STATIC_PATH}/{PANEL_MODULE}?v={cache_bust}",
             sidebar_title=PANEL_TITLE,
             sidebar_icon=PANEL_ICON,
             require_admin=False,

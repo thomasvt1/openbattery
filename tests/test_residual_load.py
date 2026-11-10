@@ -718,7 +718,7 @@ def test_the_panel_offers_the_controls_in_every_language():
     import re
 
     panel = open(
-        "custom_components/omnibattery/frontend/marstek-panel.js", encoding="utf-8"
+        "custom_components/omnibattery/frontend/openbattery/panel.js", encoding="utf-8"
     ).read()
 
     assert '{ key: "primary_battery", domain: "select"' in panel

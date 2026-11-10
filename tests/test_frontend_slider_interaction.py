@@ -1,7 +1,7 @@
 from pathlib import Path
 
 
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js")
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js")
 
 
 def test_dashboard_sliders_track_touch_without_relying_on_focus():

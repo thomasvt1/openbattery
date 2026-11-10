@@ -21,7 +21,7 @@ from custom_components.omnibattery.sensor import _timeline_horizon
 from tests.test_daily_operation_manager import MADRID, FakeStore, MutableClock, _manager
 
 NOW = datetime(2026, 8, 23, 10, 7, tzinfo=MADRID)
-PANEL = Path("custom_components/omnibattery/frontend/marstek-panel.js")
+PANEL = Path("custom_components/omnibattery/frontend/openbattery/panel.js")
 
 
 def _extension_item(index):
