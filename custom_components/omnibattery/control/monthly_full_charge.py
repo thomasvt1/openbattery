@@ -31,6 +31,20 @@ FORECAST_SOURCE = "https://jeroen.nl/dynamische-energie/stroom/prijzen/voorspell
 
 def parse_forecast(reply: dict, now: datetime, hours: float = 2.0) -> dict[date, float]:
     """Read a fresh, finite daily EUR/kWh curve from a public MCP reply."""
+    return score_days(forecast_slots(reply, now)[0], now, hours)
+
+
+def known_days(slots: dict, known: set, tz) -> set[date]:
+    """Days whose every interval is a published market price, not a forecast."""
+    days: dict[date, bool] = {}
+    for start in slots:
+        day = start.astimezone(tz).date()
+        days[day] = days.get(day, True) and start in known
+    return {day for day, all_known in days.items() if all_known}
+
+
+def forecast_slots(reply: dict, now: datetime) -> tuple[dict, set]:
+    """Return the reply's intervals and the starts that carry a known price."""
     result = reply.get("result", {})
     if result.get("isError") or "error" in reply:
         raise ValueError("Forecast service returned an error")
@@ -50,19 +64,25 @@ def parse_forecast(reply: dict, now: datetime, hours: float = 2.0) -> dict[date,
         raise ValueError("Unsupported forecast unit or timezone")
     columns = payload.get("columns", [])
     slots = {}
+    known = set()
     for row in payload.get("rows", []):
         try:
             item = dict(zip(columns, row, strict=True))
             start = dt_util.parse_datetime(item["time_utc"])
             value = item.get("known_market_price")
+            is_known = value is not None
             if value is None:
                 value = item["forecast_p50"]
             value = float(value)
             if start is not None and start.tzinfo is not None and math.isfinite(value):
                 slots[start] = (start + timedelta(minutes=15), value)
+                if is_known:
+                    known.add(start)
+                else:
+                    known.discard(start)
         except (KeyError, ValueError, TypeError):
             continue
-    return score_days(slots, now, hours)
+    return slots, known
 
 
 def score_days(slots: dict, now: datetime, hours: float) -> dict[date, float]:
@@ -107,7 +127,10 @@ class MonthlyFullChargeSchedule:
         self.run_date: date | None = None
         self.selected_date: date | None = None
         self.prices: dict[date, float] = {}
+        self.known_days: set[date] = set()
+        self.price_unit = "EUR/kWh"
         self.forecast_received_at: datetime | None = None
+        self.next_refresh_at: datetime | None = None
         self.reason = "waiting"
         self._next_refresh = 0.0
         self._refresh_task = None
@@ -174,7 +197,10 @@ class MonthlyFullChargeSchedule:
         """Rolling five-day choice within the final seven calendar days."""
         if getattr(self, "_last_source", self.source) != self.source:
             self.prices = {}
+            self.known_days = set()
+            self.price_unit = "EUR/kWh"
             self.forecast_received_at = None
+            self.next_refresh_at = None
             self.__dict__.pop("_forecast_reply", None)
             self.__dict__.pop("_forecast_score_key", None)
             self.__dict__.pop("_sensor_cache_key", None)
@@ -197,24 +223,66 @@ class MonthlyFullChargeSchedule:
             if getattr(self, "_forecast_score_key", None) != key:
                 self._forecast_score_key = key
                 try:
-                    self.prices = parse_forecast(self._forecast_reply, now, self.hours_needed())
+                    slots, known = forecast_slots(self._forecast_reply, now)
+                    self.prices = score_days(slots, now, self.hours_needed())
+                    self.known_days = known_days(slots, known, now.tzinfo)
                 except (ValueError, KeyError, TypeError, AttributeError, StopIteration):
                     self.prices = {}
+                    self.known_days = set()
         month_end = (now.replace(day=last, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1))
         if today.day == last or now + timedelta(hours=self.hours_needed()) >= month_end:
             self.reason = "month_end_fallback"
             return today
-        fresh = (self.forecast_received_at is not None
-                 and now - self.forecast_received_at <= timedelta(hours=36))
-        candidates = [(price, day) for day, price in self.prices.items()
-                      if fresh and today <= day <= today + timedelta(days=4)
-                      and day.month == today.month and day.year == today.year]
+        candidates = [(price, day) for day, price in self.prices.items() if self.eligible(day, now)]
         # Incomplete days are excluded by the provider parser.
         if not candidates:
             self.reason = "waiting_for_forecast"
             return None
         self.reason = "forecast_cheapest_day"
         return min(candidates)[1]
+
+    def forecast_fresh(self, now: datetime) -> bool:
+        return (self.forecast_received_at is not None
+                and now - self.forecast_received_at <= timedelta(hours=36))
+
+    def eligible(self, day: date, now: datetime) -> bool:
+        """A scored day may be chosen: fresh forecast, next five days, this month."""
+        today = now.date()
+        return (self.forecast_fresh(now) and today <= day <= today + timedelta(days=4)
+                and (day.year, day.month) == (today.year, today.month))
+
+    def attributes(self, now: datetime) -> dict:
+        """State the decision and its evidence for the dashboard."""
+        last = calendar.monthrange(now.year, now.month)[1]
+        attrs = {
+            "schedule": "monthly", "forecast_source": self.source,
+            "selected_date": self.selected_date.isoformat() if self.selected_date else None,
+            "monthly_reason": self.reason,
+            "last_full": dict(self.last_full),
+            "forecast_updated": self.forecast_received_at.isoformat() if self.forecast_received_at else None,
+            "window_start": now.date().replace(day=last - 6).isoformat(),
+            "window_end": now.date().replace(day=last).isoformat(),
+            "monthly_batteries": [
+                {"name": battery.name,
+                 "last_full": self.last_full.get(getattr(battery, "device_key", battery.name))}
+                for battery in self.controller.coordinators
+                if not getattr(battery, "battery_manual_mode_enabled", False)
+            ],
+        }
+        if self.source == "simple":
+            return attrs
+        attrs.update({
+            "forecast_stale": self.forecast_received_at is not None and not self.forecast_fresh(now),
+            "forecast_days": [
+                {"date": day.isoformat(), "price": round(price, 4),
+                 "known": day in self.known_days, "eligible": self.eligible(day, now)}
+                for day, price in sorted(self.prices.items()) if day >= now.date()
+            ],
+            "price_unit": self.price_unit,
+            "charge_hours": round(self.hours_needed(), 2),
+            "next_forecast_refresh": self.next_refresh_at.isoformat() if self.next_refresh_at else None,
+        })
+        return attrs
 
     def read_sensor(self, now: datetime) -> None:
         """Accept price-series sensors exposing raw_today/tomorrow/forecast slots."""
@@ -225,6 +293,7 @@ class MonthlyFullChargeSchedule:
             return
         self._sensor_cache_key = key
         self.prices = {}
+        self.known_days = set()
         self.forecast_received_at = None
         if state is None or state.state in {"unknown", "unavailable"}:
             return
@@ -234,7 +303,9 @@ class MonthlyFullChargeSchedule:
         # uses these values; the early trigger always reads the actual tariff.
         if state.attributes.get("unit_of_measurement") not in {"EUR/kWh", "€/kWh", "EUR/MWh", "ct/kWh"}:
             return
+        self.price_unit = state.attributes["unit_of_measurement"]
         slots = {}
+        known = set()
         for attr in ("raw_forecast", "raw_tomorrow", "raw_today"):
             entries = state.attributes.get(attr, [])
             if not isinstance(entries, (list, tuple)):
@@ -255,9 +326,14 @@ class MonthlyFullChargeSchedule:
                     if not math.isfinite(value) or not 0 < seconds <= 3600:
                         continue
                     slots[start] = (end, value)
+                    if attr == "raw_forecast":
+                        known.discard(start)
+                    else:
+                        known.add(start)
                 except (KeyError, TypeError, ValueError):
                     continue
         self.prices = score_days(slots, now, self.hours_needed())
+        self.known_days = known_days(slots, known, now.tzinfo)
         self.forecast_received_at = state.last_updated
 
     def is_active(self, now: datetime) -> bool:
@@ -311,10 +387,13 @@ class MonthlyFullChargeSchedule:
     def refresh_if_due(self, now: datetime) -> None:
         """Fetch outside the control loop; outages retry hourly, success six-hourly."""
         last = calendar.monthrange(now.year, now.month)[1]
-        if (self.source != "jeroen_nl" or now.day < last - 6 or self.complete(now) or monotonic() < self._next_refresh
-                or (self._refresh_task is not None and not self._refresh_task.done())):
+        if self.source != "jeroen_nl" or now.day < last - 6 or self.complete(now):
+            self.next_refresh_at = None
+            return
+        if monotonic() < self._next_refresh or (self._refresh_task is not None and not self._refresh_task.done()):
             return
         self._next_refresh = monotonic() + 3600
+        self.next_refresh_at = now + timedelta(hours=1)
         self._refresh_task = self.manager._create_background_task(
             self._refresh(), "omnibattery_monthly_forecast"
         )
@@ -333,7 +412,9 @@ class MonthlyFullChargeSchedule:
             ) as response:
                 response.raise_for_status()
                 reply = await response.json()
-                prices = parse_forecast(reply, dt_util.now(), self.hours_needed())
+                fetched_at = dt_util.now()
+                slots, known = forecast_slots(reply, fetched_at)
+                prices = score_days(slots, fetched_at, self.hours_needed())
                 payload = reply["result"].get("structuredContent")
                 if payload is None:
                     payload = json.loads(next(x["text"] for x in reply["result"]["content"] if x.get("type") == "text"))
@@ -343,8 +424,10 @@ class MonthlyFullChargeSchedule:
             self.__dict__.pop("_forecast_score_key", None)
             self._forecast_reply = reply
             self.prices = prices
+            self.known_days = known_days(slots, known, fetched_at.tzinfo)
             self.forecast_received_at = made_at
             self._next_refresh = monotonic() + 6 * 3600
+            self.next_refresh_at = fetched_at + timedelta(hours=6)
         except (aiohttp.ClientError, asyncio.TimeoutError, ValueError, KeyError,
                 TypeError, StopIteration, AttributeError) as err:
             _LOGGER.warning("Monthly full charge: Jeroen.nl forecast unavailable: %s", err)

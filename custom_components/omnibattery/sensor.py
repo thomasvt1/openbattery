@@ -743,6 +743,8 @@ class HighPriceDischargeSensor(SensorEntity):
 class WeeklyFullChargeSensor(SensorEntity):
     """Diagnostic sensor showing weekly full charge status and delay calculations."""
 
+    _unrecorded_attributes = frozenset({"forecast_days", "next_forecast_refresh", "charge_hours"})
+
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, controller) -> None:
         """Initialize the weekly full charge sensor."""
         self.hass = hass
@@ -777,14 +779,7 @@ class WeeklyFullChargeSensor(SensorEntity):
         }
         manager = self._controller._weekly_charge_mgr
         if manager._monthly_enabled():
-            monthly = manager.monthly
-            attrs.update({
-                "schedule": "monthly", "forecast_source": monthly.source,
-                "selected_date": monthly.selected_date.isoformat() if monthly.selected_date else None,
-                "monthly_reason": monthly.reason,
-                "last_full": dict(monthly.last_full),
-                "forecast_updated": monthly.forecast_received_at.isoformat() if monthly.forecast_received_at else None,
-            })
+            attrs.update(manager.monthly.attributes(dt_util.now()))
         completion_reason = self._controller._weekly_charge_status.get("completion_reason")
         if completion_reason:
             attrs["completion_reason"] = completion_reason

@@ -265,3 +265,102 @@ async def test_storage_resumes_monthly_run_on_different_day():
         await restored.manager.load_state()
     assert restored.controller.weekly_full_charge_registers_written
     assert restored.is_active(now(30))
+
+
+def jeroen_reply(made_at, start, prices, known_until):
+    """Quarter-hour MCP reply: one price per day, known before ``known_until``."""
+    rows = []
+    for day, value in enumerate(prices):
+        for quarter in range(96):
+            moment = start + timedelta(days=day, minutes=15 * quarter)
+            known = moment < known_until
+            rows.append([moment.isoformat(), value if known else None, value])
+    return {"result": {"structuredContent": {
+        "unit": "EUR/kWh", "timezone": "Europe/Amsterdam", "forecast_made_at_utc": made_at.isoformat(),
+        "columns": ["time_utc", "known_market_price", "forecast_p50"], "rows": rows}}}
+
+
+def test_attributes_rank_days_and_mark_known_prices():
+    s = schedule(monthly_full_charge_source="jeroen_nl")
+    # Day-ahead prices are published up to the middle of the 26th.
+    s._forecast_reply = jeroen_reply(now(), now(), [.3, .2, .15, .25, .1], now(26, hour=12))
+    s.forecast_received_at = now()
+    assert s.target_day(now()) == now(28).date()
+    attrs = s.attributes(now())
+    assert attrs["window_start"] == "2026-11-24" and attrs["window_end"] == "2026-11-30"
+    assert attrs["forecast_stale"] is False
+    assert attrs["price_unit"] == "EUR/kWh"
+    assert attrs["charge_hours"] == 2.0
+    assert attrs["forecast_days"] == [
+        {"date": "2026-11-24", "price": .3, "known": True, "eligible": True},
+        {"date": "2026-11-25", "price": .2, "known": True, "eligible": True},
+        {"date": "2026-11-26", "price": .15, "known": False, "eligible": True},
+        {"date": "2026-11-27", "price": .25, "known": False, "eligible": True},
+        {"date": "2026-11-28", "price": .1, "known": False, "eligible": True},
+    ]
+
+
+def test_attributes_flag_stale_forecast_and_drop_past_days():
+    s = schedule(monthly_full_charge_source="jeroen_nl")
+    s._forecast_reply = jeroen_reply(now(24), now(24), [.3, .2, .15, .25, .1], now(24))
+    s.forecast_received_at = now(24)
+    s.target_day(now(25))
+    later = now(26, hour=1)
+    attrs = s.attributes(later)
+    assert attrs["forecast_stale"] is True
+    assert [d["date"] for d in attrs["forecast_days"]] == ["2026-11-26", "2026-11-27", "2026-11-28"]
+    assert not any(d["eligible"] for d in attrs["forecast_days"])
+
+
+def test_attributes_for_sensor_source_use_its_unit_and_actual_prices():
+    s = schedule(monthly_full_charge_source="sensor", monthly_full_charge_forecast_sensor="sensor.forecast")
+    entries = lambda day, value: [{"start": start, "end": end, "value": value}
+                                  for start, (end, _) in slots_for_day(day, [value] * 24).items()]
+    state = SimpleNamespace(state="10", last_updated=now(), attributes={
+        "unit_of_measurement": "ct/kWh", "raw_today": entries(now(), 20), "raw_forecast": entries(now(25), 12)})
+    s.manager._hass.states.get = lambda _: state
+    s.target_day(now())
+    attrs = s.attributes(now())
+    assert attrs["price_unit"] == "ct/kWh"
+    assert [(d["date"], d["known"]) for d in attrs["forecast_days"]] == [("2026-11-24", True), ("2026-11-25", False)]
+
+
+def test_simple_attributes_have_no_forecast_evidence():
+    s = schedule()
+    s.last_full["stable"] = "2026-11-02"
+    attrs = s.attributes(now())
+    assert attrs["forecast_source"] == "simple"
+    assert attrs["monthly_batteries"] == [{"name": "Battery", "last_full": "2026-11-02"}]
+    assert "forecast_days" not in attrs and "next_forecast_refresh" not in attrs
+
+
+def test_refresh_time_is_reported_only_inside_the_window():
+    s = schedule(monthly_full_charge_source="jeroen_nl")
+    s.refresh_if_due(now(20))
+    assert s.next_refresh_at is None
+    s.refresh_if_due(now(24, hour=9))
+    assert s.next_refresh_at == now(24, hour=10)
+    assert s.attributes(now(24, hour=9))["next_forecast_refresh"] == now(24, hour=10).isoformat()
+    s.last_full["stable"] = "2026-11-24"
+    s.refresh_if_due(now(24, hour=11))
+    assert s.next_refresh_at is None
+
+
+@pytest.mark.asyncio
+async def test_successful_fetch_stores_known_days_and_next_refresh():
+    s = schedule(monthly_full_charge_source="jeroen_nl")
+    reply = jeroen_reply(now(), now(), [.3, .2, .15, .25, .1], now(25))
+    response = MagicMock()
+    response.raise_for_status = MagicMock()
+    response.json = AsyncMock(return_value=reply)
+    context = MagicMock()
+    context.__aenter__ = AsyncMock(return_value=response)
+    context.__aexit__ = AsyncMock(return_value=False)
+    session = MagicMock(post=MagicMock(return_value=context))
+    base = "custom_components.omnibattery.control.monthly_full_charge"
+    with patch(f"{base}.async_get_clientsession", return_value=session), \
+            patch(f"{base}.dt_util.now", return_value=now(hour=6)):
+        await s._refresh()
+    assert s.known_days == {now().date()}
+    assert s.next_refresh_at == now(hour=12)
+    assert s.forecast_received_at == now()
