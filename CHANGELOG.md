@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add a Monthly full charge card to Overview: the next full-charge day and why it was chosen, the final week's per-day prices (known or forecast) with the chosen and fallback days, forecast age and next refresh, missing or stale forecast warnings, and per-battery completion this month. The full-charge sensor exposes the ranked days and forecast details as new attributes; scheduling is unchanged.
 - Add live L1/L2/L3 monitoring to Overview with import/export current, configured limits, remaining margin, assigned batteries, near-limit and overload warnings, and explicit unavailable readings. Monitoring remains available with phase protection switched off; automatic battery limits are unchanged.
 
 ## [1.7.0] - OpenBattery - 2026-11-09

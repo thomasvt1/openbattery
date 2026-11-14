@@ -91,8 +91,24 @@ depends on solar. Price caps, unavailable hardware, or insufficient charging
 time can still prevent completion. The fallback schedules an attempt, not an
 unconditional guarantee of reaching 100%.
 
+With the monthly schedule selected, the **Overview** tab shows a **Monthly full
+charge** card. It names the next full-charge day and why it was chosen. With a
+forecast source, it also shows the final week of the month: each day's average
+price over the cheapest hours still needed to reach 100%, whether that price is
+known or forecast, the chosen day, and the last day as the fallback. It also
+shows when the forecast was made and when it next refreshes, which batteries
+are already full this month, and a warning when the forecast is missing or
+older than 36 hours. Before the final week it only names the day the window
+opens. The card is hidden with the weekly schedule.
+
+![Monthly full charge card with a Jeroen.nl forecast](../assets/monthly-full-charge.png){ width="900" }
+
 The full-charge sensor exposes the monthly source, selected date, decision
-reason, forecast timestamp and per-battery completion history.
+reason, forecast timestamp and per-battery completion history. With a forecast
+source it also exposes `forecast_days` (date, price, known or forecast, and
+whether the day can be chosen), `price_unit`, `charge_hours`,
+`forecast_stale`, `next_forecast_refresh`, the `window_start` and
+`window_end` dates, and `monthly_batteries`.
 
 **Weekly Full Charge** reports `idle`, `charging`, or `complete`. On the selected day, OpenBattery temporarily raises the charge target to 100% for batteries under automatic control. It marks the cycle complete only after every participating battery is considered full, then restores each configured limit.
 

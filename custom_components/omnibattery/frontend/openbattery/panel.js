@@ -54,6 +54,37 @@ const DAILY_OPERATION_SUNSET_ZERO_INTERVALS = 4;
 // names in translations/*.json so the panel reads consistently with HA.
 const I18N = {
   en: {
+    fcTitle: "Monthly full charge",
+    fcSource_jeroen_nl: "Jeroen.nl", fcSource_sensor: "Forecast sensor", fcSource_simple: "Simple schedule",
+    fcStatus_planned: "Planned", fcStatus_charging: "Charging", fcStatus_complete: "Done this month",
+    fcStatus_before: "Waiting for window", fcStatus_waiting: "No forecast yet", fcStatus_stale: "Forecast too old", fcStatus_idle: "Waiting",
+    fcEyebrowNext: "Next full charge", fcEyebrowNow: "Today", fcEyebrowWindow: "Window opens", fcEyebrowDone: "This month",
+    fcToday: "Today",
+    fcChargingHeadline: "Charging to 100%",
+    fcDoneHeadline: "Every battery reached 100%",
+    fcWaitingHeadline: "Waiting for a price forecast",
+    fcStaleHeadline: "Forecast too old to use",
+    fcIdleHeadline: "No day chosen yet",
+    fcWhyForecast: "Cheapest {hours} h that day averages {price}.",
+    fcWhyRunner: "{diff} below the next best day ({day}).",
+    fcWhyCadence: "Last {weekday} of the month.",
+    fcWhyFallback: "No usable forecast arrived, so the charge runs on the last day of the month.",
+    fcWhyPrice: "Started early: the import price reached your trigger.",
+    fcBeforeSmart: "The day is picked from the price forecast in the final week. A full charge before then also counts.",
+    fcBeforeSimple: "Runs on the last selected weekday of the month. A full charge before then also counts.",
+    fcWaitingReason: "Retrying. If no usable forecast arrives, the charge runs on {date}.",
+    fcStaleReason: "The last forecast is more than 36 h old. Retrying; otherwise the charge runs on {date}.",
+    fcDoneReason: "Full charges from solar and from the schedule both count. Your normal limits are back.",
+    fcUpdated: "Forecast {when} · {age}",
+    fcAgeMin: "{n} min old", fcAgeHours: "{n} h old",
+    fcRefresh: "Next refresh {when}",
+    fcLegend_known: "Known price", fcLegend_forecast: "Forecast", fcLegend_chosen: "Chosen day",
+    fcLegendNote: "Bar: average of the cheapest {hours} h still ahead",
+    fcTag_chosen: "Chosen", fcTag_known: "Known", fcTag_forecast: "Forecast", fcTag_past: "Past",
+    fcTag_fallback: "Fallback", fcTag_later: "Not forecast", fcTag_ignored: "Not used",
+    fcBatteryFull: "{name} · full {date}", fcBatteryNotYet: "{name} · not yet this month",
+    fcCredit: "Prices: Jeroen.nl",
+    fcDaysLabel: "Days in the final week, with their cheapest charging price",
     phaseTitle: "Phase monitoring",
     phaseOn: "Protection on",
     phaseOff: "Protection off",
@@ -587,6 +618,37 @@ const I18N = {
     slotStateLabel: "État", slotActiveWord: "actif", slotInactiveWord: "inactif",
   },
   nl: {
+    fcTitle: "Maandelijkse volle lading",
+    fcSource_jeroen_nl: "Jeroen.nl", fcSource_sensor: "Voorspellingssensor", fcSource_simple: "Vaste dag",
+    fcStatus_planned: "Gepland", fcStatus_charging: "Laden", fcStatus_complete: "Klaar deze maand",
+    fcStatus_before: "Wacht op venster", fcStatus_waiting: "Nog geen voorspelling", fcStatus_stale: "Voorspelling te oud", fcStatus_idle: "Wachten",
+    fcEyebrowNext: "Volgende volle lading", fcEyebrowNow: "Vandaag", fcEyebrowWindow: "Venster opent", fcEyebrowDone: "Deze maand",
+    fcToday: "Vandaag",
+    fcChargingHeadline: "Laden tot 100%",
+    fcDoneHeadline: "Alle batterijen hebben 100% bereikt",
+    fcWaitingHeadline: "Wacht op een prijsvoorspelling",
+    fcStaleHeadline: "Voorspelling te oud om te gebruiken",
+    fcIdleHeadline: "Nog geen dag gekozen",
+    fcWhyForecast: "De goedkoopste {hours} uur die dag kosten gemiddeld {price}.",
+    fcWhyRunner: "{diff} lager dan de op één na beste dag ({day}).",
+    fcWhyCadence: "Laatste {weekday} van de maand.",
+    fcWhyFallback: "Er kwam geen bruikbare voorspelling, dus er wordt op de laatste dag van de maand geladen.",
+    fcWhyPrice: "Vroeg gestart: de inkoopprijs bereikte je drempel.",
+    fcBeforeSmart: "De dag wordt in de laatste week gekozen met de prijsvoorspelling. Een eerdere volle lading telt ook.",
+    fcBeforeSimple: "Op de laatst gekozen weekdag van de maand. Een eerdere volle lading telt ook.",
+    fcWaitingReason: "Wordt opnieuw geprobeerd. Komt er geen bruikbare voorspelling, dan wordt er op {date} geladen.",
+    fcStaleReason: "De laatste voorspelling is ouder dan 36 uur. Wordt opnieuw geprobeerd; anders wordt er op {date} geladen.",
+    fcDoneReason: "Een volle lading door zon of door het schema telt allebei. Je normale grenzen zijn terug.",
+    fcUpdated: "Voorspelling {when} · {age}",
+    fcAgeMin: "{n} min oud", fcAgeHours: "{n} uur oud",
+    fcRefresh: "Volgende update {when}",
+    fcLegend_known: "Bekende prijs", fcLegend_forecast: "Voorspelling", fcLegend_chosen: "Gekozen dag",
+    fcLegendNote: "Balk: gemiddelde van de goedkoopste {hours} uur die nog komen",
+    fcTag_chosen: "Gekozen", fcTag_known: "Bekend", fcTag_forecast: "Voorspeld", fcTag_past: "Voorbij",
+    fcTag_fallback: "Terugval", fcTag_later: "Niet voorspeld", fcTag_ignored: "Niet gebruikt",
+    fcBatteryFull: "{name} · vol op {date}", fcBatteryNotYet: "{name} · nog niet deze maand",
+    fcCredit: "Prijzen: Jeroen.nl",
+    fcDaysLabel: "Dagen in de laatste week, met hun goedkoopste laadprijs",
     phaseTitle: "Fasebewaking",
     phaseOn: "Beveiliging aan",
     phaseOff: "Beveiliging uit",
@@ -2682,6 +2744,7 @@ class MarstekVenusPanel extends HTMLElement {
     return wrap("res-stack", [
       c.soc,
       c.phases,
+      c.fullCharge,
       wrap("resumen-lower", [
         c.flow,
         wrap("charts-2x2", [c.daily, c.weekly, c.power, c.mini]),
@@ -2705,6 +2768,7 @@ class MarstekVenusPanel extends HTMLElement {
       flow: this._buildFlowCard(),
       soc: this._buildSocCard(),
       phases: this._buildPhaseMonitoringCard(),
+      fullCharge: this._buildFullChargeCard(),
       daily: this._buildDailyCard(),
       weekly: this._buildWeeklyCard(),
       power: this._buildPowerHistoryCard(),
@@ -2823,6 +2887,257 @@ class MarstekVenusPanel extends HTMLElement {
     }
     refs.unassigned.hidden = !state.unassigned.length;
     refs.unassigned.textContent = this._t("phaseUnassigned", { names: state.unassigned.join(" · ") });
+  }
+
+  // ----- Monthly full charge (OpenBattery) ---------------------------------
+  /**
+   * Card for the monthly full-charge decision. The backend owns the choice;
+   * this only shows the sensor's ranked days, reason and freshness. Hidden
+   * for weekly schedules, a disabled feature or an older backend.
+   */
+  _buildFullChargeCard() {
+    const { card, head } = this._card(this._t("fcTitle"), "mdi:calendar-clock");
+    card.classList.add("fc-card");
+    card.hidden = true;
+    const chips = document.createElement("div");
+    chips.className = "fc-chips";
+    const source = document.createElement("span");
+    const status = document.createElement("span");
+    chips.append(source, status);
+    head.appendChild(chips);
+    const summary = document.createElement("div");
+    summary.className = "fc-summary";
+    summary.innerHTML = `<div class="fc-lead"><div class="fc-eyebrow"></div>
+      <button class="fc-headline" type="button"></button><p class="fc-reason"></p></div>
+      <div class="fc-meta"><span class="fc-updated"></span><span class="fc-refresh"></span></div>`;
+    const days = document.createElement("ol");
+    days.className = "fc-days";
+    days.setAttribute("aria-label", this._t("fcDaysLabel"));
+    const legend = document.createElement("div");
+    legend.className = "fc-legend";
+    legend.innerHTML = ["known", "forecast", "chosen"]
+      .map((kind) => `<span><i class="fc-sw" data-kind="${kind}" aria-hidden="true"></i>${this._t(`fcLegend_${kind}`)}</span>`)
+      .join("") + `<span class="fc-legend-note"></span>`;
+    const foot = document.createElement("div");
+    foot.className = "fc-foot";
+    foot.innerHTML = `<div class="fc-batteries"></div><a class="fc-credit" target="_blank" rel="noopener noreferrer"></a>`;
+    card.append(summary, days, legend, foot);
+    const q = (sel) => card.querySelector(sel);
+    this._r.fullCharge = {
+      card, source, status, days, legend,
+      eyebrow: q(".fc-eyebrow"), headline: q(".fc-headline"), reason: q(".fc-reason"),
+      updated: q(".fc-updated"), refresh: q(".fc-refresh"), note: q(".fc-legend-note"),
+      batteries: q(".fc-batteries"), credit: q(".fc-credit"),
+    };
+    return card;
+  }
+
+  _fcShift(isoDay, n) {
+    const [y, m, d] = isoDay.split("-").map(Number);
+    return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+  }
+  /** Calendar dates are zone-free: format them at UTC noon. */
+  _fcDate(isoDay, options) {
+    const [y, m, d] = isoDay.split("-").map(Number);
+    return new Date(Date.UTC(y, m - 1, d, 12)).toLocaleDateString(this._lang(), { ...options, timeZone: "UTC" });
+  }
+  _fcPrice(price, unit) {
+    const sign = price < 0 ? "−" : "";
+    const v = Math.abs(price);
+    if (unit === "ct/kWh") return `${sign}${this._nf(v, 1)} ct`;
+    if (unit === "EUR/MWh") return `${sign}€${this._nf(v, 0)}/MWh`;
+    return `${sign}€${this._nf(v, 3)}`;
+  }
+  _fcTime(epochMs, today) {
+    const p = this._dateParts(epochMs);
+    const day = `${p.year}-${String(p.month).padStart(2, "0")}-${String(p.day).padStart(2, "0")}`;
+    const time = new Date(epochMs).toLocaleTimeString(this._lang(), this._dateTimeOptions({ hour: "2-digit", minute: "2-digit" }));
+    return day === today ? time : `${this._fcDate(day, { weekday: "short" })} ${time}`;
+  }
+
+  _fullChargeState() {
+    const entityId = this._sysEntityId(K.weeklyFullCharge);
+    const entity = entityId ? this._hass.states[entityId] : null;
+    const a = entity && entity.attributes;
+    if (!a || a.schedule !== "monthly" || ["unknown", "unavailable", "disabled"].includes(entity.state)) return null;
+    const isoDay = (s) => (typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : null);
+    const finite = (n) => (typeof n === "number" && Number.isFinite(n) ? n : null);
+    const start = isoDay(a.window_start);
+    const end = isoDay(a.window_end);
+    if (!start || !end || start > end) return null;
+    const p = this._dateParts();
+    const today = `${p.year}-${String(p.month).padStart(2, "0")}-${String(p.day).padStart(2, "0")}`;
+    const smart = a.forecast_source === "jeroen_nl" || a.forecast_source === "sensor";
+    const scores = new Map((Array.isArray(a.forecast_days) ? a.forecast_days : [])
+      .filter((d) => d && isoDay(d.date) && finite(d.price) != null)
+      .map((d) => [d.date, d]));
+    // Before the window opens nothing is ranked yet; any stored forecast is old.
+    const open = today >= start;
+    const selected = open ? isoDay(a.selected_date) : null;
+    const days = [];
+    for (let day = start; day <= end && days.length < 7; day = this._fcShift(day, 1)) {
+      const score = open ? scores.get(day) : undefined;
+      const kind = day < today ? "past"
+        : day === selected ? "chosen"
+        : score && score.eligible ? (score.known ? "known" : "forecast")
+        : score ? "ignored"
+        : day === end ? "fallback" : "later";
+      days.push({ day, kind, price: score && kind !== "past" ? score.price : null });
+    }
+    const ranked = days.filter((d) => d.price != null && (d.kind === "chosen" || scores.get(d.day).eligible))
+      .sort((x, y) => x.price - y.price);
+    const best = ranked.find((d) => d.kind === "chosen") || null;
+    const runner = best ? ranked.find((d) => d !== best) || null : null;
+    const month = start.slice(0, 7);
+    const batteries = (Array.isArray(a.monthly_batteries) ? a.monthly_batteries : [])
+      .filter((b) => b && b.name != null)
+      .map((b) => ({ name: String(b.name), full: isoDay(b.last_full) && b.last_full.startsWith(month) ? b.last_full : null }));
+    const time = (s) => { const t = Date.parse(s); return Number.isFinite(t) ? t : null; };
+    const reason = a.monthly_reason;
+    let status;
+    if (entity.state === "complete" || reason === "already_full_this_month") status = "complete";
+    else if (entity.state === "charging") status = "charging";
+    else if (today < start) status = "before";
+    else if (reason === "waiting_for_forecast") status = a.forecast_stale === true ? "stale" : "waiting";
+    else if (selected) status = "planned";
+    else status = "idle";
+    return {
+      entityId, status, reason, smart, source: a.forecast_source, days, best, runner, selected, today, start, end,
+      unit: typeof a.price_unit === "string" ? a.price_unit : "EUR/kWh", hours: finite(a.charge_hours),
+      updated: smart ? time(a.forecast_updated) : null, refresh: smart ? time(a.next_forecast_refresh) : null,
+      batteries,
+    };
+  }
+
+  _fcWhy(s) {
+    if (s.reason === "price_threshold") return this._t("fcWhyPrice");
+    if (s.reason === "month_end_fallback") return this._t("fcWhyFallback");
+    if (s.reason === "monthly_cadence" && s.selected) {
+      return this._t("fcWhyCadence", { weekday: this._fcDate(s.selected, { weekday: "long" }) });
+    }
+    if (s.reason === "forecast_cheapest_day" && s.best) {
+      const hours = s.hours == null ? "" : this._nf(s.hours, s.hours % 1 ? 1 : 0);
+      let text = this._t("fcWhyForecast", { hours, price: this._fcPrice(s.best.price, s.unit) });
+      if (s.runner) {
+        text += " " + this._t("fcWhyRunner", {
+          diff: this._fcPrice(s.runner.price - s.best.price, s.unit),
+          day: this._fcDate(s.runner.day, { weekday: "long" }),
+        });
+      }
+      return text;
+    }
+    return "";
+  }
+
+  _patchFullCharge() {
+    const r = this._r.fullCharge;
+    if (!r) return;
+    const s = this._fullChargeState();
+    r.card.hidden = !s;
+    if (!s) return;
+    const tone = { planned: "good", charging: "good", complete: "good", waiting: "warn", stale: "warn" }[s.status] || "neutral";
+    this._setChip(r.source, this._t(`fcSource_${s.source}`), "neutral");
+    this._setChip(r.status, this._t(`fcStatus_${s.status}`), tone);
+    r.card.dataset.status = s.status;
+
+    const longDate = (day) => (day === s.today ? this._t("fcToday") : this._fcDate(day, { weekday: "long", day: "numeric", month: "long" }));
+    let eyebrow = "fcEyebrowNext", headline = "", reason = "";
+    if (s.status === "planned") {
+      headline = longDate(s.selected);
+      reason = this._fcWhy(s);
+    } else if (s.status === "charging") {
+      eyebrow = "fcEyebrowNow";
+      headline = this._t("fcChargingHeadline");
+      reason = this._fcWhy(s);
+    } else if (s.status === "complete") {
+      eyebrow = "fcEyebrowDone";
+      headline = this._t("fcDoneHeadline");
+      reason = this._t("fcDoneReason");
+    } else if (s.status === "before") {
+      eyebrow = "fcEyebrowWindow";
+      headline = longDate(s.start);
+      reason = this._t(s.smart ? "fcBeforeSmart" : "fcBeforeSimple");
+    } else if (s.status === "waiting" || s.status === "stale") {
+      headline = this._t(s.status === "stale" ? "fcStaleHeadline" : "fcWaitingHeadline");
+      reason = this._t(s.status === "stale" ? "fcStaleReason" : "fcWaitingReason", { date: longDate(s.end) });
+    } else {
+      headline = this._t("fcIdleHeadline");
+    }
+    r.eyebrow.textContent = this._t(eyebrow);
+    r.headline.textContent = headline;
+    r.reason.textContent = reason;
+    r.reason.hidden = !reason;
+    this._linkMoreInfo(r.headline, s.entityId);
+    r.headline.setAttribute("aria-label", `${this._t(eyebrow)}: ${headline}. ${this._t("moreInfo")}`);
+
+    const now = Date.now();
+    const evidence = s.status !== "before" && s.status !== "complete";
+    r.updated.hidden = !evidence || s.updated == null;
+    if (!r.updated.hidden) {
+      const mins = Math.max(0, Math.round((now - s.updated) / 60000));
+      const age = mins < 60 ? this._t("fcAgeMin", { n: mins }) : this._t("fcAgeHours", { n: Math.round(mins / 60) });
+      r.updated.textContent = this._t("fcUpdated", { when: this._fcTime(s.updated, s.today), age });
+    }
+    const showRefresh = evidence && s.refresh != null && s.refresh > now;
+    r.refresh.hidden = !showRefresh;
+    if (showRefresh) r.refresh.textContent = this._t("fcRefresh", { when: this._fcTime(s.refresh, s.today) });
+
+    const prices = s.days.filter((d) => d.price != null).map((d) => d.price);
+    r.days.hidden = !s.smart;
+    // Without any price yet the strip only lists the window's days.
+    r.days.dataset.prices = prices.length ? "true" : "false";
+    r.legend.hidden = !s.smart || !prices.length;
+    if (s.smart) {
+      const lo = Math.min(0, ...prices);
+      const hi = Math.max(...prices);
+      const el = (tag, cls, parent) => {
+        const node = document.createElement(tag);
+        node.className = cls;
+        parent.appendChild(node);
+        return node;
+      };
+      r.dayEls = r.dayEls || [];
+      while (r.dayEls.length > s.days.length) r.dayEls.pop().li.remove();
+      while (r.dayEls.length < s.days.length) {
+        const li = el("li", "fc-day", r.days);
+        const plot = el("div", "fc-plot", li);
+        const label = el("div", "fc-label", li);
+        plot.setAttribute("aria-hidden", "true");
+        label.setAttribute("aria-hidden", "true");
+        r.dayEls.push({
+          li, value: el("span", "fc-value num", plot), bar: el("span", "fc-bar", plot),
+          name: el("span", "fc-name", label), date: el("span", "fc-date", label), tag: el("span", "fc-tag", label),
+        });
+      }
+      s.days.forEach((d, i) => {
+        const ref = r.dayEls[i];
+        const li = ref.li;
+        const ratio = d.price == null ? 0 : hi > lo ? (d.price - lo) / (hi - lo) : 0.5;
+        const value = d.price == null ? "—" : this._fcPrice(d.price, s.unit);
+        const name = d.day === s.today ? this._t("fcToday") : this._fcDate(d.day, { weekday: "short" });
+        const date = this._fcDate(d.day, { day: "numeric", month: "short" });
+        const tag = this._t(`fcTag_${d.kind}`);
+        li.dataset.kind = d.kind;
+        li.dataset.empty = d.price == null ? "true" : "false";
+        li.style.setProperty("--fc-r", ratio.toFixed(3));
+        ref.value.textContent = value;
+        ref.name.textContent = name;
+        ref.date.textContent = date;
+        ref.tag.textContent = tag;
+        li.setAttribute("aria-label", `${name} ${date}: ${value}, ${tag}`);
+      });
+      r.note.hidden = s.hours == null;
+      if (s.hours != null) r.note.textContent = this._t("fcLegendNote", { hours: this._nf(s.hours, s.hours % 1 ? 1 : 0) });
+    }
+
+    r.batteries.textContent = s.batteries.map((b) => (b.full
+      ? this._t("fcBatteryFull", { name: b.name, date: this._fcDate(b.full, { day: "numeric", month: "short" }) })
+      : this._t("fcBatteryNotYet", { name: b.name }))).join(" · ");
+    r.credit.hidden = s.source !== "jeroen_nl";
+    if (s.source === "jeroen_nl") {
+      r.credit.textContent = this._t("fcCredit");
+      r.credit.href = "https://jeroen.nl/dynamische-energie/stroom/prijzen/voorspelling";
+    }
   }
 
   // ----- Daily operation timeline ------------------------------------------
@@ -5638,6 +5953,7 @@ class MarstekVenusPanel extends HTMLElement {
     }
 
     this._patchPhaseMonitoring();
+    this._patchFullCharge();
     this._patchDailyOperationTimeline();
   }
 
@@ -7898,6 +8214,62 @@ class MarstekVenusPanel extends HTMLElement {
       .phase-track > span { display: block; height: 100%; background: var(--phase-fill); }
       .phase-margin { margin-top: 10px; font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
       .phase-batteries { margin-top: 6px; line-height: 1.5; overflow-wrap: anywhere; }
+      /* monthly full charge (OpenBattery) */
+      .fc-card[hidden], .fc-card [hidden] { display: none; }
+      .fc-card .card-head { flex-wrap: wrap; }
+      .fc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-left: auto; }
+      .fc-summary { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px var(--gap); }
+      .fc-lead { display: flex; flex-direction: column; gap: 4px; min-width: 0; max-width: 680px; }
+      .fc-eyebrow { font-size: 12px; color: var(--ink-mid); }
+      .fc-headline { align-self: flex-start; padding: 0; border: 0; background: none; color: var(--ink); text-align: left; cursor: pointer;
+        font-family: var(--font-display); font-size: 26px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+      .fc-headline:hover { text-decoration: underline; text-underline-offset: 5px; }
+      .fc-headline:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+      .fc-reason { font-size: 13px; line-height: 1.5; color: var(--ink-mid); }
+      .fc-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; font-size: 12px; color: var(--ink-mid); font-variant-numeric: tabular-nums; }
+      .fc-days { list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+      .fc-day { --fc-bar: var(--line-strong); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+      .fc-plot { height: 100px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 5px; }
+      .fc-value { font-size: 12px; color: var(--ink-mid); white-space: nowrap; }
+      .fc-bar { width: 100%; max-width: 52px; height: calc(4px + 70px * var(--fc-r, 0)); border-radius: 7px 7px 3px 3px; background: var(--fc-bar); box-sizing: border-box; }
+      .fc-day[data-empty="true"] .fc-bar { height: 2px; border-radius: 1px; background: var(--line); }
+      .fc-day[data-kind="known"] { --fc-bar: var(--ink-dim); }
+      .fc-day[data-kind="forecast"] .fc-bar { background: transparent; border: 1.5px dashed var(--ink-dim); }
+      .fc-day[data-kind="chosen"] { --fc-bar: var(--accent); }
+      .fc-day[data-kind="chosen"] .fc-bar { box-shadow: 0 0 14px var(--accent-soft); }
+      .fc-day[data-kind="chosen"] .fc-value { color: var(--accent); font-weight: 700; }
+      .fc-label { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 7px 4px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--bg-2); text-align: center; }
+      .fc-day[data-kind="chosen"] .fc-label { border-color: var(--accent-line); background: var(--accent-soft); }
+      .fc-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+      .fc-date { font-size: 11px; color: var(--ink-mid); }
+      .fc-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-mid); }
+      .fc-day[data-kind="chosen"] .fc-tag { color: var(--accent); }
+      .fc-day[data-kind="fallback"] .fc-tag { color: oklch(0.82 0.14 75); }
+      :host([data-theme="light"]) .fc-day[data-kind="fallback"] .fc-tag { color: oklch(0.52 0.12 65); }
+      .fc-days[data-prices="false"] .fc-plot { display: none; }
+      .fc-day[data-kind="past"] .fc-name, .fc-day[data-kind="later"] .fc-name, .fc-day[data-kind="ignored"] .fc-name { color: var(--ink-mid); }
+      .fc-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin-top: 14px; font-size: 12px; color: var(--ink-mid); }
+      .fc-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+      .fc-sw { width: 11px; height: 11px; border-radius: 3px; box-sizing: border-box; background: var(--ink-dim); }
+      .fc-sw[data-kind="forecast"] { background: transparent; border: 1.5px dashed var(--ink-dim); }
+      .fc-sw[data-kind="chosen"] { background: var(--accent); }
+      .fc-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-mid); }
+      .fc-credit { color: var(--ink-mid); font-size: 12px; }
+      .fc-credit:hover { color: var(--accent); }
+      @media (max-width: 720px) {
+        .fc-headline { font-size: 22px; }
+        .fc-meta { align-items: flex-start; }
+        .fc-days { grid-template-columns: 1fr; gap: 4px; }
+        .fc-day { flex-direction: row-reverse; align-items: center; gap: 12px; padding: 4px 8px; border-radius: var(--radius-sm); }
+        .fc-day[data-kind="chosen"] { background: var(--accent-soft); }
+        .fc-label { flex: 0 0 96px; align-items: flex-start; padding: 0; border: 0; background: none; text-align: left; }
+        .fc-day[data-kind="chosen"] .fc-label { background: none; }
+        .fc-label .fc-date { display: none; }
+        .fc-plot { flex: 1; min-width: 0; height: auto; flex-direction: row; justify-content: flex-start; align-items: center; gap: 10px; }
+        .fc-value { order: 2; flex: 0 0 64px; margin-left: auto; text-align: right; font-size: 13px; }
+        .fc-bar { order: 1; flex: none; max-width: none; width: calc((100% - 74px) * (0.04 + 0.96 * var(--fc-r, 0))); height: 8px; border-radius: 99px; }
+        .fc-day[data-empty="true"] .fc-bar { width: calc(100% - 74px); height: 2px; }
+      }
       .phase-unassigned { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
       /* lower row: Flujo (left) + 2×2 chart grid (right), equal height */
       .resumen-lower { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.6fr); gap: var(--gap); align-items: stretch; }
