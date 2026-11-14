@@ -2,602 +2,602 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://thomasvt1.github.io/openbattery/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/changelog/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/changelog/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/changelog/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/compatibility/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/compatibility/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/compatibility/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/installation/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/installation/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/installation/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/troubleshooting/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/troubleshooting/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/troubleshooting/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/upgrading-from-marstek-vem/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/upgrading-from-marstek-vem/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/upgrading-from-marstek-vem/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/automations/blueprints/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/automations/blueprints/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/automations/blueprints/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/excluded-devices/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/excluded-devices/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/excluded-devices/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/hoymiles-ms-a2/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/hoymiles-ms-a2/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/hoymiles-ms-a2/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/main-sensor/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/main-sensor/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/main-sensor/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/three-phase/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/three-phase/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/three-phase/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/time-slots/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/time-slots/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/time-slots/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/anker/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/anker/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/anker/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/esphome-lilygo/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/esphome-lilygo/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/esphome-lilygo/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/hoymiles/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/hoymiles/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/hoymiles/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/huawei/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/huawei/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/huawei/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/indevolt/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/indevolt/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/indevolt/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/marstek/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/marstek/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/marstek/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/sessy/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/sessy/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/sessy/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/batteries/zendure/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/zendure/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/zendure/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/predictive-charging/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/predictive-charging/dynamic-pricing/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/dynamic-pricing/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/dynamic-pricing/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/predictive-charging/real-time-price/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/real-time-price/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/real-time-price/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/configuration/predictive-charging/time-slot/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/time-slot/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/time-slot/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/cell-balance-monitor/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/cell-balance-monitor/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/cell-balance-monitor/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/consumption-estimate/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/consumption-estimate/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/consumption-estimate/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/daily-operation-timeline/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/daily-operation-timeline/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/daily-operation-timeline/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/hourly-net-balance/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/hourly-net-balance/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/hourly-net-balance/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/load-exclusion/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/load-exclusion/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/load-exclusion/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/multi-battery/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/multi-battery/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/multi-battery/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/pd-controller/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/pd-controller/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/pd-controller/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/peak-shaving/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/peak-shaving/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/peak-shaving/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/solar-charge-delay/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/solar-charge-delay/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/solar-charge-delay/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/temperature-charge-limit/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/temperature-charge-limit/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/temperature-charge-limit/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/features/weekly-full-charge/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/weekly-full-charge/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/weekly-full-charge/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/hardware/shelly-pro-3em-mqtt-script/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/hardware/shelly-pro-3em-mqtt-script/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/hardware/shelly-pro-3em-mqtt-script/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/reference/architecture/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/architecture/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/architecture/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/reference/driver-requirements-template/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/driver-requirements-template/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/driver-requirements-template/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/reference/entities/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/entities/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/entities/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/reference/modbus-registers/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/modbus-registers/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/modbus-registers/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/reference/registers/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/registers/"/>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/registers/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/changelog/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/changelog/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/changelog/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/compatibility/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/compatibility/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/compatibility/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/installation/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/installation/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/installation/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/troubleshooting/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/troubleshooting/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/troubleshooting/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/upgrading-from-marstek-vem/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/upgrading-from-marstek-vem/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/upgrading-from-marstek-vem/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/automations/blueprints/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/automations/blueprints/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/automations/blueprints/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/excluded-devices/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/excluded-devices/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/excluded-devices/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/hoymiles-ms-a2/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/hoymiles-ms-a2/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/hoymiles-ms-a2/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/main-sensor/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/main-sensor/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/main-sensor/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/three-phase/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/three-phase/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/three-phase/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/time-slots/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/time-slots/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/time-slots/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/anker/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/anker/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/anker/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/esphome-lilygo/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/esphome-lilygo/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/esphome-lilygo/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/hoymiles/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/hoymiles/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/hoymiles/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/huawei/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/huawei/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/huawei/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/indevolt/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/indevolt/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/indevolt/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/marstek/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/marstek/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/marstek/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/sessy/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/sessy/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/sessy/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/batteries/zendure/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/batteries/zendure/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/batteries/zendure/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/dynamic-pricing/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/dynamic-pricing/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/dynamic-pricing/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/real-time-price/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/real-time-price/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/real-time-price/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/time-slot/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/configuration/predictive-charging/time-slot/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/configuration/predictive-charging/time-slot/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/cell-balance-monitor/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/cell-balance-monitor/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/cell-balance-monitor/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/consumption-estimate/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/consumption-estimate/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/consumption-estimate/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/daily-operation-timeline/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/daily-operation-timeline/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/daily-operation-timeline/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/hourly-net-balance/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/hourly-net-balance/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/hourly-net-balance/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/load-exclusion/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/load-exclusion/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/load-exclusion/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/multi-battery/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/multi-battery/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/multi-battery/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/pd-controller/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/pd-controller/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/pd-controller/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/peak-shaving/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/peak-shaving/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/peak-shaving/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/solar-charge-delay/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/solar-charge-delay/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/solar-charge-delay/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/temperature-charge-limit/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/temperature-charge-limit/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/temperature-charge-limit/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/features/weekly-full-charge/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/features/weekly-full-charge/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/features/weekly-full-charge/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/hardware/shelly-pro-3em-mqtt-script/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/hardware/shelly-pro-3em-mqtt-script/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/hardware/shelly-pro-3em-mqtt-script/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/reference/architecture/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/architecture/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/architecture/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/reference/driver-requirements-template/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/driver-requirements-template/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/driver-requirements-template/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/reference/entities/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/entities/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/entities/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/reference/modbus-registers/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/modbus-registers/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/modbus-registers/"/>
     </url>
     <url>
         <loc>https://thomasvt1.github.io/openbattery/es/reference/registers/</loc>
-        <lastmod>2026-11-09</lastmod>
+        <lastmod>2026-11-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="es" href="https://thomasvt1.github.io/openbattery/es/reference/registers/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://thomasvt1.github.io/openbattery/reference/registers/"/>

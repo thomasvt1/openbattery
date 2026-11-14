@@ -3078,8 +3078,22 @@ Predictive charging must be enabled to buy grid energy; without it the cycle
 depends on solar. Price caps, unavailable hardware, or insufficient charging
 time can still prevent completion. The fallback schedules an attempt, not an
 unconditional guarantee of reaching 100%.</p>
+<p>With the monthly schedule selected, the <strong>Overview</strong> tab shows a <strong>Monthly full
+charge</strong> card. It names the next full-charge day and why it was chosen. With a
+forecast source, it also shows the final week of the month: each day's average
+price over the cheapest hours still needed to reach 100%, whether that price is
+known or forecast, the chosen day, and the last day as the fallback. It also
+shows when the forecast was made and when it next refreshes, which batteries
+are already full this month, and a warning when the forecast is missing or
+older than 36 hours. Before the final week it only names the day the window
+opens. The card is hidden with the weekly schedule.</p>
+<p><img alt="Monthly full charge card with a Jeroen.nl forecast" src="../../assets/monthly-full-charge.png" width="900" /></p>
 <p>The full-charge sensor exposes the monthly source, selected date, decision
-reason, forecast timestamp and per-battery completion history.</p>
+reason, forecast timestamp and per-battery completion history. With a forecast
+source it also exposes <code>forecast_days</code> (date, price, known or forecast, and
+whether the day can be chosen), <code>price_unit</code>, <code>charge_hours</code>,
+<code>forecast_stale</code>, <code>next_forecast_refresh</code>, the <code>window_start</code> and
+<code>window_end</code> dates, and <code>monthly_batteries</code>.</p>
 <p><strong>Weekly Full Charge</strong> reports <code>idle</code>, <code>charging</code>, or <code>complete</code>. On the selected day, OpenBattery temporarily raises the charge target to 100% for batteries under automatic control. It marks the cycle complete only after every participating battery is considered full, then restores each configured limit.</p>
 <p>With <a href="../../configuration/predictive-charging/">predictive charging</a>, the remaining energy needed for the weekly target enters the plan. OpenBattery can buy that energy during the configured charging period when forecast solar will not cover it. Without predictive charging, the cycle relies on available solar and may not complete on a cloudy day.</p>
 <p>The sensor's <code>batteries</code> attribute shows the live SOC and completion evidence for each battery. On compatible batteries, <strong>Cell Delta</strong>, <strong>Balance Status</strong>, and <strong>Last Balance Read</strong> update after the top-of-charge measurement. See <a href="../cell-balance-monitor/">Is my battery healthy?</a> to interpret the result.</p>
